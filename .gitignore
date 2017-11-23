@@ -3,3 +3,9 @@
 ################################################################################
 
 /Tote/Business/bin/Debug
+/Tote/Common/bin/Debug
+/Tote/Data/bin/Debug
+/Tote/Dependencies/bin/Debug
+/Tote/Tote/bin
+/Tote/Service.Contracts/bin/Debug
+/Tote/Service/bin

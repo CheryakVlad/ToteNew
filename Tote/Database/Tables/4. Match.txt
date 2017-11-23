@@ -1,0 +1,44 @@
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Match
+	(
+	MatchId int NOT NULL IDENTITY (1, 1),
+	TeamHomeId int NOT NULL,
+	TeamGuestId int NOT NULL,
+	DateMatch datetime NOT NULL,
+	ResultId int NOT NULL,
+	TournamentId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Match ADD CONSTRAINT
+	PK_Match PRIMARY KEY CLUSTERED 
+	(
+	MatchId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Match ADD CONSTRAINT
+	FK_Match_Tournament FOREIGN KEY
+	(
+	TournamentId
+	) REFERENCES dbo.Tournament
+	(
+	TournamentId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Match ADD CONSTRAINT
+	FK_Match_Result FOREIGN KEY
+	(
+	ResultId
+	) REFERENCES dbo.Result
+	(
+	ResultId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Match SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT

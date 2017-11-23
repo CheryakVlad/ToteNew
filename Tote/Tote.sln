@@ -17,6 +17,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{F750F06E-CD0D-4700-AF1F-236D519F4039}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{E0CA345F-ED05-45B5-A082-A0C61D757B85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{F3E638C0-1391-4F25-BC97-B1134FB02DF7}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\1. Result.txt = ..\..\1. Result.txt
+		..\..\2. Sport.txt = ..\..\2. Sport.txt
+		..\..\3. Tournament.txt = ..\..\3. Tournament.txt
+		..\..\4. Match.txt = ..\..\4. Match.txt
+		..\..\5. Bet.txt = ..\..\5. Bet.txt
+		..\..\6. Country.txt = ..\..\6. Country.txt
+		..\..\7. Team.txt = ..\..\7. Team.txt
+		..\..\insert into.sql = ..\..\insert into.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{5880BF3A-C6D9-437F-A8DB-17A11530D07E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +70,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3E638C0-1391-4F25-BC97-B1134FB02DF7} = {E0CA345F-ED05-45B5-A082-A0C61D757B85}
+		{5880BF3A-C6D9-437F-A8DB-17A11530D07E} = {E0CA345F-ED05-45B5-A082-A0C61D757B85}
 	EndGlobalSection
 EndGlobal
