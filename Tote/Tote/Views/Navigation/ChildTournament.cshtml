@@ -1,0 +1,23 @@
+﻿@model List<Common.Models.Tournament>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/scripts/jquery-3.2.1.js"></script>
+<ul class="menuTournament">
+
+    @foreach (var tournament in Model)
+    {
+        <li class=@tournament.TournamentId>
+            @Html.RouteLink(tournament.Name, new
+       {
+           controller = "Navigation",
+           action = "List",
+           SportId = tournament.SportId,
+           TournamentId=tournament.TournamentId
+       })
+
+        </li>
+    }
+</ul>
+

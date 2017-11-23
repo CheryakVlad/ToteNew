@@ -1,0 +1,4 @@
+D:\22-11-2017\Tote\Common\bin\Debug\Common.dll
+D:\22-11-2017\Tote\Common\bin\Debug\Common.pdb
+D:\22-11-2017\Tote\Common\obj\Debug\Common.dll
+D:\22-11-2017\Tote\Common\obj\Debug\Common.pdb

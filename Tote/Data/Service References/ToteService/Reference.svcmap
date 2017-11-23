@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dd7b737a-9ce6-4f9d-b80d-7705a3bd0369" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7712/ToteService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ToteService.disco" MetadataType="Disco" ID="8977dad8-0b9d-43d9-874e-172a7811f349" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?disco" />
+    <MetadataFile FileName="ToteService.xsd" MetadataType="Schema" ID="cc907dc1-78fd-4aaf-94cd-0023db3d3738" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ToteService1.xsd" MetadataType="Schema" ID="8a335409-5230-4e87-8578-4d1a21ef165c" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ToteService2.xsd" MetadataType="Schema" ID="f9231e7c-cf1c-4cba-b49e-fe3556e5f699" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RateListService.wsdl" MetadataType="Wsdl" ID="354b460f-7e82-4582-a930-5188e1a631f2" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

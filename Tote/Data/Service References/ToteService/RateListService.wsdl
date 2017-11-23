@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RateListService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRateListService_GetRates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRates" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetRates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetRatesAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRatesAll" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetRatesAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRatesAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetSport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSport" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetSport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetSports_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSports" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetSports_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetTournament_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTournament" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetTournament_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTournamentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetTournamentes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTournamentes" />
+  </wsdl:message>
+  <wsdl:message name="IRateListService_GetTournamentes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTournamentesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRateListService">
+    <wsdl:operation name="GetRates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetRates" message="tns:IRateListService_GetRates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetRatesResponse" message="tns:IRateListService_GetRates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRatesAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetRatesAll" message="tns:IRateListService_GetRatesAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetRatesAllResponse" message="tns:IRateListService_GetRatesAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetSport" message="tns:IRateListService_GetSport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetSportResponse" message="tns:IRateListService_GetSport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSports">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetSports" message="tns:IRateListService_GetSports_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetSportsResponse" message="tns:IRateListService_GetSports_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTournament">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetTournament" message="tns:IRateListService_GetTournament_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetTournamentResponse" message="tns:IRateListService_GetTournament_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTournamentes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetTournamentes" message="tns:IRateListService_GetTournamentes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetTournamentesResponse" message="tns:IRateListService_GetTournamentes_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IRateListService" type="tns:IRateListService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRates">
+      <soap:operation soapAction="http://tempuri.org/IRateListService/GetRates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRatesAll">
+      <soap:operation soapAction="http://tempuri.org/IRateListService/GetRatesAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSport">
+      <soap:operation soapAction="http://tempuri.org/IRateListService/GetSport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSports">
+      <soap:operation soapAction="http://tempuri.org/IRateListService/GetSports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournament">
+      <soap:operation soapAction="http://tempuri.org/IRateListService/GetTournament" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournamentes">
+      <soap:operation soapAction="http://tempuri.org/IRateListService/GetTournamentes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RateListService">
+    <wsdl:port name="BasicHttpBinding_IRateListService" binding="tns:BasicHttpBinding_IRateListService">
+      <soap:address location="http://localhost:7712/ToteService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfRateListDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RateListDto" nillable="true" type="tns:RateListDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRateListDto" nillable="true" type="tns:ArrayOfRateListDto" />
+  <xs:complexType name="RateListDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommandGuest" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommandHome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Draw" type="xs:double" />
+      <xs:element minOccurs="0" name="MatchId" type="xs:int" />
+      <xs:element minOccurs="0" name="RateId" type="xs:int" />
+      <xs:element minOccurs="0" name="WinCommandGuest" type="xs:double" />
+      <xs:element minOccurs="0" name="WinCommandHome" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RateListDto" nillable="true" type="tns:RateListDto" />
+  <xs:complexType name="SportDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SportId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SportDto" nillable="true" type="tns:SportDto" />
+  <xs:complexType name="ArrayOfSportDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SportDto" nillable="true" type="tns:SportDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSportDto" nillable="true" type="tns:ArrayOfSportDto" />
+  <xs:complexType name="ArrayOfTournamentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TournamentDto" nillable="true" type="tns:TournamentDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTournamentDto" nillable="true" type="tns:ArrayOfTournamentDto" />
+  <xs:complexType name="TournamentDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SportId" type="xs:int" />
+      <xs:element minOccurs="0" name="TournamentId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TournamentDto" nillable="true" type="tns:TournamentDto" />
+</xs:schema>

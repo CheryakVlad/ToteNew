@@ -1,0 +1,63 @@
+﻿@model Common.Models.RateList
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rate</title>
+</head>
+<body>
+    <input type="button" onclick="history.back(-2); return false;" value="Back" />
+
+    <h2>
+        @Model.CommandHome vs @Model.CommandGuest by @Model.Date
+    </h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RateId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WinCommandHome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WinCommandGuest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Draw)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MatchId)
+            </th>
+            <th></th>
+        </tr>
+           
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.RateId)
+            </td>            
+            <td>
+                @Html.DisplayFor(model => model.WinCommandHome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.WinCommandGuest)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Draw)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.MatchId)
+            </td>
+            
+        </tr>
+    
+    
+    </table>
+</body>
+</html>

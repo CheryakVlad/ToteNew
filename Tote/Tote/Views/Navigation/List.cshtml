@@ -1,0 +1,29 @@
+﻿@model List<Common.Models.RateList>
+@{
+    Layout = @"\Views\MasterView.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Navigation</title>
+</head>
+
+<body>
+    @foreach (var rate in Model)
+    {
+        @Html.RouteLink(rate.CommandHome+" vs "+rate.CommandGuest.ToString(), new
+   {
+       controller = "Navigation",
+       action = "Rate",
+       id = rate.RateId
+   }, new
+   {
+       @class = "btn btn-block btn-default btn-lg"
+            
+   })
+    }
+</body>
+</html>
