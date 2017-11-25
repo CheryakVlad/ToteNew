@@ -13,12 +13,12 @@ namespace Business.Providers
             this.dataService = dataService;
         }
 
-        public IList<RateList> GetRateAll()
+        public IList<Bet> GetRateAll()
         {
             return dataService.GetRatesAll();
         }
 
-        public IList<RateList> GetRateList(int? sportId, int? tournamentId)
+        public IList<Bet> GetRateList(int? sportId, int? tournamentId)
         {
             return dataService.GetRates(sportId, tournamentId);
         }

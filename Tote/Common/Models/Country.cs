@@ -2,21 +2,15 @@
 
 namespace Common.Models
 {
-    public class Sport
+    public class Country
     {
-        
-        public int SportId { get; set; }
-        
+        public int CountryId { get; set; }
         public string Name { get; set; }
-
         public IList<Team> Teams { get; set; }
 
-        public IList<Tournament> Tournaments { get; set; }
-
-        public Sport()
+        public Country()
         {
             Teams = new List<Team>();
-            Tournaments = new List<Tournament>();
         }
 
     }

@@ -15,10 +15,12 @@ namespace Service.Contracts.Dto
         [DataMember]
         public DateTime Date { get; set; }
         [DataMember]
-        public string Result { get; set; }
+        public int ResultId { get; set; }
         [DataMember]
         public int TournamentId { get; set; }
         [DataMember]
         public int TourId { get; set; }
+
+       
     }
 }

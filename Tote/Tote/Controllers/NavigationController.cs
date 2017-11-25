@@ -20,7 +20,7 @@ namespace Tote.Controllers
         // GET: Navigation
         public ActionResult Index()
         {
-            IList<RateList> rates = rateListProvider.GetRateList(1, 1);
+            IList<Bet> rates = rateListProvider.GetRateList(1, 1);
             return View(rates[0]);
         }
 
@@ -39,11 +39,11 @@ namespace Tote.Controllers
 
         public ActionResult Rate(int id)
         {
-            IList<RateList> rates = rateListProvider.GetRateAll();
-            RateList rate = new RateList();
-            foreach(RateList r in rates)
+            IList<Bet> rates = rateListProvider.GetRateAll();
+            Bet rate = new Bet();
+            foreach(Bet r in rates)
             {
-                if(r.RateId==id)
+                if(r.BetId==id)
                 {
                     rate = r;
                 }
@@ -52,11 +52,28 @@ namespace Tote.Controllers
         }
 
         public ViewResult List(int? SportId, int? TournamentId = null)
-        {              
-            IList<RateList> rates = rateListProvider.GetRateList(SportId, TournamentId);
+        {   if(SportId==null)
+            {
+                SportId = 0;
+            }
+            if (TournamentId == null)
+            {
+                TournamentId = 0;
+            }
+            IList<Bet> rates = rateListProvider.GetRateList(SportId, TournamentId);
             return View(rates);
         }
+        public ActionResult Sports()
+        {
+            IList<Sport> sports = rateListProvider.GetSports();
+            return View(sports);
+        }
 
+        public ActionResult Sport()
+        {
+            Sport sport = rateListProvider.GetSport(1);
+            return View(sport);
+        }
 
     }
 }

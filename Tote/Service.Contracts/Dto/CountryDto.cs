@@ -4,11 +4,14 @@ using System.Runtime.Serialization;
 namespace Service.Contracts.Dto
 {
     [DataContract]
-    public class SportDto
+    public class CountryDto
     {
         [DataMember]
-        public int SportId { get; set; }
+        public int CountryId { get; set; }
         [DataMember]
         public string Name { get; set; }
+        
+
+        
     }
 }

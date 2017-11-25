@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Models
+namespace Service.Contracts.Dto
 {
-    public class Rate
+    [DataContract]
+    public class BetDto
     {
-        public int RateId { get; set; }
+        [DataMember]
+        public int BetId { get; set; }
+        [DataMember]
         public double WinCommandHome { get; set; }
+        [DataMember]
         public double WinCommandGuest { get; set; }
+        [DataMember]
         public double Draw { get; set; }
+        [DataMember]
         public int MatchId { get; set; }
     }
+        
 }

@@ -15,23 +15,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Service.Contracts\Service.Contracts.csproj", "{53016262-BBB5-4B33-8A2B-4BE859A11D33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{F750F06E-CD0D-4700-AF1F-236D519F4039}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{284C0DE1-31C8-401C-821E-D82EDE1E93FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{E0CA345F-ED05-45B5-A082-A0C61D757B85}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{F3E638C0-1391-4F25-BC97-B1134FB02DF7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{570234EA-D6C1-4C6B-B127-85648DBDAD20}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\1. Result.txt = ..\..\1. Result.txt
-		..\..\2. Sport.txt = ..\..\2. Sport.txt
-		..\..\3. Tournament.txt = ..\..\3. Tournament.txt
-		..\..\4. Match.txt = ..\..\4. Match.txt
-		..\..\5. Bet.txt = ..\..\5. Bet.txt
-		..\..\6. Country.txt = ..\..\6. Country.txt
-		..\..\7. Team.txt = ..\..\7. Team.txt
-		..\..\insert into.sql = ..\..\insert into.sql
+		Database\Tables\1. Result.txt = Database\Tables\1. Result.txt
+		Database\Tables\2. Sport.txt = Database\Tables\2. Sport.txt
+		Database\Tables\3. Tournament.txt = Database\Tables\3. Tournament.txt
+		Database\Tables\4. Match.txt = Database\Tables\4. Match.txt
+		Database\Tables\5. Bet.txt = Database\Tables\5. Bet.txt
+		Database\Tables\6. Country.txt = Database\Tables\6. Country.txt
+		Database\Tables\7. Team.txt = Database\Tables\7. Team.txt
+		Database\Tables\insert into.sql = Database\Tables\insert into.sql
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{5880BF3A-C6D9-437F-A8DB-17A11530D07E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Function", "Function", "{59503570-E44F-48DB-B370-6028BFBA3C01}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Tote\Database\Functions\GetTournamentsBySport.sql = ..\..\Tote\Database\Functions\GetTournamentsBySport.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{FEC81EB8-84B4-4489-B672-DCFF60B024A4}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Tote\Database\Procedures\GetBetsAll.sql = ..\..\Tote\Database\Procedures\GetBetsAll.sql
+		..\..\Tote\Database\Procedures\GetBetsBySport.sql = ..\..\Tote\Database\Procedures\GetBetsBySport.sql
+		..\..\Tote\Database\Procedures\GetBetsBySportTournament.sql = ..\..\Tote\Database\Procedures\GetBetsBySportTournament.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,16 +73,17 @@ Global
 		{53016262-BBB5-4B33-8A2B-4BE859A11D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53016262-BBB5-4B33-8A2B-4BE859A11D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53016262-BBB5-4B33-8A2B-4BE859A11D33}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F750F06E-CD0D-4700-AF1F-236D519F4039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F750F06E-CD0D-4700-AF1F-236D519F4039}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F750F06E-CD0D-4700-AF1F-236D519F4039}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F750F06E-CD0D-4700-AF1F-236D519F4039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F3E638C0-1391-4F25-BC97-B1134FB02DF7} = {E0CA345F-ED05-45B5-A082-A0C61D757B85}
-		{5880BF3A-C6D9-437F-A8DB-17A11530D07E} = {E0CA345F-ED05-45B5-A082-A0C61D757B85}
+		{570234EA-D6C1-4C6B-B127-85648DBDAD20} = {284C0DE1-31C8-401C-821E-D82EDE1E93FB}
+		{59503570-E44F-48DB-B370-6028BFBA3C01} = {284C0DE1-31C8-401C-821E-D82EDE1E93FB}
+		{FEC81EB8-84B4-4489-B672-DCFF60B024A4} = {284C0DE1-31C8-401C-821E-D82EDE1E93FB}
 	EndGlobalSection
 EndGlobal

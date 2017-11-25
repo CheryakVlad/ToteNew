@@ -8,9 +8,9 @@ namespace Service.Contracts.Contracts
     public interface IRateListService
     {
         [OperationContract]
-        List<RateListDto> GetRates(int? sportId, int? tournamentId);
+        List<BetListDto> GetBets(int? sportId, int? tournamentId);
         [OperationContract]
-        List<RateListDto> GetRatesAll();
+        List<BetListDto> GetBetsAll();
 
         [OperationContract]
         SportDto GetSport(int? id);

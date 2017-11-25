@@ -1,4 +1,4 @@
-﻿@model Common.Models.RateList
+﻿@model Common.Models.Bet
 
 @{
     Layout = null;
@@ -15,13 +15,13 @@
     <input type="button" onclick="history.back(-2); return false;" value="Back" />
 
     <h2>
-        @Model.CommandHome vs @Model.CommandGuest by @Model.Date
+        @Model.Match.Teams[0].Name.ToString() vs @Model.Match.Teams[1].Name.ToString()
     </h2>
 
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RateId)
+                @Html.DisplayNameFor(model => model.BetId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.WinCommandHome)
@@ -32,15 +32,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Draw)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MatchId)
-            </th>
+            
             <th></th>
         </tr>
            
         <tr>
             <td>
-                @Html.DisplayFor(model => model.RateId)
+                @Html.DisplayFor(model => model.BetId)
             </td>            
             <td>
                 @Html.DisplayFor(model => model.WinCommandHome)
@@ -51,9 +49,7 @@
             <td>
                 @Html.DisplayFor(model => model.Draw)
             </td>
-            <td>
-                @Html.DisplayFor(model => model.MatchId)
-            </td>
+            
             
         </tr>
     

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -42,9 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\ToteContext.cs" />
-    <Compile Include="Contracts\CommandService.cs" />
-    <Compile Include="Contracts\ICommandService.cs" />
+    <Compile Include="Contracts\TeamService.cs" />
+    <Compile Include="Contracts\ITeamService.cs" />
     <Compile Include="Contracts\IMatchService.cs" />
     <Compile Include="Contracts\IRateListService.cs" />
     <Compile Include="Contracts\IRateService.cs" />
@@ -55,7 +55,11 @@
     <Compile Include="Contracts\RateService.cs" />
     <Compile Include="Contracts\SportService.cs" />
     <Compile Include="Contracts\TournamentService.cs" />
-    <Compile Include="Dto\CommandDto.cs" />
+    <Compile Include="Dto\BetDto.cs" />
+    <Compile Include="Dto\BetListDto.cs" />
+    <Compile Include="Dto\CountryDto.cs" />
+    <Compile Include="Dto\ResultDto.cs" />
+    <Compile Include="Dto\TeamDto.cs" />
     <Compile Include="Dto\MatchDto.cs" />
     <Compile Include="Dto\RateDetailsDto.cs" />
     <Compile Include="Dto\RateDto.cs" />

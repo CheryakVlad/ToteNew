@@ -1,4 +1,4 @@
-﻿@model List<Common.Models.RateList>
+﻿@model List<Common.Models.Bet>
 @{
     Layout = @"\Views\MasterView.cshtml";
 }
@@ -12,17 +12,17 @@
 </head>
 
 <body>
-    @foreach (var rate in Model)
+    @foreach (var bet in Model)
     {
-        @Html.RouteLink(rate.CommandHome+" vs "+rate.CommandGuest.ToString(), new
+        @Html.RouteLink(bet.Match.Teams[0].Name.ToString()+" vs "+ bet.Match.Teams[1].Name.ToString(), new
    {
        controller = "Navigation",
        action = "Rate",
-       id = rate.RateId
+       id = bet.BetId
    }, new
    {
        @class = "btn btn-block btn-default btn-lg"
-            
+
    })
     }
 </body>

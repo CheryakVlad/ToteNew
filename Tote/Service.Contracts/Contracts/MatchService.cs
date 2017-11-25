@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Service.Contracts.Dto;
-using Service.Contracts.Context;
+
 
 namespace Service.Contracts.Contracts
 {
     public class MatchService : IMatchService
     {
-        private readonly ToteContext db;
+        /*private readonly ToteContext db;
         public MatchDto GetMatch(int? id)
         {
             var selectedMatch = from Match in db.Matches
@@ -22,6 +22,15 @@ namespace Service.Contracts.Contracts
         public IEnumerable<MatchDto> GetMatches()
         {
             return db.Matches;
+        }*/
+        public MatchDto GetMatch(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<MatchDto> GetMatches()
+        {
+            throw new NotImplementedException();
         }
     }
 }

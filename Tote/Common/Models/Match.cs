@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Models
 {
@@ -12,8 +9,21 @@ namespace Common.Models
         public int CommandIdHome { get; set; }
         public int CommandIdGuest { get; set; }
         public DateTime Date { get; set; }
-        public string Result { get; set; }
+        //public string Result { get; set; }
         public int TournamentId { get; set; }
+        public Tournament Tournament { get; set; }
+        public int ResultId { get; set; }
+        public Result Result { get; set; }
         public int TourId { get; set; }
+
+        public IList<Bet> Bets { get; set; }
+
+        public IList<Team> Teams { get; set; }
+
+        public Match()
+        {
+            Bets = new List<Bet>();
+        }
+        
     }
 }

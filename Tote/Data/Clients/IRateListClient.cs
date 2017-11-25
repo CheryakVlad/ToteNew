@@ -4,8 +4,8 @@ namespace Data.Clients
 {
     public interface IRateListClient
     {
-        IList<ToteService.RateListDto> GetRates(int? sportId, int? tournamentId);
-        IList<ToteService.RateListDto> GetRatesAll();
+        IList<ToteService.BetListDto> GetBets(int? sportId, int? tournamentId);
+        IList<ToteService.BetListDto> GetBetsAll();
 
         
         

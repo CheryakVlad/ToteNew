@@ -15,12 +15,15 @@ namespace Data.ToteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RateListDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BetListDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
     [System.SerializableAttribute()]
-    public partial class RateListDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class BetListDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BetIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CommandGuestField;
@@ -32,19 +35,16 @@ namespace Data.ToteService {
         private System.DateTime DateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double DrawField;
+        private int DrawField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MatchIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RateIdField;
+        private int WinCommandGuestField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double WinCommandGuestField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double WinCommandHomeField;
+        private int WinCommandHomeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -53,6 +53,19 @@ namespace Data.ToteService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BetId {
+            get {
+                return this.BetIdField;
+            }
+            set {
+                if ((this.BetIdField.Equals(value) != true)) {
+                    this.BetIdField = value;
+                    this.RaisePropertyChanged("BetId");
+                }
             }
         }
         
@@ -96,7 +109,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Draw {
+        public int Draw {
             get {
                 return this.DrawField;
             }
@@ -122,20 +135,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RateId {
-            get {
-                return this.RateIdField;
-            }
-            set {
-                if ((this.RateIdField.Equals(value) != true)) {
-                    this.RateIdField = value;
-                    this.RaisePropertyChanged("RateId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double WinCommandGuest {
+        public int WinCommandGuest {
             get {
                 return this.WinCommandGuestField;
             }
@@ -148,7 +148,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double WinCommandHome {
+        public int WinCommandHome {
             get {
                 return this.WinCommandHomeField;
             }
@@ -312,17 +312,17 @@ namespace Data.ToteService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ToteService.IRateListService")]
     public interface IRateListService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetRates", ReplyAction="http://tempuri.org/IRateListService/GetRatesResponse")]
-        Data.ToteService.RateListDto[] GetRates(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBets", ReplyAction="http://tempuri.org/IRateListService/GetBetsResponse")]
+        Data.ToteService.BetListDto[] GetBets(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetRates", ReplyAction="http://tempuri.org/IRateListService/GetRatesResponse")]
-        System.Threading.Tasks.Task<Data.ToteService.RateListDto[]> GetRatesAsync(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBets", ReplyAction="http://tempuri.org/IRateListService/GetBetsResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAsync(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetRatesAll", ReplyAction="http://tempuri.org/IRateListService/GetRatesAllResponse")]
-        Data.ToteService.RateListDto[] GetRatesAll();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBetsAll", ReplyAction="http://tempuri.org/IRateListService/GetBetsAllResponse")]
+        Data.ToteService.BetListDto[] GetBetsAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetRatesAll", ReplyAction="http://tempuri.org/IRateListService/GetRatesAllResponse")]
-        System.Threading.Tasks.Task<Data.ToteService.RateListDto[]> GetRatesAllAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBetsAll", ReplyAction="http://tempuri.org/IRateListService/GetBetsAllResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetSport", ReplyAction="http://tempuri.org/IRateListService/GetSportResponse")]
         Data.ToteService.SportDto GetSport(System.Nullable<int> id);
@@ -376,20 +376,20 @@ namespace Data.ToteService {
                 base(binding, remoteAddress) {
         }
         
-        public Data.ToteService.RateListDto[] GetRates(System.Nullable<int> sportId, System.Nullable<int> tournamentId) {
-            return base.Channel.GetRates(sportId, tournamentId);
+        public Data.ToteService.BetListDto[] GetBets(System.Nullable<int> sportId, System.Nullable<int> tournamentId) {
+            return base.Channel.GetBets(sportId, tournamentId);
         }
         
-        public System.Threading.Tasks.Task<Data.ToteService.RateListDto[]> GetRatesAsync(System.Nullable<int> sportId, System.Nullable<int> tournamentId) {
-            return base.Channel.GetRatesAsync(sportId, tournamentId);
+        public System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAsync(System.Nullable<int> sportId, System.Nullable<int> tournamentId) {
+            return base.Channel.GetBetsAsync(sportId, tournamentId);
         }
         
-        public Data.ToteService.RateListDto[] GetRatesAll() {
-            return base.Channel.GetRatesAll();
+        public Data.ToteService.BetListDto[] GetBetsAll() {
+            return base.Channel.GetBetsAll();
         }
         
-        public System.Threading.Tasks.Task<Data.ToteService.RateListDto[]> GetRatesAllAsync() {
-            return base.Channel.GetRatesAllAsync();
+        public System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAllAsync() {
+            return base.Channel.GetBetsAllAsync();
         }
         
         public Data.ToteService.SportDto GetSport(System.Nullable<int> id) {

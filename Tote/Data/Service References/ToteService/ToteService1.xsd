@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" />
-  <xs:element name="GetRates">
+  <xs:element name="GetBets">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="sportId" nillable="true" type="xs:int" />
@@ -9,22 +9,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetRatesResponse">
+  <xs:element name="GetBetsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetRatesResult" nillable="true" type="q1:ArrayOfRateListDto" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetBetsResult" nillable="true" type="q1:ArrayOfBetListDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetRatesAll">
+  <xs:element name="GetBetsAll">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetRatesAllResponse">
+  <xs:element name="GetBetsAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetRatesAllResult" nillable="true" type="q2:ArrayOfRateListDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetBetsAllResult" nillable="true" type="q2:ArrayOfBetListDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

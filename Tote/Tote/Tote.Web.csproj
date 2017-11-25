@@ -167,7 +167,6 @@
     <Content Include="Views\Navigation\List.cshtml" />
     <Content Include="Views\Navigation\Menu.cshtml" />
     <Content Include="Views\Navigation\Rate.cshtml" />
-    <Content Include="Views\Navigation\Sport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -193,6 +192,8 @@
     <Content Include="scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\MasterView.cshtml" />
+    <Content Include="Views\Navigation\Sports.cshtml" />
+    <Content Include="Views\Navigation\Sport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

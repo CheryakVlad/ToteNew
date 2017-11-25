@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using Data.ToteService;
 
@@ -6,17 +6,16 @@ namespace Data.Clients
 {
     public class RateListClient : IRateListClient
     {
-        public IList<RateListDto> GetRates(int? sportId, int? tournamentId)
+        public IList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
-            var model = new List<RateListDto>();
+            var model = new List<BetListDto>();
             using (var client = new ToteService.RateListServiceClient())
             {
                 client.Open();
-               // client.GetRatesAll();
-                var rates=client.GetRates(sportId, tournamentId); 
-                foreach(var rate in rates)
+                var bets=client.GetBets(sportId, tournamentId); 
+                foreach(var bet in bets)
                 {
-                    model.Add(rate);
+                    model.Add(bet);
                 }               
 
                 client.Close();
@@ -26,17 +25,17 @@ namespace Data.Clients
             return model;
         }
 
-        public IList<RateListDto> GetRatesAll()
+        public IList<BetListDto> GetBetsAll()
         {
-            var model = new List<RateListDto>();
+            var model = new List<BetListDto>();
             using (var client = new ToteService.RateListServiceClient())
             {
                 client.Open();
 
-                var rates = client.GetRatesAll();
-                foreach (var rate in rates)
+                var bets = client.GetBetsAll();
+                foreach (var bet in bets)
                 {
-                    model.Add(rate);
+                    model.Add(bet);
                 }
 
                 client.Close();
@@ -119,5 +118,7 @@ namespace Data.Clients
 
             return model;
         }
+
+        
     }
 }

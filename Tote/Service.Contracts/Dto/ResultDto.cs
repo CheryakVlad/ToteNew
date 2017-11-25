@@ -1,19 +1,20 @@
-﻿
-
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Contracts.Dto
 {
     [DataContract]
-    public class TournamentDto
+    public class ResultDto
     {
+        
         [DataMember]
-        public int TournamentId { get; set; }
+        public int ResultId { get; set; }
         [DataMember]
         public string Name { get; set; }
-        [DataMember]
-        public int SportId { get; set; }
         
     }
 }

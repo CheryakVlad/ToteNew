@@ -7,17 +7,53 @@ namespace Data.Business
 {
     public class Convert : IConvert
     {
-        public IList<RateList> ToRatesList(IList<RateListDto> ratesListDto)
+        public IList<Bet> ToBetsList(IList<BetListDto> betsListDto)
         {
-            var ratesList = new List<RateList>();
-            foreach(var rateListDto in ratesListDto )
+            var betsList = new List<Bet>();
+            foreach (var betListDto in betsListDto)
             {
-                var rateList=new RateList {RateId= rateListDto.RateId, CommandGuest=rateListDto.CommandGuest,
-                 CommandHome=rateListDto.CommandHome, Date=rateListDto.Date, Draw=rateListDto.Draw,
-                 MatchId=rateListDto.MatchId, WinCommandGuest=rateListDto.WinCommandGuest, WinCommandHome=rateListDto.WinCommandHome};
-                ratesList.Add(rateList);
+                var teams = new List<Team>();
+                teams.Add(new Team { Name = betListDto.CommandHome });
+                teams.Add(new Team { Name = betListDto.CommandGuest });
+                var betList = new Bet
+                {
+                    BetId = betListDto.BetId,
+                    WinCommandHome = betListDto.WinCommandHome,
+                    WinCommandGuest = betListDto.WinCommandGuest,
+                    Draw = betListDto.Draw,
+                    Match = new Match { /*Date = System.Convert.ToDateTime(betListDto.Date),*/ Teams=teams }
+                    
+                };
+
+                betsList.Add(betList);
             }
-            return ratesList;
+            return betsList;
+        }
+
+        public IList<Bet> ToRatesList(IList<BetListDto> betsListDto)
+        {
+            var betsList = new List<Bet>();
+            foreach(var betListDto in betsListDto)
+            {
+                var teams = new List<Team>();
+                teams.Add(new Team { Name = betListDto.CommandHome });
+                teams.Add(new Team { Name = betListDto.CommandGuest });
+                var betList=new Bet
+                {
+                    BetId= betListDto.BetId,
+                    WinCommandHome= betListDto.WinCommandHome,
+                    WinCommandGuest= betListDto.WinCommandGuest,
+                    Draw=betListDto.Draw,
+                    Match = new Match{/*Date= System.Convert.ToDateTime(betListDto.Date), */Teams = teams }
+
+                    /*RateId = rateListDto.RateId, CommandGuest=rateListDto.CommandGuest,
+                 CommandHome=rateListDto.CommandHome, Date=rateListDto.Date, Draw=rateListDto.Draw,
+                 MatchId=rateListDto.MatchId, WinCommandGuest=rateListDto.WinCommandGuest, WinCommandHome=rateListDto.WinCommandHome*/
+                 };
+
+                betsList.Add(betList);
+            }
+            return betsList;
         }
 
         public Sport ToSport(SportDto sportDto)

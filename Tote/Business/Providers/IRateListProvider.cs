@@ -9,8 +9,8 @@ namespace Business.Providers
 {
     public interface IRateListProvider
     {
-        IList<RateList> GetRateList(int? sportId, int? tournamentId);
-        IList<RateList> GetRateAll();
+        IList<Bet> GetRateList(int? sportId, int? tournamentId);
+        IList<Bet> GetRateAll();
 
         Sport GetSport(int? id);
         IList<Sport> GetSports();

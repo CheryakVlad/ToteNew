@@ -5,8 +5,8 @@ namespace Data.Services
 {
     public interface IDataService
     {
-        IList<RateList> GetRates(int? sportId, int? tournamentId);
-        IList<RateList> GetRatesAll();
+        IList<Bet> GetRates(int? sportId, int? tournamentId);
+        IList<Bet> GetRatesAll();
 
 
         Sport GetSport(int? id);
