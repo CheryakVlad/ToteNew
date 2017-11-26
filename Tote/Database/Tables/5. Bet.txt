@@ -3,9 +3,9 @@ GO
 CREATE TABLE dbo.Bet
 	(
 	BetId int NOT NULL IDENTITY (1, 1),
-	Win int NOT NULL,
-	Loss int NOT NULL,
-	Draw int NOT NULL,
+	Win float NOT NULL,
+	Loss float NOT NULL,
+	Draw float NOT NULL,
 	MatchId int NOT NULL
 	)  ON [PRIMARY]
 GO

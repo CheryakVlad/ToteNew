@@ -5,12 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Common.Models;
+using System.ServiceModel;
+using System.Data.SqlClient;
 
 namespace Tote.Controllers
 {
     public class NavigationController : Controller
     {
         private IRateListProvider rateListProvider;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
 
         public NavigationController(IRateListProvider rateListProvider)
         {
@@ -51,8 +54,10 @@ namespace Tote.Controllers
             return View(rate);
         }
 
-        public ViewResult List(int? SportId, int? TournamentId = null)
-        {   if(SportId==null)
+        public ActionResult List(int? SportId, int? TournamentId = null)
+        {
+            log.Info("Controller: Navigation Action: List");
+            if (SportId==null)
             {
                 SportId = 0;
             }
@@ -60,8 +65,29 @@ namespace Tote.Controllers
             {
                 TournamentId = 0;
             }
-            IList<Bet> rates = rateListProvider.GetRateList(SportId, TournamentId);
+            IList<Bet> rates = new List<Bet>();
+            try
+            {
+                rates = rateListProvider.GetRateList(SportId, TournamentId);
+            }
+            catch(FaultException ex)
+            {
+                log.Error(ex.Message+" "+ex.StackTrace);
+                return RedirectToAction("InfoError", "Navigation");
+            }
+            catch(SqlException ex)
+            {
+                log.Error(ex.Message + " " + ex.StackTrace);
+                return RedirectToAction("InfoError","Navigation");
+            }
+
+
             return View(rates);
+        }
+
+        public ActionResult InfoError()
+        {
+            return View();
         }
         public ActionResult Sports()
         {

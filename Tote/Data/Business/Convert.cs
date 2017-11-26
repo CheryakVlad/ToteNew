@@ -13,20 +13,21 @@ namespace Data.Business
             foreach (var betListDto in betsListDto)
             {
                 var teams = new List<Team>();
-                teams.Add(new Team { Name = betListDto.CommandHome });
-                teams.Add(new Team { Name = betListDto.CommandGuest });
+                teams.Add(new Team { Name = betListDto.CommandHome, Country = new Country { Name = betListDto.CountryHome } });
+                teams.Add(new Team { Name = betListDto.CommandGuest, Country = new Country { Name = betListDto.CountryGuest } });
                 var betList = new Bet
                 {
                     BetId = betListDto.BetId,
                     WinCommandHome = betListDto.WinCommandHome,
                     WinCommandGuest = betListDto.WinCommandGuest,
                     Draw = betListDto.Draw,
-                    Match = new Match { /*Date = System.Convert.ToDateTime(betListDto.Date),*/ Teams=teams }
+                    Match = new Match { Date = System.Convert.ToDateTime(betListDto.Date), Teams=teams }
                     
                 };
 
                 betsList.Add(betList);
             }
+
             return betsList;
         }
 
@@ -44,15 +45,13 @@ namespace Data.Business
                     WinCommandHome= betListDto.WinCommandHome,
                     WinCommandGuest= betListDto.WinCommandGuest,
                     Draw=betListDto.Draw,
-                    Match = new Match{/*Date= System.Convert.ToDateTime(betListDto.Date), */Teams = teams }
-
-                    /*RateId = rateListDto.RateId, CommandGuest=rateListDto.CommandGuest,
-                 CommandHome=rateListDto.CommandHome, Date=rateListDto.Date, Draw=rateListDto.Draw,
-                 MatchId=rateListDto.MatchId, WinCommandGuest=rateListDto.WinCommandGuest, WinCommandHome=rateListDto.WinCommandHome*/
+                    Match = new Match{Date= System.Convert.ToDateTime(betListDto.Date), Teams = teams }
+                    
                  };
 
                 betsList.Add(betList);
             }
+
             return betsList;
         }
 
@@ -63,6 +62,7 @@ namespace Data.Business
                 SportId = sportDto.SportId,
                 Name = sportDto.Name
             };
+
             return sport;
         }
 
@@ -76,8 +76,10 @@ namespace Data.Business
                     SportId=sportDto.SportId,
                     Name=sportDto.Name
                 };
+
                 sports.Add(sport);
             }
+
             return sports;
         }
 
@@ -92,8 +94,10 @@ namespace Data.Business
                     Name=tournamentDto.Name,
                     SportId=tournamentDto.SportId
                 };
+
                 tournaments.Add(sport);
             }
+
             return tournaments;
         }
     }

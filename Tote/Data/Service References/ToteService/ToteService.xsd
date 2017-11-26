@@ -11,11 +11,13 @@
       <xs:element minOccurs="0" name="BetId" type="xs:int" />
       <xs:element minOccurs="0" name="CommandGuest" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CommandHome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CountryGuest" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CountryHome" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Draw" type="xs:int" />
+      <xs:element minOccurs="0" name="Draw" type="xs:double" />
       <xs:element minOccurs="0" name="MatchId" type="xs:int" />
-      <xs:element minOccurs="0" name="WinCommandGuest" type="xs:int" />
-      <xs:element minOccurs="0" name="WinCommandHome" type="xs:int" />
+      <xs:element minOccurs="0" name="WinCommandGuest" type="xs:double" />
+      <xs:element minOccurs="0" name="WinCommandHome" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BetListDto" nillable="true" type="tns:BetListDto" />

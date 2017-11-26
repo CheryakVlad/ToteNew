@@ -9,11 +9,11 @@ namespace Service.Contracts.Dto
         [DataMember]
         public int BetId { get; set; }
         [DataMember]
-        public int WinCommandHome { get; set; }
+        public double WinCommandHome { get; set; }
         [DataMember]
-        public int WinCommandGuest { get; set; }
+        public double WinCommandGuest { get; set; }
         [DataMember]
-        public int Draw { get; set; }
+        public double Draw { get; set; }
         [DataMember]
         public int MatchId { get; set; }
         [DataMember]
@@ -22,5 +22,9 @@ namespace Service.Contracts.Dto
         public string CommandGuest { get; set; }
         [DataMember]
         public DateTime Date { get; set; }
+        [DataMember]
+        public string CountryHome { get; set; }
+        [DataMember]
+        public string CountryGuest { get; set; }
     }
 }

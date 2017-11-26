@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Data.ToteService;
+using System.ServiceModel;
 
 namespace Data.Clients
 {
@@ -11,14 +12,24 @@ namespace Data.Clients
             var model = new List<BetListDto>();
             using (var client = new ToteService.RateListServiceClient())
             {
-                client.Open();
-                var bets=client.GetBets(sportId, tournamentId); 
-                foreach(var bet in bets)
+                try
                 {
-                    model.Add(bet);
-                }               
+                    client.Open();
+                    var bets = client.GetBets(sportId, tournamentId);
+                    foreach (var bet in bets)
+                    {
+                        model.Add(bet);
+                    }
 
-                client.Close();
+                }
+                catch(FaultException ex)
+                {
+                    throw new FaultException(ex.Message);
+                }
+                finally
+                {
+                    client.Close();                
+                }
 
             }
 

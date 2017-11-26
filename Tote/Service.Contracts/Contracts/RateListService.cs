@@ -22,7 +22,15 @@ namespace Service.Contracts.Contracts
             command.Connection = connection;
             command.CommandType = type;
             command.CommandText = commandText;
-            connection.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+
             if (parameters!=null)
             {
                 foreach (var parameter in parameters)
@@ -34,6 +42,8 @@ namespace Service.Contracts.Contracts
                     command.Parameters.Add(param);
                 }
             }
+
+            
             return command;
         }
 
@@ -67,12 +77,14 @@ namespace Service.Contracts.Contracts
                 var BetListDto = new BetListDto()
                 {
                     BetId = (int)reader[0],
-                    WinCommandHome = (int)reader[1],
-                    WinCommandGuest = (int)reader[2],
-                    Draw = (int)reader[3],
+                    WinCommandHome = reader.GetDouble(1),
+                    WinCommandGuest = reader.GetDouble(2),
+                    Draw = reader.GetDouble(3),
                     CommandHome = reader[4].ToString(),
-                    CommandGuest = reader[5].ToString()
-                    //Date=(DateTime)reader[6]
+                    CommandGuest = reader[5].ToString(),
+                    Date=reader.GetDateTime(6),
+                    CountryHome=reader.GetString(7),
+                    CountryGuest=reader.GetString(8)
                 };
 
                 return BetListDto;

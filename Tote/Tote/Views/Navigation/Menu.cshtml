@@ -17,7 +17,7 @@
        SportId= sport.SportId
    }, new
    {
-       @class = "btn btn-block btn-default btn-lg"
+       @class = "btn btn-block btn-primary btn-lg"
             + (sport.SportId == ViewBag.SelectedCategory ? " btn-primary" : "")
    })
     </li>
@@ -25,17 +25,14 @@
 </ul>
 <script type="text/javascript">
     $(function () {
-        $("#menuSport li").each(function () {
-            //alert("Click!");
-            var id = $(this).attr("id");
-            //alert(id);
+        $("#menuSport li").each(function () {            
+            var id = $(this).attr("id");            
 
             $.ajax({
                 type: 'GET',
                 url: '/Navigation/ChildTournament/' + id,
                 //data: { id: $('#userId').val() },
-                success: function (data) {
-                    //alert("Hello");
+                success: function (data) {                    
                     $('ul#menuSport li#' + id).append(data);
                     //$('#menuSport li#' + id + ' .menuTournament').hide();
                }
@@ -47,9 +44,7 @@
 <script type="text/javascript">
     $(function () {
         $("#menuSport li").click(function () {
-            //alert("Click!");
             var id = $(this).attr("id");
-            //alert(id);
             if ($(this).is(':visible')) {
                 $('#menuSport li#' + id + ' .menuTournament').show();
             }

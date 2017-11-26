@@ -1,0 +1,30 @@
+2017-11-26 17:37:17,629 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 17:37:30,569 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 17:37:33,331 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 17:37:35,239 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 17:37:40,927 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 19:20:53,843 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 19:20:59,884 ERROR Tote.Controllers.NavigationController - Форматтер сгенерировал исключение при попытке десериализовать сообщение: Ошибка десериализации параметра http://tempuri.org/:GetBetsResult. Сообщение InnerException было "Ошибка десериализации объекта типа Data.ToteService.BetListDto[]. Значение "2.26" не может интерпретироваться как тип "Int32".".  Подробнее см. InnerException.    в Data.Clients.RateListClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Clients\RateListClient.cs:строка 27
+   в Data.Services.DataService.GetRates(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Services\DataService.cs:строка 79
+   в Business.Providers.RateListProvider.GetRateList(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Business\Providers\RateListProvider.cs:строка 23
+   в Tote.Controllers.NavigationController.List(Nullable`1 SportId, Nullable`1 TournamentId) в D:\22-11-2017\ToteNew.git\Tote\Tote\Controllers\NavigationController.cs:строка 71
+2017-11-26 19:21:11,269 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 19:21:11,411 ERROR Tote.Controllers.NavigationController - Форматтер сгенерировал исключение при попытке десериализовать сообщение: Ошибка десериализации параметра http://tempuri.org/:GetBetsResult. Сообщение InnerException было "Ошибка десериализации объекта типа Data.ToteService.BetListDto[]. Значение "2.26" не может интерпретироваться как тип "Int32".".  Подробнее см. InnerException.    в Data.Clients.RateListClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Clients\RateListClient.cs:строка 27
+   в Data.Services.DataService.GetRates(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Services\DataService.cs:строка 79
+   в Business.Providers.RateListProvider.GetRateList(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Business\Providers\RateListProvider.cs:строка 23
+   в Tote.Controllers.NavigationController.List(Nullable`1 SportId, Nullable`1 TournamentId) в D:\22-11-2017\ToteNew.git\Tote\Tote\Controllers\NavigationController.cs:строка 71
+2017-11-26 19:57:45,827 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 19:57:49,748 ERROR Tote.Controllers.NavigationController - Форматтер сгенерировал исключение при попытке десериализовать сообщение: Ошибка десериализации параметра http://tempuri.org/:GetBetsResult. Сообщение InnerException было "Ошибка десериализации объекта типа Data.ToteService.BetListDto[]. Значение "2.26" не может интерпретироваться как тип "Int32".".  Подробнее см. InnerException.    в Data.Clients.RateListClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Clients\RateListClient.cs:строка 27
+   в Data.Services.DataService.GetRates(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Services\DataService.cs:строка 79
+   в Business.Providers.RateListProvider.GetRateList(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Business\Providers\RateListProvider.cs:строка 23
+   в Tote.Controllers.NavigationController.List(Nullable`1 SportId, Nullable`1 TournamentId) в D:\22-11-2017\ToteNew.git\Tote\Tote\Controllers\NavigationController.cs:строка 71
+2017-11-26 20:05:44,302 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 20:18:21,497 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:08:38,388 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:18:32,193 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:18:49,180 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:18:51,067 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:19:00,292 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:26:42,336 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:34:17,563 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-26 21:35:27,713 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List

@@ -44,8 +44,8 @@ insert into Match values (10,9,GETDATE(),3,6);
 
 	
 insert into Bet values (1.5, 3.12, 2.26,1);
-insert into Bet values (1.5, 3.12, 2.26,2);
-insert into Bet values (1.5, 3.12, 2.26,3);
-insert into Bet values (1.5, 3.12, 2.26,3);
-insert into Bet values (1.5, 3.12, 2.26,7);
-insert into Bet values (1.5, 3.12, 2.26,8);
+insert into Bet values (1.75, 2.12, 3.16,2);
+insert into Bet values (1.11, 5.17, 3.17,3);
+insert into Bet values (1.25, 3.87, 2.26,3);
+insert into Bet values (3.5, 3.72, 1.26,7);
+insert into Bet values (2.56, 7.19, 2.76,8);

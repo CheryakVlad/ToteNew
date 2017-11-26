@@ -32,19 +32,25 @@ namespace Data.ToteService {
         private string CommandHomeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CountryGuestField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CountryHomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DrawField;
+        private double DrawField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MatchIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int WinCommandGuestField;
+        private double WinCommandGuestField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int WinCommandHomeField;
+        private double WinCommandHomeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -96,6 +102,32 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CountryGuest {
+            get {
+                return this.CountryGuestField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CountryGuestField, value) != true)) {
+                    this.CountryGuestField = value;
+                    this.RaisePropertyChanged("CountryGuest");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CountryHome {
+            get {
+                return this.CountryHomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CountryHomeField, value) != true)) {
+                    this.CountryHomeField = value;
+                    this.RaisePropertyChanged("CountryHome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime Date {
             get {
                 return this.DateField;
@@ -109,7 +141,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Draw {
+        public double Draw {
             get {
                 return this.DrawField;
             }
@@ -135,7 +167,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int WinCommandGuest {
+        public double WinCommandGuest {
             get {
                 return this.WinCommandGuestField;
             }
@@ -148,7 +180,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int WinCommandHome {
+        public double WinCommandHome {
             get {
                 return this.WinCommandHomeField;
             }

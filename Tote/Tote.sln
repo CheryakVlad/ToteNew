@@ -31,14 +31,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{570234
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Function", "Function", "{59503570-E44F-48DB-B370-6028BFBA3C01}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Tote\Database\Functions\GetTournamentsBySport.sql = ..\..\Tote\Database\Functions\GetTournamentsBySport.sql
+		..\..\Database\[GetTournamentsBySport].sql = ..\..\Database\[GetTournamentsBySport].sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{FEC81EB8-84B4-4489-B672-DCFF60B024A4}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Tote\Database\Procedures\GetBetsAll.sql = ..\..\Tote\Database\Procedures\GetBetsAll.sql
-		..\..\Tote\Database\Procedures\GetBetsBySport.sql = ..\..\Tote\Database\Procedures\GetBetsBySport.sql
-		..\..\Tote\Database\Procedures\GetBetsBySportTournament.sql = ..\..\Tote\Database\Procedures\GetBetsBySportTournament.sql
+		..\..\Database\[GetBetsAll].sql = ..\..\Database\[GetBetsAll].sql
+		..\..\Database\[GetBetsBySport].sql = ..\..\Database\[GetBetsBySport].sql
+		..\..\Database\[GetBetsBySportTournament].sql = ..\..\Database\[GetBetsBySportTournament].sql
+		..\..\Database\[GetSportById].sql = ..\..\Database\[GetSportById].sql
+		..\..\Database\[GetSportsAll].sql = ..\..\Database\[GetSportsAll].sql
+		..\..\Database\[GetTournamentById].sql = ..\..\Database\[GetTournamentById].sql
+		..\..\Database\[GetTournamentsAll].sql = ..\..\Database\[GetTournamentsAll].sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}"
