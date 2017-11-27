@@ -2,7 +2,7 @@
 
 namespace Data.Clients
 {
-    public interface IRateListClient
+    public interface IBetListClient
     {
         IList<ToteService.BetListDto> GetBets(int? sportId, int? tournamentId);
         IList<ToteService.BetListDto> GetBetsAll();

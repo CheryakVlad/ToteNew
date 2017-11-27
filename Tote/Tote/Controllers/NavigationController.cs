@@ -12,31 +12,31 @@ namespace Tote.Controllers
 {
     public class NavigationController : Controller
     {
-        private IRateListProvider rateListProvider;
+        private IBetListProvider betListProvider;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
 
-        public NavigationController(IRateListProvider rateListProvider)
+        public NavigationController(IBetListProvider rateListProvider)
         {
-            this.rateListProvider = rateListProvider;
+            this.betListProvider = rateListProvider;
         }
 
         // GET: Navigation
         public ActionResult Index()
         {
-            IList<Bet> rates = rateListProvider.GetRateList(1, 1);
+            IList<Bet> rates = betListProvider.GetBetList(1, 1);
             return View(rates[0]);
         }
 
         public PartialViewResult ChildTournament(int id = 0)
         {
-            IList<Tournament> tournaments = rateListProvider.GetTournament(id);            
+            IList<Tournament> tournaments = betListProvider.GetTournament(id);            
             return PartialView(tournaments);
         }
 
         public PartialViewResult Menu(int category = 0)
         {
             ViewBag.SelectedCategory = category;
-            IList<Sport> sports = rateListProvider.GetSports();
+            IList<Sport> sports = betListProvider.GetSports();
             return PartialView(sports);
         }
 
@@ -53,7 +53,7 @@ namespace Tote.Controllers
             IList<Bet> bets = new List<Bet>();
             try
             {
-                bets = rateListProvider.GetRateList(SportId, TournamentId);
+                bets = betListProvider.GetBetList(SportId, TournamentId);
             }
             catch (FaultException ex)
             {
@@ -70,7 +70,7 @@ namespace Tote.Controllers
 
         public ActionResult Bet(int id)
         {
-            IList<Bet> rates = rateListProvider.GetRateAll();
+            IList<Bet> rates = betListProvider.GetBetAll();
             Bet bet = new Bet();
             foreach(Bet r in rates)
             {
@@ -96,7 +96,7 @@ namespace Tote.Controllers
             IList<Bet> rates = new List<Bet>();
             try
             {
-                rates = rateListProvider.GetRateList(SportId, TournamentId);
+                rates = betListProvider.GetBetList(SportId, TournamentId);
             }
             catch(FaultException ex)
             {
@@ -119,13 +119,13 @@ namespace Tote.Controllers
         }
         public ActionResult Sports()
         {
-            IList<Sport> sports = rateListProvider.GetSports();
+            IList<Sport> sports = betListProvider.GetSports();
             return View(sports);
         }
 
         public ActionResult Sport()
         {
-            Sport sport = rateListProvider.GetSport(1);
+            Sport sport = betListProvider.GetSport(1);
             return View(sport);
         }
 

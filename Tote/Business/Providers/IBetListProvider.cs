@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Business.Providers
 {
-    public interface IRateListProvider
+    public interface IBetListProvider
     {
-        IList<Bet> GetRateList(int? sportId, int? tournamentId);
-        IList<Bet> GetRateAll();
+        IList<Bet> GetBetList(int? sportId, int? tournamentId);
+        IList<Bet> GetBetAll();
 
         Sport GetSport(int? id);
         IList<Sport> GetSports();

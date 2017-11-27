@@ -31,6 +31,17 @@ insert into Result values ('Win');
 insert into Result values ('Loss');
 insert into Result values ('Draw');
 
+insert into TeamTournament values (1,1);
+insert into TeamTournament values (2,1);
+insert into TeamTournament values (3,1);
+insert into TeamTournament values (4,5);
+insert into TeamTournament values (5,5);
+insert into TeamTournament values (6,5);
+insert into TeamTournament values (7,4);
+insert into TeamTournament values (8,4);
+insert into TeamTournament values (9,6);
+insert into TeamTournament values (10,6);
+
 
 insert into Match values (1,2,GETDATE(),1,1);
 insert into Match values (3,2,GETDATE(),1,2);

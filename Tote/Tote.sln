@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{570234
 		Database\Tables\5. Bet.txt = Database\Tables\5. Bet.txt
 		Database\Tables\6. Country.txt = Database\Tables\6. Country.txt
 		Database\Tables\7. Team.txt = Database\Tables\7. Team.txt
+		..\..\..\25-11-2017\8. Alter Table.sql = ..\..\..\25-11-2017\8. Alter Table.sql
 		Database\Tables\insert into.sql = Database\Tables\insert into.sql
 	EndProjectSection
 EndProject

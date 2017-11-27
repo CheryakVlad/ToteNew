@@ -5,7 +5,7 @@ using System.ServiceModel;
 
 namespace Data.Clients
 {
-    public class RateListClient : IRateListClient
+    public class BetListClient : IBetListClient
     {
         public IList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {

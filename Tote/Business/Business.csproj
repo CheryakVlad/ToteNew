@@ -66,8 +66,8 @@
   <ItemGroup>
     <Compile Include="Container\BusinessRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\IRateListProvider.cs" />
-    <Compile Include="Providers\RateListProvider.cs" />
+    <Compile Include="Providers\IBetListProvider.cs" />
+    <Compile Include="Providers\BetListProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

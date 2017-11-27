@@ -15,7 +15,7 @@ namespace Business.Container
             For<IRateProvider>().Use<RateProvider>();
             For<ITournamentProvider>().Use<TournamentProvider>();
             For<INavigationProvider>().Use<NavigationProvider>();*/
-            For<IRateListProvider>().Use<RateListProvider>();
+            For<IBetListProvider>().Use<BetListProvider>();
         }
     }
 }

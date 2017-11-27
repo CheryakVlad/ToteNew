@@ -13,7 +13,7 @@ namespace Data.Container
         {
             //For<IUnitOfWork>().Use<UnitOfWork>();
             For<IDataService>().Use<DataService>();
-            For<IRateListClient>().Use<RateListClient>();            
+            For<IBetListClient>().Use<BetListClient>();            
             For<IConvert>().Use<Data.Business.Convert>();
         }
         

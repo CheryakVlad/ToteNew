@@ -5,22 +5,22 @@ using System;
 
 namespace Business.Providers
 {
-    public class RateListProvider : IRateListProvider
+    public class BetListProvider : IBetListProvider
     {
         private IDataService dataService;
-        public RateListProvider(IDataService dataService)
+        public BetListProvider(IDataService dataService)
         {
             this.dataService = dataService;
         }
 
-        public IList<Bet> GetRateAll()
+        public IList<Bet> GetBetAll()
         {
-            return dataService.GetRatesAll();
+            return dataService.GetBetsAll();
         }
 
-        public IList<Bet> GetRateList(int? sportId, int? tournamentId)
+        public IList<Bet> GetBetList(int? sportId, int? tournamentId)
         {
-            return dataService.GetRates(sportId, tournamentId);
+            return dataService.GetBets(sportId, tournamentId);
         }
 
         public Sport GetSport(int? id)

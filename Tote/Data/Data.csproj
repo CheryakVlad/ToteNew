@@ -69,8 +69,8 @@
   <ItemGroup>
     <Compile Include="Business\Convert.cs" />
     <Compile Include="Business\IConvert.cs" />
-    <Compile Include="Clients\IRateListClient.cs" />
-    <Compile Include="Clients\RateListClient.cs" />
+    <Compile Include="Clients\IBetListClient.cs" />
+    <Compile Include="Clients\BetListClient.cs" />
     <Compile Include="Container\DataRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ToteService\Reference.cs">

@@ -11,16 +11,16 @@ namespace Data.Services
 {
     public class DataService : IDataService
     {
-        private readonly IRateListClient rateListClient;
+        private readonly IBetListClient betListClient;
         private readonly IConvert convert;
 
-        public DataService(IRateListClient client, IConvert convert)
+        public DataService(IBetListClient client, IConvert convert)
         {
-            this.rateListClient = client;
+            this.betListClient = client;
             this.convert = convert;
         }
 
-        public IList<Bet> GetRates(int? sportId, int? tournamentId)
+        public IList<Bet> GetBets(int? sportId, int? tournamentId)
         {
             /*List<Bet> rateList = new List<Bet>();
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
@@ -76,7 +76,7 @@ namespace Data.Services
                 
             }
             return rateList;*/
-            var dto = rateListClient.GetBets(sportId, tournamentId);
+            var dto = betListClient.GetBets(sportId, tournamentId);
 
             if (dto != null)
             {
@@ -85,9 +85,9 @@ namespace Data.Services
             return new List<Bet>();
         }
 
-        public IList<Bet> GetRatesAll()
+        public IList<Bet> GetBetsAll()
         {
-            var dto = rateListClient.GetBetsAll();
+            var dto = betListClient.GetBetsAll();
 
             if (dto != null)
             {
@@ -99,7 +99,7 @@ namespace Data.Services
 
         public Sport GetSport(int? id)
         {
-            var dto = rateListClient.GetSport(id);
+            var dto = betListClient.GetSport(id);
 
             if (dto != null)
             {
@@ -110,7 +110,7 @@ namespace Data.Services
 
         public IList<Sport> GetSports()
         {
-            var dto = rateListClient.GetSports();
+            var dto = betListClient.GetSports();
 
             if (dto != null)
             {
@@ -121,7 +121,7 @@ namespace Data.Services
 
         public IList<Tournament> GetTournament(int? sportId)
         {
-            var dto = rateListClient.GetTournament(sportId);
+            var dto = betListClient.GetTournament(sportId);
 
             if (dto != null)
             {
@@ -132,7 +132,7 @@ namespace Data.Services
 
         public IList<Tournament> GetTournamentes()
         {
-            var dto = rateListClient.GetTournamentes();
+            var dto = betListClient.GetTournamentes();
 
             if (dto != null)
             {

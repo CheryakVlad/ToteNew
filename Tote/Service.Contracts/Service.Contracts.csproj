@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Connection.cs" />
+    <Compile Include="Common\Parameter.cs" />
     <Compile Include="Contracts\TeamService.cs" />
     <Compile Include="Contracts\ITeamService.cs" />
     <Compile Include="Contracts\IMatchService.cs" />

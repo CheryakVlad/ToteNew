@@ -31,7 +31,7 @@ namespace Data.Business
             return betsList;
         }
 
-        public IList<Bet> ToRatesList(IList<BetListDto> betsListDto)
+        /*public IList<Bet> ToRatesList(IList<BetListDto> betsListDto)
         {
             var betsList = new List<Bet>();
             foreach(var betListDto in betsListDto)
@@ -53,7 +53,7 @@ namespace Data.Business
             }
 
             return betsList;
-        }
+        }*/
 
         public Sport ToSport(SportDto sportDto)
         {
