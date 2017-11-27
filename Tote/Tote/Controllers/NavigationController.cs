@@ -40,18 +40,46 @@ namespace Tote.Controllers
             return PartialView(sports);
         }
 
-        public ActionResult Rate(int id)
+        public ActionResult ListBet(int? SportId, int? TournamentId = null)
+        {
+            if (SportId == null)
+            {
+                SportId = 0;
+            }
+            if (TournamentId == null)
+            {
+                TournamentId = 0;
+            }
+            IList<Bet> bets = new List<Bet>();
+            try
+            {
+                bets = rateListProvider.GetRateList(SportId, TournamentId);
+            }
+            catch (FaultException ex)
+            {
+                log.Error(ex.Message + " " + ex.StackTrace);
+                return RedirectToAction("InfoError", "Navigation");
+            }
+            catch (SqlException ex)
+            {
+                log.Error(ex.Message + " " + ex.StackTrace);
+                return RedirectToAction("InfoError", "Navigation");
+            }
+            return PartialView(bets);
+        }
+
+        public ActionResult Bet(int id)
         {
             IList<Bet> rates = rateListProvider.GetRateAll();
-            Bet rate = new Bet();
+            Bet bet = new Bet();
             foreach(Bet r in rates)
             {
                 if(r.BetId==id)
                 {
-                    rate = r;
+                    bet = r;
                 }
             }
-            return View(rate);
+            return View(bet);
         }
 
         public ActionResult List(int? SportId, int? TournamentId = null)

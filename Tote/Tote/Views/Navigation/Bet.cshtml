@@ -10,36 +10,34 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Rate</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <input type="button" onclick="history.back(-2); return false;" value="Back" />
+    <input type="button" class="btn" onclick="history.back(-2); return false;" value="Back" />
 
-    <h2>
-        @Model.Match.Teams[0].Name.ToString() vs @Model.Match.Teams[1].Name.ToString()
+    <h2>       
+        @Model.Match.Teams[0].Name.ToString() ( @Model.Match.Teams[0].Country.Name) 
+         vs @Model.Match.Teams[1].Name.ToString() ( @Model.Match.Teams[1].Country.Name) by @Model.Match.Date.ToString()
     </h2>
 
     <table class="table">
         <tr>
+            
             <th>
-                @Html.DisplayNameFor(model => model.BetId)
+                Win Home Team
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WinCommandHome)
+                Win Guest Team
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WinCommandGuest)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Draw)
+               Draw
             </th>
             
             <th></th>
         </tr>
            
         <tr>
-            <td>
-                @Html.DisplayFor(model => model.BetId)
-            </td>            
+                       
             <td>
                 @Html.DisplayFor(model => model.WinCommandHome)
             </td>

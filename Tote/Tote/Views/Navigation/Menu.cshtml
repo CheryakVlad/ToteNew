@@ -3,6 +3,7 @@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/scripts/jquery-3.2.1.js"></script>
 <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/liNone.css" rel="stylesheet" />
 
 @Html.ActionLink("Home", "List", "Navigation", null,
     new { @class = "btn btn-block btn-default btn-lg" })
@@ -10,49 +11,14 @@
     @foreach (var sport in Model)
     {
     <li id=@sport.SportId>
-        @Html.RouteLink(sport.Name, new
-   {
-       controller = "Navigation",
-       action = "List",
-       SportId= sport.SportId
-   }, new
-   {
-       @class = "btn btn-block btn-primary btn-lg"
-            + (sport.SportId == ViewBag.SelectedCategory ? " btn-primary" : "")
-   })
+        <h3 id=@sport.SportId>
+            <input type="button" class="btn btn-block btn-primary btn-lg" value=@sport.Name />
+        </h3>
     </li>
     }
 </ul>
-<script type="text/javascript">
-    $(function () {
-        $("#menuSport li").each(function () {            
-            var id = $(this).attr("id");            
 
-            $.ajax({
-                type: 'GET',
-                url: '/Navigation/ChildTournament/' + id,
-                //data: { id: $('#userId').val() },
-                success: function (data) {                    
-                    $('ul#menuSport li#' + id).append(data);
-                    //$('#menuSport li#' + id + ' .menuTournament').hide();
-               }
-            });
-        })
-    })
-</script>
 
-<script type="text/javascript">
-    $(function () {
-        $("#menuSport li").click(function () {
-            var id = $(this).attr("id");
-            if ($(this).is(':visible')) {
-                $('#menuSport li#' + id + ' .menuTournament').show();
-            }
-            else {
-                $('#menuSport li#' + id + ' .menuTournament').hide();
-            }
-              
-        })
-    })
-</script>
+<script src="~/scripts/insertChildTournament.js"></script>
 
+<script src="~/scripts/enableDisableTournament.js"></script>

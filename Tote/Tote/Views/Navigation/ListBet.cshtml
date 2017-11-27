@@ -1,0 +1,19 @@
+﻿@model List<Common.Models.Bet>
+
+
+<div id="list">
+    @foreach (var bet in Model)
+    {
+        @Html.RouteLink(bet.Match.Teams[0].Name.ToString() + " (" + bet.Match.Teams[0].Country.Name + ")"
+       + " vs " + bet.Match.Teams[1].Name.ToString() + "(" + bet.Match.Teams[1].Country.Name + ")" + " by " + bet.Match.Date.ToString(), new
+       {
+           controller = "Navigation",
+           action = "Rate",
+           id = bet.BetId
+       }, new
+       {
+           @class = "btn btn-block btn-default btn-lg"
+
+       })
+    }
+</div>
