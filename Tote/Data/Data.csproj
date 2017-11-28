@@ -109,6 +109,18 @@
     <None Include="Service References\ToteService\ToteService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ToteService\ToteService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ToteService\ToteService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ToteService\ToteService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ToteService\ToteService33.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

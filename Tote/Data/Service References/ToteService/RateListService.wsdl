@@ -1,133 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RateListService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BetListService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" />
       <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" />
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data.Common" />
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Runtime.InteropServices" />
+      <xsd:import schemaLocation="http://localhost:7712/ToteService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IRateListService_GetBets_InputMessage">
+  <wsdl:message name="IBetListService_GetBets_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBets" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetBets_OutputMessage">
+  <wsdl:message name="IBetListService_GetBets_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBetsResponse" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetBetsAll_InputMessage">
+  <wsdl:message name="IBetListService_GetBets_SqlExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" name="detail" element="q1:SqlException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetBetsAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBetsAll" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetBetsAll_OutputMessage">
+  <wsdl:message name="IBetListService_GetBetsAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBetsAllResponse" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetSport_InputMessage">
+  <wsdl:message name="IBetListService_GetBetsAll_SqlExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" name="detail" element="q2:SqlException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetSport_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSport" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetSport_OutputMessage">
+  <wsdl:message name="IBetListService_GetSport_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSportResponse" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetSports_InputMessage">
+  <wsdl:message name="IBetListService_GetSport_SqlExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" name="detail" element="q3:SqlException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetSports_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSports" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetSports_OutputMessage">
+  <wsdl:message name="IBetListService_GetSports_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSportsResponse" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetTournament_InputMessage">
+  <wsdl:message name="IBetListService_GetSports_SqlExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" name="detail" element="q4:SqlException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetTournament_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTournament" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetTournament_OutputMessage">
+  <wsdl:message name="IBetListService_GetTournament_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTournamentResponse" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetTournamentes_InputMessage">
+  <wsdl:message name="IBetListService_GetTournament_SqlExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" name="detail" element="q5:SqlException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetTournamentes_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTournamentes" />
   </wsdl:message>
-  <wsdl:message name="IRateListService_GetTournamentes_OutputMessage">
+  <wsdl:message name="IBetListService_GetTournamentes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTournamentesResponse" />
   </wsdl:message>
-  <wsdl:portType name="IRateListService">
+  <wsdl:message name="IBetListService_GetTournamentes_SqlExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System.Data.SqlClient" name="detail" element="q6:SqlException" />
+  </wsdl:message>
+  <wsdl:portType name="IBetListService">
     <wsdl:operation name="GetBets">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetBets" message="tns:IRateListService_GetBets_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetBetsResponse" message="tns:IRateListService_GetBets_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetBets" message="tns:IBetListService_GetBets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetBetsResponse" message="tns:IBetListService_GetBets_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetBetsSqlExceptionFault" name="SqlExceptionFault" message="tns:IBetListService_GetBets_SqlExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetBetsAll">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetBetsAll" message="tns:IRateListService_GetBetsAll_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetBetsAllResponse" message="tns:IRateListService_GetBetsAll_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetBetsAll" message="tns:IBetListService_GetBetsAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetBetsAllResponse" message="tns:IBetListService_GetBetsAll_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetBetsAllSqlExceptionFault" name="SqlExceptionFault" message="tns:IBetListService_GetBetsAll_SqlExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSport">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetSport" message="tns:IRateListService_GetSport_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetSportResponse" message="tns:IRateListService_GetSport_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetSport" message="tns:IBetListService_GetSport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetSportResponse" message="tns:IBetListService_GetSport_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetSportSqlExceptionFault" name="SqlExceptionFault" message="tns:IBetListService_GetSport_SqlExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSports">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetSports" message="tns:IRateListService_GetSports_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetSportsResponse" message="tns:IRateListService_GetSports_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetSports" message="tns:IBetListService_GetSports_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetSportsResponse" message="tns:IBetListService_GetSports_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetSportsSqlExceptionFault" name="SqlExceptionFault" message="tns:IBetListService_GetSports_SqlExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTournament">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetTournament" message="tns:IRateListService_GetTournament_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetTournamentResponse" message="tns:IRateListService_GetTournament_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetTournament" message="tns:IBetListService_GetTournament_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetTournamentResponse" message="tns:IBetListService_GetTournament_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetTournamentSqlExceptionFault" name="SqlExceptionFault" message="tns:IBetListService_GetTournament_SqlExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTournamentes">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRateListService/GetTournamentes" message="tns:IRateListService_GetTournamentes_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRateListService/GetTournamentesResponse" message="tns:IRateListService_GetTournamentes_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetTournamentes" message="tns:IBetListService_GetTournamentes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetTournamentesResponse" message="tns:IBetListService_GetTournamentes_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetTournamentesSqlExceptionFault" name="SqlExceptionFault" message="tns:IBetListService_GetTournamentes_SqlExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IRateListService" type="tns:IRateListService">
+  <wsdl:binding name="BasicHttpBinding_IBetListService" type="tns:IBetListService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetBets">
-      <soap:operation soapAction="http://tempuri.org/IRateListService/GetBets" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetBets" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SqlExceptionFault">
+        <soap:fault use="literal" name="SqlExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetBetsAll">
-      <soap:operation soapAction="http://tempuri.org/IRateListService/GetBetsAll" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetBetsAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SqlExceptionFault">
+        <soap:fault use="literal" name="SqlExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetSport">
-      <soap:operation soapAction="http://tempuri.org/IRateListService/GetSport" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetSport" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SqlExceptionFault">
+        <soap:fault use="literal" name="SqlExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetSports">
-      <soap:operation soapAction="http://tempuri.org/IRateListService/GetSports" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetSports" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SqlExceptionFault">
+        <soap:fault use="literal" name="SqlExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetTournament">
-      <soap:operation soapAction="http://tempuri.org/IRateListService/GetTournament" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetTournament" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SqlExceptionFault">
+        <soap:fault use="literal" name="SqlExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetTournamentes">
-      <soap:operation soapAction="http://tempuri.org/IRateListService/GetTournamentes" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetTournamentes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SqlExceptionFault">
+        <soap:fault use="literal" name="SqlExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="RateListService">
-    <wsdl:port name="BasicHttpBinding_IRateListService" binding="tns:BasicHttpBinding_IRateListService">
+  <wsdl:service name="BetListService">
+    <wsdl:port name="BasicHttpBinding_IBetListService" binding="tns:BasicHttpBinding_IBetListService">
       <soap:address location="http://localhost:7712/ToteService.svc" />
     </wsdl:port>
   </wsdl:service>

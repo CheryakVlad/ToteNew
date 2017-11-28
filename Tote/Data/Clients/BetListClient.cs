@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Data.ToteService;
 using System.ServiceModel;
+using System.Data.SqlClient;
 
 namespace Data.Clients
 {
@@ -10,7 +11,7 @@ namespace Data.Clients
         public IList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
             var model = new List<BetListDto>();
-            using (var client = new ToteService.RateListServiceClient())
+            using (var client = new ToteService.BetListServiceClient())
             {
                 try
                 {
@@ -22,9 +23,13 @@ namespace Data.Clients
                     }
 
                 }
-                catch(FaultException ex)
+                catch(FaultException<SqlException> sqlEx)
                 {
-                    throw new FaultException(ex.Message);
+                    throw;
+                }
+                catch(CommunicationException commEx)
+                {
+                    throw;
                 }
                 finally
                 {
@@ -39,7 +44,7 @@ namespace Data.Clients
         public IList<BetListDto> GetBetsAll()
         {
             var model = new List<BetListDto>();
-            using (var client = new ToteService.RateListServiceClient())
+            using (var client = new ToteService.BetListServiceClient())
             {
                 client.Open();
 
@@ -59,7 +64,7 @@ namespace Data.Clients
         public SportDto GetSport(int? id)
         {
             var model = new SportDto();
-            using (var client = new ToteService.RateListServiceClient())
+            using (var client = new ToteService.BetListServiceClient())
             {
                 client.Open();                
                 model = client.GetSport(id);          
@@ -73,7 +78,7 @@ namespace Data.Clients
         public IList<SportDto> GetSports()
         {
             var model = new List<SportDto>();
-            using (var client = new ToteService.RateListServiceClient())
+            using (var client = new ToteService.BetListServiceClient())
             {
                 client.Open();
 
@@ -93,7 +98,7 @@ namespace Data.Clients
         public IList<TournamentDto> GetTournament(int? sportId)
         {
             var model = new List<TournamentDto>();
-            using (var client = new ToteService.RateListServiceClient())
+            using (var client = new ToteService.BetListServiceClient())
             {
                 client.Open();
 
@@ -113,7 +118,7 @@ namespace Data.Clients
         public IList<TournamentDto> GetTournamentes()
         {
             var model = new List<TournamentDto>();
-            using (var client = new ToteService.RateListServiceClient())
+            using (var client = new ToteService.BetListServiceClient())
             {
                 client.Open();
 

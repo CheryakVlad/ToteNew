@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Service.Contracts.Dto;
-using System;
-using System.Data.SqlClient;
-using System.Configuration;
 using System.Data;
 using Service.Contracts.Common;
+using System.Data.SqlClient;
+using System.ServiceModel;
 
 namespace Service.Contracts.Contracts
 {
-   
-    public class RateListService : IRateListService
+
+    public class BetListService : IBetListService
     {
         
         public List<BetListDto> GetBets(int? sportId, int? tournamentId)
@@ -40,10 +38,16 @@ namespace Service.Contracts.Contracts
         public List<BetListDto> GetBetsAll()
         {
             var betListDto = new List<BetListDto>();
+            try
+            {
+                Connection<BetListDto> connection = new Connection<BetListDto>();
 
-            Connection<BetListDto> connection = new Connection<BetListDto>();
-
-            betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll");
+                betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll");
+            }
+            catch(SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
             
             return betListDto;
         }
@@ -55,10 +59,16 @@ namespace Service.Contracts.Contracts
 
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
-
+            
             Connection<BetListDto> connection = new Connection<BetListDto>();
-
-            betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySport", parameters);
+            try
+            {
+                betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySport", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
 
             return betListDto;
         }
@@ -72,9 +82,14 @@ namespace Service.Contracts.Contracts
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
 
             Connection<BetListDto> connection = new Connection<BetListDto>();
-
-            betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySportTournament", parameters);
-
+            try
+            {
+                betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySportTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
             return betListDto;
         }
 
@@ -88,9 +103,14 @@ namespace Service.Contracts.Contracts
             
 
             Connection<SportDto> connection = new Connection<SportDto>();
-
-            sportDto = connection.GetConnection(CommandType.StoredProcedure, "GetSportById", parameters)[0];
-
+            try
+            {
+                sportDto = connection.GetConnection(CommandType.StoredProcedure, "GetSportById", parameters)[0];
+            }
+            catch (SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
             return sportDto;
             
         }
@@ -101,9 +121,14 @@ namespace Service.Contracts.Contracts
 
             
             Connection<SportDto> connection = new Connection<SportDto>();
-
-            sportDto = connection.GetConnection(CommandType.StoredProcedure, "GetSportsAll");
-
+            try
+            {
+                sportDto = connection.GetConnection(CommandType.StoredProcedure, "GetSportsAll");
+            }
+            catch (SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
             return sportDto;           
         }
 
@@ -116,9 +141,14 @@ namespace Service.Contracts.Contracts
 
 
             Connection<TournamentDto> connection = new Connection<TournamentDto>();
-
-            tornamentDtos = connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsBySportId", parameters);
-
+            try
+            {
+                tornamentDtos = connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsBySportId", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
             return tornamentDtos;
             
         }
@@ -128,9 +158,14 @@ namespace Service.Contracts.Contracts
             var tornamentDtos = new List<TournamentDto>(); 
 
             Connection<TournamentDto> connection = new Connection<TournamentDto>();
-
-            tornamentDtos = connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsAll");
-
+            try
+            {
+                tornamentDtos = connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsAll");
+            }
+            catch (SqlException sqlEx)
+            {
+                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+            }
             return tornamentDtos;
             
         }

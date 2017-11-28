@@ -341,70 +341,76 @@ namespace Data.ToteService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ToteService.IRateListService")]
-    public interface IRateListService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ToteService.IBetListService")]
+    public interface IBetListService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBets", ReplyAction="http://tempuri.org/IRateListService/GetBetsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBets", ReplyAction="http://tempuri.org/IBetListService/GetBetsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetBetsSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
         Data.ToteService.BetListDto[] GetBets(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBets", ReplyAction="http://tempuri.org/IRateListService/GetBetsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBets", ReplyAction="http://tempuri.org/IBetListService/GetBetsResponse")]
         System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAsync(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBetsAll", ReplyAction="http://tempuri.org/IRateListService/GetBetsAllResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetsAll", ReplyAction="http://tempuri.org/IBetListService/GetBetsAllResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetBetsAllSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
         Data.ToteService.BetListDto[] GetBetsAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetBetsAll", ReplyAction="http://tempuri.org/IRateListService/GetBetsAllResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetsAll", ReplyAction="http://tempuri.org/IBetListService/GetBetsAllResponse")]
         System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAllAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetSport", ReplyAction="http://tempuri.org/IRateListService/GetSportResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSport", ReplyAction="http://tempuri.org/IBetListService/GetSportResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetSportSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
         Data.ToteService.SportDto GetSport(System.Nullable<int> id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetSport", ReplyAction="http://tempuri.org/IRateListService/GetSportResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSport", ReplyAction="http://tempuri.org/IBetListService/GetSportResponse")]
         System.Threading.Tasks.Task<Data.ToteService.SportDto> GetSportAsync(System.Nullable<int> id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetSports", ReplyAction="http://tempuri.org/IRateListService/GetSportsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSports", ReplyAction="http://tempuri.org/IBetListService/GetSportsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetSportsSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
         Data.ToteService.SportDto[] GetSports();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetSports", ReplyAction="http://tempuri.org/IRateListService/GetSportsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSports", ReplyAction="http://tempuri.org/IBetListService/GetSportsResponse")]
         System.Threading.Tasks.Task<Data.ToteService.SportDto[]> GetSportsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetTournament", ReplyAction="http://tempuri.org/IRateListService/GetTournamentResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetTournamentSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
         Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetTournament", ReplyAction="http://tempuri.org/IRateListService/GetTournamentResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
         System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentAsync(System.Nullable<int> sportId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetTournamentes", ReplyAction="http://tempuri.org/IRateListService/GetTournamentesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetTournamentesSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
         Data.ToteService.TournamentDto[] GetTournamentes();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRateListService/GetTournamentes", ReplyAction="http://tempuri.org/IRateListService/GetTournamentesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]
         System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRateListServiceChannel : Data.ToteService.IRateListService, System.ServiceModel.IClientChannel {
+    public interface IBetListServiceChannel : Data.ToteService.IBetListService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RateListServiceClient : System.ServiceModel.ClientBase<Data.ToteService.IRateListService>, Data.ToteService.IRateListService {
+    public partial class BetListServiceClient : System.ServiceModel.ClientBase<Data.ToteService.IBetListService>, Data.ToteService.IBetListService {
         
-        public RateListServiceClient() {
+        public BetListServiceClient() {
         }
         
-        public RateListServiceClient(string endpointConfigurationName) : 
+        public BetListServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public RateListServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public BetListServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RateListServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BetListServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RateListServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BetListServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

@@ -55,28 +55,32 @@ namespace Tote.Controllers
             {
                 bets = betListProvider.GetBetList(SportId, TournamentId);
             }
-            catch (FaultException ex)
+            catch (FaultException faultEx)
             {
-                log.Error(ex.Message + " " + ex.StackTrace);
-                return RedirectToAction("InfoError", "Navigation");
+                LogAndRedirect(faultEx);
             }
-            catch (SqlException ex)
+            catch (SqlException sqlEx)
             {
-                log.Error(ex.Message + " " + ex.StackTrace);
-                return RedirectToAction("InfoError", "Navigation");
+                LogAndRedirect(sqlEx);
             }
             return PartialView(bets);
         }
 
+        public ActionResult LogAndRedirect(Exception ex)
+        {
+            log.Error(ex.Message + " " + ex.StackTrace);
+            return RedirectToAction("InfoError", "Navigation");
+        }
+
         public ActionResult Bet(int id)
         {
-            IList<Bet> rates = betListProvider.GetBetAll();
+            IList<Bet> bets = betListProvider.GetBetAll();
             Bet bet = new Bet();
-            foreach(Bet r in rates)
+            foreach(Bet b in bets)
             {
-                if(r.BetId==id)
+                if(b.BetId==id)
                 {
-                    bet = r;
+                    bet = b;
                 }
             }
             return View(bet);
@@ -98,14 +102,14 @@ namespace Tote.Controllers
             {
                 rates = betListProvider.GetBetList(SportId, TournamentId);
             }
-            catch(FaultException ex)
+            catch(FaultException<SqlException> sqlEx)
             {
-                log.Error(ex.Message+" "+ex.StackTrace);
+                log.Error(sqlEx.Message+" "+ sqlEx.StackTrace);
                 return RedirectToAction("InfoError", "Navigation");
             }
-            catch(SqlException ex)
+            catch(CommunicationException commEx)
             {
-                log.Error(ex.Message + " " + ex.StackTrace);
+                log.Error(commEx.Message + " " + commEx.StackTrace);
                 return RedirectToAction("InfoError","Navigation");
             }
 
