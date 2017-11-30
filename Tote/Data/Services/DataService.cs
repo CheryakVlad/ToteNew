@@ -16,7 +16,7 @@ namespace Data.Services
             this.convert = convert;
         }
 
-        public IList<Bet> GetBets(int? sportId, int? tournamentId)
+        public IReadOnlyList<Bet> GetBets(int? sportId, int? tournamentId)
         {
             /*List<Bet> rateList = new List<Bet>();
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
@@ -81,7 +81,7 @@ namespace Data.Services
             return new List<Bet>();
         }
 
-        public IList<Bet> GetBetsAll()
+        public IReadOnlyList<Bet> GetBetsAll()
         {
             var dto = betListClient.GetBetsAll();
 
@@ -104,7 +104,7 @@ namespace Data.Services
             return new Sport();
         }
 
-        public IList<Sport> GetSports()
+        public IReadOnlyList<Sport> GetSports()
         {
             var dto = betListClient.GetSports();
 
@@ -115,7 +115,7 @@ namespace Data.Services
             return new List<Sport>();
         }
 
-        public IList<Tournament> GetTournament(int? sportId)
+        public IReadOnlyList<Tournament> GetTournament(int? sportId)
         {
             var dto = betListClient.GetTournament(sportId);
 
@@ -126,7 +126,7 @@ namespace Data.Services
             return new List<Tournament>();
         }
 
-        public IList<Tournament> GetTournamentes()
+        public IReadOnlyList<Tournament> GetTournamentes()
         {
             var dto = betListClient.GetTournamentes();
 

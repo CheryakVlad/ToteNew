@@ -1,0 +1,21 @@
+﻿@model List<Common.Models.Tournament>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/scripts/jquery-3.2.1.js"></script>
+
+<ul class="menuTournament">
+
+    @foreach (var tournament in Model)
+    {
+        <li class=@tournament.TournamentId id=@tournament.SportId>
+            
+            <h3 class="btn btn-block btn-info btn-lg">
+                @tournament.Name
+            </h3>
+        </li>
+    }
+</ul>
+
+
+<script src="~/scripts/insertBetsBySportTournament.js"></script>

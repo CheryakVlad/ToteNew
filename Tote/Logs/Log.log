@@ -1,44 +1,8 @@
-2017-11-28 13:06:41,807 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
-2017-11-28 13:08:36,688 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
-2017-11-28 13:16:04,943 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
-2017-11-28 13:16:19,948 ERROR Tote.Controllers.NavigationController - Ошибка при получении ответа HTTP на http://localhost:7712/ToteService.svc. Возможно, это вызвано тем, что привязка конечной точки службы не использует протокол HTTP. Это может быть также вызвано тем, что контекст запроса HTTP прерван сервером (возможно, из-за отключения службы). Подробнее см. в журналах сервера. 
-Server stack trace: 
-   в System.ServiceModel.Channels.HttpChannelUtilities.ProcessGetResponseWebException(WebException webException, HttpWebRequest request, HttpAbortReason abortReason)
-   в System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
-   в System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
-   в System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
-   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
-   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
-   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
-
-Exception rethrown at [0]: 
-   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
-   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
-   в Data.ToteService.IBetListService.GetBets(Nullable`1 sportId, Nullable`1 tournamentId)
-   в Data.ToteService.BetListServiceClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Service References\ToteService\Reference.cs:строка 418
-   в Data.Clients.BetListClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Clients\BetListClient.cs:строка 32
-   в Data.Services.DataService.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Services\DataService.cs:строка 79
-   в Business.Providers.BetListProvider.GetBetList(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Business\Providers\BetListProvider.cs:строка 23
-   в Tote.Controllers.NavigationController.List(Nullable`1 SportId, Nullable`1 TournamentId) в D:\22-11-2017\ToteNew.git\Tote\Tote\Controllers\NavigationController.cs:строка 99
-2017-11-28 13:23:10,999 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
-2017-11-28 13:23:26,639 ERROR Tote.Controllers.NavigationController - Ошибка при получении ответа HTTP на http://localhost:7712/ToteService.svc. Возможно, это вызвано тем, что привязка конечной точки службы не использует протокол HTTP. Это может быть также вызвано тем, что контекст запроса HTTP прерван сервером (возможно, из-за отключения службы). Подробнее см. в журналах сервера. 
-Server stack trace: 
-   в System.ServiceModel.Channels.HttpChannelUtilities.ProcessGetResponseWebException(WebException webException, HttpWebRequest request, HttpAbortReason abortReason)
-   в System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
-   в System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
-   в System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
-   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
-   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
-   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
-
-Exception rethrown at [0]: 
-   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
-   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
-   в Data.ToteService.IBetListService.GetBets(Nullable`1 sportId, Nullable`1 tournamentId)
-   в Data.ToteService.BetListServiceClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Service References\ToteService\Reference.cs:строка 418
-   в Data.Clients.BetListClient.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Clients\BetListClient.cs:строка 32
-   в Data.Services.DataService.GetBets(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Data\Services\DataService.cs:строка 79
-   в Business.Providers.BetListProvider.GetBetList(Nullable`1 sportId, Nullable`1 tournamentId) в D:\22-11-2017\ToteNew.git\Tote\Business\Providers\BetListProvider.cs:строка 23
-   в Tote.Controllers.NavigationController.List(Nullable`1 SportId, Nullable`1 TournamentId) в D:\22-11-2017\ToteNew.git\Tote\Tote\Controllers\NavigationController.cs:строка 103
-2017-11-28 13:24:01,133 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
-2017-11-28 15:51:57,954 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 13:56:22,946 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 13:58:41,902 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 15:14:58,696 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 15:36:56,489 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 15:41:11,428 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 15:41:18,321 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 15:41:27,536 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List
+2017-11-30 15:54:20,378 INFO Tote.Controllers.NavigationController - Controller: Navigation Action: List

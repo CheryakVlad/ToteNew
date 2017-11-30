@@ -8,7 +8,9 @@ namespace Data.Clients
 {
     public class BetListClient : IBetListClient
     {
-        public IList<BetListDto> GetBets(int? sportId, int? tournamentId)
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListClient));
+
+        public IReadOnlyList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
             var model = new List<BetListDto>();
             using (var client = new ToteService.BetListServiceClient())
@@ -22,42 +24,56 @@ namespace Data.Clients
                         model.Add(bet);
                     }
 
+                    client.Close();
+
                 }
-                catch(FaultException<SqlException> sqlEx)
+                catch(FaultException<CustomException> customEx)
                 {
-                    throw;
+                    log.Error(customEx.Message);
+                    return null;
                 }
                 catch(CommunicationException commEx)
                 {
-                    throw;
+                    log.Error(commEx.Message);
+                    return null;
                 }
-                finally
-                {
-                    client.Close();                
-                }
-
+                
+                //log/ null vernut
             }
 
             return model;
         }
 
-        public IList<BetListDto> GetBetsAll()
+        public IReadOnlyList<BetListDto> GetBetsAll()
         {
             var model = new List<BetListDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
-                client.Open();
-
-                var bets = client.GetBetsAll();
-                foreach (var bet in bets)
+                try
                 {
-                    model.Add(bet);
+                    client.Open();
+
+                    var bets = client.GetBetsAll();
+                    foreach (var bet in bets)
+                    {
+                        model.Add(bet);
+                    }
+
+                    client.Close();
                 }
 
-                client.Close();
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
 
             }
-
             return model;
         }
 
@@ -66,70 +82,121 @@ namespace Data.Clients
             var model = new SportDto();
             using (var client = new ToteService.BetListServiceClient())
             {
-                client.Open();                
-                model = client.GetSport(id);          
-                client.Close();
+                try
+                {
+                    client.Open();
+                    model = client.GetSport(id);
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
 
             }
 
             return model;
         }
 
-        public IList<SportDto> GetSports()
+        public IReadOnlyList<SportDto> GetSports()
         {
             var model = new List<SportDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
-                client.Open();
-
-                var sports = client.GetSports();
-                foreach (var sport in sports)
+                try
                 {
-                    model.Add(sport);
-                }
+                    client.Open();
 
-                client.Close();
+                    var sports = client.GetSports();
+                    foreach (var sport in sports)
+                    {
+                        model.Add(sport);
+                    }
+
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
 
             }
 
             return model;
         }
 
-        public IList<TournamentDto> GetTournament(int? sportId)
+        public IReadOnlyList<TournamentDto> GetTournament(int? sportId)
         {
             var model = new List<TournamentDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
-                client.Open();
-
-                var tournaments = client.GetTournament(sportId);
-                foreach (var tournament in tournaments)
+                try
                 {
-                    model.Add(tournament);
-                }
+                    client.Open();
 
-                client.Close();
+                    var tournaments = client.GetTournament(sportId);
+                    foreach (var tournament in tournaments)
+                    {
+                        model.Add(tournament);
+                    }
+
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
 
             }
 
             return model;
         }
 
-        public IList<TournamentDto> GetTournamentes()
+        public IReadOnlyList<TournamentDto> GetTournamentes()
         {
             var model = new List<TournamentDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
-                client.Open();
-
-                var tournaments = client.GetTournamentes();
-                foreach (var tournament in tournaments)
+                try
                 {
-                    model.Add(tournament);
+                    client.Open();
+
+                    var tournaments = client.GetTournamentes();
+                    foreach (var tournament in tournaments)
+                    {
+                        model.Add(tournament);
+                    }
+
+                    client.Close();
                 }
-
-                client.Close();
-
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
             }
 
             return model;

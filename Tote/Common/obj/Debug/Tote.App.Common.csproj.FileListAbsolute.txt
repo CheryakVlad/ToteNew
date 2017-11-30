@@ -1,0 +1,5 @@
+D:\22-11-2017\ToteNew.git\Tote\Common\bin\Debug\Common.dll
+D:\22-11-2017\ToteNew.git\Tote\Common\bin\Debug\Common.pdb
+D:\22-11-2017\ToteNew.git\Tote\Common\obj\Debug\Common.dll
+D:\22-11-2017\ToteNew.git\Tote\Common\obj\Debug\Common.pdb
+D:\22-11-2017\ToteNew.git\Tote\Common\obj\Debug\Tote.App.Common.csprojResolveAssemblyReference.cache

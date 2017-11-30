@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Contracts.Common
 {
@@ -39,7 +42,7 @@ namespace Service.Contracts.Common
             return command;
         }
 
-        public List<T> GetConnection(CommandType type, string commandText, List<Parameter> parameters = null)
+        public IList<T> GetConnection(CommandType type, string commandText, List<Parameter> parameters = null)
         {
             var ListDto = new List<T>();
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))

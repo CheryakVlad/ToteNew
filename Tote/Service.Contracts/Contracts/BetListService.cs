@@ -4,169 +4,165 @@ using System.Data;
 using Service.Contracts.Common;
 using System.Data.SqlClient;
 using System.ServiceModel;
+using Service.Contracts.Exception;
 
 namespace Service.Contracts.Contracts
 {
 
     public class BetListService : IBetListService
     {
-        
-        public List<BetListDto> GetBets(int? sportId, int? tournamentId)
-        {
-            var betsListDto = new List<BetListDto>();
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
 
+        public IList<BetListDto> GetBets(int? sportId, int? tournamentId)
+        {          
             if (sportId == 0)
             {
-                betsListDto= GetBetsAll();
+                return GetBetsAll();
             }
             else
             {
                 if (tournamentId == 0)
                 {
-                    betsListDto = GetBetsBySport((int)sportId);
+                    return GetBetsBySport((int)sportId);
                 }
                 else
                 {
-                    betsListDto = GetBetsBySportTournament((int)sportId,(int)tournamentId);
+                    return GetBetsBySportTournament((int)sportId,(int)tournamentId);
                 }
-            }
-
-
-            return betsListDto;
+            }            
         }
+
         
-        public List<BetListDto> GetBetsAll()
-        {
-            var betListDto = new List<BetListDto>();
+
+        public IList<BetListDto> GetBetsAll()
+        {            
             try
             {
-                Connection<BetListDto> connection = new Connection<BetListDto>();
-
-                betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll");
+                var connection = new Connection<BetListDto>();               
+                return connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll"); ;
             }
             catch(SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetBetsAll";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-            
-            return betListDto;
         }
         
 
-        public List<BetListDto> GetBetsBySport(int sportId)
+        public IList<BetListDto> GetBetsBySport(int sportId)
         {
-            var betListDto = new List<BetListDto>();
-
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
-            
-            Connection<BetListDto> connection = new Connection<BetListDto>();
+
+            var connection = new Connection<BetListDto>();
             try
             {
-                betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySport", parameters);
+                return connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySport", parameters); ;
             }
             catch (SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetBetsBySport";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-
-            return betListDto;
         }
 
-        public List<BetListDto> GetBetsBySportTournament(int sportId, int tournamentId)
+        public IList<BetListDto> GetBetsBySportTournament(int sportId, int tournamentId)
         {
-            var betListDto = new List<BetListDto>();
-
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
 
-            Connection<BetListDto> connection = new Connection<BetListDto>();
+            var connection = new Connection<BetListDto>();
             try
             {
-                betListDto = connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySportTournament", parameters);
+               return connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySportTournament", parameters); 
             }
             catch (SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetBetsBySportTournament";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-            return betListDto;
         }
 
         public SportDto GetSport(int? id)
         {
 
-            var sportDto = new SportDto();
-
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = id });
-            
 
-            Connection<SportDto> connection = new Connection<SportDto>();
+
+            var connection = new Connection<SportDto>();
             try
             {
-                sportDto = connection.GetConnection(CommandType.StoredProcedure, "GetSportById", parameters)[0];
+                return connection.GetConnection(CommandType.StoredProcedure, "GetSportById", parameters)[0];
             }
             catch (SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetSportById";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-            return sportDto;
             
         }
 
-        public List<SportDto> GetSports()
-        {
-            var sportDto = new List<SportDto>();
-
-            
-            Connection<SportDto> connection = new Connection<SportDto>();
+        public IList<SportDto> GetSports()
+        {            
+            var connection = new Connection<SportDto>();
             try
             {
-                sportDto = connection.GetConnection(CommandType.StoredProcedure, "GetSportsAll");
+                 return connection.GetConnection(CommandType.StoredProcedure, "GetSportsAll");
             }
             catch (SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetSportsAll";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-            return sportDto;           
         }
 
-        public List<TournamentDto> GetTournament(int? sportId)
+        public IList<TournamentDto> GetTournament(int? sportId)
         {
-            var tornamentDtos = new List<TournamentDto>();
-
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
 
 
-            Connection<TournamentDto> connection = new Connection<TournamentDto>();
+            var connection = new Connection<TournamentDto>();
             try
             {
-                tornamentDtos = connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsBySportId", parameters);
+                return connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsBySportId", parameters);
             }
             catch (SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetTournamentsBySportId";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-            return tornamentDtos;
             
         }
 
-        public List<TournamentDto> GetTournamentes()
+        public IList<TournamentDto> GetTournamentes()
         {
-            var tornamentDtos = new List<TournamentDto>(); 
-
-            Connection<TournamentDto> connection = new Connection<TournamentDto>();
+            var connection = new Connection<TournamentDto>();
             try
             {
-                tornamentDtos = connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsAll");
+                return connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsAll");
             }
             catch (SqlException sqlEx)
             {
-                throw new FaultException<SqlException>(sqlEx, sqlEx.Message);
+                CustomException exception = new CustomException();
+                exception.Title = "GetTournamentsAll";
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+                log.Error(sqlEx.Message);
             }
-            return tornamentDtos;
             
         }
         

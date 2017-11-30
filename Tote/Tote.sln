@@ -5,53 +5,17 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.Web", "Tote\Tote.Web.csproj", "{73A9674B-E6DB-4372-9A9E-80DF42FCFF04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F30BB6DF-BEA6-4F29-8FDE-44FB0C9E3355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.App.Common", "Common\Tote.App.Common.csproj", "{F30BB6DF-BEA6-4F29-8FDE-44FB0C9E3355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{165B48BC-8BB9-4DC6-A4AB-970A4F4BCEB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.App.Business", "Business\Tote.App.Business.csproj", "{165B48BC-8BB9-4DC6-A4AB-970A4F4BCEB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{35D5B639-ABF9-4043-8D7C-CFD672A6BBE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.App.Data", "Data\Tote.App.Data.csproj", "{35D5B639-ABF9-4043-8D7C-CFD672A6BBE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{07DEFC84-0C59-4AE1-8B7E-BBE3E9359DA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.App.Dependencies", "Dependencies\Tote.App.Dependencies.csproj", "{07DEFC84-0C59-4AE1-8B7E-BBE3E9359DA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Service.Contracts\Service.Contracts.csproj", "{53016262-BBB5-4B33-8A2B-4BE859A11D33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.Service.Contracts", "Service.Contracts\Tote.Service.Contracts.csproj", "{53016262-BBB5-4B33-8A2B-4BE859A11D33}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{284C0DE1-31C8-401C-821E-D82EDE1E93FB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{570234EA-D6C1-4C6B-B127-85648DBDAD20}"
-	ProjectSection(SolutionItems) = preProject
-		Database\Tables\1. Result.txt = Database\Tables\1. Result.txt
-		..\..\..\25-11-2017\10. Alter Table.sql = ..\..\..\25-11-2017\10. Alter Table.sql
-		..\..\..\25-11-2017\11. Alter Table.sql = ..\..\..\25-11-2017\11. Alter Table.sql
-		..\..\..\25-11-2017\12. Alter Table.sql = ..\..\..\25-11-2017\12. Alter Table.sql
-		..\..\..\25-11-2017\13. Alter Table.sql = ..\..\..\25-11-2017\13. Alter Table.sql
-		Database\Tables\2. Sport.txt = Database\Tables\2. Sport.txt
-		Database\Tables\3. Tournament.txt = Database\Tables\3. Tournament.txt
-		Database\Tables\4. Match.txt = Database\Tables\4. Match.txt
-		Database\Tables\5. Bet.txt = Database\Tables\5. Bet.txt
-		Database\Tables\6. Country.txt = Database\Tables\6. Country.txt
-		Database\Tables\7. Team.txt = Database\Tables\7. Team.txt
-		..\..\..\25-11-2017\8. Alter Table.sql = ..\..\..\25-11-2017\8. Alter Table.sql
-		..\..\..\25-11-2017\9. Alter Table.sql = ..\..\..\25-11-2017\9. Alter Table.sql
-		Database\Tables\insert into.sql = Database\Tables\insert into.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Function", "Function", "{59503570-E44F-48DB-B370-6028BFBA3C01}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\Database\[GetTournamentsBySport].sql = ..\..\Database\[GetTournamentsBySport].sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{FEC81EB8-84B4-4489-B672-DCFF60B024A4}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\Database\[GetBetsAll].sql = ..\..\Database\[GetBetsAll].sql
-		..\..\Database\[GetBetsBySport].sql = ..\..\Database\[GetBetsBySport].sql
-		..\..\Database\[GetBetsBySportTournament].sql = ..\..\Database\[GetBetsBySportTournament].sql
-		..\..\Database\[GetSportById].sql = ..\..\Database\[GetSportById].sql
-		..\..\Database\[GetSportsAll].sql = ..\..\Database\[GetSportsAll].sql
-		..\..\Database\[GetTournamentById].sql = ..\..\Database\[GetTournamentById].sql
-		..\..\Database\[GetTournamentsAll].sql = ..\..\Database\[GetTournamentsAll].sql
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tote.Service", "Service\Tote.Service.csproj", "{7B2B87D0-3FA3-4F87-9174-D76C14C5A4E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,10 +54,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{570234EA-D6C1-4C6B-B127-85648DBDAD20} = {284C0DE1-31C8-401C-821E-D82EDE1E93FB}
-		{59503570-E44F-48DB-B370-6028BFBA3C01} = {284C0DE1-31C8-401C-821E-D82EDE1E93FB}
-		{FEC81EB8-84B4-4489-B672-DCFF60B024A4} = {284C0DE1-31C8-401C-821E-D82EDE1E93FB}
 	EndGlobalSection
 EndGlobal
