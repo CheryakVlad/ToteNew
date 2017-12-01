@@ -12,11 +12,6 @@ namespace Service.Contracts.Exception
     {
         [DataMember]
         public string Title;
-        [DataMember]
-        public string ExceptionMessage;
-        [DataMember]
-        public string InnerException;
-        [DataMember]
-        public string StackTrace;
+        
     }
 }

@@ -200,8 +200,6 @@ namespace Data.Clients
             }
 
             return model;
-        }
-
-        
+        }        
     }
 }

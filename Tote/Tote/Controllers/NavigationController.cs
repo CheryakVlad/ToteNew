@@ -86,7 +86,7 @@ namespace Tote.Controllers
         public ActionResult Bet(int id)
         {
             IReadOnlyList<Bet> bets = betListProvider.GetBetAll();
-            if (bets == null)
+            if (bets.Count == 0)
             {
                 return RedirectToAction("InfoError", "Navigation");
             }
@@ -116,7 +116,7 @@ namespace Tote.Controllers
             try
             {
                 bets = betListProvider.GetBetList(SportId, TournamentId);
-                if (bets == null)
+                if (bets.Count == 0)
                 {
                     return RedirectToAction("InfoError", "Navigation");
                 }

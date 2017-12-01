@@ -93,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Log.config" />
     <None Include="packages.config" />
     <None Include="Service References\ToteService\Data.ToteService.BetListDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

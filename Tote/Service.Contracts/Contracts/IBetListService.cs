@@ -11,23 +11,23 @@ namespace Service.Contracts.Contracts
     {
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        IList<BetListDto> GetBets(int? sportId, int? tournamentId);
+        BetListDto[] GetBets(int? sportId, int? tournamentId);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        IList<BetListDto> GetBetsAll();
+        BetListDto[] GetBetsAll();
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         SportDto GetSport(int? id);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        IList<SportDto> GetSports();
+        SportDto[] GetSports();
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        IList<TournamentDto> GetTournament(int? sportId);
+        TournamentDto[] GetTournament(int? sportId);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        IList<TournamentDto> GetTournamentes();
+        TournamentDto[] GetTournamentes();
     }
 }

@@ -8,10 +8,10 @@
     <title>Tote Application</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
-
+    @RenderSection("styles", required: false)
 </head>
 <body>
-
+   
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -46,6 +46,6 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - Tote Application</p>
     </footer>
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>
