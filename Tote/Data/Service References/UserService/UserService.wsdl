@@ -62,6 +62,15 @@
   <wsdl:message name="IUserService_ExistsUser_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
   </wsdl:message>
+  <wsdl:message name="IUserService_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetRoles_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="GetUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUsers" message="tns:IUserService_GetUsers_InputMessage" />
@@ -92,6 +101,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/ExistsUser" message="tns:IUserService_ExistsUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/ExistsUserResponse" message="tns:IUserService_ExistsUser_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/ExistsUserCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_ExistsUser_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetRoles" message="tns:IUserService_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetRolesResponse" message="tns:IUserService_GetRoles_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/GetRolesCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_GetRoles_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -158,6 +172,18 @@
     </wsdl:operation>
     <wsdl:operation name="ExistsUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/ExistsUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetRoles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

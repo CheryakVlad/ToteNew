@@ -1,8 +1,7 @@
 ﻿
 using StructureMap.Configuration.DSL;
 using Business.Providers;
-
-
+using Business.Service;
 
 namespace Business.Container
 {
@@ -12,9 +11,9 @@ namespace Business.Container
         {
             /*For<ICommandProvider>().Use<CommandProvider>();
             For<IMatchProvider>().Use<MatchProvider>();
-            For<IRateProvider>().Use<RateProvider>();
-            For<ITournamentProvider>().Use<TournamentProvider>();
-            For<INavigationProvider>().Use<NavigationProvider>();*/
+            For<IRateProvider>().Use<RateProvider>();*/
+            For<ILoginService>().Use<LoginService>();
+            For<IUserProvider>().Use<UserProvider>();
             For<IBetListProvider>().Use<BetListProvider>();
         }
     }

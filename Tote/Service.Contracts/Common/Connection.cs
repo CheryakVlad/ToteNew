@@ -79,6 +79,16 @@ namespace Service.Contracts.Common
                 return EventDto;
             }
 
+            if (t == typeof(RoleDto))
+            {
+                var RoleDto = new RoleDto()
+                {
+                    RoleId=(int)reader[0],
+                    Name=reader[1].ToString()
+                };
+                return RoleDto;
+            }
+
             if (t == typeof(UserDto))
             {
                 var UserDto = new UserDto()

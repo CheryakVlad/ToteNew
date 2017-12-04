@@ -75,6 +75,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\IBetListProvider.cs" />
     <Compile Include="Providers\BetListProvider.cs" />
+    <Compile Include="Providers\IUserProvider.cs" />
+    <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Service\ILoginService.cs" />
     <Compile Include="Service\LoginService.cs" />
   </ItemGroup>

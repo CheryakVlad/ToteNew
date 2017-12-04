@@ -30,5 +30,10 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         UserDto ExistsUser(string login, string password);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        RoleDto[] GetRoles();
+
     }
 }

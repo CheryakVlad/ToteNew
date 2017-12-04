@@ -11,13 +11,13 @@ namespace Tote.Controllers
 {
     public class LoginController : Controller
     {
-        private IBetListProvider betListProvider;
+        private IUserProvider userProvider;
         private ILoginService loginService;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(LoginController));
 
-        public LoginController(IBetListProvider userProvider, ILoginService loginService)
+        public LoginController(IUserProvider userProvider, ILoginService loginService)
         {
-            this.betListProvider = userProvider;
+            this.userProvider = userProvider;
             this.loginService = loginService;
         }
 
@@ -29,11 +29,11 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            /*User user = betListProvider.ExistsUser("admin","admin");
+            User user = userProvider.ExistsUser("admin","admin");
             if (user == null)
             {
                 return RedirectToAction("InfoError", "Navigation");
-            }*/
+            }
 
             return View();
         }
@@ -61,7 +61,6 @@ namespace Tote.Controllers
 
         public ActionResult Logout()
         {
-            //return View();
             loginService.Logout();
             return RedirectToAction("Login", "Login");
         }

@@ -9,9 +9,9 @@ namespace Business.Service
 {
     public class LoginService : ILoginService
     {
-        private IBetListProvider userProvider;
+        private IUserProvider userProvider;
 
-        public LoginService(IBetListProvider userProvider)
+        public LoginService(IUserProvider userProvider)
         {
             this.userProvider = userProvider;
         }
@@ -22,7 +22,7 @@ namespace Business.Service
                 return LoginResult.EmptyCredentials;
             }
 
-            /*if (userProvider.IsValidUser(login, password))
+            if (userProvider.IsValidUser(login, password))
             {
                 var user = userProvider.ExistsUser(login, password);
                 var userData = JsonConvert.SerializeObject(user);
@@ -31,7 +31,7 @@ namespace Business.Service
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                 HttpContext.Current.Response.Cookies.Add(authCookie);
                 return LoginResult.NoError;
-            }*/
+            }
 
             return LoginResult.InvalidCredentials;
         }

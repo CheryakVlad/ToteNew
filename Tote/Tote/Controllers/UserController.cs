@@ -8,31 +8,37 @@ namespace Tote.Controllers
 {
     public class UserController : Controller
     {
-        private IBetListProvider userProvider;
+        private IUserProvider userProvider;
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserController));
 
-        public UserController(IBetListProvider userProvider)
+        public UserController(IUserProvider userProvider)
         {
             this.userProvider = userProvider;
         }
         [Admin]
         public ActionResult UsersAll()
         {
-            /*IReadOnlyList<User> users = userProvider.GetUsers();
+            IReadOnlyList<User> users = userProvider.GetUsersAll();
             if (users == null)
             {
                 return RedirectToAction("InfoError", "Navigation");
-            }*/
-            return View(/*users*/);
+            }
+            return View(users);
         }
 
         [HttpGet]
         [Admin]
         public ActionResult EditUser(int id)
         {
-            //User user = userProvider.GetUser(id);
-            return View(/*user*/);
+            User user = userProvider.GetUser(id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult EditUser()
+        {
+            return View();
         }
 
         public ActionResult Index()

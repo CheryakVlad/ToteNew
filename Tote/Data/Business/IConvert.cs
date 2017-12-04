@@ -14,5 +14,9 @@ namespace Data.Business
         IReadOnlyList<Match> ToMatchList(IReadOnlyList<ToteService.BetListDto> betsListDto);
 
         IReadOnlyList<Match> ToMatchList(IReadOnlyList<ToteService.BetListDto> betsListDto,IReadOnlyList<ToteService.EventDto> eventsDto );
+
+        IReadOnlyList<User> ToUsers(IReadOnlyList<UserService.UserDto> usersDto);
+
+        User ToUser(UserService.UserDto userDto);
     }
 }

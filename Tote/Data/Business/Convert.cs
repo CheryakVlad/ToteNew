@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Common.Models;
 using Data.ToteService;
+using Data.UserService;
 
 namespace Data.Business
 {
@@ -167,6 +168,56 @@ namespace Data.Business
             }
 
             return tournaments;
+        }
+
+        public User ToUser(UserDto userDto)
+        {
+            var role = new Role
+            {
+                Name = userDto.Role
+            };
+            var roles = new List<Role>();
+            roles.Add(role);
+            var user = new User
+            {
+                UserId = userDto.UserId,
+                Login = userDto.Login,
+                Password = userDto.Password,
+                Email = userDto.Email,
+                FIO = userDto.FIO,
+                Money = userDto.Money,
+                Roles=roles
+            };
+               
+            return user;
+        }
+
+        public IReadOnlyList<User> ToUsers(IReadOnlyList<UserDto> usersDto)
+        {
+            var usersList = new List<User>();
+            foreach (var userDto in usersDto)
+            {
+                var role = new Role
+                {
+                    Name = userDto.Role
+                };
+                var roles = new List<Role>();
+                roles.Add(role);
+
+                var user = new  User
+                {
+                    UserId=userDto.UserId,
+                    Login=userDto.Login,
+                    Password=userDto.Password,
+                    Email=userDto.Email,
+                    FIO=userDto.FIO,
+                    Money = userDto.Money,
+                    Roles = roles
+                };
+
+                usersList.Add(user);
+            }
+            return usersList;
         }
     }
 }

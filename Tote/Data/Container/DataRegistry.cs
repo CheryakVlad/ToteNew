@@ -11,9 +11,10 @@ namespace Data.Container
     {
         public DataRegistry()
         {
-            //For<IUnitOfWork>().Use<UnitOfWork>();
+            For<IUserService>().Use<Data.Services.UserService>();
             For<IDataService>().Use<DataService>();
-            For<IBetListClient>().Use<BetListClient>();            
+            For<IBetListClient>().Use<BetListClient>();
+            For<IUserClient>().Use<UserClient>();            
             For<IConvert>().Use<Data.Business.Convert>();
         }
         

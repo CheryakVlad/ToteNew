@@ -218,6 +218,7 @@
     <Content Include="Views\Navigation\ListBet.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\Navigation\Coefficient.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\User\UsersAll.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
     <None Include="Web.Debug.config">
@@ -230,7 +231,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business\Tote.App.Business.csproj">
