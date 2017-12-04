@@ -160,6 +160,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Log.config" />
+    <None Include="Properties\PublishProfiles\user.pubxml" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -206,6 +207,7 @@
     <Content Include="Views\Navigation\Sport.cshtml" />
     <Content Include="Views\Navigation\InfoError.cshtml" />
     <Content Include="Views\Navigation\ListBet.cshtml" />
+    <Content Include="Views\Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -218,17 +220,17 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj">
+    <ProjectReference Include="..\Business\Tote.App.Business.csproj">
       <Project>{165B48BC-8BB9-4DC6-A4AB-970A4F4BCEB4}</Project>
-      <Name>Business</Name>
+      <Name>Tote.App.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\Tote.App.Common.csproj">
       <Project>{f30bb6df-bea6-4f29-8fde-44fb0c9e3355}</Project>
-      <Name>Common</Name>
+      <Name>Tote.App.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dependencies\Dependencies.csproj">
+    <ProjectReference Include="..\Dependencies\Tote.App.Dependencies.csproj">
       <Project>{07defc84-0c59-4ae1-8b7e-bbe3e9359da6}</Project>
-      <Name>Dependencies</Name>
+      <Name>Tote.App.Dependencies</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

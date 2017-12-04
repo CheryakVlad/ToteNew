@@ -1,0 +1,4 @@
+D:\22-11-2017\ToteNew.git\Tote\Common\bin\Release\Common.dll
+D:\22-11-2017\ToteNew.git\Tote\Common\bin\Release\Common.pdb
+D:\22-11-2017\ToteNew.git\Tote\Common\obj\Release\Common.dll
+D:\22-11-2017\ToteNew.git\Tote\Common\obj\Release\Common.pdb

@@ -1,0 +1,57 @@
+﻿@model Common.Models.Bet
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rate</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <input type="button" class="btn" onclick="history.back(-2); return false;" value="Back" />
+
+    <h2>       
+        @Model.Match.Teams[0].Name.ToString() ( @Model.Match.Teams[0].Country.Name) 
+         vs @Model.Match.Teams[1].Name.ToString() ( @Model.Match.Teams[1].Country.Name) by @Model.Match.Date.ToString()
+    </h2>
+
+    <table class="table">
+        <tr>
+            
+            <th>
+                Win Home Team
+            </th>
+            <th>
+                Win Guest Team
+            </th>
+            <th>
+               Draw
+            </th>
+            
+            <th></th>
+        </tr>
+           
+        <tr>
+                       
+            <td>
+                @Html.DisplayFor(model => model.WinCommandHome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.WinCommandGuest)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Draw)
+            </td>
+            
+            
+        </tr>
+    
+    
+    </table>
+</body>
+</html>

@@ -204,6 +204,99 @@ namespace Data.ToteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+    [System.SerializableAttribute()]
+    public partial class CustomException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExceptionMessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string InnerExceptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StackTraceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExceptionMessage {
+            get {
+                return this.ExceptionMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExceptionMessageField, value) != true)) {
+                    this.ExceptionMessageField = value;
+                    this.RaisePropertyChanged("ExceptionMessage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string InnerException {
+            get {
+                return this.InnerExceptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InnerExceptionField, value) != true)) {
+                    this.InnerExceptionField = value;
+                    this.RaisePropertyChanged("InnerException");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StackTrace {
+            get {
+                return this.StackTraceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StackTraceField, value) != true)) {
+                    this.StackTraceField = value;
+                    this.RaisePropertyChanged("StackTrace");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SportDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
     [System.SerializableAttribute()]
     public partial class SportDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -345,42 +438,42 @@ namespace Data.ToteService {
     public interface IBetListService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBets", ReplyAction="http://tempuri.org/IBetListService/GetBetsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetBetsSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBetsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.BetListDto[] GetBets(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBets", ReplyAction="http://tempuri.org/IBetListService/GetBetsResponse")]
         System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAsync(System.Nullable<int> sportId, System.Nullable<int> tournamentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetsAll", ReplyAction="http://tempuri.org/IBetListService/GetBetsAllResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetBetsAllSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBetsAllCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.BetListDto[] GetBetsAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetsAll", ReplyAction="http://tempuri.org/IBetListService/GetBetsAllResponse")]
         System.Threading.Tasks.Task<Data.ToteService.BetListDto[]> GetBetsAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSport", ReplyAction="http://tempuri.org/IBetListService/GetSportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetSportSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetSportCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.SportDto GetSport(System.Nullable<int> id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSport", ReplyAction="http://tempuri.org/IBetListService/GetSportResponse")]
         System.Threading.Tasks.Task<Data.ToteService.SportDto> GetSportAsync(System.Nullable<int> id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSports", ReplyAction="http://tempuri.org/IBetListService/GetSportsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetSportsSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetSportsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.SportDto[] GetSports();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSports", ReplyAction="http://tempuri.org/IBetListService/GetSportsResponse")]
         System.Threading.Tasks.Task<Data.ToteService.SportDto[]> GetSportsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetTournamentSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
         System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentAsync(System.Nullable<int> sportId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(System.Data.SqlClient.SqlException), Action="http://tempuri.org/IBetListService/GetTournamentesSqlExceptionFault", Name="SqlException", Namespace="http://schemas.datacontract.org/2004/07/System.Data.SqlClient")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetTournamentesCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.TournamentDto[] GetTournamentes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]

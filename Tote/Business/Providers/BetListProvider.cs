@@ -7,18 +7,18 @@ namespace Business.Providers
 {
     public class BetListProvider : IBetListProvider
     {
-        private IDataService dataService;
+        private readonly IDataService dataService;
         public BetListProvider(IDataService dataService)
         {
             this.dataService = dataService;
         }
 
-        public IList<Bet> GetBetAll()
+        public IReadOnlyList<Bet> GetBetAll()
         {
             return dataService.GetBetsAll();
         }
 
-        public IList<Bet> GetBetList(int? sportId, int? tournamentId)
+        public IReadOnlyList<Bet> GetBetList(int? sportId, int? tournamentId)
         {
             return dataService.GetBets(sportId, tournamentId);
         }
@@ -28,17 +28,17 @@ namespace Business.Providers
             return dataService.GetSport(id);
         }
 
-        public IList<Sport> GetSports()
+        public IReadOnlyList<Sport> GetSports()
         {
             return dataService.GetSports();
         }
 
-        public IList<Tournament> GetTournament(int? sportId)
+        public IReadOnlyList<Tournament> GetTournament(int? sportId)
         {
             return dataService.GetTournament(sportId);
         }
 
-        public IList<Tournament> GetTournamentes()
+        public IReadOnlyList<Tournament> GetTournamentes()
         {
             return dataService.GetTournamentes();
         }

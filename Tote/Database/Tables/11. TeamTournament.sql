@@ -1,0 +1,41 @@
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.TeamTournament
+	(
+	TeamId int NOT NULL,
+	TournamentId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.TeamTournament ADD CONSTRAINT
+	PK_TeamTournament PRIMARY KEY CLUSTERED 
+	(
+	TeamId,
+	TournamentId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.TeamTournament ADD CONSTRAINT
+	FK_TeamTournament_Team FOREIGN KEY
+	(
+	TeamId
+	) REFERENCES dbo.Team
+	(
+	TeamId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.TeamTournament ADD CONSTRAINT
+	FK_TeamTournament_Tournament FOREIGN KEY
+	(
+	TournamentId
+	) REFERENCES dbo.Tournament
+	(
+	TournamentId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.TeamTournament SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT

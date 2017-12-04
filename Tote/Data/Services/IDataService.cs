@@ -5,14 +5,14 @@ namespace Data.Services
 {
     public interface IDataService
     {
-        IList<Bet> GetBets(int? sportId, int? tournamentId);
-        IList<Bet> GetBetsAll();
+        IReadOnlyList<Bet> GetBets(int? sportId, int? tournamentId);
+        IReadOnlyList<Bet> GetBetsAll();
 
 
         Sport GetSport(int? id);
-        IList<Sport> GetSports();
-        IList<Tournament> GetTournament(int? sportId);
-        IList<Tournament> GetTournamentes();
+        IReadOnlyList<Sport> GetSports();
+        IReadOnlyList<Tournament> GetTournament(int? sportId);
+        IReadOnlyList<Tournament> GetTournamentes();
 
     }
 }

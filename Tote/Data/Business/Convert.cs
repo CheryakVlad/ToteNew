@@ -6,7 +6,7 @@ namespace Data.Business
 {
     public class Convert : IConvert
     {
-        public IList<Bet> ToBetsList(IList<BetListDto> betsListDto)
+        public IReadOnlyList<Bet> ToBetsList(IReadOnlyList<BetListDto> betsListDto)
         {
             var betsList = new List<Bet>();
             foreach (var betListDto in betsListDto)
@@ -42,7 +42,7 @@ namespace Data.Business
             return sport;
         }
 
-        public IList<Sport> ToSport(IList<SportDto> sportsDto)
+        public IReadOnlyList<Sport> ToSport(IReadOnlyList<SportDto> sportsDto)
         {
             var sports = new List<Sport>();
             foreach (var sportDto in sportsDto)
@@ -59,7 +59,7 @@ namespace Data.Business
             return sports;
         }
 
-        public IList<Tournament> ToTournament(IList<TournamentDto> tournamentsDto)
+        public IReadOnlyList<Tournament> ToTournament(IReadOnlyList<TournamentDto> tournamentsDto)
         {
             var tournaments = new List<Tournament>();
             foreach (var tournamentDto in tournamentsDto)

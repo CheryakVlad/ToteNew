@@ -1,8 +1,6 @@
 ﻿using Business.Providers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Common.Models;
 using System.ServiceModel;
@@ -23,20 +21,28 @@ namespace Tote.Controllers
         // GET: Navigation
         public ActionResult Index()
         {
-            IList<Bet> rates = betListProvider.GetBetList(1, 1);
+            IReadOnlyList<Bet> rates = betListProvider.GetBetList(1, 1);
             return View(rates[0]);
         }
 
-        public PartialViewResult ChildTournament(int id = 0)
+        public ActionResult ChildTournament(int id = 0)
         {
-            IList<Tournament> tournaments = betListProvider.GetTournament(id);            
+            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournament(id);  
+            if(tournaments==null)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }          
             return PartialView(tournaments);
         }
 
-        public PartialViewResult Menu(int category = 0)
+        public ActionResult Menu(int category = 0)
         {
             ViewBag.SelectedCategory = category;
-            IList<Sport> sports = betListProvider.GetSports();
+            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            if (sports == null)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }
             return PartialView(sports);
         }
 
@@ -50,10 +56,14 @@ namespace Tote.Controllers
             {
                 TournamentId = 0;
             }
-            IList<Bet> bets = new List<Bet>();
+            IReadOnlyList<Bet> bets = new List<Bet>();
             try
             {
                 bets = betListProvider.GetBetList(SportId, TournamentId);
+                if(bets==null)
+                {
+                    return RedirectToAction("InfoError", "Navigation");
+                }
             }
             catch (FaultException faultEx)
             {
@@ -63,6 +73,7 @@ namespace Tote.Controllers
             {
                 LogAndRedirect(sqlEx);
             }
+
             return PartialView(bets);
         }
 
@@ -74,7 +85,11 @@ namespace Tote.Controllers
 
         public ActionResult Bet(int id)
         {
-            IList<Bet> bets = betListProvider.GetBetAll();
+            IReadOnlyList<Bet> bets = betListProvider.GetBetAll();
+            if (bets.Count == 0)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }
             Bet bet = new Bet();
             foreach(Bet b in bets)
             {
@@ -97,10 +112,14 @@ namespace Tote.Controllers
             {
                 TournamentId = 0;
             }
-            IList<Bet> rates = new List<Bet>();
+            IReadOnlyList<Bet> bets = new List<Bet>();
             try
             {
-                rates = betListProvider.GetBetList(SportId, TournamentId);
+                bets = betListProvider.GetBetList(SportId, TournamentId);
+                if (bets.Count == 0)
+                {
+                    return RedirectToAction("InfoError", "Navigation");
+                }
             }
             catch(FaultException<SqlException> sqlEx)
             {
@@ -114,7 +133,7 @@ namespace Tote.Controllers
             }
 
 
-            return View(rates);
+            return View(bets);
         }
 
         public ActionResult InfoError()
@@ -123,13 +142,21 @@ namespace Tote.Controllers
         }
         public ActionResult Sports()
         {
-            IList<Sport> sports = betListProvider.GetSports();
+            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            if (sports == null)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }
             return View(sports);
         }
 
         public ActionResult Sport()
         {
             Sport sport = betListProvider.GetSport(1);
+            if (sport == null)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }
             return View(sport);
         }
 

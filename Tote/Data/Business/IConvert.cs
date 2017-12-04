@@ -4,9 +4,9 @@ namespace Data.Business
 {
     public interface IConvert
     {
-        IList<Bet> ToBetsList(IList<ToteService.BetListDto> betsListDto);
-        IList<Sport> ToSport(IList<ToteService.SportDto> sportsDto);
-        IList<Tournament> ToTournament(IList<ToteService.TournamentDto> tournamentsDto);
+        IReadOnlyList<Bet> ToBetsList(IReadOnlyList<ToteService.BetListDto> betsListDto);
+        IReadOnlyList<Sport> ToSport(IReadOnlyList<ToteService.SportDto> sportsDto);
+        IReadOnlyList<Tournament> ToTournament(IReadOnlyList<ToteService.TournamentDto> tournamentsDto);
         Sport ToSport(ToteService.SportDto sportDto);
     }
 }

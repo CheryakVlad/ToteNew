@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Contracts.Common
 {
     public class Connection<T> where T : class
     {
-        public SqlCommand GetCommand(SqlConnection connection, SqlCommand command, CommandType type, string commandText, List<Parameter> parameters = null)
+        public SqlCommand GetCommand(SqlConnection connection, SqlCommand command, CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
         {
             command.Connection = connection;
             command.CommandType = type;
@@ -18,7 +21,7 @@ namespace Service.Contracts.Common
             {
                 connection.Open();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
@@ -39,7 +42,7 @@ namespace Service.Contracts.Common
             return command;
         }
 
-        public List<T> GetConnection(CommandType type, string commandText, List<Parameter> parameters = null)
+        public T [] GetConnection(CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
         {
             var ListDto = new List<T>();
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
@@ -47,10 +50,10 @@ namespace Service.Contracts.Common
                 using (var command = new SqlCommand())
                 {
                     var reader = GetCommand(connection, command, type, commandText, parameters).ExecuteReader();
-
+                    
                     while (reader.Read())
                     {
-                        object obj = CreateListDto(reader);
+                        var obj = CreateListDto(reader);
                         if (obj is T)
                         {
                             ListDto.Add((T)obj);
@@ -59,7 +62,7 @@ namespace Service.Contracts.Common
                     connection.Close();
                 }
             }
-            return ListDto;
+            return ListDto.ToArray();
         }
         public object CreateListDto(SqlDataReader reader)
         {

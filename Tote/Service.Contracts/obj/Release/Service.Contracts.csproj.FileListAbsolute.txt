@@ -1,0 +1,4 @@
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\Service.Contracts.dll
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\Service.Contracts.pdb
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Release\Service.Contracts.dll
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Release\Service.Contracts.pdb

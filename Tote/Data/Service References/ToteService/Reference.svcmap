@@ -28,9 +28,6 @@
     <MetadataFile FileName="ToteService.xsd" MetadataType="Schema" ID="cc907dc1-78fd-4aaf-94cd-0023db3d3738" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd2" />
     <MetadataFile FileName="ToteService3.xsd" MetadataType="Schema" ID="f4300a97-8d78-45fa-96e0-75740b1a310b" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd3" />
     <MetadataFile FileName="ToteService.disco" MetadataType="Disco" ID="8977dad8-0b9d-43d9-874e-172a7811f349" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?disco" />
-    <MetadataFile FileName="ToteService31.xsd" MetadataType="Schema" ID="7cbb476c-0158-4277-bf0f-eb1cbc621bb6" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd5" />
-    <MetadataFile FileName="ToteService32.xsd" MetadataType="Schema" ID="6f61f623-1716-408b-9877-95ae142cc494" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd4" />
-    <MetadataFile FileName="ToteService33.xsd" MetadataType="Schema" ID="7ae35fbc-fd0d-4561-a08f-bd4d87a62879" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd6" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -9,12 +9,12 @@ namespace Business.Providers
 {
     public interface IBetListProvider
     {
-        IList<Bet> GetBetList(int? sportId, int? tournamentId);
-        IList<Bet> GetBetAll();
+        IReadOnlyList<Bet> GetBetList(int? sportId, int? tournamentId);
+        IReadOnlyList<Bet> GetBetAll();
 
         Sport GetSport(int? id);
-        IList<Sport> GetSports();
-        IList<Tournament> GetTournament(int? sportId);
-        IList<Tournament> GetTournamentes();
+        IReadOnlyList<Sport> GetSports();
+        IReadOnlyList<Tournament> GetTournament(int? sportId);
+        IReadOnlyList<Tournament> GetTournamentes();
     }
 }

@@ -1,0 +1,24 @@
+﻿@model List<Common.Models.Sport>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/scripts/jquery-3.2.1.js"></script>
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/liNone.css" rel="stylesheet" />
+
+@Html.ActionLink("Home", "List", "Navigation", null,
+    new { @class = "btn btn-block btn-default btn-lg" })
+<ul id="menuSport">
+    @foreach (var sport in Model)
+    {
+    <li id=@sport.SportId>
+        <h3 id=@sport.SportId>
+            <input type="button" class="btn btn-block btn-primary btn-lg" value=@sport.Name />
+        </h3>
+    </li>
+    }
+</ul>
+
+
+<script src="~/scripts/insertChildTournament.js"></script>
+
+<script src="~/scripts/enableDisableTournament.js"></script>
