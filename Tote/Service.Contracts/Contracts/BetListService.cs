@@ -97,6 +97,41 @@ namespace Service.Contracts.Contracts
             }
         }
 
+        public EventDto[] GetEvents(int? id)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = id });
+
+            var connection = new Connection<EventDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCoefficientByMatch", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetCoefficientByMatch";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public EventDto[] GetEventsAll()
+        {
+            var connection = new Connection<EventDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCoefficients");
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "[GetCoefficients]";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
         public SportDto GetSport(int? id)
         {
 

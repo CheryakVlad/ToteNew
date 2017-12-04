@@ -21,7 +21,7 @@ namespace Tote.Controllers
         // GET: Navigation
         public ActionResult Index()
         {
-            IReadOnlyList<Bet> rates = betListProvider.GetBetList(1, 1);
+            IReadOnlyList<Match> rates = betListProvider.GetBetList(1, 1);
             return View(rates[0]);
         }
 
@@ -56,7 +56,7 @@ namespace Tote.Controllers
             {
                 TournamentId = 0;
             }
-            IReadOnlyList<Bet> bets = new List<Bet>();
+            IReadOnlyList<Match> bets = new List<Match>();
             try
             {
                 bets = betListProvider.GetBetList(SportId, TournamentId);
@@ -85,15 +85,15 @@ namespace Tote.Controllers
 
         public ActionResult Bet(int id)
         {
-            IReadOnlyList<Bet> bets = betListProvider.GetBetAll();
+            IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
             if (bets.Count == 0)
             {
                 return RedirectToAction("InfoError", "Navigation");
             }
-            Bet bet = new Bet();
-            foreach(Bet b in bets)
+            Match bet = new Match();
+            foreach(Match b in bets)
             {
-                if(b.BetId==id)
+                if(b.MatchId==id)
                 {
                     bet = b;
                 }
@@ -112,7 +112,7 @@ namespace Tote.Controllers
             {
                 TournamentId = 0;
             }
-            IReadOnlyList<Bet> bets = new List<Bet>();
+            IReadOnlyList<Match> bets = new List<Match>();
             try
             {
                 bets = betListProvider.GetBetList(SportId, TournamentId);

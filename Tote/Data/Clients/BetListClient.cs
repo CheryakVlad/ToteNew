@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Data.ToteService;
 using System.ServiceModel;
 using System.Data.SqlClient;
+using System;
 
 namespace Data.Clients
 {
@@ -76,6 +77,105 @@ namespace Data.Clients
             }
             return model;
         }
+
+        public IReadOnlyList<EventDto> GetEvents()
+        {
+            var model = new List<EventDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var events = client.GetEventsAll();
+                    foreach (var _event in events)
+                    {
+                        model.Add(_event);
+                    }
+
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+
+            }
+            return model;
+        }
+
+        public IReadOnlyList<EventDto> GetEvents(int id)
+        {
+            var model = new List<EventDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var events = client.GetEvents(id);
+                    foreach (var _event in events)
+                    {
+                        model.Add(_event);
+                    }
+
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+
+            }
+            return model;
+        }
+
+       /* public IReadOnlyList<BetListDto> GetMatch(int id)
+        {
+            var model = new List<BetListDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var events = client.GetEventsAll();
+                    foreach (var _event in events)
+                    {
+                        model.Add(_event);
+                    }
+
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+
+            }
+            return model;
+        }*/
 
         public SportDto GetSport(int? id)
         {

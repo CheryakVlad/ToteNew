@@ -16,6 +16,10 @@ namespace Service.Contracts.Contracts
         [FaultContract(typeof(CustomException))]
         BetListDto[] GetBetsAll();
 
+        /*[OperationContract]
+        [FaultContract(typeof(CustomException))]
+        BetListDto[] GetMatch(int matchId);*/
+
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         SportDto GetSport(int? id);
@@ -29,5 +33,12 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         TournamentDto[] GetTournamentes();
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        EventDto[] GetEvents(int? id);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        EventDto[] GetEventsAll();
     }
 }

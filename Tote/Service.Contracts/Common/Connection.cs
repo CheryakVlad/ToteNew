@@ -67,19 +67,43 @@ namespace Service.Contracts.Common
         public object CreateListDto(SqlDataReader reader)
         {
             Type t = typeof(T);
+            if(t== typeof(EventDto))
+            {
+                var EventDto = new EventDto()
+                {
+                    EventId=(int)reader[0],
+                    Name=reader[1].ToString(),
+                    Coefficient=(double)reader[2],
+                    MatchId=(int)reader[3]
+                };
+                return EventDto;
+            }
+
+            if (t == typeof(UserDto))
+            {
+                var UserDto = new UserDto()
+                {
+                    UserId = (int)reader[0],
+                    Login = reader[1].ToString(),
+                    Password = reader[2].ToString(),
+                    Email = reader[3].ToString(),
+                    Money = reader.GetDecimal(5),
+                    FIO = reader[6].ToString(),
+                    Role= reader[7].ToString()
+                };
+                return UserDto;
+            }
+
             if (t == typeof(BetListDto))
             {
                 var BetListDto = new BetListDto()
                 {
-                    BetId = (int)reader[0],
-                    WinCommandHome = reader.GetDouble(1),
-                    WinCommandGuest = reader.GetDouble(2),
-                    Draw = reader.GetDouble(3),
-                    CommandHome = reader[4].ToString(),
-                    CommandGuest = reader[5].ToString(),
-                    Date = reader.GetDateTime(6),
-                    CountryHome = reader.GetString(7),
-                    CountryGuest = reader.GetString(8)
+                    MatchId = (int)reader[0],                    
+                    CommandHome = reader[1].ToString(),
+                    CommandGuest = reader[2].ToString(),
+                    Date = reader.GetDateTime(3),
+                    CountryHome = reader.GetString(4),
+                    CountryGuest = reader.GetString(5)
                 };
 
                 return BetListDto;

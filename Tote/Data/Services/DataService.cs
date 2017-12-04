@@ -2,6 +2,7 @@
 using Data.Business;
 using Data.Clients;
 using System.Collections.Generic;
+using System;
 
 namespace Data.Services
 {
@@ -16,7 +17,7 @@ namespace Data.Services
             this.convert = convert;
         }
 
-        public IReadOnlyList<Bet> GetBets(int? sportId, int? tournamentId)
+        public IReadOnlyList<Match> GetBets(int? sportId, int? tournamentId)
         {
             /*List<Bet> rateList = new List<Bet>();
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
@@ -76,21 +77,55 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToBetsList(dto);
+                return convert.ToMatchList(dto);
             }
-            return new List<Bet>();
+            return new List<Match>();
         }
 
-        public IReadOnlyList<Bet> GetBetsAll()
+        public IReadOnlyList<Match> GetBetsAll()
         {
             var dto = betListClient.GetBetsAll();
 
             if (dto != null)
             {
-                return convert.ToBetsList(dto);
+                return convert.ToMatchList(dto);
             }
-            return new List<Bet>();
+            return new List<Match>();
             
+        }
+
+        public IReadOnlyList<Event> GetEvents()
+        {
+            var dto = betListClient.GetEvents();
+
+            if (dto != null)
+            {
+                return convert.ToEvents(dto);
+            }
+            return new List<Event>();
+        }
+
+        public IReadOnlyList<Event> GetEvents(int id)
+        {
+            var dto = betListClient.GetEvents(id);
+
+            if (dto != null)
+            {
+                return convert.ToEvents(dto);
+            }
+            return new List<Event>();
+        }
+
+        public IReadOnlyList<Match> GetMatchesAll()
+        {
+            var dto = betListClient.GetBetsAll();
+            var eventDto = betListClient.GetEvents();
+
+            if (dto != null)
+            {
+                return convert.ToMatchList(dto,eventDto);
+            }
+            return new List<Match>();
         }
 
         public Sport GetSport(int? id)

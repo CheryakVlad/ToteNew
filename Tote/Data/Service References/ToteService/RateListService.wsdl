@@ -62,6 +62,24 @@
   <wsdl:message name="IBetListService_GetTournamentes_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
   </wsdl:message>
+  <wsdl:message name="IBetListService_GetEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEvents" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetEvents_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetEventsAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsAll" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetEventsAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetEventsAll_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q8:CustomException" />
+  </wsdl:message>
   <wsdl:portType name="IBetListService">
     <wsdl:operation name="GetBets">
       <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetBets" message="tns:IBetListService_GetBets_InputMessage" />
@@ -92,6 +110,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetTournamentes" message="tns:IBetListService_GetTournamentes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetTournamentesResponse" message="tns:IBetListService_GetTournamentes_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetTournamentesCustomExceptionFault" name="CustomExceptionFault" message="tns:IBetListService_GetTournamentes_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetEvents" message="tns:IBetListService_GetEvents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetEventsResponse" message="tns:IBetListService_GetEvents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetEventsCustomExceptionFault" name="CustomExceptionFault" message="tns:IBetListService_GetEvents_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetEventsAll" message="tns:IBetListService_GetEventsAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetEventsAllResponse" message="tns:IBetListService_GetEventsAll_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetEventsAllCustomExceptionFault" name="CustomExceptionFault" message="tns:IBetListService_GetEventsAll_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBetListService" type="tns:IBetListService">
@@ -158,6 +186,30 @@
     </wsdl:operation>
     <wsdl:operation name="GetTournamentes">
       <soap:operation soapAction="http://tempuri.org/IBetListService/GetTournamentes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsAll">
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetEventsAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

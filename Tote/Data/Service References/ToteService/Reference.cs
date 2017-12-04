@@ -212,15 +212,6 @@ namespace Data.ToteService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ExceptionMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string InnerExceptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StackTraceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TitleField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -230,45 +221,6 @@ namespace Data.ToteService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ExceptionMessage {
-            get {
-                return this.ExceptionMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ExceptionMessageField, value) != true)) {
-                    this.ExceptionMessageField = value;
-                    this.RaisePropertyChanged("ExceptionMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string InnerException {
-            get {
-                return this.InnerExceptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.InnerExceptionField, value) != true)) {
-                    this.InnerExceptionField = value;
-                    this.RaisePropertyChanged("InnerException");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StackTrace {
-            get {
-                return this.StackTraceField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StackTraceField, value) != true)) {
-                    this.StackTraceField = value;
-                    this.RaisePropertyChanged("StackTrace");
-                }
             }
         }
         
@@ -433,6 +385,99 @@ namespace Data.ToteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class EventDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double CoefficientField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EventIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MatchIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Coefficient {
+            get {
+                return this.CoefficientField;
+            }
+            set {
+                if ((this.CoefficientField.Equals(value) != true)) {
+                    this.CoefficientField = value;
+                    this.RaisePropertyChanged("Coefficient");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventId {
+            get {
+                return this.EventIdField;
+            }
+            set {
+                if ((this.EventIdField.Equals(value) != true)) {
+                    this.EventIdField = value;
+                    this.RaisePropertyChanged("EventId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MatchId {
+            get {
+                return this.MatchIdField;
+            }
+            set {
+                if ((this.MatchIdField.Equals(value) != true)) {
+                    this.MatchIdField = value;
+                    this.RaisePropertyChanged("MatchId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ToteService.IBetListService")]
     public interface IBetListService {
@@ -478,6 +523,20 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]
         System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetEvents", ReplyAction="http://tempuri.org/IBetListService/GetEventsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.EventDto[] GetEvents(System.Nullable<int> id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetEvents", ReplyAction="http://tempuri.org/IBetListService/GetEventsResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAsync(System.Nullable<int> id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetEventsAll", ReplyAction="http://tempuri.org/IBetListService/GetEventsAllResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetEventsAllCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.EventDto[] GetEventsAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetEventsAll", ReplyAction="http://tempuri.org/IBetListService/GetEventsAllResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -553,6 +612,22 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesAsync() {
             return base.Channel.GetTournamentesAsync();
+        }
+        
+        public Data.ToteService.EventDto[] GetEvents(System.Nullable<int> id) {
+            return base.Channel.GetEvents(id);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAsync(System.Nullable<int> id) {
+            return base.Channel.GetEventsAsync(id);
+        }
+        
+        public Data.ToteService.EventDto[] GetEventsAll() {
+            return base.Channel.GetEventsAll();
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAllAsync() {
+            return base.Channel.GetEventsAllAsync();
         }
     }
 }

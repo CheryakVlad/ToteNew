@@ -14,6 +14,7 @@ namespace Common.Models
         public int ResultId { get; set; }
         public Result Result { get; set; }
         public int TourId { get; set; }
+        public IList<Event> Events { get; set; }
 
         public IList<Bet> Bets { get; set; }
 

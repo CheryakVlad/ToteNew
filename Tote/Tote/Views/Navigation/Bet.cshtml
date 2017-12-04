@@ -1,4 +1,4 @@
-﻿@model Common.Models.Bet
+﻿@model Common.Models.Match
 
 @{
     Layout = @"\Views\MasterView.cshtml";
@@ -16,8 +16,8 @@
     <input type="button" class="btn" onclick="history.back(-2); return false;" value="Back" />
 
     <h2>       
-        @Model.Match.Teams[0].Name.ToString() ( @Model.Match.Teams[0].Country.Name) 
-         vs @Model.Match.Teams[1].Name.ToString() ( @Model.Match.Teams[1].Country.Name) by @Model.Match.Date.ToString()
+        @Model.Teams[0].Name.ToString() ( @Model.Teams[0].Country.Name) 
+         vs @Model.Teams[1].Name.ToString() ( @Model.Teams[1].Country.Name) by @Model.Date.ToString()
     </h2>
 
     <table class="table">
@@ -39,13 +39,13 @@
         <tr>
                        
             <td>
-                @Html.DisplayFor(model => model.WinCommandHome)
+                @Model.Events[0].Coefficient
             </td>
             <td>
-                @Html.DisplayFor(model => model.WinCommandGuest)
+                @Model.Events[1].Coefficient
             </td>
             <td>
-                @Html.DisplayFor(model => model.Draw)
+                @Model.Events[2].Coefficient
             </td>
             
             

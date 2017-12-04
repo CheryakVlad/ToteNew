@@ -13,14 +13,29 @@ namespace Business.Providers
             this.dataService = dataService;
         }
 
-        public IReadOnlyList<Bet> GetBetAll()
+        public IReadOnlyList<Match> GetBetAll()
         {
             return dataService.GetBetsAll();
         }
 
-        public IReadOnlyList<Bet> GetBetList(int? sportId, int? tournamentId)
+        public IReadOnlyList<Match> GetBetList(int? sportId, int? tournamentId)
         {
             return dataService.GetBets(sportId, tournamentId);
+        }
+
+        public IReadOnlyList<Event> GetEvents()
+        {
+            return dataService.GetEvents();
+        }
+
+        public IReadOnlyList<Event> GetEvents(int id)
+        {
+            return dataService.GetEvents(id);
+        }
+
+        public IReadOnlyList<Match> GetMatchesAll()
+        {
+            return dataService.GetMatchesAll();
         }
 
         public Sport GetSport(int? id)
