@@ -42,6 +42,24 @@ namespace Service.Contracts.Common
             return command;
         }
 
+        public bool GetConnectionUpdate(CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
+        {
+            var ListDto = new List<T>();
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
+            {
+                using (var command = new SqlCommand())
+                {
+                    var number = GetCommand(connection, command, type, commandText, parameters).ExecuteNonQuery();   
+                    if(number>0)
+                    {
+                        return true;
+                    }                 
+                    connection.Close();
+                }
+            }
+            return false;
+        }
+
         public T [] GetConnection(CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
         {
             var ListDto = new List<T>();

@@ -124,6 +124,23 @@ namespace Data.Business
             return matchesList;
         }
 
+        public IReadOnlyList<Role> ToRoles(IReadOnlyList<RoleDto> rolesDto)
+        {
+            var roles = new List<Role>();
+            foreach (var roleDto in rolesDto)
+            {
+                var role = new Role
+                {
+                    RoleId=roleDto.RoleId,
+                    Name=roleDto.Name
+                };
+
+                roles.Add(role);
+            }
+
+            return roles;
+        }
+
         public Sport ToSport(SportDto sportDto)
         {
             var sport = new Sport
@@ -190,6 +207,22 @@ namespace Data.Business
             };
                
             return user;
+        }
+
+        public UserDto ToUserDto(User user)
+        {
+            var userDto = new UserDto
+            {
+                UserId = user.UserId,
+                Login = user.Login,
+                Password = user.Password,
+                Email = user.Email,
+                FIO = user.FIO,
+                Money = user.Money,
+                RoleId = user.RoleId
+            };            
+             
+            return userDto;
         }
 
         public IReadOnlyList<User> ToUsers(IReadOnlyList<UserDto> usersDto)

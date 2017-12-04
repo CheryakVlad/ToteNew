@@ -128,6 +128,9 @@
     <None Include="Service References\ToteService\ToteService3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UserService\Data.UserService.RoleDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\UserService\Data.UserService.UserDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

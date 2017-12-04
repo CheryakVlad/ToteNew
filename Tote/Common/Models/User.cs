@@ -11,6 +11,7 @@ namespace Common.Models
         public string FIO { get; set; }
         public decimal Money { get; set; }
         public IList<Role> Roles { get; set; }
+        public int RoleId { get; set; } 
 
     }
 }

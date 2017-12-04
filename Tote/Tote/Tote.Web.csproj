@@ -221,6 +221,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\User\UsersAll.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\User\DeleteUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

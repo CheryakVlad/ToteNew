@@ -52,5 +52,16 @@ namespace Data.Services
             }
             return new User();
         }
+
+        public IReadOnlyList<Role> GetRolesAll()
+        {
+            var dto = userClient.GetRolesAll();
+
+            if (dto != null)
+            {
+                return convert.ToRoles(dto);
+            }
+            return new List<Role>();
+        }
     }
 }

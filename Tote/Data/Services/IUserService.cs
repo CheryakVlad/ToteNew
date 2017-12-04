@@ -9,5 +9,7 @@ namespace Data.Services
         User GetUserById(int id);
 
         User ExistsUser(string login, string password);
+
+        IReadOnlyList<Role> GetRolesAll();
     }
 }

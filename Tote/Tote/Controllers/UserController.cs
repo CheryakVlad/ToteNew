@@ -9,6 +9,7 @@ namespace Tote.Controllers
     public class UserController : Controller
     {
         private IUserProvider userProvider;
+        
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserController));
 
@@ -16,7 +17,8 @@ namespace Tote.Controllers
         {
             this.userProvider = userProvider;
         }
-        [Admin]
+
+        //[Admin]
         public ActionResult UsersAll()
         {
             IReadOnlyList<User> users = userProvider.GetUsersAll();
@@ -28,18 +30,66 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
-        [Admin]
+        //[Admin]
         public ActionResult EditUser(int id)
+        {
+            User user = userProvider.GetUser(id);
+            //IReadOnlyList<Role> roles= userProvider.GetRolesAll();
+            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+            ViewBag.Roles = roles;
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(User user)
+        {
+            bool result = userProvider.UpdateUser(user);
+            if(!result)
+            {
+                log.Error("Controller: User, Action: EditUser Don't update user");
+            }            
+            return RedirectToAction("UsersAll");
+        }
+
+        [HttpGet]
+        public ActionResult AddUser()
+        {
+            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+            ViewBag.Roles = roles;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddUser(User user)
+        {
+            bool result = userProvider.AddUser(user);
+            if (!result)
+            {
+                log.Error("Controller: User, Action: AddUser Don't add user");
+            }
+
+            return RedirectToAction("UsersAll");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteUser(int id)
         {
             User user = userProvider.GetUser(id);
             return View(user);
         }
 
         [HttpPost]
-        public ActionResult EditUser()
+        public ActionResult DeleteUser(int userId,int roleId)
         {
-            return View();
+            bool result = userProvider.DeleteUser(userId);
+            if (!result)
+            {
+                log.Error("Controller: User, Action: DeleteUser Don't delete user");
+            }
+            return RedirectToAction("UsersAll");
         }
+
+
 
         public ActionResult Index()
         {

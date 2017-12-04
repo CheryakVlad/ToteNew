@@ -13,9 +13,50 @@ namespace Service.Contracts.Contracts
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
 
-        public UserDto AddUser()
+        
+        public bool AddUser(UserDto userDto)
         {
-            throw new NotImplementedException();
+            var parameters = new List<Parameter>();            
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = userDto.Login });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Password", Value = userDto.Password });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Email", Value = userDto.Email });
+            parameters.Add(new Parameter { Type = DbType.Decimal, Name = "@Money", Value = userDto.Money });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@FIO", Value = userDto.FIO });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RoleId", Value = userDto.RoleId });
+
+            var connection = new Connection<UserDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddUser", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddUser";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            var parameters = new List<Parameter>();            
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
+
+            var connection = new Connection<UserDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "DeleteUser", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "DeleteUser";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
         }
 
         public UserDto EditUser(int userId)
@@ -101,6 +142,32 @@ namespace Service.Contracts.Contracts
         public UserDto[] GetUsersByRole(int RoleId)
         {
             throw new NotImplementedException();
+        }
+
+        public bool UpdateUser(UserDto userDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userDto.UserId });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = userDto.Login });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Password", Value = userDto.Password });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Email", Value = userDto.Email });
+            parameters.Add(new Parameter { Type = DbType.Decimal, Name = "@Money", Value = userDto.Money });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@FIO", Value = userDto.FIO });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RoleId", Value = userDto.RoleId });
+
+            var connection = new Connection<UserDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "UpdateUser", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "UpdateUser";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
         }
     }
 }

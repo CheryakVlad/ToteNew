@@ -41,6 +41,9 @@ namespace Data.UserService {
         private string RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -127,6 +130,19 @@ namespace Data.UserService {
                 if ((object.ReferenceEquals(this.RoleField, value) != true)) {
                     this.RoleField = value;
                     this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleId {
+            get {
+                return this.RoleIdField;
+            }
+            set {
+                if ((this.RoleIdField.Equals(value) != true)) {
+                    this.RoleIdField = value;
+                    this.RaisePropertyChanged("RoleId");
                 }
             }
         }
@@ -285,13 +301,6 @@ namespace Data.UserService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
         System.Threading.Tasks.Task<Data.UserService.UserDto> GetUserAsync(int userId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/AddUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.UserService.UserDto AddUser();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
-        System.Threading.Tasks.Task<Data.UserService.UserDto> AddUserAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditUser", ReplyAction="http://tempuri.org/IUserService/EditUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/EditUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.UserService.UserDto EditUser(int userId);
@@ -312,6 +321,27 @@ namespace Data.UserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
         System.Threading.Tasks.Task<Data.UserService.RoleDto[]> GetRolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/UpdateUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool UpdateUser(Data.UserService.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        System.Threading.Tasks.Task<bool> UpdateUserAsync(Data.UserService.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/AddUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddUser(Data.UserService.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
+        System.Threading.Tasks.Task<bool> AddUserAsync(Data.UserService.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/DeleteUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteUser(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        System.Threading.Tasks.Task<bool> DeleteUserAsync(int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -365,14 +395,6 @@ namespace Data.UserService {
             return base.Channel.GetUserAsync(userId);
         }
         
-        public Data.UserService.UserDto AddUser() {
-            return base.Channel.AddUser();
-        }
-        
-        public System.Threading.Tasks.Task<Data.UserService.UserDto> AddUserAsync() {
-            return base.Channel.AddUserAsync();
-        }
-        
         public Data.UserService.UserDto EditUser(int userId) {
             return base.Channel.EditUser(userId);
         }
@@ -395,6 +417,30 @@ namespace Data.UserService {
         
         public System.Threading.Tasks.Task<Data.UserService.RoleDto[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
+        }
+        
+        public bool UpdateUser(Data.UserService.UserDto userDto) {
+            return base.Channel.UpdateUser(userDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateUserAsync(Data.UserService.UserDto userDto) {
+            return base.Channel.UpdateUserAsync(userDto);
+        }
+        
+        public bool AddUser(Data.UserService.UserDto userDto) {
+            return base.Channel.AddUser(userDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddUserAsync(Data.UserService.UserDto userDto) {
+            return base.Channel.AddUserAsync(userDto);
+        }
+        
+        public bool DeleteUser(int userId) {
+            return base.Channel.DeleteUser(userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteUserAsync(int userId) {
+            return base.Channel.DeleteUserAsync(userId);
         }
     }
 }

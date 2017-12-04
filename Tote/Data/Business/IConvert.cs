@@ -18,5 +18,9 @@ namespace Data.Business
         IReadOnlyList<User> ToUsers(IReadOnlyList<UserService.UserDto> usersDto);
 
         User ToUser(UserService.UserDto userDto);
+        IReadOnlyList<Role> ToRoles(IReadOnlyList<UserService.RoleDto> rolesDto);
+
+        UserService.UserDto ToUserDto(User user);
+
     }
 }

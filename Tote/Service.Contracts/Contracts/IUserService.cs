@@ -18,11 +18,7 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         UserDto GetUser(int userId);
-
-        [OperationContract]
-        [FaultContract(typeof(CustomException))]
-        UserDto AddUser();
-
+        
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         UserDto EditUser(int userId);
@@ -34,6 +30,18 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         RoleDto[] GetRoles();
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool UpdateUser(UserDto userDto);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddUser(UserDto userDto);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool DeleteUser(int userId);
 
     }
 }

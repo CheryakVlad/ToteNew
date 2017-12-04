@@ -35,15 +35,6 @@
   <wsdl:message name="IUserService_GetUser_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q3:CustomException" />
   </wsdl:message>
-  <wsdl:message name="IUserService_AddUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddUser_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q4:CustomException" />
-  </wsdl:message>
   <wsdl:message name="IUserService_EditUser_InputMessage">
     <wsdl:part name="parameters" element="tns:EditUser" />
   </wsdl:message>
@@ -51,7 +42,7 @@
     <wsdl:part name="parameters" element="tns:EditUserResponse" />
   </wsdl:message>
   <wsdl:message name="IUserService_EditUser_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q5:CustomException" />
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q4:CustomException" />
   </wsdl:message>
   <wsdl:message name="IUserService_ExistsUser_InputMessage">
     <wsdl:part name="parameters" element="tns:ExistsUser" />
@@ -60,7 +51,7 @@
     <wsdl:part name="parameters" element="tns:ExistsUserResponse" />
   </wsdl:message>
   <wsdl:message name="IUserService_ExistsUser_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q5:CustomException" />
   </wsdl:message>
   <wsdl:message name="IUserService_GetRoles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRoles" />
@@ -69,7 +60,34 @@
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
   </wsdl:message>
   <wsdl:message name="IUserService_GetRoles_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q8:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q9:CustomException" />
   </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="GetUsers">
@@ -87,11 +105,6 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserResponse" message="tns:IUserService_GetUser_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/GetUserCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_GetUser_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUser" message="tns:IUserService_AddUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserResponse" message="tns:IUserService_AddUser_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/AddUserCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_AddUser_CustomExceptionFault_FaultMessage" />
-    </wsdl:operation>
     <wsdl:operation name="EditUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditUser" message="tns:IUserService_EditUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditUserResponse" message="tns:IUserService_EditUser_OutputMessage" />
@@ -106,6 +119,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetRoles" message="tns:IUserService_GetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetRolesResponse" message="tns:IUserService_GetRoles_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/GetRolesCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_GetRoles_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/UpdateUserCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_UpdateUser_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUser" message="tns:IUserService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserResponse" message="tns:IUserService_AddUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/AddUserCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_AddUser_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUser" message="tns:IUserService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserResponse" message="tns:IUserService_DeleteUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IUserService/DeleteUserCustomExceptionFault" name="CustomExceptionFault" message="tns:IUserService_DeleteUser_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -146,18 +174,6 @@
         <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="AddUser">
-      <soap:operation soapAction="http://tempuri.org/IUserService/AddUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="CustomExceptionFault">
-        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="EditUser">
       <soap:operation soapAction="http://tempuri.org/IUserService/EditUser" style="document" />
       <wsdl:input>
@@ -184,6 +200,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetRoles">
       <soap:operation soapAction="http://tempuri.org/IUserService/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
