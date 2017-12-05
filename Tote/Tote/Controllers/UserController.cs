@@ -8,8 +8,7 @@ namespace Tote.Controllers
 {
     public class UserController : Controller
     {
-        private IUserProvider userProvider;
-        
+        private IUserProvider userProvider;       
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserController));
 
@@ -79,7 +78,8 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteUser(int userId,int roleId)
+        [ActionName("DeleteUser")]
+        public ActionResult Delete(int userId)
         {
             bool result = userProvider.DeleteUser(userId);
             if (!result)

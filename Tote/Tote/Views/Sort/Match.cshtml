@@ -1,0 +1,54 @@
+﻿@model List<Common.Models.Match>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Home Team
+        </th>
+        <th>
+            Guest Team
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TournamentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TourId)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams[0].Name)
+                @Html.DisplayFor(modelItem => item.Teams[0].Country.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams[1].Name)
+                @Html.DisplayFor(modelItem => item.Teams[1].Country.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TournamentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourId)
+            </td>
+
+        </tr>
+    }
+
+</table>

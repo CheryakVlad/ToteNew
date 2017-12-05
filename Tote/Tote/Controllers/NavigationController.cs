@@ -18,7 +18,7 @@ namespace Tote.Controllers
             this.betListProvider = rateListProvider;
         }
 
-        // GET: Navigation
+        
         public ActionResult Index()
         {
             IReadOnlyList<Match> rates = betListProvider.GetBetList(1, 1);

@@ -62,8 +62,7 @@
     
         @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
-            <input type="hidden" name=@Model.UserId/>
-            <input type="hidden" name=@Model.RoleId/>
+            <input type="hidden" value=@Model.UserId name="userId"/>            
     
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |

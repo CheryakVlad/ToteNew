@@ -22,5 +22,7 @@ namespace Data.Business
 
         UserService.UserDto ToUserDto(User user);
 
+        ToteService.SportDto ToSportDto(Sport sport);
+
     }
 }

@@ -169,6 +169,17 @@ namespace Data.Business
             return sports;
         }
 
+        public SportDto ToSportDto(Sport sport)
+        {
+            var sportDto = new SportDto
+            {
+                SportId=sport.SportId,
+                Name=sport.Name
+            };
+
+            return sportDto;
+        }
+
         public IReadOnlyList<Tournament> ToTournament(IReadOnlyList<TournamentDto> tournamentsDto)
         {
             var tournaments = new List<Tournament>();

@@ -14,11 +14,7 @@ namespace Service.Contracts.Contracts
         BetListDto[] GetBets(int? sportId, int? tournamentId);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        BetListDto[] GetBetsAll();
-
-        /*[OperationContract]
-        [FaultContract(typeof(CustomException))]
-        BetListDto[] GetMatch(int matchId);*/
+        BetListDto[] GetBetsAll();        
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]
@@ -26,6 +22,15 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         SportDto[] GetSports();
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool UpdateSport(SportDto sportDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddSport(SportDto sportDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool DeleteSport(int sportId);
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]

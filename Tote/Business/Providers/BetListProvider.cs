@@ -2,15 +2,28 @@
 using Data.Services;
 using System.Collections.Generic;
 using System;
+using Data.Clients;
 
 namespace Business.Providers
 {
     public class BetListProvider : IBetListProvider
     {
         private readonly IDataService dataService;
-        public BetListProvider(IDataService dataService)
+        private readonly IBetListClient betListClient;
+        public BetListProvider(IDataService dataService, IBetListClient betListClient)
         {
             this.dataService = dataService;
+            this.betListClient = betListClient;
+        }
+
+        public bool AddSport(Sport sport)
+        {
+            return betListClient.AddSport(sport);
+        }
+
+        public bool DeleteSport(int sportId)
+        {
+            return betListClient.DeleteSport(sportId);
         }
 
         public IReadOnlyList<Match> GetBetAll()
@@ -56,6 +69,11 @@ namespace Business.Providers
         public IReadOnlyList<Tournament> GetTournamentes()
         {
             return dataService.GetTournamentes();
+        }
+
+        public bool UpdateSport(Sport sport)
+        {
+            return betListClient.UpdateSport(sport);
         }
     }
 }

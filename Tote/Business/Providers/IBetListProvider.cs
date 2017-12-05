@@ -21,5 +21,11 @@ namespace Business.Providers
 
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);
+
+        bool UpdateSport(Sport sport);
+
+        bool AddSport(Sport sport);
+
+        bool DeleteSport(int sportId);
     }
 }

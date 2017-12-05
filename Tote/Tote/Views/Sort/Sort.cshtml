@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Common.Models.Match>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $("#dateField").datepicker();
+    });
+    </script>
+    <title>Sort</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    
+        Select Sport  
+        @Html.DropDownList("sport", ViewBag.Sports as SelectList)
+    
+    
+        Select Status 
+        @Html.DropDownList("Status", ViewBag.Statuses as SelectList)
+    
+        Date Match
+        @Html.TextBox("DateMatch", "Enter date", new {@class = "form-control", @id = "dateField"})
+    <input type="button" value="Sort" id="btnSort"/>
+    
+    <table class="table">
+        <tr>
+            <th> 
+                Home Team
+            </th>
+            <th>
+                Guest Team
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TournamentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResultId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TourId)
+            </th>
+            
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams[0].Name)
+                @Html.DisplayFor(modelItem => item.Teams[0].Country.Name) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams[1].Name)
+                @Html.DisplayFor(modelItem => item.Teams[1].Country.Name) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TournamentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourId)
+            </td>
+            
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSort").click(function () {
+            var sportId = $("#sport").val();             
+            alert(sportId);
+            $.ajax({
+                type: 'GET',
+                url: '/Sort/Match/' + sportId,
+                success: function (data) {
+                    $('.table').replaceWith(data);
+
+                }
+            });
+        })
+    })
+</script>

@@ -4,12 +4,74 @@ using Data.ToteService;
 using System.ServiceModel;
 using System.Data.SqlClient;
 using System;
+using Common.Models;
+using Data.Business;
 
 namespace Data.Clients
 {
     public class BetListClient : IBetListClient
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListClient));
+        private readonly IConvert convert;
+
+        public BetListClient(IConvert convert)
+        {
+            this.convert = convert;
+        }
+        public bool AddSport(Sport sport)
+        {
+            var sportDto = new SportDto();
+            sportDto = convert.ToSportDto(sport);
+            var model = new bool();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.AddSport(sportDto);
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
+
+        public bool DeleteSport(int sportId)
+        {
+            var model = new bool();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.DeleteSport(sportId);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
 
         public IReadOnlyList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
@@ -300,6 +362,35 @@ namespace Data.Clients
             }
 
             return model;
-        }        
+        }
+
+        public bool UpdateSport(Sport sport)
+        {
+            var sportDto = new SportDto();
+            sportDto = convert.ToSportDto(sport);
+            var model = new bool();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.UpdateSport(sportDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
     }
 }

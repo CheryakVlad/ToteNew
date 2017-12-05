@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Common.Models;
+using System.Collections.Generic;
 
 namespace Data.Clients
 {
     public interface IBetListClient
     {
         IReadOnlyList<ToteService.BetListDto> GetBets(int? sportId, int? tournamentId);
-        IReadOnlyList<ToteService.BetListDto> GetBetsAll();
-
-        //IReadOnlyList<ToteService.BetListDto> GetMatch(int id);
+        IReadOnlyList<ToteService.BetListDto> GetBetsAll();        
 
         ToteService.SportDto GetSport(int? id);
         IReadOnlyList<ToteService.SportDto> GetSports();
+        bool UpdateSport(Sport sport);
+        bool AddSport(Sport sport);
+        bool DeleteSport(int sportId);
+
         IReadOnlyList<ToteService.TournamentDto> GetTournament(int? sportId);
         IReadOnlyList<ToteService.TournamentDto> GetTournamentes();
 

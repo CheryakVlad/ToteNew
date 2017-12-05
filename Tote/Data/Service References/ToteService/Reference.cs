@@ -510,6 +510,27 @@ namespace Data.ToteService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetSports", ReplyAction="http://tempuri.org/IBetListService/GetSportsResponse")]
         System.Threading.Tasks.Task<Data.ToteService.SportDto[]> GetSportsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/UpdateSport", ReplyAction="http://tempuri.org/IBetListService/UpdateSportResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/UpdateSportCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool UpdateSport(Data.ToteService.SportDto sportDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/UpdateSport", ReplyAction="http://tempuri.org/IBetListService/UpdateSportResponse")]
+        System.Threading.Tasks.Task<bool> UpdateSportAsync(Data.ToteService.SportDto sportDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddSport", ReplyAction="http://tempuri.org/IBetListService/AddSportResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/AddSportCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddSport(Data.ToteService.SportDto sportDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddSport", ReplyAction="http://tempuri.org/IBetListService/AddSportResponse")]
+        System.Threading.Tasks.Task<bool> AddSportAsync(Data.ToteService.SportDto sportDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/DeleteSport", ReplyAction="http://tempuri.org/IBetListService/DeleteSportResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/DeleteSportCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteSport(int sportId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/DeleteSport", ReplyAction="http://tempuri.org/IBetListService/DeleteSportResponse")]
+        System.Threading.Tasks.Task<bool> DeleteSportAsync(int sportId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId);
@@ -596,6 +617,30 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<Data.ToteService.SportDto[]> GetSportsAsync() {
             return base.Channel.GetSportsAsync();
+        }
+        
+        public bool UpdateSport(Data.ToteService.SportDto sportDto) {
+            return base.Channel.UpdateSport(sportDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateSportAsync(Data.ToteService.SportDto sportDto) {
+            return base.Channel.UpdateSportAsync(sportDto);
+        }
+        
+        public bool AddSport(Data.ToteService.SportDto sportDto) {
+            return base.Channel.AddSport(sportDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddSportAsync(Data.ToteService.SportDto sportDto) {
+            return base.Channel.AddSportAsync(sportDto);
+        }
+        
+        public bool DeleteSport(int sportId) {
+            return base.Channel.DeleteSport(sportId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteSportAsync(int sportId) {
+            return base.Channel.DeleteSportAsync(sportId);
         }
         
         public Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId) {

@@ -1,0 +1,5 @@
+2017-12-05 11:09:25,177 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateSport" ожидает параметр "@Name", который не был указан.
+2017-12-05 11:24:48,258 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateSport" ожидает параметр "@Name", который не был указан.
+2017-12-05 11:55:14,894 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateSport" ожидает параметр "@Name", который не был указан.
+2017-12-05 12:01:35,776 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateSport" ожидает параметр "@Name", который не был указан.
+2017-12-05 12:03:49,725 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateSport" ожидает параметр "@Name", который не был указан.

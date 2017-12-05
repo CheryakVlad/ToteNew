@@ -14,6 +14,47 @@ namespace Service.Contracts.Contracts
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
 
+        public bool AddSport(SportDto sportDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = sportDto.Name });
+            
+
+            var connection = new Connection<SportDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddSport", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddSport";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
+        public bool DeleteSport(int sportId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
+
+            var connection = new Connection<SportDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "DeleteSport", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "DeleteSport";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
         public BetListDto[] GetBets(int? sportId, int? tournamentId)
         {          
             if (sportId == 0)
@@ -207,6 +248,26 @@ namespace Service.Contracts.Contracts
             
         }
 
-       
+        public bool UpdateSport(SportDto sportDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportDto.SportId });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = sportDto.Name });
+            
+
+            var connection = new Connection<SportDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "UpdateSport", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "UpdateSport";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
     }
 }
