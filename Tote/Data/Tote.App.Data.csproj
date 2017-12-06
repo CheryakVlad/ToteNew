@@ -73,12 +73,25 @@
   <ItemGroup>
     <Compile Include="Business\Convert.cs" />
     <Compile Include="Business\IConvert.cs" />
+    <Compile Include="Business\IMatchConvert.cs" />
+    <Compile Include="Business\MatchConvert.cs" />
     <Compile Include="Clients\IBetListClient.cs" />
     <Compile Include="Clients\BetListClient.cs" />
+    <Compile Include="Clients\IMatchClient.cs" />
+    <Compile Include="Clients\ITeamClient.cs" />
+    <Compile Include="Clients\ITournamentClient.cs" />
     <Compile Include="Clients\IUserClient.cs" />
+    <Compile Include="Clients\MatchClient.cs" />
+    <Compile Include="Clients\TeamClient.cs" />
+    <Compile Include="Clients\TournamentClient.cs" />
     <Compile Include="Clients\UserClient.cs" />
     <Compile Include="Container\DataRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\TeamService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ToteService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,7 +104,9 @@
     </Compile>
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\IMatchService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\MatchService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +118,25 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Service References\TeamService\Data.TeamService.MatchDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TeamService\Data.TeamService.TeamDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TeamService\TeamService.wsdl" />
+    <None Include="Service References\TeamService\TeamService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TeamService\TeamService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TeamService\TeamService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TeamService\TeamService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ToteService\Data.ToteService.BetListDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -152,6 +186,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\TeamService\" />
     <WCFMetadataStorage Include="Service References\ToteService\" />
     <WCFMetadataStorage Include="Service References\UserService\" />
   </ItemGroup>
@@ -181,6 +216,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\UserService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TeamService\TeamService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TeamService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TeamService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TeamService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

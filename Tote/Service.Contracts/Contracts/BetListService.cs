@@ -10,16 +10,14 @@ using System;
 namespace Service.Contracts.Contracts
 {
 
-    public class BetListService : IBetListService
+    public class BetListService : IBetListService,ITournamentService
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
 
         public bool AddSport(SportDto sportDto)
         {
             var parameters = new List<Parameter>();
-            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = sportDto.Name });
-            
-
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = sportDto.Name });  
             var connection = new Connection<SportDto>();
             try
             {
@@ -32,6 +30,26 @@ namespace Service.Contracts.Contracts
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
+            }
+        }
+
+        public bool AddTournament(TournamentDto tournamentDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = tournamentDto.Name });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = tournamentDto.SportId });
+
+            var connection = new Connection<TournamentDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddTournament";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
@@ -49,6 +67,26 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteSport";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
+        public bool DeleteTournament(int tournamentId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
+
+            var connection = new Connection<TournamentDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "DeleteTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "DeleteTournament";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
@@ -210,11 +248,31 @@ namespace Service.Contracts.Contracts
             }
         }
 
+        public TournamentDto GetTournamentById(int tournamentId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
+
+            var connection = new Connection<TournamentDto>();
+
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetTournamentById", parameters)[0];
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetTournamentById";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
         public TournamentDto[] GetTournament(int? sportId)
         {
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
-
 
             var connection = new Connection<TournamentDto>();
             try
@@ -264,6 +322,28 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateSport";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
+        public bool UpdateTournament(TournamentDto tournamentDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentDto.TournamentId });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = tournamentDto.Name });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = tournamentDto.SportId });
+
+            var connection = new Connection<TournamentDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "UpdateTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "UpdateTournament";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 

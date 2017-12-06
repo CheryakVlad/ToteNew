@@ -1,5 +1,5 @@
 ﻿using Service.Contracts.Dto;
-using System.Collections.Generic;
+using Service.Contracts.Exception;
 using System.ServiceModel;
 
 namespace Service.Contracts.Contracts
@@ -8,8 +8,22 @@ namespace Service.Contracts.Contracts
     public interface ITeamService
     {
         [OperationContract]
-        TeamDto GetCommand(int? id);
+        [FaultContract(typeof(CustomException))]
+        TeamDto[] GetTeam(int? teamId);
         [OperationContract]
-        IEnumerable<TeamDto> GetCommands();
+        [FaultContract(typeof(CustomException))]
+        TeamDto[] GetTeams();
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        TeamDto GetTeamById(int teamId);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool UpdateTeam(TeamDto teamDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddTeam(TeamDto teamDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool DeleteTeam(int teamId);
     }
 }

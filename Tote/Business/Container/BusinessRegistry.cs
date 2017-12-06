@@ -9,9 +9,9 @@ namespace Business.Container
     {
         public BusinessRegistry()
         {
-            /*For<ICommandProvider>().Use<CommandProvider>();
+            For<ITeamProvider>().Use<TeamProvider>();
             For<IMatchProvider>().Use<MatchProvider>();
-            For<IRateProvider>().Use<RateProvider>();*/
+            For<ITournamentProvider>().Use<TournamentProvider>();
             For<ILoginService>().Use<LoginService>();
             For<IUserProvider>().Use<UserProvider>();
             For<IBetListProvider>().Use<BetListProvider>();

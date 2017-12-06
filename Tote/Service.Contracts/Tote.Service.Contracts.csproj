@@ -59,7 +59,6 @@
     <Compile Include="Contracts\IRateService.cs" />
     <Compile Include="Contracts\ISportService.cs" />
     <Compile Include="Contracts\ITournamentService.cs" />
-    <Compile Include="Contracts\MatchService.cs" />
     <Compile Include="Contracts\BetListService.cs" />
     <Compile Include="Contracts\RateService.cs" />
     <Compile Include="Contracts\SportService.cs" />

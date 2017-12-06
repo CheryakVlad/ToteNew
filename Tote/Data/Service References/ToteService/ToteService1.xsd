@@ -96,32 +96,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTournament">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sportId" nillable="true" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetTournamentResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentResult" nillable="true" type="q7:ArrayOfTournamentDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetTournamentes">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetTournamentesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesResult" nillable="true" type="q8:ArrayOfTournamentDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetEvents">
     <xs:complexType>
       <xs:sequence>
@@ -132,7 +106,7 @@
   <xs:element name="GetEventsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsResult" nillable="true" type="q9:ArrayOfEventDto" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsResult" nillable="true" type="q7:ArrayOfEventDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -144,7 +118,89 @@
   <xs:element name="GetEventsAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsAllResult" nillable="true" type="q10:ArrayOfEventDto" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsAllResult" nillable="true" type="q8:ArrayOfEventDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTournament">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sportId" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTournamentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentResult" nillable="true" type="q9:ArrayOfTournamentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTournamentes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTournamentesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesResult" nillable="true" type="q10:ArrayOfTournamentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTournamentById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tournamentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTournamentByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentByIdResult" nillable="true" type="q11:TournamentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTournament">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="tournamentDto" nillable="true" type="q12:TournamentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTournamentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateTournamentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTournament">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="tournamentDto" nillable="true" type="q13:TournamentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTournamentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddTournamentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTournament">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tournamentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTournamentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteTournamentResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -34,14 +34,9 @@ namespace Tote.Controllers
             }
             return View(bets);
         }
-
-        public ActionResult Match(int? sportId)
-        {
-            if(sportId == null)
-            {
-                sportId = 0;
-            }
-            
+        [HttpGet]
+        public ActionResult Match(int sportId)
+        {                       
             IReadOnlyList<Match> bets = new List<Match>();
             try
             {

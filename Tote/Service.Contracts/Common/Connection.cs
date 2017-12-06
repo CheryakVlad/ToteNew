@@ -85,7 +85,20 @@ namespace Service.Contracts.Common
         public object CreateListDto(SqlDataReader reader)
         {
             Type t = typeof(T);
-            if(t== typeof(EventDto))
+            if (t == typeof(TeamDto))
+            {
+                var TeamDto = new TeamDto()
+                {
+                    TeamId=(int)reader[0],
+                    Name=reader[1].ToString(),
+                    SportId=(int)reader[2],
+                    Sport=reader[3].ToString(),
+                    CountryId=(int)reader[4],
+                    Country=reader[5].ToString()
+                };
+                return TeamDto;
+            }
+            if (t== typeof(EventDto))
             {
                 var EventDto = new EventDto()
                 {
@@ -120,6 +133,29 @@ namespace Service.Contracts.Common
                     Role= reader[7].ToString()
                 };
                 return UserDto;
+            }
+            if (t == typeof(MatchDto))
+            {
+                var MatchDto = new MatchDto()
+                {
+                    MatchId = (int)reader[0],
+                    TeamIdHome=(int)reader[1],
+                    TeamHome=reader[2].ToString(),
+                    TeamIdGuest=(int)reader[3],
+                    TeamGuest=reader[4].ToString(),
+                    Date= reader.GetDateTime(5),
+                    CountryHomeId=(int)reader[6],
+                    CountryHome=reader[7].ToString(),
+                    CountryGuestId=(int)reader[8],
+                    CountryGuest=reader[9].ToString(),
+                    TournamentId=(int)reader[10],
+                    Tournament=reader[11].ToString(),
+                    Score=reader[12].ToString(),
+                    ResultId=(int)reader[13],
+                    Result=reader[14].ToString()
+                };
+
+                return MatchDto;
             }
 
             if (t == typeof(BetListDto))

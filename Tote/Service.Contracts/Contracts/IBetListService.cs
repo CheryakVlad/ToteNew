@@ -32,12 +32,12 @@ namespace Service.Contracts.Contracts
         [FaultContract(typeof(CustomException))]
         bool DeleteSport(int sportId);
 
-        [OperationContract]
+        /*[OperationContract]
         [FaultContract(typeof(CustomException))]
         TournamentDto[] GetTournament(int? sportId);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        TournamentDto[] GetTournamentes();
+        TournamentDto[] GetTournamentes();*/
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]

@@ -302,7 +302,7 @@ namespace Data.Clients
         public IReadOnlyList<TournamentDto> GetTournament(int? sportId)
         {
             var model = new List<TournamentDto>();
-            using (var client = new ToteService.BetListServiceClient())
+            using (var client = new ToteService.TournamentServiceClient())
             {
                 try
                 {
@@ -335,7 +335,7 @@ namespace Data.Clients
         public IReadOnlyList<TournamentDto> GetTournamentes()
         {
             var model = new List<TournamentDto>();
-            using (var client = new ToteService.BetListServiceClient())
+            using (var client = new ToteService.TournamentServiceClient())
             {
                 try
                 {

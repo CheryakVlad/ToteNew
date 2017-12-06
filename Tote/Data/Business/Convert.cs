@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common.Models;
+using Data.TeamService;
 using Data.ToteService;
 using Data.UserService;
 
@@ -180,22 +181,117 @@ namespace Data.Business
             return sportDto;
         }
 
+        public Team ToTeam(TeamDto teamDto)
+        {
+            var sport = new Sport
+            {
+                SportId=teamDto.SportId,
+                Name=teamDto.Sport
+            };
+            var country = new Country
+            {
+                CountryId = teamDto.CountryId,
+                Name = teamDto.Country
+            };
+
+            var team = new Team
+            {
+                TeamId=teamDto.TeamId,
+                Name=teamDto.Name,
+                SportId=teamDto.SportId,
+                Sport=sport,
+                CountryId=teamDto.CountryId,
+                Country=country
+            };
+
+            return team;
+        }
+
+        public TeamDto ToTeamDto(Team team)
+        {
+            var teamDto = new TeamDto
+            {
+                TeamId=team.TeamId,
+                Name=team.Name,
+                SportId=team.SportId,
+                Sport=team.Sport.Name,
+                CountryId=team.CountryId,
+                Country=team.Country.Name
+            };
+
+            return teamDto;
+        }
+
+        public IReadOnlyList<Team> ToTeams(IReadOnlyList<TeamDto> teamsDto)
+        {
+            var teamsList = new List<Team>();
+            foreach (var teamDto in teamsDto)
+            {
+                var sport = new Sport
+                {
+                    SportId = teamDto.SportId,
+                    Name = teamDto.Sport
+                };
+                var country = new Country
+                {
+                    CountryId = teamDto.CountryId,
+                    Name = teamDto.Country
+                };
+                
+                var team = new Team
+                {
+                    TeamId = teamDto.TeamId,
+                    Name = teamDto.Name,
+                    SportId = teamDto.SportId,
+                    Sport = sport,
+                    CountryId = teamDto.CountryId,
+                    Country = country
+                };
+
+                teamsList.Add(team);
+            }
+            return teamsList;
+        }
+
+        public Tournament ToTournament(TournamentDto tournamentDto)
+        {
+            var tournament = new Tournament
+            {
+                TournamentId = tournamentDto.TournamentId,
+                Name = tournamentDto.Name,
+                SportId = tournamentDto.SportId
+            };
+            return tournament;
+        }
+
         public IReadOnlyList<Tournament> ToTournament(IReadOnlyList<TournamentDto> tournamentsDto)
         {
             var tournaments = new List<Tournament>();
             foreach (var tournamentDto in tournamentsDto)
             {
-                var sport = new Tournament
+                var tournament = new Tournament
                 {
                     TournamentId=tournamentDto.TournamentId,
                     Name=tournamentDto.Name,
                     SportId=tournamentDto.SportId
                 };
 
-                tournaments.Add(sport);
+                tournaments.Add(tournament);
             }
 
             return tournaments;
+        }
+
+        public TournamentDto ToTournamentDto(Tournament tournament)
+        {
+            var tournamentDto = new TournamentDto
+            {
+                TournamentId=tournament.TournamentId,
+                SportId = tournament.SportId,
+                Name = tournament.Name
+            };
+
+            return tournamentDto;
         }
 
         public User ToUser(UserDto userDto)

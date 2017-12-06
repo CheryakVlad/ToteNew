@@ -24,5 +24,11 @@ namespace Data.Business
 
         ToteService.SportDto ToSportDto(Sport sport);
 
+        TeamService.TeamDto ToTeamDto(Team team);
+        Team ToTeam(TeamService.TeamDto teamDto);
+        IReadOnlyList<Team> ToTeams(IReadOnlyList<TeamService.TeamDto> teamsDto);
+        Tournament ToTournament(ToteService.TournamentDto tournamentDto);
+        ToteService.TournamentDto ToTournamentDto(Tournament tournament);
+
     }
 }

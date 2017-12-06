@@ -11,6 +11,12 @@ namespace Data.Container
     {
         public DataRegistry()
         {
+            For<IMatchService>().Use<MatchService>();
+            For<IMatchClient>().Use<MatchClient>();
+            For<IMatchConvert>().Use<MatchConvert>();
+            For<ITeamClient>().Use<TeamClient>();
+            For<ITournamentClient>().Use<TournamentClient>();
+            For<IUserClient>().Use<UserClient>();
             For<IUserService>().Use<Data.Services.UserService>();
             For<IDataService>().Use<DataService>();
             For<IBetListClient>().Use<BetListClient>();

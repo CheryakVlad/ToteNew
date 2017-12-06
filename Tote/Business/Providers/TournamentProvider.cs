@@ -1,0 +1,39 @@
+﻿using System;
+using Common.Models;
+using Data.Clients;
+using Data.Services;
+
+namespace Business.Providers
+{
+    public class TournamentProvider : ITournamentProvider
+    {
+        
+        private readonly ITournamentClient tournamentClient;
+        private readonly IDataService dataService;
+        public TournamentProvider(ITournamentClient tournamentClient, IDataService dataService)
+        {
+            this.tournamentClient = tournamentClient;
+            this.dataService = dataService;
+        }
+
+        public bool AddTournament(Tournament tournament)
+        {
+            return tournamentClient.AddTournament(tournament);
+        }
+
+        public bool DeleteTournament(int tournamentId)
+        {
+            return tournamentClient.DeleteTournament(tournamentId);
+        }
+
+        public Tournament GetTournamentById(int tournamentId)
+        {
+            return dataService.GetTournamentById(tournamentId);
+        }
+
+        public bool UpdateTournament(Tournament tournament)
+        {
+            return tournamentClient.UpdateTournament(tournament);
+        }
+    }
+}

@@ -2,7 +2,7 @@
 {
     public class Team
     {
-        public int CommandId { get; set; }
+        public int TeamId { get; set; }
         public string Name { get; set; }
         public int SportId { get; set; }
         public Sport Sport { get; set; }

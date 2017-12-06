@@ -11,12 +11,17 @@ namespace Data.Services
         IReadOnlyList<Match> GetMatchesAll();
 
         Sport GetSport(int? id);
+        Tournament GetTournamentById(int tournamentId);
         IReadOnlyList<Sport> GetSports();
         IReadOnlyList<Tournament> GetTournament(int? sportId);
         IReadOnlyList<Tournament> GetTournamentes();
 
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);
+        IReadOnlyList<Team> GetTeamsAll();
+        Team GetTeamById(int teamId);
+
+        
 
     }
 }

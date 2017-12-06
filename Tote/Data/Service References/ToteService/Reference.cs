@@ -310,83 +310,6 @@ namespace Data.ToteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TournamentDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
-    [System.SerializableAttribute()]
-    public partial class TournamentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SportIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TournamentIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SportId {
-            get {
-                return this.SportIdField;
-            }
-            set {
-                if ((this.SportIdField.Equals(value) != true)) {
-                    this.SportIdField = value;
-                    this.RaisePropertyChanged("SportId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TournamentId {
-            get {
-                return this.TournamentIdField;
-            }
-            set {
-                if ((this.TournamentIdField.Equals(value) != true)) {
-                    this.TournamentIdField = value;
-                    this.RaisePropertyChanged("TournamentId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EventDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
     [System.SerializableAttribute()]
     public partial class EventDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -478,6 +401,83 @@ namespace Data.ToteService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TournamentDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class TournamentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SportIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TournamentIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SportId {
+            get {
+                return this.SportIdField;
+            }
+            set {
+                if ((this.SportIdField.Equals(value) != true)) {
+                    this.SportIdField = value;
+                    this.RaisePropertyChanged("SportId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TournamentId {
+            get {
+                return this.TournamentIdField;
+            }
+            set {
+                if ((this.TournamentIdField.Equals(value) != true)) {
+                    this.TournamentIdField = value;
+                    this.RaisePropertyChanged("TournamentId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ToteService.IBetListService")]
     public interface IBetListService {
@@ -530,20 +530,6 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/DeleteSport", ReplyAction="http://tempuri.org/IBetListService/DeleteSportResponse")]
         System.Threading.Tasks.Task<bool> DeleteSportAsync(int sportId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournament", ReplyAction="http://tempuri.org/IBetListService/GetTournamentResponse")]
-        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentAsync(System.Nullable<int> sportId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetTournamentesCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.ToteService.TournamentDto[] GetTournamentes();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetTournamentes", ReplyAction="http://tempuri.org/IBetListService/GetTournamentesResponse")]
-        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetEvents", ReplyAction="http://tempuri.org/IBetListService/GetEventsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
@@ -643,6 +629,97 @@ namespace Data.ToteService {
             return base.Channel.DeleteSportAsync(sportId);
         }
         
+        public Data.ToteService.EventDto[] GetEvents(System.Nullable<int> id) {
+            return base.Channel.GetEvents(id);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAsync(System.Nullable<int> id) {
+            return base.Channel.GetEventsAsync(id);
+        }
+        
+        public Data.ToteService.EventDto[] GetEventsAll() {
+            return base.Channel.GetEventsAll();
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAllAsync() {
+            return base.Channel.GetEventsAllAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ToteService.ITournamentService")]
+    public interface ITournamentService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournament", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/GetTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournament", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentAsync(System.Nullable<int> sportId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentes", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/GetTournamentesCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.TournamentDto[] GetTournamentes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentes", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentById", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/GetTournamentByIdCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.TournamentDto GetTournamentById(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentById", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentByIdResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.TournamentDto> GetTournamentByIdAsync(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/UpdateTournament", ReplyAction="http://tempuri.org/ITournamentService/UpdateTournamentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/UpdateTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool UpdateTournament(Data.ToteService.TournamentDto tournamentDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/UpdateTournament", ReplyAction="http://tempuri.org/ITournamentService/UpdateTournamentResponse")]
+        System.Threading.Tasks.Task<bool> UpdateTournamentAsync(Data.ToteService.TournamentDto tournamentDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/AddTournament", ReplyAction="http://tempuri.org/ITournamentService/AddTournamentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/AddTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddTournament(Data.ToteService.TournamentDto tournamentDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/AddTournament", ReplyAction="http://tempuri.org/ITournamentService/AddTournamentResponse")]
+        System.Threading.Tasks.Task<bool> AddTournamentAsync(Data.ToteService.TournamentDto tournamentDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/DeleteTournament", ReplyAction="http://tempuri.org/ITournamentService/DeleteTournamentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/DeleteTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteTournament(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/DeleteTournament", ReplyAction="http://tempuri.org/ITournamentService/DeleteTournamentResponse")]
+        System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ITournamentServiceChannel : Data.ToteService.ITournamentService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class TournamentServiceClient : System.ServiceModel.ClientBase<Data.ToteService.ITournamentService>, Data.ToteService.ITournamentService {
+        
+        public TournamentServiceClient() {
+        }
+        
+        public TournamentServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public TournamentServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public TournamentServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public TournamentServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
         public Data.ToteService.TournamentDto[] GetTournament(System.Nullable<int> sportId) {
             return base.Channel.GetTournament(sportId);
         }
@@ -659,20 +736,36 @@ namespace Data.ToteService {
             return base.Channel.GetTournamentesAsync();
         }
         
-        public Data.ToteService.EventDto[] GetEvents(System.Nullable<int> id) {
-            return base.Channel.GetEvents(id);
+        public Data.ToteService.TournamentDto GetTournamentById(int tournamentId) {
+            return base.Channel.GetTournamentById(tournamentId);
         }
         
-        public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAsync(System.Nullable<int> id) {
-            return base.Channel.GetEventsAsync(id);
+        public System.Threading.Tasks.Task<Data.ToteService.TournamentDto> GetTournamentByIdAsync(int tournamentId) {
+            return base.Channel.GetTournamentByIdAsync(tournamentId);
         }
         
-        public Data.ToteService.EventDto[] GetEventsAll() {
-            return base.Channel.GetEventsAll();
+        public bool UpdateTournament(Data.ToteService.TournamentDto tournamentDto) {
+            return base.Channel.UpdateTournament(tournamentDto);
         }
         
-        public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAllAsync() {
-            return base.Channel.GetEventsAllAsync();
+        public System.Threading.Tasks.Task<bool> UpdateTournamentAsync(Data.ToteService.TournamentDto tournamentDto) {
+            return base.Channel.UpdateTournamentAsync(tournamentDto);
+        }
+        
+        public bool AddTournament(Data.ToteService.TournamentDto tournamentDto) {
+            return base.Channel.AddTournament(tournamentDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddTournamentAsync(Data.ToteService.TournamentDto tournamentDto) {
+            return base.Channel.AddTournamentAsync(tournamentDto);
+        }
+        
+        public bool DeleteTournament(int tournamentId) {
+            return base.Channel.DeleteTournament(tournamentId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId) {
+            return base.Channel.DeleteTournamentAsync(tournamentId);
         }
     }
 }

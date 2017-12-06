@@ -12,8 +12,12 @@ namespace Service.Contracts.Dto
         [DataMember]
         public int SportId { get; set; }
         [DataMember]
+        public string Sport { get; set; }
+        [DataMember]
         public int CountryId { get; set; }
-        
+        [DataMember]
+        public string Country { get; set; }
+
 
     }
 }

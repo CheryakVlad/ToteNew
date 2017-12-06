@@ -233,9 +233,12 @@
     <Compile Include="Attribute\EditorAttribute.cs" />
     <Compile Include="Attribute\UserAttribute.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\SortController.cs" />
     <Compile Include="Controllers\SportController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
@@ -274,6 +277,18 @@
     <Content Include="Views\Sport\DeleteSport.cshtml" />
     <Content Include="Views\Sort\Sort.cshtml" />
     <Content Include="Views\Sort\Match.cshtml" />
+    <Content Include="Views\Tournament\ShowTournaments.cshtml" />
+    <Content Include="Views\Tournament\AddTournament.cshtml" />
+    <Content Include="Views\Tournament\EditTournament.cshtml" />
+    <Content Include="Views\Tournament\DeleteTournament.cshtml" />
+    <Content Include="Views\Team\ShowTeams.cshtml" />
+    <Content Include="Views\Team\AddTeam.cshtml" />
+    <Content Include="Views\Team\EditTeam.cshtml" />
+    <Content Include="Views\Team\DeleteTeam.cshtml" />
+    <Content Include="Views\Match\ShowMatches.cshtml" />
+    <Content Include="Views\Match\AddMatch.cshtml" />
+    <Content Include="Views\Match\EditMatch.cshtml" />
+    <Content Include="Views\Match\DeleteMatch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

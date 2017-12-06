@@ -9,12 +9,16 @@ namespace Data.Services
     public class DataService : IDataService
     {
         private readonly IBetListClient betListClient;
+        private readonly ITournamentClient tournamentClient;
+        private readonly ITeamClient teamClient;
         private readonly IConvert convert;
 
-        public DataService(IBetListClient client, IConvert convert)
+        public DataService(IBetListClient client, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient)
         {
             this.betListClient = client;
             this.convert = convert;
+            this.tournamentClient = tournamentClient;
+            this.teamClient = teamClient;
         }
 
         public IReadOnlyList<Match> GetBets(int? sportId, int? tournamentId)
@@ -161,6 +165,17 @@ namespace Data.Services
             return new List<Tournament>();
         }
 
+        public Tournament GetTournamentById(int tournamentId)
+        {
+            var dto = tournamentClient.GetTournamentById(tournamentId);
+
+            if (dto != null)
+            {
+                return convert.ToTournament(dto);
+            }
+            return new Tournament();
+        }
+
         public IReadOnlyList<Tournament> GetTournamentes()
         {
             var dto = betListClient.GetTournamentes();
@@ -170,6 +185,37 @@ namespace Data.Services
                 return convert.ToTournament(dto);
             }
             return new List<Tournament>();
+        }
+
+        public IReadOnlyList<Team> GetTeamsAll()
+        {
+            var dto = teamClient.GetTeamsAll();
+
+            if (dto != null)
+            {
+                return convert.ToTeams(dto);
+            }
+            return new List<Team>();
+        }
+
+        public Team GetTeamById(int teamId)
+        {
+            var dto = teamClient.GetTeamById(teamId);
+            if (dto != null)
+            {
+                return convert.ToTeam(dto);
+            }
+            return new Team();
+        }
+
+        public IReadOnlyList<Match> GetMatchsAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Match GetMatchById(int matchId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

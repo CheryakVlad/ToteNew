@@ -6,7 +6,7 @@ using Service.Contracts.Dto;
 
 namespace Service.Contracts.Contracts
 {
-    public class TournamentService : ITournamentService
+    public class TournamentService /*: ITournamentService*/
     {
         /* private readonly ToteContext db;
          public TournamentDto GetTournament(int? id)

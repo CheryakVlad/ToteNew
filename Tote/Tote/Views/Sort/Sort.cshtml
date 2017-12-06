@@ -19,10 +19,7 @@
     <title>Sort</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-
+    
     
         Select Sport  
         @Html.DropDownList("sport", ViewBag.Sports as SelectList)
@@ -32,7 +29,8 @@
         @Html.DropDownList("Status", ViewBag.Statuses as SelectList)
     
         Date Match
-        @Html.TextBox("DateMatch", "Enter date", new {@class = "form-control", @id = "dateField"})
+    <input type="text" id="dateField" value="EnterDate" />
+        
     <input type="button" value="Sort" id="btnSort"/>
     
     <table class="table">
@@ -90,11 +88,13 @@
 <script type="text/javascript">
     $(function () {
         $("#btnSort").click(function () {
-            var sportId = $("#sport").val();             
+            var sportId = $("#sport").val();
+            var date = $('#dateField').val();
             alert(sportId);
+            alert(date);
             $.ajax({
                 type: 'GET',
-                url: '/Sort/Match/' + sportId,
+                url: '/Sort/Match?sportId=' + sportId,
                 success: function (data) {
                     $('.table').replaceWith(data);
 
@@ -103,3 +103,4 @@
         })
     })
 </script>
+
