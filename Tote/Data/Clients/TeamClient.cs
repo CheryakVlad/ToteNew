@@ -72,6 +72,38 @@ namespace Data.Clients
             return model;
         }
 
+        public IReadOnlyList<CountryDto> GetCountriesAll()
+        {
+            var model = new List<CountryDto>();
+            using (var client = new TeamService.TeamServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    var countries=client.GetCountriesAll();
+                    foreach (var country in countries)
+                    {
+                        model.Add(country);
+                    }
+
+                    client.Close();
+
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+            }
+
+            return model;
+        }
+
         public TeamDto GetTeamById(int teamId)
         {
             var model = new TeamDto();
@@ -108,6 +140,38 @@ namespace Data.Clients
                 {
                     client.Open();
                     var teams = client.GetTeams();
+                    foreach (var team in teams)
+                    {
+                        model.Add(team);
+                    }
+
+                    client.Close();
+
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+            }
+
+            return model;
+        }
+
+        public IReadOnlyList<TeamDto> GetTeamsByTournament(int tournamentId)
+        {
+            var model = new List<TeamDto>();
+            using (var client = new TeamService.TeamServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    var teams = client.GetTeamsByTournament(tournamentId);
                     foreach (var team in teams)
                     {
                         model.Add(team);

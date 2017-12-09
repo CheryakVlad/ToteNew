@@ -37,5 +37,27 @@ namespace Data.Services
             }
             return new List<Match>();
         }
+
+        public IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
+        {
+            var dto = matchClient.GetMatchBySportDateStatus(sportId, dateMatch, status);
+
+            if (dto != null)
+            {
+                return convert.ToMatches(dto);
+            }
+            return new List<Match>();
+        }
+
+        public IReadOnlyList<Result> GetResultsAll()
+        {
+            var dto = matchClient.GetResultsAll();
+
+            if (dto != null)
+            {
+                return convert.ToResult(dto);
+            }
+            return new List<Result>();
+        }
     }
 }

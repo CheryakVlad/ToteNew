@@ -102,6 +102,38 @@ namespace Data.Clients
             return model;
         }
 
+        public IReadOnlyList<SortDto> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
+        {
+            var model = new List<SortDto>();
+            using (var client = new TeamService.MatchServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    var matches = client.GetMatchBySportDateStatus(sportId, dateMatch, status);
+                    foreach (var match in matches)
+                    {
+                        model.Add(match);
+                    }
+
+                    client.Close();
+
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+            }
+
+            return model;
+        }
+
         public IReadOnlyList<MatchDto> GetMatchesAll()
         {
             var model = new List<MatchDto>();
@@ -114,6 +146,38 @@ namespace Data.Clients
                     foreach (var match in matches)
                     {
                         model.Add(match);
+                    }
+
+                    client.Close();
+
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+            }
+
+            return model;
+        }
+
+        public IReadOnlyList<ResultDto> GetResultsAll()
+        {
+            var model = new List<ResultDto>();
+            using (var client = new TeamService.MatchServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    var results = client.GetResultsAll();
+                    foreach (var result in results)
+                    {
+                        model.Add(result);
                     }
 
                     client.Close();

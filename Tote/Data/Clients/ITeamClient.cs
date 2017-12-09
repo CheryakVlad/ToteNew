@@ -14,5 +14,9 @@ namespace Data.Clients
         IReadOnlyList<TeamService.TeamDto> GetTeamsAll();
 
         TeamService.TeamDto GetTeamById(int teamId);
+
+        IReadOnlyList<TeamService.CountryDto> GetCountriesAll();
+
+        IReadOnlyList<TeamService.TeamDto> GetTeamsByTournament(int tournamentId);
     }
 }

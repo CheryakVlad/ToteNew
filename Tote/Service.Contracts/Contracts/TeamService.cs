@@ -95,7 +95,59 @@ namespace Service.Contracts.Contracts
             }
         }
 
-        
+        public CountryDto[] GetCountriesAll()
+        {
+            var connection = new Connection<CountryDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCountriesAll");
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetCountriesAll";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public CountryDto GetCountryById(int countryId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = countryId });
+
+            var connection = new Connection<CountryDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCountryById", parameters)[0];
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetCountryById";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public CountryDto GetCountryByTeam(int teamId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
+
+            var connection = new Connection<CountryDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCountryByTeam", parameters)[0];
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetCountryByTeam";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
 
         public MatchDto GetMatchById(int matchId)
         {
@@ -116,6 +168,27 @@ namespace Service.Contracts.Contracts
             }
         }
 
+        public SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@DateMatch", Value = dateMatch });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@Status", Value = status });
+
+            var connection = new Connection<SortDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetMatchesBySportDateStatusSP", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetMatchesBySportDateStatusSP";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
         public MatchDto[] GetMatchesAll()
         {
             var connection = new Connection<MatchDto>();
@@ -127,6 +200,22 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetMatchesAll";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public ResultDto[] GetResultsAll()
+        {
+            var connection = new Connection<ResultDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetResultsAll");
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetResultsAll";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
@@ -167,6 +256,26 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTeamsAll";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public TeamDto[] GetTeamsByTournament(int tournamentId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
+           
+
+            var connection = new Connection<TeamDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetTeamByTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetTeamByTournament";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }

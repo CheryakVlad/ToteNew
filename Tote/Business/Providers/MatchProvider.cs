@@ -31,9 +31,19 @@ namespace Business.Providers
             return matchService.GetMatchById(matchId);
         }
 
+        public IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
+        {
+            return matchService.GetMatchBySportDateStatus(sportId, dateMatch, status);
+        }
+
         public IReadOnlyList<Match> GetMatchesAll()
         {
             return matchService.GetMatchsAll();
+        }
+
+        public IReadOnlyList<Result> GetResultsAll()
+        {
+            return matchService.GetResultsAll();
         }
 
         public bool UpdateMatch(Match match)

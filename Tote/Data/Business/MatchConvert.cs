@@ -12,8 +12,8 @@ namespace Data.Business
             var teams = new List<Team>();
             teams.Add(new Team
             {
-                TeamId = matchDto.CountryHomeId,
-                Name = matchDto.CountryHome,
+                TeamId = matchDto.TeamIdHome,
+                Name = matchDto.TeamHome,
                 Country = new Country
                 {
                     CountryId = matchDto.CountryHomeId,
@@ -23,8 +23,8 @@ namespace Data.Business
             });
             teams.Add(new Team
             {
-                TeamId = matchDto.CountryGuestId,
-                Name = matchDto.CountryGuest,
+                TeamId = matchDto.TeamIdGuest,
+                Name = matchDto.TeamGuest,
                 Country = new Country
                 {
                     CountryId = matchDto.CountryGuestId,
@@ -37,6 +37,7 @@ namespace Data.Business
                 MatchId=matchDto.MatchId,
                 Teams=teams,
                 Date=matchDto.Date,
+                Score=matchDto.Score,
                 Result=new Result
                 {
                     ResultId= matchDto.ResultId,
@@ -76,6 +77,45 @@ namespace Data.Business
             return matchDto;
         }
 
+        public IReadOnlyList<Match> ToMatches(IReadOnlyList<SortDto> sortesDto)
+        {
+            var matches = new List<Match>();
+            foreach (var sortDto in sortesDto)
+            {
+                var teams = new List<Team>();
+                teams.Add(new Team
+                {                    
+                    Name = sortDto.TeamHome,
+                    Country = new Country
+                    {                        
+                        Name = sortDto.TeamHomeCountry
+                    }
+
+                });
+                teams.Add(new Team
+                {
+                    Name = sortDto.TeamGuest,
+                    Country = new Country
+                    {
+                        Name = sortDto.TeamGuestCountry
+                    }
+                });
+                var match = new Match
+                {
+                    MatchId = sortDto.MatchId,
+                    Teams = teams,
+                    Date = sortDto.DateMatch,
+                    Score=sortDto.Score,
+                    Tournament=new Tournament
+                    {
+                        Name = sortDto.Tournament
+                    }
+                };
+                matches.Add(match);
+            }
+            return matches;
+        }
+
         public IReadOnlyList<Match> ToMatches(IReadOnlyList<MatchDto> matchesDto)
         {
             var matches = new List<Match>();
@@ -84,6 +124,22 @@ namespace Data.Business
                 matches.Add(ToMatch(matchDto));
             }
             return matches;
+        }
+
+        public IReadOnlyList<Result> ToResult(IReadOnlyList<ResultDto> resultsDto)
+        {
+            var resultsList = new List<Result>();
+            foreach (var resultDto in resultsDto)
+            {
+                var result = new Result
+                {
+                    ResultId=resultDto.ResultId,
+                    Name=resultDto.Name
+                };
+
+                resultsList.Add(result);
+            }
+            return resultsList;
         }
     }
 }

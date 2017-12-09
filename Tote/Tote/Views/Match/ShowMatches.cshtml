@@ -1,57 +1,60 @@
 ﻿@model IEnumerable<Common.Models.Match>
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
+<br />
+<br />
+<br />
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowMatches</title>
-</head>
-<body>
     <p>
         @Html.ActionLink("Create New", "AddMatch")
     </p>
     <table class="table">
         <tr>
             <th>
+                @Html.DisplayName("Home Team")
+            </th>
+            <th>
+                @Html.DisplayName("Guest Team")
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TournamentId)
+                @Html.DisplayName("Tournament")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ResultId)
+                @Html.DisplayName("Result")
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Score)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TourId)
-            </th>
+            
             <th></th>
         </tr>
     
     @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(model=>item.Teams[0].Name) (@Html.DisplayFor(model=>item.Teams[0].Country.Name))
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Teams[1].Name) (@Html.DisplayFor(model => item.Teams[1].Country.Name))
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TournamentId)
+                @Html.DisplayFor(modelItem => item.Tournament.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ResultId)
+                @Html.DisplayFor(modelItem => item.Result.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Score)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TourId)
-            </td>
+            
             <td>
                 @Html.ActionLink("Edit", "EditMatch", new { id=item.MatchId }) |
                 @Html.ActionLink("Details", "Details", new { id=item.MatchId }) |
@@ -61,5 +64,4 @@
     }
     
     </table>
-</body>
-</html>
+

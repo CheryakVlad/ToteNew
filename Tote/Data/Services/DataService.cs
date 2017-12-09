@@ -217,5 +217,26 @@ namespace Data.Services
         {
             throw new NotImplementedException();
         }
+
+        public IReadOnlyList<Country> GetCountriesAll()
+        {
+            var dto = teamClient.GetCountriesAll();
+            if (dto != null)
+            {
+                return convert.ToCountry(dto);
+            }
+            return new List<Country>();
+        }
+
+        public IReadOnlyList<Team> GetTeamsByTournament(int tournamentId)
+        {
+            var dto = teamClient.GetTeamsByTournament(tournamentId);
+
+            if (dto != null)
+            {
+                return convert.ToTeams(dto);
+            }
+            return new List<Team>();
+        }
     }
 }

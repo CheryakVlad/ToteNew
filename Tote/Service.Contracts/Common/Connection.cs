@@ -120,6 +120,42 @@ namespace Service.Contracts.Common
                 return RoleDto;
             }
 
+            if (t == typeof(CountryDto))
+            {
+                var CountryDto = new CountryDto()
+                {
+                    CountryId=(int)reader[0],                    
+                    Name=reader[1].ToString()
+                };
+                return CountryDto;
+            }
+
+            if (t == typeof(ResultDto))
+            {
+                var ResultDto = new ResultDto()
+                {
+                    ResultId = (int)reader[0],
+                    Name = reader[1].ToString()
+                };
+                return ResultDto;
+            }
+
+            if (t == typeof(SortDto))
+            {
+                var SortDto = new SortDto()
+                {
+                    MatchId=(int)reader[0],
+                    TeamHome=reader[1].ToString(),
+                    TeamGuest=reader[2].ToString(),
+                    DateMatch=reader.GetDateTime(3),
+                    TeamHomeCountry= reader[4].ToString(),
+                    TeamGuestCountry= reader[5].ToString(),
+                    Score= reader[7].ToString(),
+                    Tournament=reader[8].ToString()
+                };
+                return SortDto;
+            }
+
             if (t == typeof(UserDto))
             {
                 var UserDto = new UserDto()
@@ -190,7 +226,8 @@ namespace Service.Contracts.Common
                     {
                         TournamentId = (int)reader[0],
                         Name = reader[1].ToString(),
-                        SportId = (int)reader[2]
+                        SportId = (int)reader[2],
+                        Sport=reader[3].ToString()
                     };
                     return TournamentDto;
                 }

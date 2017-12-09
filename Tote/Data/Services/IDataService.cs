@@ -20,8 +20,10 @@ namespace Data.Services
         IReadOnlyList<Event> GetEvents(int id);
         IReadOnlyList<Team> GetTeamsAll();
         Team GetTeamById(int teamId);
+        IReadOnlyList<Country> GetCountriesAll();
 
-        
+        IReadOnlyList<Team> GetTeamsByTournament(int tournamentId);
+
 
     }
 }

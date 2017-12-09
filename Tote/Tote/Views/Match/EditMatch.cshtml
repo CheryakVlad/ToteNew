@@ -1,17 +1,11 @@
 ﻿@model Common.Models.Match
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EditMatch</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -73,5 +67,4 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+

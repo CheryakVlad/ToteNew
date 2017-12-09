@@ -21,12 +21,12 @@ namespace Tote.Controllers
         }
         public ActionResult ShowTournaments()
         {
-            IReadOnlyList<Tournament> sports = betListProvider.GetTournamentes();
-            if (sports == null)
+            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentes();
+            if (tournaments == null)
             {
                 return RedirectToAction("InfoError", "Navigation");
             }
-            return PartialView(sports);
+            return PartialView(tournaments);
         }
         [HttpGet]
         public ActionResult AddTournament()

@@ -1,17 +1,11 @@
 ﻿@model Common.Models.Tournament
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DeleteTournament</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     <h3>Are you sure you want to delete this?</h3>
     <div>
         <h4>Tournament</h4>
@@ -26,11 +20,11 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.SportId)
+                @Html.DisplayName("Sport")
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.SportId)
+                @Html.DisplayFor(model => model.Sport.Name)
             </dd>
     
         </dl>
@@ -40,9 +34,8 @@
             <input type="hidden" value=@Model.TournamentId name="tournamentId" />
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Back to List", "ShowTournaments")
             </div>
         }
     </div>
-</body>
-</html>
+

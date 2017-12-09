@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Common.Models.Tournament>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div class="form-group" id="tournamentId">
+    @Html.Label("Tournament", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("TournamentId", ViewBag.Tournaments as SelectList, new { @class = "form-control"  })
+        @Html.ValidationMessage("TournamentId", "", new { @class = "text-danger" })
+    </div>
+</div>

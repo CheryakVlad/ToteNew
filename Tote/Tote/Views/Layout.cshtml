@@ -19,6 +19,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Tote", "List", "Navigation", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -30,9 +32,23 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                <ul class="nav navbar-nav navbar-right">                    
+                    <li>
+                        <div>
+                            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                            {
+                                <span style="color:#ffffff">
+                                    @HttpContext.Current.User.Identity.Name
+                                </span>
+                                @Html.ActionLink("Logout", "Logout", "Login")<br />                                
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Login", "Login", "Login")
+                            }
+
+                        </div>                    
+                    </li>
                 </ul>
             </div>
         </div>

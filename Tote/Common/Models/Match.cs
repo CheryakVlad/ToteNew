@@ -8,8 +8,11 @@ namespace Common.Models
         public int MatchId { get; set; }
         /*public int TeamIdHome { get; set; }
         public int TeamIdGuest { get; set; }*/
-        public DateTime Date { get; set; }        
+        public DateTime Date { get; set; }
+        public int SportId { get; set; }
         public int TournamentId { get; set; }
+        public int TeamHomeId { get; set; }
+        public int TeamGuestId { get; set; }
         public Tournament Tournament { get; set; }
         public int ResultId { get; set; }
         public Result Result { get; set; }

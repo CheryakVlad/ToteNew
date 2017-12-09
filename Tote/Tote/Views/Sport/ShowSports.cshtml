@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<Common.Models.Sport>
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowSports</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     <p>
         @Html.ActionLink("Create New", "AddSport")
     </p>
@@ -37,5 +31,4 @@
     }
     
     </table>
-</body>
-</html>
+

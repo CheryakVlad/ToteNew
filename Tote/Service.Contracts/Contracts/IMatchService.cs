@@ -22,5 +22,13 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         bool DeleteMatch(int matchId);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        ResultDto[] GetResultsAll();
     }
 }

@@ -51,6 +51,22 @@ namespace Data.Business
             return betsList;
         }
 
+        public IReadOnlyList<Country> ToCountry(IReadOnlyList<CountryDto> countriesDto)
+        {
+            var countriesList = new List<Country>();
+            foreach (var countryDto in countriesDto)
+            {
+                var country = new Country
+                {
+                    CountryId=countryDto.CountryId,
+                    Name=countryDto.Name
+                };
+
+                countriesList.Add(country);
+            }
+            return countriesList;
+        }
+
         public IReadOnlyList<Event> ToEvents(IReadOnlyList<EventDto> eventsDto)
         {
             var eventsList = new List<Event>();
@@ -259,7 +275,12 @@ namespace Data.Business
             {
                 TournamentId = tournamentDto.TournamentId,
                 Name = tournamentDto.Name,
-                SportId = tournamentDto.SportId
+                SportId = tournamentDto.SportId,
+                Sport=new Sport
+                {
+                    SportId=tournamentDto.SportId,
+                    Name= tournamentDto.Sport
+                }
             };
             return tournament;
         }
@@ -273,7 +294,12 @@ namespace Data.Business
                 {
                     TournamentId=tournamentDto.TournamentId,
                     Name=tournamentDto.Name,
-                    SportId=tournamentDto.SportId
+                    SportId=tournamentDto.SportId,
+                    Sport = new Sport
+                    {
+                        SportId = tournamentDto.SportId,
+                        Name = tournamentDto.Sport
+                    }
                 };
 
                 tournaments.Add(tournament);

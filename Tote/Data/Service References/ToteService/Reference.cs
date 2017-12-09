@@ -414,6 +414,9 @@ namespace Data.ToteService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SportField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SportIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -438,6 +441,19 @@ namespace Data.ToteService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sport {
+            get {
+                return this.SportField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SportField, value) != true)) {
+                    this.SportField = value;
+                    this.RaisePropertyChanged("Sport");
                 }
             }
         }

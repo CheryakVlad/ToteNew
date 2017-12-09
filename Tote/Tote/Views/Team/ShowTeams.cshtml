@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<Common.Models.Team>
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowTournaments</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     <p>
         @Html.ActionLink("Create New", "AddTeam")
     </p>
@@ -21,10 +15,10 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SportId)
+                @Html.DisplayName("Sport")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CountryId)
+                @Html.DisplayName("Country")
             </th>
             <th></th>
         </tr>
@@ -35,10 +29,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SportId)
+                @Html.DisplayFor(modelItem => item.Sport.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CountryId)
+                @Html.DisplayFor(modelItem => item.Country.Name)
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditTeam", new { id=item.TeamId }) |
@@ -49,5 +43,4 @@
     }
     
     </table>
-</body>
-</html>
+

@@ -62,6 +62,42 @@
   <wsdl:message name="ITeamService_DeleteTeam_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
   </wsdl:message>
+  <wsdl:message name="ITeamService_GetTeamsByTournament_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTeamsByTournament" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetTeamsByTournament_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTeamsByTournamentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetTeamsByTournament_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountriesAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountriesAll" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountriesAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountriesAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountriesAll_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q8:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountryById" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountryById_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q9:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountryByTeam_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountryByTeam" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountryByTeam_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountryByTeamResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITeamService_GetCountryByTeam_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q10:CustomException" />
+  </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchesAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchesAll" />
   </wsdl:message>
@@ -69,7 +105,7 @@
     <wsdl:part name="parameters" element="tns:GetMatchesAllResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchesAll_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q11:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchById" />
@@ -78,7 +114,7 @@
     <wsdl:part name="parameters" element="tns:GetMatchByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchById_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q8:CustomException" />
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q12:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_UpdateMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMatch" />
@@ -87,7 +123,7 @@
     <wsdl:part name="parameters" element="tns:UpdateMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_UpdateMatch_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q9:CustomException" />
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q13:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_AddMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:AddMatch" />
@@ -96,7 +132,7 @@
     <wsdl:part name="parameters" element="tns:AddMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_AddMatch_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q10:CustomException" />
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q14:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_DeleteMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMatch" />
@@ -105,7 +141,25 @@
     <wsdl:part name="parameters" element="tns:DeleteMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_DeleteMatch_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q11:CustomException" />
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q15:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IMatchService_GetMatchBySportDateStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchBySportDateStatus" />
+  </wsdl:message>
+  <wsdl:message name="IMatchService_GetMatchBySportDateStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchBySportDateStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchService_GetMatchBySportDateStatus_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q16:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IMatchService_GetResultsAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultsAll" />
+  </wsdl:message>
+  <wsdl:message name="IMatchService_GetResultsAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultsAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchService_GetResultsAll_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q17:CustomException" />
   </wsdl:message>
   <wsdl:portType name="ITeamService">
     <wsdl:operation name="GetTeam">
@@ -138,6 +192,26 @@
       <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/DeleteTeamResponse" message="tns:ITeamService_DeleteTeam_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/ITeamService/DeleteTeamCustomExceptionFault" name="CustomExceptionFault" message="tns:ITeamService_DeleteTeam_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTeamsByTournament">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetTeamsByTournament" message="tns:ITeamService_GetTeamsByTournament_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/GetTeamsByTournamentResponse" message="tns:ITeamService_GetTeamsByTournament_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ITeamService/GetTeamsByTournamentCustomExceptionFault" name="CustomExceptionFault" message="tns:ITeamService_GetTeamsByTournament_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetCountriesAll" message="tns:ITeamService_GetCountriesAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/GetCountriesAllResponse" message="tns:ITeamService_GetCountriesAll_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ITeamService/GetCountriesAllCustomExceptionFault" name="CustomExceptionFault" message="tns:ITeamService_GetCountriesAll_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetCountryById" message="tns:ITeamService_GetCountryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/GetCountryByIdResponse" message="tns:ITeamService_GetCountryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ITeamService/GetCountryByIdCustomExceptionFault" name="CustomExceptionFault" message="tns:ITeamService_GetCountryById_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryByTeam">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetCountryByTeam" message="tns:ITeamService_GetCountryByTeam_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/GetCountryByTeamResponse" message="tns:ITeamService_GetCountryByTeam_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ITeamService/GetCountryByTeamCustomExceptionFault" name="CustomExceptionFault" message="tns:ITeamService_GetCountryByTeam_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMatchService">
     <wsdl:operation name="GetMatchesAll">
@@ -164,6 +238,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchService/DeleteMatch" message="tns:IMatchService_DeleteMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchService/DeleteMatchResponse" message="tns:IMatchService_DeleteMatch_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IMatchService/DeleteMatchCustomExceptionFault" name="CustomExceptionFault" message="tns:IMatchService_DeleteMatch_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchBySportDateStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchService/GetMatchBySportDateStatus" message="tns:IMatchService_GetMatchBySportDateStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchService/GetMatchBySportDateStatusResponse" message="tns:IMatchService_GetMatchBySportDateStatus_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMatchService/GetMatchBySportDateStatusCustomExceptionFault" name="CustomExceptionFault" message="tns:IMatchService_GetMatchBySportDateStatus_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResultsAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchService/GetResultsAll" message="tns:IMatchService_GetResultsAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchService/GetResultsAllResponse" message="tns:IMatchService_GetResultsAll_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IMatchService/GetResultsAllCustomExceptionFault" name="CustomExceptionFault" message="tns:IMatchService_GetResultsAll_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITeamService" type="tns:ITeamService">
@@ -240,6 +324,54 @@
         <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="GetTeamsByTournament">
+      <soap:operation soapAction="http://tempuri.org/ITeamService/GetTeamsByTournament" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountriesAll">
+      <soap:operation soapAction="http://tempuri.org/ITeamService/GetCountriesAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryById">
+      <soap:operation soapAction="http://tempuri.org/ITeamService/GetCountryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryByTeam">
+      <soap:operation soapAction="http://tempuri.org/ITeamService/GetCountryByTeam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IMatchService" type="tns:IMatchService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -293,6 +425,30 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMatch">
       <soap:operation soapAction="http://tempuri.org/IMatchService/DeleteMatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchBySportDateStatus">
+      <soap:operation soapAction="http://tempuri.org/IMatchService/GetMatchBySportDateStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetResultsAll">
+      <soap:operation soapAction="http://tempuri.org/IMatchService/GetResultsAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

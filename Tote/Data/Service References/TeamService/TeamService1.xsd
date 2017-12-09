@@ -17,6 +17,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TeamDto" nillable="true" type="tns:TeamDto" />
+  <xs:complexType name="ArrayOfCountryDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryDto" nillable="true" type="tns:CountryDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCountryDto" nillable="true" type="tns:ArrayOfCountryDto" />
+  <xs:complexType name="CountryDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CountryId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountryDto" nillable="true" type="tns:CountryDto" />
   <xs:complexType name="ArrayOfMatchDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="MatchDto" nillable="true" type="tns:MatchDto" />
@@ -43,4 +56,36 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MatchDto" nillable="true" type="tns:MatchDto" />
+  <xs:complexType name="ArrayOfSortDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SortDto" nillable="true" type="tns:SortDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSortDto" nillable="true" type="tns:ArrayOfSortDto" />
+  <xs:complexType name="SortDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateMatch" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MatchId" type="xs:int" />
+      <xs:element minOccurs="0" name="Score" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TeamGuest" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TeamGuestCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TeamHome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TeamHomeCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tournament" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SortDto" nillable="true" type="tns:SortDto" />
+  <xs:complexType name="ArrayOfResultDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResultDto" nillable="true" type="tns:ResultDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResultDto" nillable="true" type="tns:ArrayOfResultDto" />
+  <xs:complexType name="ResultDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResultId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDto" nillable="true" type="tns:ResultDto" />
 </xs:schema>

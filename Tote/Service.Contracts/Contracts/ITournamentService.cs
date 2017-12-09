@@ -27,5 +27,10 @@ namespace Service.Contracts.Contracts
         [FaultContract(typeof(CustomException))]
         bool DeleteTournament(int tournamentId);
 
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        TournamentDto[] GetTournamentesBySport(int sportId);
+        
+
     }
 }

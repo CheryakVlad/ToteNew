@@ -8,5 +8,7 @@ namespace Data.Business
         TeamService.MatchDto ToMatchDto(Match match);
         Match ToMatch(TeamService.MatchDto matchDto);
         IReadOnlyList<Match> ToMatches(IReadOnlyList<TeamService.MatchDto> matchesDto);
+        IReadOnlyList<Match> ToMatches(IReadOnlyList<TeamService.SortDto> sortesDto);
+        IReadOnlyList<Result> ToResult(IReadOnlyList<TeamService.ResultDto> resultsDto);
     }
 }

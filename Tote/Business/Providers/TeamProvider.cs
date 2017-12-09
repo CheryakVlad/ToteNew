@@ -40,5 +40,15 @@ namespace Business.Providers
         {
             return teamClient.UpdateTeam(team);
         }
+
+        public IReadOnlyList<Country> GetCountriesAll()
+        {
+            return dataService.GetCountriesAll();
+        }
+
+        public IReadOnlyList<Team> GetTeamsByTournament(int tournamentId)
+        {
+            return dataService.GetTeamsByTournament(tournamentId);
+        }
     }
 }

@@ -349,5 +349,10 @@ namespace Service.Contracts.Contracts
 
             }
         }
+
+        public TournamentDto[] GetTournamentesBySport(int sportId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

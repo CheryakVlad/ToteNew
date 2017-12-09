@@ -72,6 +72,7 @@
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="Dto\ResultDto.cs" />
     <Compile Include="Dto\RoleDto.cs" />
+    <Compile Include="Dto\SortDto.cs" />
     <Compile Include="Dto\TeamDto.cs" />
     <Compile Include="Dto\MatchDto.cs" />
     <Compile Include="Dto\RateDetailsDto.cs" />

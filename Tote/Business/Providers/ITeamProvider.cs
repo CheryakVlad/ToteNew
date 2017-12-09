@@ -13,5 +13,9 @@ namespace Business.Providers
         bool AddTeam(Team team);
 
         bool DeleteTeam(int teamId);
+
+        IReadOnlyList<Country> GetCountriesAll();
+
+        IReadOnlyList<Team> GetTeamsByTournament(int tournamentId);
     }
 }

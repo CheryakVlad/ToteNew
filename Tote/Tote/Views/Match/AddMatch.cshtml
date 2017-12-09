@@ -1,17 +1,13 @@
 ﻿@model Common.Models.Match
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>AddMatch</title>
-</head>
-<body>
+<script src="~/scripts/jquery-3.2.1.js"></script>
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+<br />
+<br />
+<br />
     @using (Html.BeginForm()) 
     {
         @Html.AntiForgeryToken()
@@ -29,34 +25,34 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.TournamentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Sport", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.TournamentId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.SportId, ViewBag.Sports as SelectList, new {  @class = "form-control", onchange="SportChange()" })
+                    @Html.ValidationMessageFor(model => model.SportId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group" id="tournamentId">
+                @Html.Label("Tournament", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TournamentId, ViewBag.Tournaments as SelectList, new {  @class = "form-control" } )
                     @Html.ValidationMessageFor(model => model.TournamentId, "", new { @class = "text-danger" })
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.ResultId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Home Team", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ResultId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ResultId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.TeamHomeId, ViewBag.Teams as SelectList, new  { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.TeamHomeId, "", new { @class = "text-danger" })
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Score, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Guest Team", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.TourId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TourId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TourId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.TeamGuestId, ViewBag.Teams as SelectList, new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.TeamGuestId, "", new { @class = "text-danger" })
                 </div>
             </div>
     
@@ -71,5 +67,37 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+
+<script type="text/javascript">
+
+    function SportChange() {
+        var sportId = $('#SportId').val();
+        alert(sportId);
+        $.ajax({
+            type: 'GET',
+            url: '/Match/TournamentesBySport?sportId=' + sportId,
+            success: function (data) {
+                $('#tournamentId').replaceWith(data);
+
+            }
+        });
+    }
+    $(function () {
+        alert('Hello World');
+    })
+    /*$(function () {
+        $('#SportId').on('change',function () {
+            var sportId = $('#SportId').val();
+            alert(sportId);
+            $.ajax({
+                type: 'GET',
+                url: '/Match/TournamentesBySport?sportId=' + sportId,
+                success: function (data) {
+                    $('#tournamentId').replaceWith(data);
+
+                }
+            });
+
+        });
+    })*/
+</script>

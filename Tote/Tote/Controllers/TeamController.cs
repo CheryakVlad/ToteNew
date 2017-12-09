@@ -30,8 +30,8 @@ namespace Tote.Controllers
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
             ViewBag.Sports = sports;
-            /*SelectList country = new SelectList(betListProvider.GetSports(), "SportId", "Name");
-            ViewBag.Sports = sports;*/
+            SelectList countries = new SelectList(teamProvider.GetCountriesAll(), "CountryId", "Name");
+            ViewBag.Countries = countries;
             return View();
         }
 
@@ -53,7 +53,8 @@ namespace Tote.Controllers
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
             ViewBag.Sports = sports;
-            /*country*/
+            SelectList countries = new SelectList(teamProvider.GetCountriesAll(), "CountryId", "Name");
+            ViewBag.Countries = countries;
             Team team = teamProvider.GetTeamById(id);
 
             return View(team);

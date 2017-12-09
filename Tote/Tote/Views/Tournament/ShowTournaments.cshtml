@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<Common.Models.Tournament>
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowTournaments</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     <p>
         @Html.ActionLink("Create New", "AddTournament")
     </p>
@@ -21,7 +15,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SportId)
+                Sport
             </th>
             <th></th>
         </tr>
@@ -32,7 +26,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SportId)
+                @Html.DisplayFor(modelItem => item.Sport.Name)
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditTournament", new { id=item.TournamentId }) |
@@ -43,5 +37,3 @@
     }
     
     </table>
-</body>
-</html>

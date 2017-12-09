@@ -185,6 +185,67 @@ namespace Data.TeamService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CountryDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class CountryDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CountryIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CountryId {
+            get {
+                return this.CountryIdField;
+            }
+            set {
+                if ((this.CountryIdField.Equals(value) != true)) {
+                    this.CountryIdField = value;
+                    this.RaisePropertyChanged("CountryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MatchDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
     [System.SerializableAttribute()]
     public partial class MatchDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -452,6 +513,224 @@ namespace Data.TeamService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SortDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class SortDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateMatchField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MatchIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ScoreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TeamGuestField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TeamGuestCountryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TeamHomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TeamHomeCountryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TournamentField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateMatch {
+            get {
+                return this.DateMatchField;
+            }
+            set {
+                if ((this.DateMatchField.Equals(value) != true)) {
+                    this.DateMatchField = value;
+                    this.RaisePropertyChanged("DateMatch");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MatchId {
+            get {
+                return this.MatchIdField;
+            }
+            set {
+                if ((this.MatchIdField.Equals(value) != true)) {
+                    this.MatchIdField = value;
+                    this.RaisePropertyChanged("MatchId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Score {
+            get {
+                return this.ScoreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScoreField, value) != true)) {
+                    this.ScoreField = value;
+                    this.RaisePropertyChanged("Score");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TeamGuest {
+            get {
+                return this.TeamGuestField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TeamGuestField, value) != true)) {
+                    this.TeamGuestField = value;
+                    this.RaisePropertyChanged("TeamGuest");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TeamGuestCountry {
+            get {
+                return this.TeamGuestCountryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TeamGuestCountryField, value) != true)) {
+                    this.TeamGuestCountryField = value;
+                    this.RaisePropertyChanged("TeamGuestCountry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TeamHome {
+            get {
+                return this.TeamHomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TeamHomeField, value) != true)) {
+                    this.TeamHomeField = value;
+                    this.RaisePropertyChanged("TeamHome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TeamHomeCountry {
+            get {
+                return this.TeamHomeCountryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TeamHomeCountryField, value) != true)) {
+                    this.TeamHomeCountryField = value;
+                    this.RaisePropertyChanged("TeamHomeCountry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Tournament {
+            get {
+                return this.TournamentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TournamentField, value) != true)) {
+                    this.TournamentField = value;
+                    this.RaisePropertyChanged("Tournament");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResultDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class ResultDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ResultIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResultId {
+            get {
+                return this.ResultIdField;
+            }
+            set {
+                if ((this.ResultIdField.Equals(value) != true)) {
+                    this.ResultIdField = value;
+                    this.RaisePropertyChanged("ResultId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TeamService.ITeamService")]
     public interface ITeamService {
@@ -497,6 +776,34 @@ namespace Data.TeamService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/DeleteTeam", ReplyAction="http://tempuri.org/ITeamService/DeleteTeamResponse")]
         System.Threading.Tasks.Task<bool> DeleteTeamAsync(int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetTeamsByTournament", ReplyAction="http://tempuri.org/ITeamService/GetTeamsByTournamentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/GetTeamsByTournamentCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.TeamDto[] GetTeamsByTournament(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetTeamsByTournament", ReplyAction="http://tempuri.org/ITeamService/GetTeamsByTournamentResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.TeamDto[]> GetTeamsByTournamentAsync(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountriesAll", ReplyAction="http://tempuri.org/ITeamService/GetCountriesAllResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/GetCountriesAllCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.CountryDto[] GetCountriesAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountriesAll", ReplyAction="http://tempuri.org/ITeamService/GetCountriesAllResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.CountryDto[]> GetCountriesAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountryById", ReplyAction="http://tempuri.org/ITeamService/GetCountryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/GetCountryByIdCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.CountryDto GetCountryById(int countryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountryById", ReplyAction="http://tempuri.org/ITeamService/GetCountryByIdResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.CountryDto> GetCountryByIdAsync(int countryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountryByTeam", ReplyAction="http://tempuri.org/ITeamService/GetCountryByTeamResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/GetCountryByTeamCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.CountryDto GetCountryByTeam(int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountryByTeam", ReplyAction="http://tempuri.org/ITeamService/GetCountryByTeamResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.CountryDto> GetCountryByTeamAsync(int teamId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -573,6 +880,38 @@ namespace Data.TeamService {
         public System.Threading.Tasks.Task<bool> DeleteTeamAsync(int teamId) {
             return base.Channel.DeleteTeamAsync(teamId);
         }
+        
+        public Data.TeamService.TeamDto[] GetTeamsByTournament(int tournamentId) {
+            return base.Channel.GetTeamsByTournament(tournamentId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.TeamDto[]> GetTeamsByTournamentAsync(int tournamentId) {
+            return base.Channel.GetTeamsByTournamentAsync(tournamentId);
+        }
+        
+        public Data.TeamService.CountryDto[] GetCountriesAll() {
+            return base.Channel.GetCountriesAll();
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.CountryDto[]> GetCountriesAllAsync() {
+            return base.Channel.GetCountriesAllAsync();
+        }
+        
+        public Data.TeamService.CountryDto GetCountryById(int countryId) {
+            return base.Channel.GetCountryById(countryId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.CountryDto> GetCountryByIdAsync(int countryId) {
+            return base.Channel.GetCountryByIdAsync(countryId);
+        }
+        
+        public Data.TeamService.CountryDto GetCountryByTeam(int teamId) {
+            return base.Channel.GetCountryByTeam(teamId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.CountryDto> GetCountryByTeamAsync(int teamId) {
+            return base.Channel.GetCountryByTeamAsync(teamId);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -613,6 +952,20 @@ namespace Data.TeamService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchService/DeleteMatch", ReplyAction="http://tempuri.org/IMatchService/DeleteMatchResponse")]
         System.Threading.Tasks.Task<bool> DeleteMatchAsync(int matchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchService/GetMatchBySportDateStatus", ReplyAction="http://tempuri.org/IMatchService/GetMatchBySportDateStatusResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IMatchService/GetMatchBySportDateStatusCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchService/GetMatchBySportDateStatus", ReplyAction="http://tempuri.org/IMatchService/GetMatchBySportDateStatusResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.SortDto[]> GetMatchBySportDateStatusAsync(int sportId, string dateMatch, int status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchService/GetResultsAll", ReplyAction="http://tempuri.org/IMatchService/GetResultsAllResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IMatchService/GetResultsAllCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.ResultDto[] GetResultsAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchService/GetResultsAll", ReplyAction="http://tempuri.org/IMatchService/GetResultsAllResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.ResultDto[]> GetResultsAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -680,6 +1033,22 @@ namespace Data.TeamService {
         
         public System.Threading.Tasks.Task<bool> DeleteMatchAsync(int matchId) {
             return base.Channel.DeleteMatchAsync(matchId);
+        }
+        
+        public Data.TeamService.SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status) {
+            return base.Channel.GetMatchBySportDateStatus(sportId, dateMatch, status);
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.SortDto[]> GetMatchBySportDateStatusAsync(int sportId, string dateMatch, int status) {
+            return base.Channel.GetMatchBySportDateStatusAsync(sportId, dateMatch, status);
+        }
+        
+        public Data.TeamService.ResultDto[] GetResultsAll() {
+            return base.Channel.GetResultsAll();
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.ResultDto[]> GetResultsAllAsync() {
+            return base.Channel.GetResultsAllAsync();
         }
     }
 }

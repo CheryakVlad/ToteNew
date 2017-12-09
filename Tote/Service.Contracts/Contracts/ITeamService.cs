@@ -25,5 +25,20 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         bool DeleteTeam(int teamId);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        TeamDto[] GetTeamsByTournament(int tournamentId);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        CountryDto[] GetCountriesAll();
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        CountryDto GetCountryById(int countryId);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        CountryDto GetCountryByTeam(int teamId);
+
     }
 }
