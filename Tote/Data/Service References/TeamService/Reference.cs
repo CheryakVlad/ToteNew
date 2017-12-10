@@ -281,6 +281,9 @@ namespace Data.TeamService {
         private string ScoreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SportIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TeamGuestField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -421,6 +424,19 @@ namespace Data.TeamService {
                 if ((object.ReferenceEquals(this.ScoreField, value) != true)) {
                     this.ScoreField = value;
                     this.RaisePropertyChanged("Score");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SportId {
+            get {
+                return this.SportIdField;
+            }
+            set {
+                if ((this.SportIdField.Equals(value) != true)) {
+                    this.SportIdField = value;
+                    this.RaisePropertyChanged("SportId");
                 }
             }
         }

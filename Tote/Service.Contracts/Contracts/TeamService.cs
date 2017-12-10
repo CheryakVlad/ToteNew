@@ -16,11 +16,21 @@ namespace Service.Contracts.Contracts
 
         public bool AddMatch(MatchDto matchDto)
         {
+            if(matchDto.ResultId==0)
+            {
+                matchDto.ResultId = 3;
+            }
+            if (matchDto.Score == null)
+            {
+                matchDto.Score = "0";
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.DateTime, Name = "@DateMatch", Value = matchDto.Date });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@ResultId", Value = matchDto.ResultId });
-            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = matchDto.TournamentId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = matchDto.TournamentId });            
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Score", Value = matchDto.Score });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamHomeId", Value = matchDto.TeamIdHome });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamGuestId", Value = matchDto.TeamIdGuest });
             var connection = new Connection<TeamDto>();
             try
             {

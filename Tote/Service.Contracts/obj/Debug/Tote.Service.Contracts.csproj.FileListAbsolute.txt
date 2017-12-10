@@ -4,3 +4,4 @@ D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Debug\log4net.dll
 D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Debug\log4net.xml
 D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Debug\Service.Contracts.dll
 D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Debug\Service.Contracts.pdb
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Debug\Tote.Service.Contracts.csprojResolveAssemblyReference.cache

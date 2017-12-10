@@ -21,6 +21,8 @@ namespace Service.Contracts.Dto
         [DataMember]
         public int TournamentId { get; set; }
         [DataMember]
+        public int SportId { get; set; }
+        [DataMember]
         public string Tournament { get; set; }
         [DataMember]
         public string TeamHome { get; set; }

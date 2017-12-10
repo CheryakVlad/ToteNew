@@ -41,7 +41,7 @@ namespace Tote.Controllers
             ViewBag.Sports = sports;*/
             return View();
         }
-
+        
         public ActionResult TournamentesBySport(int sportId)
         {
             SelectList tournaments = new SelectList(betListProvider.GetTournament(sportId), "TournamentId", "Name");
@@ -59,7 +59,10 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult AddMatch(Match match)
         {
+            Result res = new Result {ResultId=3 };
 
+            match.Result=res;
+            match.Score = "0";
             bool result = matchProvider.AddMatch(match);
             if (!result)
             {
@@ -72,15 +75,28 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult EditMatch(int id)
         {
-            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
-            ViewBag.Sports = sports;
-            /*country*/
+            
             Match match = matchProvider.GetMatchById(id);
 
+            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", match.SportId);
+            ViewBag.Sports = sports;
+            int selected = match.Tournament.TournamentId;
+            SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name", selected);
+            ViewBag.Tournaments = betListProvider.GetTournamentes();//tournaments;
+            IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsAll();
+            selected = match.Teams[0].TeamId;
+            SelectList teamsHome = new SelectList(teamsAll, "TeamId", "Name", selected);
+            ViewBag.TeamsHome = teamsHome;
+            selected = match.Teams[1].TeamId;
+            SelectList teamsGuest = new SelectList(teamsAll, "TeamId", "Name", selected);
+            ViewBag.TeamsGuest = teamsGuest;
+            selected = match.Result.ResultId;
+            SelectList results = new SelectList(matchProvider.GetResultsAll(),"ResultId","Name", selected);
+            ViewBag.Results = results;
             return View(match);
         }
         [HttpPost]
-        public ActionResult EditTeam(Match match)
+        public ActionResult EditMatch(Match match)
         {
             bool result = matchProvider.UpdateMatch(match);
             if (!result)

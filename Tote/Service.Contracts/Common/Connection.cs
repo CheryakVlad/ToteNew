@@ -188,7 +188,8 @@ namespace Service.Contracts.Common
                     Tournament=reader[11].ToString(),
                     Score=reader[12].ToString(),
                     ResultId=(int)reader[13],
-                    Result=reader[14].ToString()
+                    Result=reader[14].ToString(),
+                    SportId=(int)reader[15]
                 };
 
                 return MatchDto;

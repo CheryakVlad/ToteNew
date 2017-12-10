@@ -293,6 +293,7 @@
     <Content Include="Views\LayoutView.cshtml" />
     <Content Include="Views\LoginPartial.cshtml" />
     <Content Include="Views\_LayoutView.cshtml" />
+    <Content Include="Views\Match\MatchesByTournament.cshtml" />
     <Content Include="Views\Match\TournamentesBySport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

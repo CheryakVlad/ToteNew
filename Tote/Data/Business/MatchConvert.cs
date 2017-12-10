@@ -38,6 +38,7 @@ namespace Data.Business
                 Teams=teams,
                 Date=matchDto.Date,
                 Score=matchDto.Score,
+                SportId=matchDto.SportId,
                 Result=new Result
                 {
                     ResultId= matchDto.ResultId,
@@ -59,19 +60,19 @@ namespace Data.Business
             {
                 MatchId = match.MatchId,
                 TeamIdHome = match.Teams[0].TeamId,
-                TeamHome = match.Teams[0].Name,
+                //TeamHome = match.Teams[0].Name,
                 TeamIdGuest = match.Teams[1].TeamId,
-                TeamGuest = match.Teams[1].Name,
+                //TeamGuest = match.Teams[1].Name,
                 Date = match.Date,
-                CountryHomeId = match.Teams[0].Country.CountryId,
+                /*CountryHomeId = match.Teams[0].Country.CountryId,
                 CountryHome = match.Teams[0].Country.Name,
                 CountryGuestId = match.Teams[1].Country.CountryId,
-                CountryGuest = match.Teams[1].Country.Name,
+                CountryGuest = match.Teams[1].Country.Name,*/
                 TournamentId = match.Tournament.TournamentId,
-                Tournament = match.Tournament.Name,
+                /*Tournament = match.Tournament.Name,*/
                 Score = match.Score,
-                ResultId = match.Result.ResultId,
-                Result = match.Result.Name
+                ResultId = match.Result.ResultId
+                //Result = match.Result.Name
             };
 
             return matchDto;

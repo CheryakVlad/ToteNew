@@ -12,6 +12,7 @@ namespace Tote.Controllers
 {
     public class SortController : Controller
     {
+        private const string cacheKey = "cacheKey";
         private IBetListProvider betListProvider;
         private readonly IMatchProvider matchProvider;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SortController));
@@ -30,7 +31,14 @@ namespace Tote.Controllers
             SelectList status = new SelectList(statuses);
             ViewBag.Statuses = status;
 
-            IReadOnlyList<Match> matches = matchProvider.GetMatchBySportDateStatus(0,"",0);
+            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheKey) as IReadOnlyList<Match>;
+            if(matches==null)
+            {
+                matches = matchProvider.GetMatchBySportDateStatus(0, "", 0);
+                HttpRuntime.Cache.Insert(cacheKey,matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+            }
+
+            //IReadOnlyList<Match> matches = matchProvider.GetMatchBySportDateStatus(0,"",0);
             if (matches.Count == 0)
             {
                 return RedirectToAction("InfoError", "Navigation");
@@ -45,7 +53,7 @@ namespace Tote.Controllers
         }
         [HttpGet]
         public ActionResult Match(int sportId, string dateMatch, int status)
-        {                       
+        {
             /*IReadOnlyList<Match> bets = new List<Match>();
             try
             {
@@ -55,11 +63,19 @@ namespace Tote.Controllers
                     return RedirectToAction("InfoError", "Navigation");
                 }
             }*/
+            string cache = sportId.ToString() + dateMatch + status.ToString();
+            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>;
+            
 
-            IReadOnlyList<Match> matches = new List<Match>();
+            //IReadOnlyList<Match> matches = new List<Match>();
             try
             {
-                matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
+                if (matches == null)
+                {
+                    matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
+                    HttpRuntime.Cache.Insert(cache, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                }
+                //matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
                 if (matches == null)
                 {
                     return RedirectToAction("InfoError", "Navigation");

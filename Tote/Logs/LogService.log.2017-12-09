@@ -1,0 +1,3 @@
+2017-12-09 18:27:53,035 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "AddMatch" ожидает параметр "@Score", который не был указан.
+2017-12-09 18:40:04,432 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "AddMatch" ожидает параметр "@Score", который не был указан.
+2017-12-09 18:42:23,413 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "AddMatch" ожидает параметр "@Score", который не был указан.

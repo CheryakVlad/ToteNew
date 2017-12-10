@@ -35,27 +35,28 @@
             <div class="form-group" id="tournamentId">
                 @Html.Label("Tournament", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.TournamentId, ViewBag.Tournaments as SelectList, new {  @class = "form-control" } )
-                    @Html.ValidationMessageFor(model => model.TournamentId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.Tournament.TournamentId, ViewBag.Tournaments as SelectList, new {  @class = "form-control", onchange = "TournamentChange()" } )
+                    @Html.ValidationMessageFor(model => model.Tournament.TournamentId, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.Label("Home Team", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.TeamHomeId, ViewBag.Teams as SelectList, new  { @class = "form-control" } )
-                    @Html.ValidationMessageFor(model => model.TeamHomeId, "", new { @class = "text-danger" })
+            <div id="teams">
+                <div class="form-group">
+                    @Html.Label("Home Team", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Teams[0].TeamId, ViewBag.Teams as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Teams[0].TeamId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Guest Team", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Teams[1].TeamId, ViewBag.Teams as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Teams[1].TeamId, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.Label("Guest Team", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.TeamGuestId, ViewBag.Teams as SelectList, new { @class = "form-control" } )
-                    @Html.ValidationMessageFor(model => model.TeamGuestId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
@@ -68,23 +69,26 @@
         @Html.ActionLink("Back to List", "Index")
     </div>
 
+
 <script type="text/javascript">
 
     function SportChange() {
         var sportId = $('#SportId').val();
-        alert(sportId);
+        //alert(sportId);
         $.ajax({
             type: 'GET',
             url: '/Match/TournamentesBySport?sportId=' + sportId,
             success: function (data) {
-                $('#tournamentId').replaceWith(data);
-
+                $('#tournamentId').replaceWith(data).change();
+                /*$('#tournamentId').val().change();*/
+                TournamentChange();
             }
         });
+        
     }
-    $(function () {
+    /*$(function () {
         alert('Hello World');
-    })
+    })*/
     /*$(function () {
         $('#SportId').on('change',function () {
             var sportId = $('#SportId').val();
@@ -100,4 +104,17 @@
 
         });
     })*/
+</script>
+<script type="text/javascript">
+    function TournamentChange() {
+        var tournamentId = $('#TournamentId').val();
+        //alert(tournamentId);
+        $.ajax({
+            type: 'GET',
+            url: '/Match/MatchesByTournament?tournamentId=' + tournamentId,
+            success: function (data) {
+                $('#teams').replaceWith(data);
+            }
+        });
+    }
 </script>
