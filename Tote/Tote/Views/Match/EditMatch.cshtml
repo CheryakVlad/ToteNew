@@ -85,7 +85,7 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "ShowMatches")
     </div>
 
 <script type="text/javascript">
@@ -97,8 +97,7 @@
             type: 'GET',
             url: '/Match/TournamentesBySport?sportId=' + sportId,
             success: function (data) {
-                $('#tournamentId').replaceWith(data).change();
-                /*$('#tournamentId').val().change();*/
+                $('#tournamentId').replaceWith(data).change();                
                 TournamentChange();
             }
         });

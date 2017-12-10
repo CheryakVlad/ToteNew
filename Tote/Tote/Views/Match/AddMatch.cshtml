@@ -66,44 +66,25 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "ShowMatches")
     </div>
 
 
 <script type="text/javascript">
 
     function SportChange() {
-        var sportId = $('#SportId').val();
-        //alert(sportId);
+        var sportId = $('#SportId').val();        
         $.ajax({
             type: 'GET',
             url: '/Match/TournamentesBySport?sportId=' + sportId,
             success: function (data) {
-                $('#tournamentId').replaceWith(data).change();
-                /*$('#tournamentId').val().change();*/
+                $('#tournamentId').replaceWith(data).change();                
                 TournamentChange();
             }
         });
         
     }
-    /*$(function () {
-        alert('Hello World');
-    })*/
-    /*$(function () {
-        $('#SportId').on('change',function () {
-            var sportId = $('#SportId').val();
-            alert(sportId);
-            $.ajax({
-                type: 'GET',
-                url: '/Match/TournamentesBySport?sportId=' + sportId,
-                success: function (data) {
-                    $('#tournamentId').replaceWith(data);
-
-                }
-            });
-
-        });
-    })*/
+    
 </script>
 <script type="text/javascript">
     function TournamentChange() {

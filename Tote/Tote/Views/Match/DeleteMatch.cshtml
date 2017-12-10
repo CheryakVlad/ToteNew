@@ -17,21 +17,45 @@
             <dd>
                 @Html.DisplayFor(model => model.Date)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.TournamentId)
+                Sport
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.TournamentId)
+                @ViewBag.Sport
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.ResultId)
+                Tournament
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.ResultId)
+                @Html.DisplayFor(model => model.Tournament.Name)
+            </dd>
+
+            <dt>
+                Home Team
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Teams[0].Name)
+            </dd>
+
+            <dt>
+                Guest Team
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Teams[1].Name)
+            </dd>
+    
+            <dt>
+                Result
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Result.Name)
             </dd>
     
             <dt>
@@ -40,15 +64,8 @@
     
             <dd>
                 @Html.DisplayFor(model => model.Score)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.TourId)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TourId)
-            </dd>
+            </dd>    
+            
     
         </dl>
     
@@ -57,7 +74,7 @@
             <input type="hidden" value=@Model.MatchId name="matchId" />
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Back to List", "ShowMatches")
             </div>
         }
     </div>

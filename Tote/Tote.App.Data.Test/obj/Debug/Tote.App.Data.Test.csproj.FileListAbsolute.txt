@@ -1,0 +1,11 @@
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Tote.App.Data.Test.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Tote.App.Data.Test.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Castle.Core.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Moq.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Castle.Core.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Moq.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Moq.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\obj\Debug\Tote.App.Data.Test.csprojResolveAssemblyReference.cache
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\obj\Debug\Tote.App.Data.Test.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\obj\Debug\Tote.App.Data.Test.pdb

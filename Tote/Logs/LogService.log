@@ -6,3 +6,6 @@
 Выполнение данной инструкции было прервано.
 Выполнение данной инструкции было прервано.
 Выполнение данной инструкции было прервано.
+2017-12-10 20:47:11,903 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "DeleteMatch" ожидает параметр "@MatchId", который не был указан.
+2017-12-10 20:59:16,954 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "DeleteMatch" ожидает параметр "@MatchId", который не был указан.
+2017-12-10 21:02:40,383 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "DeleteMatch" ожидает параметр "@MatchId", который не был указан.

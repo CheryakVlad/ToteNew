@@ -68,7 +68,7 @@ namespace Service.Contracts.Contracts
         public bool DeleteMatch(int matchId)
         {
             var parameters = new List<Parameter>();
-            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = matchId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchId });
 
             var connection = new Connection<MatchDto>();
             try
@@ -88,7 +88,7 @@ namespace Service.Contracts.Contracts
         public bool DeleteTeam(int teamId)
         {
             var parameters = new List<Parameter>();
-            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = teamId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
 
             var connection = new Connection<TeamDto>();
             try

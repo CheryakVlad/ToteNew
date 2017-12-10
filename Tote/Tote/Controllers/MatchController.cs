@@ -95,6 +95,7 @@ namespace Tote.Controllers
             ViewBag.Results = results;
             return View(match);
         }
+
         [HttpPost]
         public ActionResult EditMatch(Match match)
         {
@@ -109,7 +110,9 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult DeleteMatch(int id)
         {
-            Match match = matchProvider.GetMatchById(id);
+            Match match = matchProvider.GetMatchById(id);            
+            ViewBag.Sport = betListProvider.GetSport(match.SportId).Name;
+
             return View(match);
         }
 
@@ -124,8 +127,6 @@ namespace Tote.Controllers
             }
             return RedirectToAction("ShowMatches");
         }
-
-
-
+        
     }
 }

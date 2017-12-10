@@ -1,0 +1,15 @@
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Tote.Service.Contracts.Test.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Tote.Service.Contracts.Test.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Castle.Core.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Moq.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Service.Contracts.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\log4net.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Service.Contracts.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Castle.Core.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Moq.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Moq.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\log4net.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\obj\Debug\Tote.Service.Contracts.Test.csprojResolveAssemblyReference.cache
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\obj\Debug\Tote.Service.Contracts.Test.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\obj\Debug\Tote.Service.Contracts.Test.pdb
