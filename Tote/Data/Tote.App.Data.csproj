@@ -121,6 +121,9 @@
     <None Include="Service References\TeamService\Data.TeamService.CountryDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\TeamService\Data.TeamService.EventDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\TeamService\Data.TeamService.MatchDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -145,6 +148,9 @@
     </None>
     <None Include="Service References\TeamService\TeamService3.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ToteService\Data.ToteService.BasketDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ToteService\Data.ToteService.BetListDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

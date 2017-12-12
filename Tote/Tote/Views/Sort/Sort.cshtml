@@ -19,6 +19,15 @@
         });
     });
     </script>
+
+    @section Scripts
+{
+        <script src="~/scripts/main.js"></script>
+        <script type="text/javascript">
+        window.jsonVar = window.JsonClass('@Html.Raw(Url.Action("GetMessage", "Sort"))', '@Html.Raw(Url.Action("SaveMessage", "Sort"))')
+        </script>
+    }
+
     <title>Sort</title>
 </head>
 <body>
@@ -38,7 +47,7 @@
         <option value="0">None</option>
         <option value="1">Past Events</option>
         <option value="2">Current Events</option>
-        <option value="3">Furure Events</option>        
+        <option value="3">Future Events</option>        
     </select>
     
         Date Match

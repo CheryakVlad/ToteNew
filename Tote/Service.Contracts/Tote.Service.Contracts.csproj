@@ -65,6 +65,7 @@
     <Compile Include="Contracts\TournamentService.cs" />
     <Compile Include="Contracts\IEventService.cs" />
     <Compile Include="Contracts\UserService.cs" />
+    <Compile Include="Dto\BasketDto.cs" />
     <Compile Include="Dto\BetDto.cs" />
     <Compile Include="Dto\BetListDto.cs" />
     <Compile Include="Dto\CountryDto.cs" />

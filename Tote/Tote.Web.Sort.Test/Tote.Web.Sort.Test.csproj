@@ -100,6 +100,10 @@
       <Project>{165b48bc-8bb9-4dc6-a4ab-970a4f4bceb4}</Project>
       <Name>Tote.App.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Tote.App.Common.csproj">
+      <Project>{F30BB6DF-BEA6-4F29-8FDE-44FB0C9E3355}</Project>
+      <Name>Tote.App.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tote\Tote.Web.csproj">
       <Project>{73a9674b-e6db-4372-9a9e-80df42fcff04}</Project>
       <Name>Tote.Web</Name>

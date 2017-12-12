@@ -19,7 +19,8 @@ namespace Service.Contracts.Dto
         public string FIO { get; set; }
         [DataMember]
         public string Role { get; set; }
-
+        [DataMember]
+        public string PhoneNumber { get; set; }
         [DataMember]
         public int RoleId { get; set; }
     }

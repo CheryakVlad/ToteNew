@@ -127,6 +127,67 @@ namespace Tote.Controllers
             }
             return RedirectToAction("ShowMatches");
         }
-        
+
+        public ActionResult ShowCoefficient(int id)
+        {
+            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
+            if (events == null)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }
+            
+            return View(events);
+        }
+
+        [HttpGet]
+        public ActionResult AddEvents()
+        {
+            
+            /*SelectList country = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            ViewBag.Sports = sports;*/
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult EditEvent(int id)
+        {
+
+            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
+            return View(events);
+        }
+
+        [HttpPost]
+        public ActionResult EditEvent(List<Event> item)
+        {
+            bool result = matchProvider.UpdateEvent(item.ToArray());
+            if (!result)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't update Match");
+            }
+            return RedirectToAction("ShowMatches");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteEvent(int id)
+        {
+            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
+
+            return View(events);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteEvent")]
+        public ActionResult DeleteEv(int matchId)
+        {
+            bool result = matchProvider.DeleteEvent(matchId);
+            if (!result)
+            {
+                log.Error("Controller: Match, Action: DeleteMatch Don't delete Match");
+            }
+            return RedirectToAction("ShowMatches");
+        }
+
+
     }
 }

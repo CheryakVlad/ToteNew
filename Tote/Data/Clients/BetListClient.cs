@@ -18,6 +18,34 @@ namespace Data.Clients
         {
             this.convert = convert;
         }
+
+        public bool AddBasket(Basket basket)
+        {
+            var basketDto = new BasketDto();
+            basketDto = convert.ToBasketDto(basket);
+            var model = new bool();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.AddBasket(basketDto);
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+            }
+            return model;
+        }
+
         public bool AddSport(Sport sport)
         {
             var sportDto = new SportDto();
@@ -46,6 +74,32 @@ namespace Data.Clients
             return model;
         }
 
+        public bool DeleteBasket(int basketId)
+        {
+            var model = new bool();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.DeleteBasket(basketId);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+            }
+            return model;
+        }
+
         public bool DeleteSport(int sportId)
         {
             var model = new bool();
@@ -70,6 +124,38 @@ namespace Data.Clients
                 }
 
             }
+            return model;
+        }
+
+        public IReadOnlyList<BasketDto> GetBasketByUser(string login)
+        {
+            var model = new List<BasketDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    var baskets = client.GetBasketByUser(login);
+                    foreach (var basket in baskets)
+                    {
+                        model.Add(basket);
+                    }
+
+                    client.Close();
+
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }                
+            }
+
             return model;
         }
 

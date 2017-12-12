@@ -19,5 +19,9 @@ namespace Data.Clients
 
         IReadOnlyList<ToteService.EventDto> GetEvents();
         IReadOnlyList<ToteService.EventDto> GetEvents(int id);
+
+        IReadOnlyList<ToteService.BasketDto> GetBasketByUser(string login);
+        bool AddBasket(Basket basket);
+        bool DeleteBasket(int basketId);
     }
 }

@@ -1,17 +1,14 @@
 ﻿@model IEnumerable<Common.Models.User>
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
 }
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UsersAll</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     <p>
         @Html.ActionLink("Create New User", "AddUser")
     </p>
@@ -31,6 +28,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Money)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
             <th></th>
         </tr>
@@ -53,6 +53,9 @@
                 @Html.DisplayFor(modelItem => item.Money)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
                 @Html.ActionLink("Edit", "EditUser", new { id=item.UserId }) |
                 @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
                 @Html.ActionLink("Delete", "DeleteUser", new { id=item.UserId })
@@ -61,5 +64,4 @@
     }
     
     </table>
-</body>
-</html>
+

@@ -747,6 +747,99 @@ namespace Data.TeamService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class EventDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double CoefficientField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EventIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MatchIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Coefficient {
+            get {
+                return this.CoefficientField;
+            }
+            set {
+                if ((this.CoefficientField.Equals(value) != true)) {
+                    this.CoefficientField = value;
+                    this.RaisePropertyChanged("Coefficient");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventId {
+            get {
+                return this.EventIdField;
+            }
+            set {
+                if ((this.EventIdField.Equals(value) != true)) {
+                    this.EventIdField = value;
+                    this.RaisePropertyChanged("EventId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MatchId {
+            get {
+                return this.MatchIdField;
+            }
+            set {
+                if ((this.MatchIdField.Equals(value) != true)) {
+                    this.MatchIdField = value;
+                    this.RaisePropertyChanged("MatchId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TeamService.ITeamService")]
     public interface ITeamService {
@@ -1065,6 +1158,140 @@ namespace Data.TeamService {
         
         public System.Threading.Tasks.Task<Data.TeamService.ResultDto[]> GetResultsAllAsync() {
             return base.Channel.GetResultsAllAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TeamService.IEventService")]
+    public interface IEventService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEvents", ReplyAction="http://tempuri.org/IEventService/GetEventsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/GetEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.EventDto[] GetEvents(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEvents", ReplyAction="http://tempuri.org/IEventService/GetEventsResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEventsAll", ReplyAction="http://tempuri.org/IEventService/GetEventsAllResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/GetEventsAllCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.TeamService.EventDto[] GetEventsAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEventsAll", ReplyAction="http://tempuri.org/IEventService/GetEventsAllResponse")]
+        System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/UpdateEvents", ReplyAction="http://tempuri.org/IEventService/UpdateEventsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/UpdateEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CustomException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.TeamDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.TeamDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CountryDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CountryDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.MatchDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.MatchDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.SortDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.SortDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.ResultDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.ResultDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.EventDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.EventDto))]
+        bool UpdateEvents(object eventDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/UpdateEvents", ReplyAction="http://tempuri.org/IEventService/UpdateEventsResponse")]
+        System.Threading.Tasks.Task<bool> UpdateEventsAsync(object eventDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/AddEvents", ReplyAction="http://tempuri.org/IEventService/AddEventsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/AddEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CustomException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.TeamDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.TeamDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CountryDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CountryDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.MatchDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.MatchDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.SortDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.SortDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.ResultDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.ResultDto))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.EventDto[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.EventDto))]
+        bool AddEvents(object eventDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/AddEvents", ReplyAction="http://tempuri.org/IEventService/AddEventsResponse")]
+        System.Threading.Tasks.Task<bool> AddEventsAsync(object eventDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/DeleteEvents", ReplyAction="http://tempuri.org/IEventService/DeleteEventsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/DeleteEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteEvents(int matchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/DeleteEvents", ReplyAction="http://tempuri.org/IEventService/DeleteEventsResponse")]
+        System.Threading.Tasks.Task<bool> DeleteEventsAsync(int matchId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IEventServiceChannel : Data.TeamService.IEventService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class EventServiceClient : System.ServiceModel.ClientBase<Data.TeamService.IEventService>, Data.TeamService.IEventService {
+        
+        public EventServiceClient() {
+        }
+        
+        public EventServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public EventServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public EventServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public EventServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public Data.TeamService.EventDto[] GetEvents(int id) {
+            return base.Channel.GetEvents(id);
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAsync(int id) {
+            return base.Channel.GetEventsAsync(id);
+        }
+        
+        public Data.TeamService.EventDto[] GetEventsAll() {
+            return base.Channel.GetEventsAll();
+        }
+        
+        public System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAllAsync() {
+            return base.Channel.GetEventsAllAsync();
+        }
+        
+        public bool UpdateEvents(object eventDto) {
+            return base.Channel.UpdateEvents(eventDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateEventsAsync(object eventDto) {
+            return base.Channel.UpdateEventsAsync(eventDto);
+        }
+        
+        public bool AddEvents(object eventDto) {
+            return base.Channel.AddEvents(eventDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddEventsAsync(object eventDto) {
+            return base.Channel.AddEventsAsync(eventDto);
+        }
+        
+        public bool DeleteEvents(int matchId) {
+            return base.Channel.DeleteEvents(matchId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteEventsAsync(int matchId) {
+            return base.Channel.DeleteEventsAsync(matchId);
         }
     }
 }

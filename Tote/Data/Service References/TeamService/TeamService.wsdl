@@ -161,6 +161,51 @@
   <wsdl:message name="IMatchService_GetResultsAll_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q17:CustomException" />
   </wsdl:message>
+  <wsdl:message name="IEventService_GetEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEvents" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_GetEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_GetEvents_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q18:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_GetEventsAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsAll" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_GetEventsAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventsAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_GetEventsAll_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q19:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_UpdateEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEvents" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_UpdateEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_UpdateEvents_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q20:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_AddEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEvents" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_AddEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_AddEvents_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q21:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_DeleteEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEvents" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_DeleteEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventService_DeleteEvents_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q22:CustomException" />
+  </wsdl:message>
   <wsdl:portType name="ITeamService">
     <wsdl:operation name="GetTeam">
       <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetTeam" message="tns:ITeamService_GetTeam_InputMessage" />
@@ -248,6 +293,33 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchService/GetResultsAll" message="tns:IMatchService_GetResultsAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchService/GetResultsAllResponse" message="tns:IMatchService_GetResultsAll_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IMatchService/GetResultsAllCustomExceptionFault" name="CustomExceptionFault" message="tns:IMatchService_GetResultsAll_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEventService">
+    <wsdl:operation name="GetEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEventService/GetEvents" message="tns:IEventService_GetEvents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEventService/GetEventsResponse" message="tns:IEventService_GetEvents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/GetEventsCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_GetEvents_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEventService/GetEventsAll" message="tns:IEventService_GetEventsAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEventService/GetEventsAllResponse" message="tns:IEventService_GetEventsAll_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/GetEventsAllCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_GetEventsAll_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEventService/UpdateEvents" message="tns:IEventService_UpdateEvents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEventService/UpdateEventsResponse" message="tns:IEventService_UpdateEvents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/UpdateEventsCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_UpdateEvents_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEventService/AddEvents" message="tns:IEventService_AddEvents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEventService/AddEventsResponse" message="tns:IEventService_AddEvents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/AddEventsCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_AddEvents_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEventService/DeleteEvents" message="tns:IEventService_DeleteEvents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEventService/DeleteEventsResponse" message="tns:IEventService_DeleteEvents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/DeleteEventsCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_DeleteEvents_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITeamService" type="tns:ITeamService">
@@ -460,12 +532,78 @@
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IEventService" type="tns:IEventService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEvents">
+      <soap:operation soapAction="http://tempuri.org/IEventService/GetEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsAll">
+      <soap:operation soapAction="http://tempuri.org/IEventService/GetEventsAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvents">
+      <soap:operation soapAction="http://tempuri.org/IEventService/UpdateEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddEvents">
+      <soap:operation soapAction="http://tempuri.org/IEventService/AddEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvents">
+      <soap:operation soapAction="http://tempuri.org/IEventService/DeleteEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="TeamService">
     <wsdl:port name="BasicHttpBinding_ITeamService" binding="tns:BasicHttpBinding_ITeamService">
       <soap:address location="http://localhost:7712/TeamService.svc/team" />
     </wsdl:port>
     <wsdl:port name="BasicHttpBinding_IMatchService" binding="tns:BasicHttpBinding_IMatchService">
       <soap:address location="http://localhost:7712/TeamService.svc/match" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IEventService" binding="tns:BasicHttpBinding_IEventService">
+      <soap:address location="http://localhost:7712/TeamService.svc/event" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

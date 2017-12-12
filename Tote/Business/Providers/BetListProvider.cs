@@ -75,5 +75,20 @@ namespace Business.Providers
         {
             return betListClient.UpdateSport(sport);
         }
+
+        public bool AddBasket(Basket basket)
+        {
+            return betListClient.AddBasket(basket);
+        }
+
+        public bool DeleteBasket(int basketId)
+        {
+            return betListClient.DeleteBasket(basketId);
+        }
+
+        public IReadOnlyList<Basket> GetBasketByUser(string login)
+        {
+            return dataService.GetBasketByUser(login);
+        }
     }
 }

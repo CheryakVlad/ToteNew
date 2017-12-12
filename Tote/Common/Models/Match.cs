@@ -24,10 +24,10 @@ namespace Common.Models
 
         public IList<Team> Teams { get; set; }
 
-        public Match()
+        /*public Match()
         {
             Bets = new List<Bet>();
-        }
+        }*/
         
     }
 }

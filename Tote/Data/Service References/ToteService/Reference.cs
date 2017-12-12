@@ -403,6 +403,115 @@ namespace Data.ToteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BasketDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class BasketDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BasketIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EventIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MatchIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BasketId {
+            get {
+                return this.BasketIdField;
+            }
+            set {
+                if ((this.BasketIdField.Equals(value) != true)) {
+                    this.BasketIdField = value;
+                    this.RaisePropertyChanged("BasketId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventId {
+            get {
+                return this.EventIdField;
+            }
+            set {
+                if ((this.EventIdField.Equals(value) != true)) {
+                    this.EventIdField = value;
+                    this.RaisePropertyChanged("EventId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MatchId {
+            get {
+                return this.MatchIdField;
+            }
+            set {
+                if ((this.MatchIdField.Equals(value) != true)) {
+                    this.MatchIdField = value;
+                    this.RaisePropertyChanged("MatchId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="TournamentDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
     [System.SerializableAttribute()]
     public partial class TournamentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -560,6 +669,27 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetEventsAll", ReplyAction="http://tempuri.org/IBetListService/GetEventsAllResponse")]
         System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddBasket", ReplyAction="http://tempuri.org/IBetListService/AddBasketResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/AddBasketCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddBasket(Data.ToteService.BasketDto basketDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddBasket", ReplyAction="http://tempuri.org/IBetListService/AddBasketResponse")]
+        System.Threading.Tasks.Task<bool> AddBasketAsync(Data.ToteService.BasketDto basketDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/DeleteBasket", ReplyAction="http://tempuri.org/IBetListService/DeleteBasketResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/DeleteBasketCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteBasket(int basketId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/DeleteBasket", ReplyAction="http://tempuri.org/IBetListService/DeleteBasketResponse")]
+        System.Threading.Tasks.Task<bool> DeleteBasketAsync(int basketId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketByUser", ReplyAction="http://tempuri.org/IBetListService/GetBasketByUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBasketByUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.BasketDto[] GetBasketByUser(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketByUser", ReplyAction="http://tempuri.org/IBetListService/GetBasketByUserResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.BasketDto[]> GetBasketByUserAsync(string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -660,6 +790,30 @@ namespace Data.ToteService {
         public System.Threading.Tasks.Task<Data.ToteService.EventDto[]> GetEventsAllAsync() {
             return base.Channel.GetEventsAllAsync();
         }
+        
+        public bool AddBasket(Data.ToteService.BasketDto basketDto) {
+            return base.Channel.AddBasket(basketDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddBasketAsync(Data.ToteService.BasketDto basketDto) {
+            return base.Channel.AddBasketAsync(basketDto);
+        }
+        
+        public bool DeleteBasket(int basketId) {
+            return base.Channel.DeleteBasket(basketId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteBasketAsync(int basketId) {
+            return base.Channel.DeleteBasketAsync(basketId);
+        }
+        
+        public Data.ToteService.BasketDto[] GetBasketByUser(string login) {
+            return base.Channel.GetBasketByUser(login);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.BasketDto[]> GetBasketByUserAsync(string login) {
+            return base.Channel.GetBasketByUserAsync(login);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -707,6 +861,13 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/DeleteTournament", ReplyAction="http://tempuri.org/ITournamentService/DeleteTournamentResponse")]
         System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentesBySport", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesBySportResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/GetTournamentesBySportCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.TournamentDto[] GetTournamentesBySport(int sportId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentesBySport", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesBySportResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesBySportAsync(int sportId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -782,6 +943,14 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId) {
             return base.Channel.DeleteTournamentAsync(tournamentId);
+        }
+        
+        public Data.ToteService.TournamentDto[] GetTournamentesBySport(int sportId) {
+            return base.Channel.GetTournamentesBySport(sportId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesBySportAsync(int sportId) {
+            return base.Channel.GetTournamentesBySportAsync(sportId);
         }
     }
 }

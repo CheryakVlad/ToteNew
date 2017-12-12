@@ -31,5 +31,8 @@ namespace Data.Business
         ToteService.TournamentDto ToTournamentDto(Tournament tournament);
         IReadOnlyList<Country> ToCountry(IReadOnlyList<TeamService.CountryDto> countriesDto);
 
+        IReadOnlyList<Basket> ToBasket(IReadOnlyList<ToteService.BasketDto> basketsDto);
+        ToteService.BasketDto ToBasketDto(Basket basket);
+
     }
 }

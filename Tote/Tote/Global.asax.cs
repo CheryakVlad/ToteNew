@@ -27,6 +27,7 @@ namespace Tote
                 var ticket = FormsAuthentication.Decrypt(auth.Value);
                 var model = JsonConvert.DeserializeObject<User>(ticket.UserData);
                 var principal = new UserPrincipal(ticket.Name);
+                principal.UserId = model.UserId;
                 principal.Login = model.Login;
                 principal.Roles = model.Roles.Select(x => x.Name).ToArray();
                 HttpContext.Current.User = principal;

@@ -10,9 +10,30 @@ using System.ServiceModel;
 
 namespace Service.Contracts.Contracts
 {
-    public class TeamService : ITeamService,IMatchService
+    public class TeamService : ITeamService,IMatchService,IEventService
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamService));
+
+        public bool AddEvents(IReadOnlyList<EventDto> eventDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = eventDto[0].MatchId });
+            parameters.Add(new Parameter { Type = DbType.Double, Name = "@Win", Value = eventDto[0].Coefficient });
+            parameters.Add(new Parameter { Type = DbType.Double, Name = "@Loss", Value = eventDto[1].Coefficient });
+            parameters.Add(new Parameter { Type = DbType.Double, Name = "@Draw", Value = eventDto[2].Coefficient });
+            var connection = new Connection<EventDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddEventMatch", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddEventMatch";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
 
         public bool AddMatch(MatchDto matchDto)
         {
@@ -62,6 +83,26 @@ namespace Service.Contracts.Contracts
                 exception.Title = "AddTeam";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public bool DeleteEvents(int matchId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchId });
+
+            var connection = new Connection<EventDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "DeleteEventMatch", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "DeleteEventMatch";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
             }
         }
 
@@ -157,6 +198,30 @@ namespace Service.Contracts.Contracts
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
+        }
+
+        public EventDto[] GetEvents(int id)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = id });
+
+            var connection = new Connection<EventDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCoefficientByMatch", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetCoefficientByMatch";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public EventDto[] GetEventsAll()
+        {
+            throw new NotImplementedException();
         }
 
         public MatchDto GetMatchById(int matchId)
@@ -288,6 +353,29 @@ namespace Service.Contracts.Contracts
                 exception.Title = "GetTeamByTournament";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public bool UpdateEvents(IReadOnlyList<EventDto> eventDto)
+        {            
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = eventDto[0].MatchId });
+            parameters.Add(new Parameter { Type = DbType.Double, Name = "@Win", Value = eventDto[0].Coefficient });
+            parameters.Add(new Parameter { Type = DbType.Double, Name = "@Loss", Value = eventDto[1].Coefficient });
+            parameters.Add(new Parameter { Type = DbType.Double, Name = "@Draw", Value = eventDto[2].Coefficient });
+
+            var connection = new Connection<EventDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "UpdateEventMatch", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "UpdateEventMatch";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
             }
         }
 

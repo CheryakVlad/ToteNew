@@ -30,14 +30,7 @@ namespace Service.Contracts.Contracts
         bool AddSport(SportDto sportDto);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        bool DeleteSport(int sportId);
-
-        /*[OperationContract]
-        [FaultContract(typeof(CustomException))]
-        TournamentDto[] GetTournament(int? sportId);
-        [OperationContract]
-        [FaultContract(typeof(CustomException))]
-        TournamentDto[] GetTournamentes();*/
+        bool DeleteSport(int sportId);        
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]
@@ -45,5 +38,16 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         EventDto[] GetEventsAll();
+
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddBasket(BasketDto basketDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool DeleteBasket(int basketId);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        BasketDto[] GetBasketByUser(string login);
     }
 }

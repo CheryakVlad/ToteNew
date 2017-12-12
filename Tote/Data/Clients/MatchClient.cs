@@ -19,6 +19,36 @@ namespace Data.Clients
             this.convert = convert;
         }
 
+        public bool AddEvent(IReadOnlyList<Event> events)
+        {
+            //var model = new bool();
+            //var eventsDto = new IReadOnlyList<EventDto>();
+            var eventsDto = convert.ToEventDto(events);
+            var model = new bool();
+            using (var client = new TeamService.EventServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.AddEvents(eventsDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
+
         public bool AddMatch(Match match)
         {
             var matchDto = new MatchDto();
@@ -30,6 +60,33 @@ namespace Data.Clients
                 {
                     client.Open();
                     model = client.AddMatch(matchDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
+
+        public bool DeleteEvent(int matchId)
+        {
+            var model = new bool();
+            using (var client = new TeamService.EventServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.DeleteEvents(matchId);
                     client.Close();
                 }
 
@@ -72,6 +129,38 @@ namespace Data.Clients
                 }
 
             }
+            return model;
+        }
+
+        public IReadOnlyList<EventDto> GetEventByMatch(int matchId)
+        {
+            var model = new List<EventDto>();
+            using (var client = new TeamService.EventServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    var events = client.GetEvents(matchId);
+                    foreach (var _event in events)
+                    {
+                        model.Add(_event);
+                    }
+
+                    client.Close();
+
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+            }
+
             return model;
         }
 
@@ -195,6 +284,34 @@ namespace Data.Clients
                 }
             }
 
+            return model;
+        }
+
+        public bool UpdateEvent(IReadOnlyList<Event> events)
+        {
+            var eventsDto = convert.ToEventDto(events);
+            var model = new bool();
+            using (var client = new TeamService.EventServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.UpdateEvents(eventsDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
             return model;
         }
 

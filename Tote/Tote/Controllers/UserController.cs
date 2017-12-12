@@ -34,7 +34,7 @@ namespace Tote.Controllers
         {
             User user = userProvider.GetUser(id);
             //IReadOnlyList<Role> roles= userProvider.GetRolesAll();
-            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
             ViewBag.Roles = roles;
             return View(user);
         }
@@ -74,6 +74,17 @@ namespace Tote.Controllers
         public ActionResult DeleteUser(int id)
         {
             User user = userProvider.GetUser(id);
+            IReadOnlyList<Role> roles = userProvider.GetRolesAll();
+            Role role = new Role();
+            foreach(var _role in roles)
+            {
+                if(_role.RoleId==user.RoleId)
+                {
+                    role = _role;
+                    break;
+                }
+            }
+            ViewBag.Role = role.Name;
             return View(user);
         }
 

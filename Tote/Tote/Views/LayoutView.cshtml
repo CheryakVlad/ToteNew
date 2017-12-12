@@ -30,14 +30,17 @@
                     <li>@Html.ActionLink("Place a Rate", "List", "Navigation")</li>
                     <li>@Html.ActionLink("Sport", "ShowSports", "Sport")</li>
                     <li>@Html.ActionLink("Tournament", "ShowTournaments", "Tournament")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Show Basket", "ShowBasket", "Sort")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">                                        
                     <li>                        
                         <div>
                             @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                            {
+                            {                               
+                                <span style="color:#ffffff">
+                                    @HttpContext.Current.User.Identity.Name
+                                </span>
                                 @Html.ActionLink("Logout", "Logout", "Login")<br />
                                 @Html.ActionLink("Admin Contact", "Contact")
                             }

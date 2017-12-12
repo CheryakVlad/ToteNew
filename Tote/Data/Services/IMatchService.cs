@@ -11,5 +11,7 @@ namespace Data.Services
 
         IReadOnlyList<Result> GetResultsAll();
 
+        IReadOnlyList<Event> GetEventsByMatch(int matchId);
+
     }
 }

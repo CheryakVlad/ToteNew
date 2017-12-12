@@ -16,14 +16,30 @@ namespace Business.Providers
             this.matchClient = matchClient;
             this.matchService = matchService;
         }
+
+        public bool AddEvent(IReadOnlyList<Event> events)
+        {
+            return matchClient.AddEvent(events);
+        }
+
         public bool AddMatch(Match match)
         {
             return matchClient.AddMatch(match);
         }
 
+        public bool DeleteEvent(int matchId)
+        {
+            return matchClient.DeleteEvent(matchId);
+        }
+
         public bool DeleteMatch(int matchId)
         {
             return matchClient.DeleteMatch(matchId);
+        }
+
+        public IReadOnlyList<Event> GetEventByMatch(int matchId)
+        {
+            return matchService.GetEventsByMatch(matchId);
         }
 
         public Match GetMatchById(int matchId)
@@ -33,6 +49,7 @@ namespace Business.Providers
 
         public IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
+            //dateMatch = "123";
             return matchService.GetMatchBySportDateStatus(sportId, dateMatch, status);
         }
 
@@ -44,6 +61,11 @@ namespace Business.Providers
         public IReadOnlyList<Result> GetResultsAll()
         {
             return matchService.GetResultsAll();
+        }
+
+        public bool UpdateEvent(IReadOnlyList<Event> events)
+        {
+            return matchClient.UpdateEvent(events);
         }
 
         public bool UpdateMatch(Match match)

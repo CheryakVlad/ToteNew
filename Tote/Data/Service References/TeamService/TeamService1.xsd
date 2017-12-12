@@ -89,4 +89,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ResultDto" nillable="true" type="tns:ResultDto" />
+  <xs:complexType name="ArrayOfEventDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EventDto" nillable="true" type="tns:EventDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEventDto" nillable="true" type="tns:ArrayOfEventDto" />
+  <xs:complexType name="EventDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Coefficient" type="xs:double" />
+      <xs:element minOccurs="0" name="EventId" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventDto" nillable="true" type="tns:EventDto" />
 </xs:schema>

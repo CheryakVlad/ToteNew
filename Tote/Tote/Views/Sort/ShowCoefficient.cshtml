@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Common.Models.Event>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowCoefficient</title>
+    <script src="~/scripts/addBetToBasket.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm("ShowCoefficient", "Sort", FormMethod.Post))
+    {
+        <input type="hidden" name="matchId" value=@ViewBag.Match />
+        <input type="hidden" name="login" value=@HttpContext.Current.User.Identity.Name />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Event")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Coefficient)
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" name="eventId" value=@item.EventId />
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Coefficient)
+                    </td>
+                    <td>
+                        <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()"/>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    }
+</body>
+</html>

@@ -16,5 +16,11 @@ namespace Business.Providers
 
         IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status);
         IReadOnlyList<Result> GetResultsAll();
+
+        IReadOnlyList<Event> GetEventByMatch(int matchId);
+
+        bool AddEvent(IReadOnlyList<Event> events);
+        bool UpdateEvent(IReadOnlyList<Event> events);
+        bool DeleteEvent(int matchId);
     }
 }

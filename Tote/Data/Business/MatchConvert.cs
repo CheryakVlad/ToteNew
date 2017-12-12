@@ -7,6 +7,42 @@ namespace Data.Business
 {
     public class MatchConvert : IMatchConvert
     {
+        public IReadOnlyList<Event> ToEvent(IReadOnlyList<EventDto> eventsDto)
+        {
+            var eventsList = new List<Event>();
+            foreach (var eventDto in eventsDto)
+            {
+                var _event = new Event
+                {
+                    EventId=eventDto.EventId,
+                    MatchId=eventDto.MatchId,
+                    Coefficient=eventDto.Coefficient,
+                    Name=eventDto.Name
+                };
+
+                eventsList.Add(_event);
+            }
+            return eventsList;
+        }
+
+        public IReadOnlyList<EventDto> ToEventDto(IReadOnlyList<Event> events)
+        {
+            var eventsDto = new List<EventDto>();
+            foreach (var _event in events)
+            {
+                var eventDto = new EventDto
+                {
+                    EventId = _event.EventId,
+                    MatchId = _event.MatchId,
+                    Coefficient = _event.Coefficient,
+                    Name = _event.Name
+                };
+
+                eventsDto.Add(eventDto);
+            }
+            return eventsDto;
+        }
+
         public Match ToMatch(MatchDto matchDto)
         {
             var teams = new List<Team>();

@@ -13,6 +13,7 @@
       <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Money" type="xs:decimal" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RoleId" type="xs:int" />
       <xs:element minOccurs="0" name="UserId" type="xs:int" />

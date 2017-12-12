@@ -194,6 +194,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="scripts\addBetToBasket.js" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -220,6 +221,7 @@
     <Content Include="scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\main.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Navigation\ChildTournament.cshtml" />
     <Content Include="Views\Navigation\List.cshtml" />
@@ -231,6 +233,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Attribute\AdminAttribute.cs" />
     <Compile Include="Attribute\EditorAttribute.cs" />
+    <Compile Include="Attribute\JsonAttribute.cs" />
     <Compile Include="Attribute\UserAttribute.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
@@ -295,6 +298,13 @@
     <Content Include="Views\_LayoutView.cshtml" />
     <Content Include="Views\Match\MatchesByTournament.cshtml" />
     <Content Include="Views\Match\TournamentesBySport.cshtml" />
+    <Content Include="Views\Match\ShowCoefficient.cshtml" />
+    <Content Include="Views\Match\AddEvents.cshtml" />
+    <Content Include="Views\Match\EditEvent.cshtml" />
+    <Content Include="Views\Match\DeleteEvent.cshtml" />
+    <Content Include="Views\Sort\Sorting.cshtml" />
+    <Content Include="Views\Sort\ShowCoefficient.cshtml" />
+    <Content Include="Views\Sort\ShowBasket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,6 +12,7 @@ namespace Common.Models
         public decimal Money { get; set; }
         public IList<Role> Roles { get; set; }
         public int RoleId { get; set; } 
+        public string PhoneNumber { get; set; }
 
     }
 }

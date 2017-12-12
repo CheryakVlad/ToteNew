@@ -85,6 +85,18 @@ namespace Service.Contracts.Common
         public object CreateListDto(SqlDataReader reader)
         {
             Type t = typeof(T);
+            if (t == typeof(BasketDto))
+            {
+                var BasketDto = new BasketDto()
+                {
+                    BasketId=(int)reader[0],
+                    UserId=(int)reader[1],
+                    MatchId=(int)reader[2],
+                    EventId=(int)reader[3]
+                };
+                return BasketDto;
+            }
+
             if (t == typeof(TeamDto))
             {
                 var TeamDto = new TeamDto()
@@ -166,7 +178,8 @@ namespace Service.Contracts.Common
                     Email = reader[3].ToString(),
                     Money = reader.GetDecimal(5),
                     FIO = reader[6].ToString(),
-                    Role= reader[7].ToString()
+                    PhoneNumber = reader[7].ToString(),
+                    Role = reader[8].ToString()                    
                 };
                 return UserDto;
             }

@@ -8,10 +8,10 @@ namespace Common.Models
         public string Name { get; set; }
         public IList<Team> Teams { get; set; }
 
-        public Country()
+        /*public Country()
         {
             Teams = new List<Team>();
-        }
+        }*/
 
     }
 }

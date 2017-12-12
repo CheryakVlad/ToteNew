@@ -59,5 +59,16 @@ namespace Data.Services
             }
             return new List<Result>();
         }
+
+        public IReadOnlyList<Event> GetEventsByMatch(int matchId)
+        {
+            var dto = matchClient.GetEventByMatch(matchId);
+
+            if (dto != null)
+            {
+                return convert.ToEvent(dto);
+            }
+            return new List<Event>();
+        }
     }
 }

@@ -17,5 +17,14 @@ namespace Data.Clients
 
         IReadOnlyList<TeamService.SortDto> GetMatchBySportDateStatus(int sportId, string dateMatch, int status);
         IReadOnlyList<TeamService.ResultDto> GetResultsAll();
+
+        bool UpdateEvent(IReadOnlyList<Event> events);
+
+        bool AddEvent(IReadOnlyList<Event> events);
+
+        bool DeleteEvent(int matchId);
+
+        IReadOnlyList<TeamService.EventDto> GetEventByMatch(int matchId);
+
     }
 }

@@ -27,5 +27,9 @@ namespace Business.Providers
         bool AddSport(Sport sport);
 
         bool DeleteSport(int sportId);
+
+        bool AddBasket(Basket basket);
+        bool DeleteBasket(int basketId);
+        IReadOnlyList<Basket> GetBasketByUser(string login);
     }
 }

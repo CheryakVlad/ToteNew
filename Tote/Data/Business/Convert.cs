@@ -9,7 +9,7 @@ namespace Data.Business
 {
     public class Convert : IConvert
     {
-        public IReadOnlyList<Event> GetEvents(IReadOnlyList<EventDto> eventsDto)
+        public IReadOnlyList<Event> GetEvents(IReadOnlyList<ToteService.EventDto> eventsDto)
         {
             var eventsList = new List<Event>();
             foreach (var eventDto in eventsDto)
@@ -25,6 +25,40 @@ namespace Data.Business
                 eventsList.Add(_event);
             }
             return eventsList;
+        }
+
+        public IReadOnlyList<Basket> ToBasket(IReadOnlyList<BasketDto> basketsDto)
+        {
+            var baskets = new List<Basket>();
+            foreach (var basketDto in basketsDto)
+            {
+                var basket = new Basket
+                {
+                    BasketId = basketDto.BasketId,
+                    UserId=basketDto.UserId,
+                    MatchId=basketDto.MatchId,
+                    EventId=basketDto.EventId
+
+                };
+
+                baskets.Add(basket);
+            }
+
+            return baskets;
+        }
+
+        public BasketDto ToBasketDto(Basket basket)
+        {
+            var basketDto = new BasketDto
+            {
+                BasketId = basket.BasketId,
+                UserId = basket.UserId,
+                Login=basket.Login,
+                MatchId = basket.MatchId,
+                EventId = basket.EventId
+            };
+
+            return basketDto;
         }
 
         public IReadOnlyList<Bet> ToBetsList(IReadOnlyList<BetListDto> betsListDto)
@@ -67,7 +101,7 @@ namespace Data.Business
             return countriesList;
         }
 
-        public IReadOnlyList<Event> ToEvents(IReadOnlyList<EventDto> eventsDto)
+        public IReadOnlyList<Event> ToEvents(IReadOnlyList<ToteService.EventDto> eventsDto)
         {
             var eventsList = new List<Event>();
             foreach (var eventDto in eventsDto)
@@ -105,7 +139,7 @@ namespace Data.Business
             return matchesList;
         }
 
-        public IReadOnlyList<Match> ToMatchList(IReadOnlyList<BetListDto> betsListDto, IReadOnlyList<EventDto> eventsDto)
+        public IReadOnlyList<Match> ToMatchList(IReadOnlyList<BetListDto> betsListDto, IReadOnlyList<ToteService.EventDto> eventsDto)
         {
             var matchesList = new List<Match>();
             foreach (var betListDto in betsListDto)
@@ -352,7 +386,8 @@ namespace Data.Business
                 Email = user.Email,
                 FIO = user.FIO,
                 Money = user.Money,
-                RoleId = user.RoleId
+                RoleId = user.RoleId,
+                PhoneNumber=user.PhoneNumber
             };            
              
             return userDto;
@@ -378,7 +413,8 @@ namespace Data.Business
                     Email=userDto.Email,
                     FIO=userDto.FIO,
                     Money = userDto.Money,
-                    Roles = roles
+                    Roles = roles,
+                    PhoneNumber=userDto.PhoneNumber
                 };
 
                 usersList.Add(user);

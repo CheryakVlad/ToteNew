@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Result.cs" />

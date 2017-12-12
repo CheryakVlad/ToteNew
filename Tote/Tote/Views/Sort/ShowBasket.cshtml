@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Common.Models.Basket>
+
+@{
+    ViewBag.Title = "ShowBasket";
+    Layout = "~/Views/LayoutView.cshtml";
+}
+
+<h2>Show Basket</h2>
+
+@using (Html.BeginForm())
+{
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <input type="hidden" name="login" value=@HttpContext.Current.User.Identity.Name />
+    }
+    <table class="table">
+        <tr>   
+            <th>
+                @Html.DisplayNameFor(model => model.MatchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventId)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatchId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BasketId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BasketId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BasketId })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
