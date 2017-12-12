@@ -15,8 +15,7 @@
 <body>
     @using (Html.BeginForm("ShowCoefficient", "Sort", FormMethod.Post))
     {
-        <input type="hidden" name="matchId" value=@ViewBag.Match />
-        <input type="hidden" name="login" value=@HttpContext.Current.User.Identity.Name />
+        <input type="hidden" name="matchId" value=@ViewBag.Match />        
         <table class="table">
             <tr>
                 <th>

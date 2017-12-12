@@ -1,4 +1,6 @@
-﻿namespace Common.Models
+﻿using System.Collections.Generic;
+
+namespace Common.Models
 {
     public class Basket
     {
@@ -7,5 +9,7 @@
         public string Login { get; set; }
         public int MatchId { get; set; }
         public int EventId { get; set; }
+        public static double SumCoefficient{ get; set; }
+        public Match Match { get; set; }
     }
 }

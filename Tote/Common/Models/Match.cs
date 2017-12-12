@@ -23,11 +23,12 @@ namespace Common.Models
         public IList<Bet> Bets { get; set; }
 
         public IList<Team> Teams { get; set; }
+        public static double SumCoefficient { get; set; }
 
         /*public Match()
         {
             Bets = new List<Bet>();
         }*/
-        
+
     }
 }

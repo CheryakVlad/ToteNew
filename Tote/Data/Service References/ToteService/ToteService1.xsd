@@ -153,7 +153,7 @@
   <xs:element name="GetBasketByUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -161,6 +161,21 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetBasketByUserResult" nillable="true" type="q10:ArrayOfBasketDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBasketById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="basketId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBasketByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetBasketByIdResult" nillable="true" type="q11:BasketDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -174,7 +189,7 @@
   <xs:element name="GetTournamentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentResult" nillable="true" type="q11:ArrayOfTournamentDto" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentResult" nillable="true" type="q12:ArrayOfTournamentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -186,7 +201,7 @@
   <xs:element name="GetTournamentesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesResult" nillable="true" type="q12:ArrayOfTournamentDto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesResult" nillable="true" type="q13:ArrayOfTournamentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -200,14 +215,14 @@
   <xs:element name="GetTournamentByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentByIdResult" nillable="true" type="q13:TournamentDto" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentByIdResult" nillable="true" type="q14:TournamentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateTournament">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="tournamentDto" nillable="true" type="q14:TournamentDto" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="tournamentDto" nillable="true" type="q15:TournamentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -221,7 +236,7 @@
   <xs:element name="AddTournament">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="tournamentDto" nillable="true" type="q15:TournamentDto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="tournamentDto" nillable="true" type="q16:TournamentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -256,7 +271,7 @@
   <xs:element name="GetTournamentesBySportResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesBySportResult" nillable="true" type="q16:ArrayOfTournamentDto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesBySportResult" nillable="true" type="q17:ArrayOfTournamentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

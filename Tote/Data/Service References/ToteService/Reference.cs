@@ -686,10 +686,17 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketByUser", ReplyAction="http://tempuri.org/IBetListService/GetBasketByUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBasketByUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.ToteService.BasketDto[] GetBasketByUser(string login);
+        Data.ToteService.BasketDto[] GetBasketByUser(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketByUser", ReplyAction="http://tempuri.org/IBetListService/GetBasketByUserResponse")]
-        System.Threading.Tasks.Task<Data.ToteService.BasketDto[]> GetBasketByUserAsync(string login);
+        System.Threading.Tasks.Task<Data.ToteService.BasketDto[]> GetBasketByUserAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketById", ReplyAction="http://tempuri.org/IBetListService/GetBasketByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBasketByIdCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.BasketDto GetBasketById(int basketId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketById", ReplyAction="http://tempuri.org/IBetListService/GetBasketByIdResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.BasketDto> GetBasketByIdAsync(int basketId, int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -807,12 +814,20 @@ namespace Data.ToteService {
             return base.Channel.DeleteBasketAsync(basketId);
         }
         
-        public Data.ToteService.BasketDto[] GetBasketByUser(string login) {
-            return base.Channel.GetBasketByUser(login);
+        public Data.ToteService.BasketDto[] GetBasketByUser(int userId) {
+            return base.Channel.GetBasketByUser(userId);
         }
         
-        public System.Threading.Tasks.Task<Data.ToteService.BasketDto[]> GetBasketByUserAsync(string login) {
-            return base.Channel.GetBasketByUserAsync(login);
+        public System.Threading.Tasks.Task<Data.ToteService.BasketDto[]> GetBasketByUserAsync(int userId) {
+            return base.Channel.GetBasketByUserAsync(userId);
+        }
+        
+        public Data.ToteService.BasketDto GetBasketById(int basketId, int userId) {
+            return base.Channel.GetBasketById(basketId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.BasketDto> GetBasketByIdAsync(int basketId, int userId) {
+            return base.Channel.GetBasketByIdAsync(basketId, userId);
         }
     }
     

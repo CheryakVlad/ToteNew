@@ -86,9 +86,19 @@ namespace Business.Providers
             return betListClient.DeleteBasket(basketId);
         }
 
-        public IReadOnlyList<Basket> GetBasketByUser(string login)
+        public IReadOnlyList<Basket> GetBasketByUser(int userId)
         {
-            return dataService.GetBasketByUser(login);
+            return dataService.GetBasketByUser(userId);
+        }
+
+        public IReadOnlyList<Match> GetMatchesByBasket(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Basket GetBasketById(int basketId, int userId)
+        {
+            return dataService.GetBasketById(basketId, userId);
         }
     }
 }

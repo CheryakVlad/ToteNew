@@ -48,6 +48,10 @@ namespace Service.Contracts.Contracts
         bool DeleteBasket(int basketId);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        BasketDto[] GetBasketByUser(string login);
+        BasketDto[] GetBasketByUser(int userId);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        BasketDto GetBasketById(int basketId, int userId);
+
     }
 }

@@ -358,7 +358,7 @@ namespace Service.Contracts.Contracts
         public bool AddBasket(BasketDto basketDto)
         {
             var parameters = new List<Parameter>();
-            parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = basketDto.Login });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@UserId", Value = basketDto.UserId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = basketDto.MatchId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@EventId", Value = basketDto.EventId });
             var connection = new Connection<BasketDto>();
@@ -392,17 +392,15 @@ namespace Service.Contracts.Contracts
                 exception.Title = "DeleteBasket";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
-
             }
         }
 
-        public BasketDto[] GetBasketByUser(string login)
+        public BasketDto[] GetBasketByUser(int userId)
         {
             var parameters = new List<Parameter>();
-            parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = login });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
 
             var connection = new Connection<BasketDto>();
-
             try
             {
                 return connection.GetConnection(CommandType.StoredProcedure, "GetBasketByUser", parameters);
@@ -413,7 +411,26 @@ namespace Service.Contracts.Contracts
                 exception.Title = "GetBasketByUser";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
 
+        public BasketDto GetBasketById(int basketId, int userId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@BasketId", Value = basketId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
+
+            var connection = new Connection<BasketDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetBasketById", parameters)[0];
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetBasketById";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
     }

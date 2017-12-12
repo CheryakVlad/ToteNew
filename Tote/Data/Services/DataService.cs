@@ -12,13 +12,15 @@ namespace Data.Services
         private readonly ITournamentClient tournamentClient;
         private readonly ITeamClient teamClient;
         private readonly IConvert convert;
+        private readonly IMatchService matchService;
 
-        public DataService(IBetListClient client, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient)
+        public DataService(IBetListClient client, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient, IMatchService matchService)
         {
             this.betListClient = client;
             this.convert = convert;
             this.tournamentClient = tournamentClient;
             this.teamClient = teamClient;
+            this.matchService = matchService;
         }
 
         public IReadOnlyList<Match> GetBets(int? sportId, int? tournamentId)
@@ -186,15 +188,63 @@ namespace Data.Services
             return new List<Team>();
         }
 
-        public IReadOnlyList<Basket> GetBasketByUser(string login)
-        {
-            var dto = betListClient.GetBasketByUser(login);
-
-            if (dto != null)
+        public IReadOnlyList<Basket> GetBasketByUser(int userId)
+        {            
+            var basketsDto = betListClient.GetBasketByUser(userId);
+            var baskets = convert.ToBasket(basketsDto);
+            var basketsMatch = new List<Basket>();
+            foreach(var basket in baskets)
             {
-                return convert.ToBasket(dto);
+                var match = matchService.GetMatchById(basket.MatchId);
+                var _events = matchService.GetEventsByMatch(basket.MatchId);
+                
+                foreach(var _event in _events )
+                {
+                    if(_event.EventId== basket.EventId)
+                    {
+                        match.Events = new List<Event>();
+                        match.Events.Add(_event);                        
+                    }
+                }
+                basket.Match=match;
+                basketsMatch.Add(basket);
+                
             }
+            if(basketsMatch != null)
+            {
+                return basketsMatch;
+            }
+
             return new List<Basket>();
+        }
+
+        public Basket GetBasketById(int basketId, int userId)
+        {
+            var basketDto = betListClient.GetBasketById(basketId, userId);
+            var basket = convert.ToBasket(basketDto);
+            var basketMatch = new Basket();
+
+            var match = matchService.GetMatchById(basket.MatchId);
+            var _events = matchService.GetEventsByMatch(basket.MatchId);
+
+            foreach (var _event in _events)
+            {
+                if (_event.EventId == basket.EventId)
+                {
+                    match.Events = new List<Event>();
+                    match.Events.Add(_event);
+                }
+            }
+            basket.Match = match;
+            basketMatch = basket;
+
+
+            if (basketMatch != null)
+            {
+                return basketMatch;
+            }
+
+            return new Basket();
         }
     }
 }

@@ -1,0 +1,29 @@
+
+
+CREATE TABLE [dbo].[RoleUser](
+	[RoleId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_RoleUser] PRIMARY KEY CLUSTERED 
+(
+	[RoleId] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[RoleUser]  WITH CHECK ADD  CONSTRAINT [FK_RoleUser_Role] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Role] ([RoleId])
+GO
+
+ALTER TABLE [dbo].[RoleUser] CHECK CONSTRAINT [FK_RoleUser_Role]
+GO
+
+ALTER TABLE [dbo].[RoleUser]  WITH CHECK ADD  CONSTRAINT [FK_RoleUser_User_] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User_] ([UserId])
+GO
+
+ALTER TABLE [dbo].[RoleUser] CHECK CONSTRAINT [FK_RoleUser_User_]
+GO
+
+

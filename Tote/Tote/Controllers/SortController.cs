@@ -1,4 +1,5 @@
-﻿using Business.Providers;
+﻿using Business.Principal;
+using Business.Providers;
 using Common.Models;
 using System;
 using System.Collections.Generic;
@@ -175,13 +176,14 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
-        public ActionResult ShowCoefficient(int matchId, int eventId, string login)
+        public ActionResult ShowCoefficient(int matchId, int eventId)
         {
+            int userId=(HttpContext.User as UserPrincipal).UserId;
             Basket basket = new Basket()
             {
                 MatchId = matchId,
                 EventId = eventId,
-                Login=login
+                UserId=userId
             };
             betListProvider.AddBasket(basket);
             return RedirectToAction("Sorting");
@@ -190,8 +192,25 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult ShowBasket()
         {
+            int userId = (HttpContext.User as UserPrincipal).UserId;
+            IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId);
+            return View(baskets);
+        }
 
-            return View();
+        [HttpGet]
+        public ActionResult DeleteBasket(int basketId)
+        {
+            int userId = (HttpContext.User as UserPrincipal).UserId;
+            Basket basket = betListProvider.GetBasketById(basketId, userId);
+            return View(basket);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteBasket")]
+        public ActionResult Delete(int basketId)
+        {
+            bool delete = betListProvider.DeleteBasket(basketId);
+            return RedirectToAction("ShowBasket");
         }
     }
 }

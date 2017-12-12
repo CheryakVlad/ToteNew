@@ -27,20 +27,25 @@ namespace Data.Business
             return eventsList;
         }
 
+        public Basket ToBasket(BasketDto basketDto)
+        {
+            var basket = new Basket
+            {
+                BasketId = basketDto.BasketId,
+                UserId = basketDto.UserId,
+                MatchId = basketDto.MatchId,
+                EventId = basketDto.EventId
+            };
+
+            return basket;
+        }
+
         public IReadOnlyList<Basket> ToBasket(IReadOnlyList<BasketDto> basketsDto)
         {
             var baskets = new List<Basket>();
             foreach (var basketDto in basketsDto)
             {
-                var basket = new Basket
-                {
-                    BasketId = basketDto.BasketId,
-                    UserId=basketDto.UserId,
-                    MatchId=basketDto.MatchId,
-                    EventId=basketDto.EventId
-
-                };
-
+                var basket = ToBasket(basketDto);
                 baskets.Add(basket);
             }
 

@@ -127,7 +127,32 @@ namespace Data.Clients
             return model;
         }
 
-        public IReadOnlyList<BasketDto> GetBasketByUser(string login)
+        public BasketDto GetBasketById(int basketId, int userId)
+        {
+            var model = new BasketDto();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.GetBasketById(basketId, userId);
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+            }
+            return model;
+        }
+
+        public IReadOnlyList<BasketDto> GetBasketByUser(int userId)
         {
             var model = new List<BasketDto>();
             using (var client = new ToteService.BetListServiceClient())
@@ -135,7 +160,7 @@ namespace Data.Clients
                 try
                 {
                     client.Open();
-                    var baskets = client.GetBasketByUser(login);
+                    var baskets = client.GetBasketByUser(userId);
                     foreach (var basket in baskets)
                     {
                         model.Add(basket);
@@ -292,24 +317,23 @@ namespace Data.Clients
             return model;
         }
 
-       /* public IReadOnlyList<BetListDto> GetMatch(int id)
+        /*public IReadOnlyList<Match> GetMatchesByBasket(string login)
         {
-            var model = new List<BetListDto>();
+            var model = new List<BasketDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
                 try
                 {
                     client.Open();
-
-                    var events = client.GetEventsAll();
-                    foreach (var _event in events)
+                    var baskets = client.GetBasketByUser(login);
+                    foreach (var basket in baskets)
                     {
-                        model.Add(_event);
+                        model.Add(basket);
                     }
 
                     client.Close();
-                }
 
+                }
                 catch (FaultException<CustomException> customEx)
                 {
                     log.Error(customEx.Message);
@@ -320,10 +344,43 @@ namespace Data.Clients
                     log.Error(commEx.Message);
                     return null;
                 }
-
             }
+
             return model;
         }*/
+
+        /* public IReadOnlyList<BetListDto> GetMatch(int id)
+         {
+             var model = new List<BetListDto>();
+             using (var client = new ToteService.BetListServiceClient())
+             {
+                 try
+                 {
+                     client.Open();
+
+                     var events = client.GetEventsAll();
+                     foreach (var _event in events)
+                     {
+                         model.Add(_event);
+                     }
+
+                     client.Close();
+                 }
+
+                 catch (FaultException<CustomException> customEx)
+                 {
+                     log.Error(customEx.Message);
+                     return null;
+                 }
+                 catch (CommunicationException commEx)
+                 {
+                     log.Error(commEx.Message);
+                     return null;
+                 }
+
+             }
+             return model;
+         }*/
 
         public SportDto GetSport(int? id)
         {

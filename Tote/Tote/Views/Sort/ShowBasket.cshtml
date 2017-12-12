@@ -8,40 +8,45 @@
 <h2>Show Basket</h2>
 
 @using (Html.BeginForm())
-{
-    @if (HttpContext.Current.User.Identity.IsAuthenticated)
-    {
-        <input type="hidden" name="login" value=@HttpContext.Current.User.Identity.Name />
-    }
+{    
     <table class="table">
         <tr>   
             <th>
-                @Html.DisplayNameFor(model => model.MatchId)
+                @Html.DisplayName("Match")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EventId)
+                @Html.DisplayName("Date")
+            </th>
+            <th>
+                @Html.DisplayName("Event")
+            </th>
+            <th>
+                @Html.DisplayName("Coefficient")
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                
+            <tr>                
                 <td>
-                    @Html.DisplayFor(modelItem => item.MatchId)
+                    @Html.DisplayFor(modelItem => item.Match.Teams[0].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[0].Country.Name)) vs 
+                    @Html.DisplayFor(modelItem => item.Match.Teams[1].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[1].Country.Name))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EventId)
+                    @Html.DisplayFor(modelItem => item.Match.Date)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.BasketId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.BasketId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.BasketId })
+                    @Html.DisplayFor(modelItem => item.Match.Events[0].Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Match.Events[0].Coefficient)
+                </td>
+                <td>                    
+                    @Html.ActionLink("Delete", "DeleteBasket", new { basketId = item.BasketId })
                 </td>
             </tr>
         }
-
     </table>
 
 }

@@ -1,0 +1,29 @@
+
+CREATE TABLE [dbo].[Bet](
+	[BetId] [int] IDENTITY(1,1) NOT NULL,
+	[MatchId] [int] NOT NULL,
+	[Status] [bit] NULL,
+	[EventId] [int] NULL,
+ CONSTRAINT [PK_Bet] PRIMARY KEY CLUSTERED 
+(
+	[BetId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Bet]  WITH CHECK ADD  CONSTRAINT [FK_Bet_Event] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Event] ([EventId])
+GO
+
+ALTER TABLE [dbo].[Bet] CHECK CONSTRAINT [FK_Bet_Event]
+GO
+
+ALTER TABLE [dbo].[Bet]  WITH CHECK ADD  CONSTRAINT [FK_Bet_Match] FOREIGN KEY([MatchId])
+REFERENCES [dbo].[Match] ([MatchId])
+GO
+
+ALTER TABLE [dbo].[Bet] CHECK CONSTRAINT [FK_Bet_Match]
+GO
+
+

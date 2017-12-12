@@ -1,0 +1,9 @@
+
+CREATE PROCEDURE [dbo].[GetSportsAll]
+AS
+SELECT *
+FROM Sport 
+RETURN
+
+
+
