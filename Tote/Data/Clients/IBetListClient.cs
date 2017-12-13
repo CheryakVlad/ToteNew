@@ -25,5 +25,8 @@ namespace Data.Clients
         bool DeleteBasket(int basketId);
 
         ToteService.BasketDto GetBasketById(int basketId, int userId);
+
+        bool AddBet(Bet bet, int basketId);
+        int AddRate(Rate rate);
     }
 }

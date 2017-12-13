@@ -35,5 +35,15 @@ namespace Data.Business
         IReadOnlyList<Basket> ToBasket(IReadOnlyList<ToteService.BasketDto> basketsDto);
         ToteService.BasketDto ToBasketDto(Basket basket);
 
+        Rate ToRate(ToteService.RateDto rateDto);
+        IReadOnlyList<Rate> ToRate(IReadOnlyList<ToteService.RateDto> ratesDto);
+
+        Bet ToBet(ToteService.BetDto betDto);
+        IReadOnlyList<Bet> ToBet(IReadOnlyList<ToteService.BetDto> betsDto);
+
+        ToteService.BetDto ToBetDto(Bet bet);
+
+        ToteService.RateDto ToRateDto(Rate rate);
+
     }
 }

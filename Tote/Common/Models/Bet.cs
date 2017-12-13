@@ -11,6 +11,9 @@ namespace Common.Models
         public int MatchId { get; set; }
         public Match Match { get; set; }
         public IList<Team> Teams{ get; set; }
+        public Event Event { get; set; }
+        public int RateId { get; set; }
+        public bool Status { get; set; }
 
         public Bet()
         {

@@ -13,13 +13,13 @@ namespace Service.Contracts.Dto
         [DataMember]
         public int BetId { get; set; }
         [DataMember]
-        public double WinCommandHome { get; set; }
-        [DataMember]
-        public double WinCommandGuest { get; set; }
-        [DataMember]
-        public double Draw { get; set; }
-        [DataMember]
         public int MatchId { get; set; }
+        [DataMember]
+        public bool Status { get; set; }
+        [DataMember]
+        public int EventId { get; set; }
+        [DataMember]
+        public int RateId { get; set; }
     }
         
 }

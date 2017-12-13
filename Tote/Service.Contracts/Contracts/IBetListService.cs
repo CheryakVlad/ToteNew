@@ -52,6 +52,13 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         BasketDto GetBasketById(int basketId, int userId);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        int GetRateIdAfterAdd(RateDto rateDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddBet(BetDto betDto, int basketId);
+        
 
     }
 }

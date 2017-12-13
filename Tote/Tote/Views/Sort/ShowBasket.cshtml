@@ -7,8 +7,7 @@
 
 <h2>Show Basket</h2>
 
-@using (Html.BeginForm())
-{    
+  
     <table class="table">
         <tr>   
             <th>
@@ -47,6 +46,23 @@
                 </td>
             </tr>
         }
+        <tr>
+            <td>@Html.DisplayName("Total")</td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+               @ViewBag.Total
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                @Html.ActionLink("Make the Rate", "MakeRate")            
+            </td>
+            
+        </tr>
     </table>
 
-}
+    

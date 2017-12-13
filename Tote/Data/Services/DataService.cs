@@ -188,8 +188,9 @@ namespace Data.Services
             return new List<Team>();
         }
 
-        public IReadOnlyList<Basket> GetBasketByUser(int userId)
-        {            
+        public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
+        {
+            total = 1;
             var basketsDto = betListClient.GetBasketByUser(userId);
             var baskets = convert.ToBasket(basketsDto);
             var basketsMatch = new List<Basket>();
@@ -203,7 +204,8 @@ namespace Data.Services
                     if(_event.EventId== basket.EventId)
                     {
                         match.Events = new List<Event>();
-                        match.Events.Add(_event);                        
+                        match.Events.Add(_event);
+                        total *= _event.Coefficient;                 
                     }
                 }
                 basket.Match=match;

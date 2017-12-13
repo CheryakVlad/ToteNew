@@ -30,9 +30,12 @@ namespace Business.Providers
 
         bool AddBasket(Basket basket);
         bool DeleteBasket(int basketId);
-        IReadOnlyList<Basket> GetBasketByUser(int userId);
+        IReadOnlyList<Basket> GetBasketByUser(int userId, out double total);
 
         IReadOnlyList<Match> GetMatchesByBasket(int userId);
         Basket GetBasketById(int basketId, int userId);
+
+        bool AddBet(Bet bet, int basketId);
+        int AddRate(Rate rate);
     }
 }

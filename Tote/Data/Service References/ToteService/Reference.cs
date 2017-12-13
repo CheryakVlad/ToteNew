@@ -512,6 +512,208 @@ namespace Data.ToteService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RateDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class RateDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateRate {
+            get {
+                return this.DateRateField;
+            }
+            set {
+                if ((this.DateRateField.Equals(value) != true)) {
+                    this.DateRateField = value;
+                    this.RaisePropertyChanged("DateRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RateId {
+            get {
+                return this.RateIdField;
+            }
+            set {
+                if ((this.RateIdField.Equals(value) != true)) {
+                    this.RateIdField = value;
+                    this.RaisePropertyChanged("RateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BetDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
+    [System.SerializableAttribute()]
+    public partial class BetDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BetIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EventIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MatchIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool StatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BetId {
+            get {
+                return this.BetIdField;
+            }
+            set {
+                if ((this.BetIdField.Equals(value) != true)) {
+                    this.BetIdField = value;
+                    this.RaisePropertyChanged("BetId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventId {
+            get {
+                return this.EventIdField;
+            }
+            set {
+                if ((this.EventIdField.Equals(value) != true)) {
+                    this.EventIdField = value;
+                    this.RaisePropertyChanged("EventId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MatchId {
+            get {
+                return this.MatchIdField;
+            }
+            set {
+                if ((this.MatchIdField.Equals(value) != true)) {
+                    this.MatchIdField = value;
+                    this.RaisePropertyChanged("MatchId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RateId {
+            get {
+                return this.RateIdField;
+            }
+            set {
+                if ((this.RateIdField.Equals(value) != true)) {
+                    this.RateIdField = value;
+                    this.RaisePropertyChanged("RateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="TournamentDto", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto")]
     [System.SerializableAttribute()]
     public partial class TournamentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -697,6 +899,20 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBasketById", ReplyAction="http://tempuri.org/IBetListService/GetBasketByIdResponse")]
         System.Threading.Tasks.Task<Data.ToteService.BasketDto> GetBasketByIdAsync(int basketId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetRateIdAfterAdd", ReplyAction="http://tempuri.org/IBetListService/GetRateIdAfterAddResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetRateIdAfterAddCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        int GetRateIdAfterAdd(Data.ToteService.RateDto rateDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetRateIdAfterAdd", ReplyAction="http://tempuri.org/IBetListService/GetRateIdAfterAddResponse")]
+        System.Threading.Tasks.Task<int> GetRateIdAfterAddAsync(Data.ToteService.RateDto rateDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddBet", ReplyAction="http://tempuri.org/IBetListService/AddBetResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/AddBetCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddBet(Data.ToteService.BetDto betDto, int basketId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddBet", ReplyAction="http://tempuri.org/IBetListService/AddBetResponse")]
+        System.Threading.Tasks.Task<bool> AddBetAsync(Data.ToteService.BetDto betDto, int basketId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -828,6 +1044,22 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<Data.ToteService.BasketDto> GetBasketByIdAsync(int basketId, int userId) {
             return base.Channel.GetBasketByIdAsync(basketId, userId);
+        }
+        
+        public int GetRateIdAfterAdd(Data.ToteService.RateDto rateDto) {
+            return base.Channel.GetRateIdAfterAdd(rateDto);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetRateIdAfterAddAsync(Data.ToteService.RateDto rateDto) {
+            return base.Channel.GetRateIdAfterAddAsync(rateDto);
+        }
+        
+        public bool AddBet(Data.ToteService.BetDto betDto, int basketId) {
+            return base.Channel.AddBet(betDto, basketId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddBetAsync(Data.ToteService.BetDto betDto, int basketId) {
+            return base.Channel.AddBetAsync(betDto, basketId);
         }
     }
     

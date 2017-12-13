@@ -6,6 +6,7 @@ using Common.Models;
 using System.ServiceModel;
 using System.Data.SqlClient;
 using Business.Service;
+using Business.Principal;
 
 namespace Tote.Controllers
 {
@@ -29,6 +30,11 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            int userId = (HttpContext.User as UserPrincipal).UserId;
+            if(userId!=0)
+            {
+                return RedirectToAction("List","Navigation");
+            }
             /*User user = userProvider.ExistsUser("admin","admin");
             if (user == null)
             {

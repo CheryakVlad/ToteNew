@@ -13,9 +13,7 @@
     <script src="~/scripts/addBetToBasket.js"></script>
 </head>
 <body>
-    @using (Html.BeginForm("ShowCoefficient", "Sort", FormMethod.Post))
-    {
-        <input type="hidden" name="matchId" value=@ViewBag.Match />        
+           
         <table class="table">
             <tr>
                 <th>
@@ -32,22 +30,27 @@
 
             @foreach (var item in Model)
             {
+                using (Html.BeginForm())
+                {
                 <tr>
                     <td>
-                        <input type="hidden" name="eventId" value=@item.EventId />
+                        
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Coefficient)
                     </td>
-                    <td>
+                    <td>                       
+                        <input type="hidden" name="matchId" value=@ViewBag.Match />
+                        <input type="hidden" name="eventId" value=@item.EventId />
                         <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()"/>
                     </td>
                 </tr>
-            }
+                }
 
+            }
         </table>
 
-    }
+    
 </body>
 </html>

@@ -15,14 +15,16 @@ namespace Tote.Controllers
     public class SortController : Controller
     {
         private const string cacheKey = "cacheKey";
-        private IBetListProvider betListProvider;
+        private readonly IBetListProvider betListProvider;
         private readonly IMatchProvider matchProvider;
+        private readonly IUserProvider userProvider;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SortController));
 
-        public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider)
+        public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider)
         {
             this.betListProvider = rateListProvider;
             this.matchProvider = matchProvider;
+            this.userProvider = userProvider;
         }
         public ActionResult Sorting()
         {
@@ -192,8 +194,10 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult ShowBasket()
         {
+            double total = 1;
             int userId = (HttpContext.User as UserPrincipal).UserId;
-            IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId);
+            IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId,out total);
+            ViewBag.Total = total;
             return View(baskets);
         }
 
@@ -208,9 +212,48 @@ namespace Tote.Controllers
         [HttpPost]
         [ActionName("DeleteBasket")]
         public ActionResult Delete(int basketId)
-        {
+        {            
             bool delete = betListProvider.DeleteBasket(basketId);
+            if (!delete)
+            {
+                log.Error("Controller: Sort, Action: DeleteBasket Don't delete BasketItem");
+            }
             return RedirectToAction("ShowBasket");
         }
+
+        [HttpGet]
+        public ActionResult MakeRate()
+        {
+            int userId = (HttpContext.User as UserPrincipal).UserId;
+            User user = userProvider.GetUser(userId);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult MakeRate(decimal amount)
+        {
+            int userId = (HttpContext.User as UserPrincipal).UserId;
+            Rate rate = new Rate()
+            {
+                Amount=amount,
+                DateRate=DateTime.Now,
+                UserId=userId
+            };
+            int rateId = betListProvider.AddRate(rate);
+            double total = 1;
+            IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total);
+            foreach(Basket basket in baskets)
+            {
+                Bet bet = new Bet()
+                {
+                    RateId=rateId,
+                    MatchId=basket.MatchId,
+                    Event=new Event { EventId=basket.EventId}
+                };
+                betListProvider.AddBet(bet, basket.BasketId);
+            }
+            return View();
+        }
+
     }
 }

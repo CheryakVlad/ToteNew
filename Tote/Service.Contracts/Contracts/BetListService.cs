@@ -433,5 +433,48 @@ namespace Service.Contracts.Contracts
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
+
+        public int GetRateIdAfterAdd(RateDto rateDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.DateTime, Name = "@DateRate", Value = rateDto.DateRate });
+            parameters.Add(new Parameter { Type = DbType.Decimal, Name = "@RateAmount", Value = rateDto.Amount });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = rateDto.UserId });
+
+            var connection = new Connection<RateDto>();
+            try
+            {
+                return connection.GetConnectionAddRate(CommandType.StoredProcedure, "AddRate", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddRate";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public bool AddBet(BetDto betDto, int basketId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RateId", Value = betDto.RateId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = betDto.MatchId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@EventId", Value = betDto.EventId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@BasketId", Value = basketId });
+            var connection = new Connection<BasketDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddBet", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddBet";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
     }
 }

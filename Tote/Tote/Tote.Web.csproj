@@ -306,6 +306,7 @@
     <Content Include="Views\Sort\ShowCoefficient.cshtml" />
     <Content Include="Views\Sort\ShowBasket.cshtml" />
     <Content Include="Views\Sort\DeleteBasket.cshtml" />
+    <Content Include="Views\Sort\MakeRate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

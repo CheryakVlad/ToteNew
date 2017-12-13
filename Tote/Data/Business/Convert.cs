@@ -66,6 +66,30 @@ namespace Data.Business
             return basketDto;
         }
 
+        public IReadOnlyList<Bet> ToBet(IReadOnlyList<BetDto> betsDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bet ToBet(BetDto betDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BetDto ToBetDto(Bet bet)
+        {
+            var betDto = new BetDto
+            {
+                BetId=bet.BetId,
+                EventId=bet.Event.EventId,
+                MatchId=bet.MatchId,
+                RateId=bet.RateId,
+                Status=bet.Status
+            };
+
+            return betDto;
+        }
+
         public IReadOnlyList<Bet> ToBetsList(IReadOnlyList<BetListDto> betsListDto)
         {
             var betsList = new List<Bet>();
@@ -178,6 +202,43 @@ namespace Data.Business
                 matchesList.Add(match);
             }
             return matchesList;
+        }
+
+        public IReadOnlyList<Rate> ToRate(IReadOnlyList<RateDto> ratesDto)
+        {
+            var rates = new List<Rate>();
+            foreach (var rateDto in ratesDto)
+            {
+                rates.Add(ToRate(rateDto));
+            }
+
+            return rates;
+        }
+
+        public Rate ToRate(RateDto rateDto)
+        {
+            var Rate = new Rate
+            {
+                RateId=rateDto.RateId,
+                DateRate=rateDto.DateRate,
+                Amount=rateDto.Amount,
+                UserId=rateDto.UserId
+            };
+
+            return Rate;
+        }
+
+        public RateDto ToRateDto(Rate rate)
+        {
+            var rateDto = new RateDto
+            {
+                RateId=rate.RateId,
+                Amount=rate.Amount,
+                DateRate=rate.DateRate,
+                UserId=rate.UserId
+            };
+
+            return rateDto;
         }
 
         public IReadOnlyList<Role> ToRoles(IReadOnlyList<RoleDto> rolesDto)

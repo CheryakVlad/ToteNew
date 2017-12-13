@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Service.Contracts.Dto
 {
@@ -8,12 +9,10 @@ namespace Service.Contracts.Dto
         [DataMember]
         public int RateId { get; set; }
         [DataMember]
-        public double WinCommandHome { get; set; }
+        public DateTime DateRate { get; set; }
         [DataMember]
-        public double WinCommandGuest { get; set; }
+        public decimal Amount { get; set; }
         [DataMember]
-        public double Draw { get; set; }
-        [DataMember]
-        public int MatchId { get; set; }
+        public int UserId { get; set; }
     }
 }

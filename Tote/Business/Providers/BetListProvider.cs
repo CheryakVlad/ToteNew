@@ -86,9 +86,9 @@ namespace Business.Providers
             return betListClient.DeleteBasket(basketId);
         }
 
-        public IReadOnlyList<Basket> GetBasketByUser(int userId)
+        public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
         {
-            return dataService.GetBasketByUser(userId);
+            return dataService.GetBasketByUser(userId, out total);
         }
 
         public IReadOnlyList<Match> GetMatchesByBasket(int userId)
@@ -99,6 +99,16 @@ namespace Business.Providers
         public Basket GetBasketById(int basketId, int userId)
         {
             return dataService.GetBasketById(basketId, userId);
+        }
+
+        public bool AddBet(Bet bet, int basketId)
+        {
+            return betListClient.AddBet(bet, basketId);
+        }
+
+        public int AddRate(Rate rate)
+        {
+            return betListClient.AddRate(rate);
         }
     }
 }

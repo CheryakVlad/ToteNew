@@ -60,3 +60,4 @@ D:\22-11-2017\ToteNew.git\Tote\Tote.Web.Sort.Test\bin\Debug\StructureMap.Web.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote.Web.Sort.Test\bin\Debug\StructureMap.Web.xml
 D:\22-11-2017\ToteNew.git\Tote\Tote.Web.Sort.Test\obj\Debug\Tote.Web.Sort.Test.dll
 D:\22-11-2017\ToteNew.git\Tote\Tote.Web.Sort.Test\obj\Debug\Tote.Web.Sort.Test.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.Web.Sort.Test\bin\Debug\Newtonsoft.Json.xml

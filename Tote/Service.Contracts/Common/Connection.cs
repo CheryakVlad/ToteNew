@@ -60,6 +60,25 @@ namespace Service.Contracts.Common
             return false;
         }
 
+        public int GetConnectionAddRate(CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
+        {
+            var ListDto = new List<T>();
+            var rateId = 1;
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
+            {
+                using (var command = new SqlCommand())
+                {                    
+                    var reader = GetCommand(connection, command, type, commandText, parameters).ExecuteReader();                    
+                    while (reader.Read())
+                    {
+                        rateId = (int)reader[0];                        
+                    }
+                    connection.Close();
+                }
+            }
+            return rateId;
+        }
+
         public T [] GetConnection(CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
         {
             var ListDto = new List<T>();
@@ -110,6 +129,32 @@ namespace Service.Contracts.Common
                 };
                 return TeamDto;
             }
+
+            if (t == typeof(RateDto))
+            {
+                var RateDto = new RateDto()
+                {
+                    RateId=(int)reader[0],
+                    DateRate= reader.GetDateTime(1),
+                    Amount= reader.GetDecimal(2),
+                    UserId=(int) reader[3]
+                };
+                return RateDto;
+            }
+
+            if (t == typeof(BetDto))
+            {
+                var BetDto = new BetDto()
+                {
+                    BetId = (int)reader[0],
+                    MatchId = (int)reader[1],
+                    Status = reader.GetBoolean(2),
+                    EventId = (int)reader[3],
+                    RateId= (int)reader[4]
+                };
+                return BetDto;
+            }
+
             if (t== typeof(EventDto))
             {
                 var EventDto = new EventDto()

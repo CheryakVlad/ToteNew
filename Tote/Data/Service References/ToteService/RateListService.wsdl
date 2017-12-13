@@ -125,6 +125,24 @@
   <wsdl:message name="IBetListService_GetBasketById_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q13:CustomException" />
   </wsdl:message>
+  <wsdl:message name="IBetListService_GetRateIdAfterAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRateIdAfterAdd" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetRateIdAfterAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRateIdAfterAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_GetRateIdAfterAdd_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q14:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_AddBet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBet" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_AddBet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBetListService_AddBet_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q15:CustomException" />
+  </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournament_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTournament" />
   </wsdl:message>
@@ -132,7 +150,7 @@
     <wsdl:part name="parameters" element="tns:GetTournamentResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournament_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q14:CustomException" />
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q16:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournamentes_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTournamentes" />
@@ -141,7 +159,7 @@
     <wsdl:part name="parameters" element="tns:GetTournamentesResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournamentes_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q15:CustomException" />
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q17:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournamentById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTournamentById" />
@@ -150,7 +168,7 @@
     <wsdl:part name="parameters" element="tns:GetTournamentByIdResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournamentById_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q16:CustomException" />
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q18:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_UpdateTournament_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTournament" />
@@ -159,7 +177,7 @@
     <wsdl:part name="parameters" element="tns:UpdateTournamentResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_UpdateTournament_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q17:CustomException" />
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q19:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_AddTournament_InputMessage">
     <wsdl:part name="parameters" element="tns:AddTournament" />
@@ -168,7 +186,7 @@
     <wsdl:part name="parameters" element="tns:AddTournamentResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_AddTournament_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q18:CustomException" />
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q20:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_DeleteTournament_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteTournament" />
@@ -177,7 +195,7 @@
     <wsdl:part name="parameters" element="tns:DeleteTournamentResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_DeleteTournament_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q19:CustomException" />
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q21:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournamentesBySport_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTournamentesBySport" />
@@ -186,7 +204,7 @@
     <wsdl:part name="parameters" element="tns:GetTournamentesBySportResponse" />
   </wsdl:message>
   <wsdl:message name="ITournamentService_GetTournamentesBySport_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q20:CustomException" />
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q22:CustomException" />
   </wsdl:message>
   <wsdl:portType name="IBetListService">
     <wsdl:operation name="GetBets">
@@ -253,6 +271,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetBasketById" message="tns:IBetListService_GetBasketById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetBasketByIdResponse" message="tns:IBetListService_GetBasketById_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetBasketByIdCustomExceptionFault" name="CustomExceptionFault" message="tns:IBetListService_GetBasketById_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateIdAfterAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetRateIdAfterAdd" message="tns:IBetListService_GetRateIdAfterAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/GetRateIdAfterAddResponse" message="tns:IBetListService_GetRateIdAfterAdd_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/GetRateIdAfterAddCustomExceptionFault" name="CustomExceptionFault" message="tns:IBetListService_GetRateIdAfterAdd_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/AddBet" message="tns:IBetListService_AddBet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBetListService/AddBetResponse" message="tns:IBetListService_AddBet_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBetListService/AddBetCustomExceptionFault" name="CustomExceptionFault" message="tns:IBetListService_AddBet_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITournamentService">
@@ -440,6 +468,30 @@
     </wsdl:operation>
     <wsdl:operation name="GetBasketById">
       <soap:operation soapAction="http://tempuri.org/IBetListService/GetBasketById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateIdAfterAdd">
+      <soap:operation soapAction="http://tempuri.org/IBetListService/GetRateIdAfterAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddBet">
+      <soap:operation soapAction="http://tempuri.org/IBetListService/AddBet" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

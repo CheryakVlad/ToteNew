@@ -48,7 +48,7 @@
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Bet.cs" />
-    <Compile Include="Models\RateList.cs" />
+    <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\Sport.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\Tournament.cs" />

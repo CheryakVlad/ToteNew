@@ -23,3 +23,4 @@ D:\22-11-2017\ToteNew.git\Tote\Tote.App.Business.Test\bin\Debug\Common.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote.App.Business.Test\bin\Debug\StructureMap.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote.App.Business.Test\bin\Debug\StructureMap.xml
 D:\22-11-2017\ToteNew.git\Tote\Tote.App.Business.Test\bin\Debug\log4net.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Business.Test\bin\Debug\Newtonsoft.Json.xml

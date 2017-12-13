@@ -57,10 +57,10 @@ namespace Tote.Web.Sort.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            betListProvider = new Mock<IBetListProvider>();
+            /*betListProvider = new Mock<IBetListProvider>();
             matchProvider = new Mock<IMatchProvider>();
             controller = new SortController(betListProvider.Object, matchProvider.Object);
-            result = controller.Sort() as ViewResult;
+            result = controller.Sort() as ViewResult;*/
         }        
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace Tote.Web.Sort.Test
             betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
             matchProvider.Setup(match => match.GetMatchBySportDateStatus(0, "", 0)).Returns(GetMatches());
             //mock.Setup(repo => repo.GetAll()).Returns(GetTestPhones());
-            var controller = new SortController(betListProvider.Object, matchProvider.Object);
+            //var controller = new SortController(betListProvider.Object, matchProvider.Object);
 
             // Act
             var result = controller.Sort() as ViewResult;

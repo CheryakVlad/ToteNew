@@ -65,6 +65,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfBasketDto" nillable="true" type="tns:ArrayOfBasketDto" />
+  <xs:complexType name="RateDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DateRate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RateId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RateDto" nillable="true" type="tns:RateDto" />
+  <xs:complexType name="BetDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BetId" type="xs:int" />
+      <xs:element minOccurs="0" name="EventId" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchId" type="xs:int" />
+      <xs:element minOccurs="0" name="RateId" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BetDto" nillable="true" type="tns:BetDto" />
   <xs:complexType name="ArrayOfTournamentDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TournamentDto" nillable="true" type="tns:TournamentDto" />

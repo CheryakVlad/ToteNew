@@ -46,6 +46,62 @@ namespace Data.Clients
             return model;
         }
 
+        public bool AddBet(Bet bet, int basketId)
+        {
+            var betDto = new BetDto();
+            betDto = convert.ToBetDto(bet);
+            var model = new bool();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.AddBet(betDto, basketId);
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
+
+        public int AddRate(Rate rate)
+        {
+            var rateDto = new RateDto();
+            rateDto = convert.ToRateDto(rate);
+            var model = new int();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.GetRateIdAfterAdd(rateDto);
+                    client.Close();
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return 0;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return 0;
+                }
+
+            }
+            return model;
+        }
+
         public bool AddSport(Sport sport)
         {
             var sportDto = new SportDto();
@@ -76,7 +132,7 @@ namespace Data.Clients
 
         public bool DeleteBasket(int basketId)
         {
-            var model = new bool();
+            var model = new bool();            
             using (var client = new ToteService.BetListServiceClient())
             {
                 try
@@ -154,7 +210,7 @@ namespace Data.Clients
 
         public IReadOnlyList<BasketDto> GetBasketByUser(int userId)
         {
-            var model = new List<BasketDto>();
+            var model = new List<BasketDto>();            
             using (var client = new ToteService.BetListServiceClient())
             {
                 try
@@ -163,7 +219,7 @@ namespace Data.Clients
                     var baskets = client.GetBasketByUser(userId);
                     foreach (var basket in baskets)
                     {
-                        model.Add(basket);
+                        model.Add(basket);                        
                     }
 
                     client.Close();
