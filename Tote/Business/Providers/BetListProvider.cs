@@ -110,5 +110,15 @@ namespace Business.Providers
         {
             return betListClient.AddRate(rate);
         }
+
+        public IReadOnlyList<Rate> GetRateByUserId(int userId)
+        {
+            return dataService.GetRateByUserId(userId);
+        }
+
+        public IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total)
+        {
+            return dataService.GetBetByRateId(rateId, out total);
+        }
     }
 }

@@ -28,5 +28,9 @@ namespace Data.Clients
 
         bool AddBet(Bet bet, int basketId);
         int AddRate(Rate rate);
+
+        IReadOnlyList<ToteService.RateDto> GetRateByUserId(int userId);
+        IReadOnlyList<ToteService.BetDto> GetBetByRateId(int rateId);
+
     }
 }

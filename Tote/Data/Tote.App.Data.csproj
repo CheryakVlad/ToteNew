@@ -152,10 +152,16 @@
     <None Include="Service References\ToteService\Data.ToteService.BasketDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ToteService\Data.ToteService.BetDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ToteService\Data.ToteService.BetListDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ToteService\Data.ToteService.EventDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ToteService\Data.ToteService.RateDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ToteService\Data.ToteService.SportDto.datasource">

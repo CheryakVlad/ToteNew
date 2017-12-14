@@ -60,6 +60,39 @@
         </dd>
     </dl>
 </div>
+
+<table class="table">
+    <tr>
+        <th>
+            Date And Time
+        </th>
+        <th>
+            Amount
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in ViewBag.Rates)
+    {
+        <tr>
+            <td>
+                @item.DateRate
+            </td>
+            <td>
+                @item.Amount
+            </td>
+            <td>
+                @Html.RouteLink("Show Bets", new
+           {
+               controller= "Sort",
+               action= "ShowBetsByRate",
+               rateId= item.RateId
+           })
+
+            </td>
+        </tr>
+    }
+</table>
+<br />
 <p>
     @Html.ActionLink("Edit", "EditUserProfile", new { userId = Model.UserId }) |
     @Html.ActionLink("Back to List", "Index")

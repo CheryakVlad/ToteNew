@@ -68,12 +68,27 @@ namespace Data.Business
 
         public IReadOnlyList<Bet> ToBet(IReadOnlyList<BetDto> betsDto)
         {
-            throw new NotImplementedException();
+            var bets = new List<Bet>();
+            
+            foreach (var betDto in betsDto)
+            {
+                var bet = ToBet(betDto);
+                bets.Add(bet);
+            }
+
+            return bets;
         }
 
         public Bet ToBet(BetDto betDto)
         {
-            throw new NotImplementedException();
+            var bet = new Bet
+            {   BetId=betDto.BetId,
+                MatchId=betDto.MatchId,
+                RateId=betDto.RateId,
+                Event=new Event() { EventId=betDto.EventId}
+            };
+
+            return bet;
         }
 
         public BetDto ToBetDto(Bet bet)

@@ -9,13 +9,15 @@ namespace Tote.Controllers
 {
     public class UserController : Controller
     {
-        private IUserProvider userProvider;       
+        private readonly IBetListProvider betListProvider;
+        private readonly IUserProvider userProvider;
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserController));
 
-        public UserController(IUserProvider userProvider)
+        public UserController(IUserProvider userProvider, IBetListProvider betListProvider)
         {
             this.userProvider = userProvider;
+            this.betListProvider = betListProvider;
         }
 
         //[Admin]
@@ -105,8 +107,13 @@ namespace Tote.Controllers
 
         public ActionResult ShowUserProfile()
         {
-            int userId = (HttpContext.User as UserPrincipal).UserId;
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             User user = userProvider.GetUser(userId);
+            ViewBag.Rates = betListProvider.GetRateByUserId(userId);
             return View(user);
         }
         [HttpGet]
@@ -126,5 +133,7 @@ namespace Tote.Controllers
             }
             return RedirectToAction("ShowUserProfile");
         }
+        
+
     }
 }

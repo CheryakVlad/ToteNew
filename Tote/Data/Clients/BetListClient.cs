@@ -240,6 +240,39 @@ namespace Data.Clients
             return model;
         }
 
+        public IReadOnlyList<BetDto> GetBetByRateId(int rateId)
+        {
+            var model = new List<BetDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var rates = client.GetBetByRateId(rateId);
+                    foreach (var rate in rates)
+                    {
+                        model.Add(rate);
+                    }
+
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+
+            }
+            return model;
+        }
+
         public IReadOnlyList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
             var model = new List<BetListDto>();
@@ -353,6 +386,39 @@ namespace Data.Clients
                     foreach (var _event in events)
                     {
                         model.Add(_event);
+                    }
+
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+
+            }
+            return model;
+        }
+
+        public IReadOnlyList<RateDto> GetRateByUserId(int userId)
+        {
+            var model = new List<RateDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var rates = client.GetRateByUserId(userId);
+                    foreach (var rate in rates)
+                    {
+                        model.Add(rate);
                     }
 
                     client.Close();

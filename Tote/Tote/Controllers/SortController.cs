@@ -14,7 +14,7 @@ namespace Tote.Controllers
 {
     public class SortController : Controller
     {
-        private const string cacheKey = "cacheKey";
+        private const string cacheKey = "sortKey";
         private readonly IBetListProvider betListProvider;
         private readonly IMatchProvider matchProvider;
         private readonly IUserProvider userProvider;
@@ -38,21 +38,15 @@ namespace Tote.Controllers
             if (matches == null)
             {
                 matches = matchProvider.GetMatchBySportDateStatus(0, "", 0);
-                HttpRuntime.Cache.Insert(cacheKey, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                HttpRuntime.Cache.Insert(cacheKey, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);                
             }
-
-            //IReadOnlyList<Match> matches = matchProvider.GetMatchBySportDateStatus(0,"",0);
+            
             if (matches.Count == 0)
             {
                 return RedirectToAction("InfoError", "Navigation");
             }
             return View(matches);
-            /*IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
-            if (bets.Count == 0)
-            {
-                return RedirectToAction("InfoError", "Navigation");
-            }
-            return View(bets);*/
+            
         }
         [HttpGet]
         public ActionResult Sort()
@@ -70,37 +64,21 @@ namespace Tote.Controllers
                 HttpRuntime.Cache.Insert(cacheKey,matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
             }
 
-            //IReadOnlyList<Match> matches = matchProvider.GetMatchBySportDateStatus(0,"",0);
+            
             if (matches.Count == 0)
             {
                 return RedirectToAction("InfoError", "Navigation");
             }
             return View(matches);
-            /*IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
-            if (bets.Count == 0)
-            {
-                return RedirectToAction("InfoError", "Navigation");
-            }
-            return View(bets);*/
+            
         }
 
         [HttpGet]
         public ActionResult Match(int sportId, string dateMatch, int status)
-        {
-            /*IReadOnlyList<Match> bets = new List<Match>();
-            try
-            {
-                bets = betListProvider.GetBetList(sportId, 0);
-                if (bets == null)
-                {
-                    return RedirectToAction("InfoError", "Navigation");
-                }
-            }*/
+        {            
             string cache = sportId.ToString() + dateMatch + status.ToString();
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>;
+            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>; 
             
-
-            //IReadOnlyList<Match> matches = new List<Match>();
             try
             {
                 if (matches == null)
@@ -108,7 +86,7 @@ namespace Tote.Controllers
                     matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
                     HttpRuntime.Cache.Insert(cache, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
                 }
-                //matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
+                
                 if (matches == null)
                 {
                     return RedirectToAction("InfoError", "Navigation");
@@ -145,8 +123,7 @@ namespace Tote.Controllers
                 {
                     matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
                     HttpRuntime.Cache.Insert(cache, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
-                }
-                //matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
+                }                
                 if (matches == null)
                 {
                     return Json(string.Empty, JsonRequestBehavior.AllowGet);
@@ -168,6 +145,8 @@ namespace Tote.Controllers
         public ActionResult ShowCoefficient(int matchId)
         {
             ViewBag.Match = matchId;
+            Match match = matchProvider.GetMatchById(matchId);
+            ViewBag.MatchDate = match.Date;
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(matchId);
             if (events == null)
             {
@@ -276,6 +255,15 @@ namespace Tote.Controllers
                 betListProvider.AddBet(bet, basket.BasketId);
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult ShowBetsByRate(int rateId)
+        {
+            double total = 1;
+            IReadOnlyList<Bet> bets = betListProvider.GetBetByRateId(rateId,out total);
+            ViewBag.Total = total;     
+            return View(bets);
         }
 
     }

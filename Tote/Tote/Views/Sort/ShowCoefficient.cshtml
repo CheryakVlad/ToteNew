@@ -4,15 +4,11 @@
     Layout = "~/Views/LayoutView.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowCoefficient</title>
+<br />
+<br />
+<br />
     <script src="~/scripts/addBetToBasket.js"></script>
-</head>
-<body>
+
            
         <table class="table">
             <tr>
@@ -40,17 +36,18 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Coefficient)
                     </td>
-                    <td>                       
-                        <input type="hidden" name="matchId" value=@ViewBag.Match />
-                        <input type="hidden" name="eventId" value=@item.EventId />
-                        <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()"/>
-                    </td>
+                    @if (ViewBag.MatchDate > DateTime.Now)
+                    {
+                        <td>
+                            <input type="hidden" name="matchId" value=@ViewBag.Match />
+                            <input type="hidden" name="eventId" value=@item.EventId />
+                            <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()" />
+                        </td>
+                    }
+                    
                 </tr>
                 }
 
             }
         </table>
 
-    
-</body>
-</html>

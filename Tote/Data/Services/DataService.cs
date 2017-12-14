@@ -248,5 +248,48 @@ namespace Data.Services
 
             return new Basket();
         }
+
+        public IReadOnlyList<Rate> GetRateByUserId(int userId)
+        {
+            var dto = betListClient.GetRateByUserId(userId);
+
+            if (dto != null)
+            {
+                return convert.ToRate(dto);
+            }
+            return new List<Rate>();
+        }
+
+        public IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total)
+        {
+            total = 1;   
+            var betsDto = betListClient.GetBetByRateId(rateId);
+            var bets= convert.ToBet(betsDto);
+            var betsRate = new List<Bet>();
+            foreach(var bet in bets)
+            {
+                var match = matchService.GetMatchById(bet.MatchId);
+                var _events = matchService.GetEventsByMatch(bet.MatchId);
+
+                foreach (var _event in _events)
+                {
+                    if (_event.EventId == bet.Event.EventId)
+                    {
+                        match.Events = new List<Event>();
+                        match.Events.Add(_event);
+                        total *= _event.Coefficient;                     
+                    }
+                }
+                bet.Match = match;
+                betsRate.Add(bet);
+            }
+
+            if (betsRate != null)
+            {
+                return betsRate;
+            }
+
+            return new List<Bet>();
+        }
     }
 }

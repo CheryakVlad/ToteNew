@@ -29,10 +29,15 @@
                     <li>@Html.ActionLink("Home", "List", "Navigation")</li>
                     <li>@Html.ActionLink("Choose a Bet", "Sorting", "Sort")</li>
                     <li>@Html.ActionLink("Show Basket", "ShowBasket", "Sort")</li>
-                    <li>@Html.ActionLink("Sport", "ShowSports", "Sport")</li>
-                    <li>@Html.ActionLink("Tournament", "ShowTournaments", "Tournament")</li>
-                    <li>@Html.ActionLink("Show Profile", "ShowUserProfile", "User")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Show Profile", "ShowUserProfile", "User")</li>
+                    }
+                    @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Editor"))
+                    {
+                        <li>@Html.ActionLink("Sport", "ShowSports", "Sport")</li>
+                        <li>@Html.ActionLink("Tournament", "ShowTournaments", "Tournament")</li>
+                    }
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">                                        
@@ -59,7 +64,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Tote Application</p>
         </footer>
     </div>
 

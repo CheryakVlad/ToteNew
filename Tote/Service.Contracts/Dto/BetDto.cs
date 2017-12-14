@@ -15,7 +15,7 @@ namespace Service.Contracts.Dto
         [DataMember]
         public int MatchId { get; set; }
         [DataMember]
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
         [DataMember]
         public int EventId { get; set; }
         [DataMember]

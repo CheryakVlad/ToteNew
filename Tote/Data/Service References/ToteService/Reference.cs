@@ -625,7 +625,7 @@ namespace Data.ToteService {
         private int RateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool StatusField;
+        private System.Nullable<bool> StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -690,7 +690,7 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Status {
+        public System.Nullable<bool> Status {
             get {
                 return this.StatusField;
             }
@@ -913,6 +913,20 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/AddBet", ReplyAction="http://tempuri.org/IBetListService/AddBetResponse")]
         System.Threading.Tasks.Task<bool> AddBetAsync(Data.ToteService.BetDto betDto, int basketId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetRateByUserId", ReplyAction="http://tempuri.org/IBetListService/GetRateByUserIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetRateByUserIdCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.RateDto[] GetRateByUserId(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetRateByUserId", ReplyAction="http://tempuri.org/IBetListService/GetRateByUserIdResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.RateDto[]> GetRateByUserIdAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetByRateId", ReplyAction="http://tempuri.org/IBetListService/GetBetByRateIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBetByRateIdCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.BetDto[] GetBetByRateId(int rateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetByRateId", ReplyAction="http://tempuri.org/IBetListService/GetBetByRateIdResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.BetDto[]> GetBetByRateIdAsync(int rateId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1060,6 +1074,22 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<bool> AddBetAsync(Data.ToteService.BetDto betDto, int basketId) {
             return base.Channel.AddBetAsync(betDto, basketId);
+        }
+        
+        public Data.ToteService.RateDto[] GetRateByUserId(int userId) {
+            return base.Channel.GetRateByUserId(userId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.RateDto[]> GetRateByUserIdAsync(int userId) {
+            return base.Channel.GetRateByUserIdAsync(userId);
+        }
+        
+        public Data.ToteService.BetDto[] GetBetByRateId(int rateId) {
+            return base.Channel.GetBetByRateId(rateId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.BetDto[]> GetBetByRateIdAsync(int rateId) {
+            return base.Channel.GetBetByRateIdAsync(rateId);
         }
     }
     

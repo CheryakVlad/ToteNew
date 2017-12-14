@@ -13,8 +13,8 @@ namespace Common.Models
         public IList<Team> Teams{ get; set; }
         public Event Event { get; set; }
         public int RateId { get; set; }
-        public bool Status { get; set; }
-
+        public bool? Status { get; set; }
+                              
         public Bet()
         {
             Teams = new List<Team>();

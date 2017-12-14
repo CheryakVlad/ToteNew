@@ -37,5 +37,8 @@ namespace Business.Providers
 
         bool AddBet(Bet bet, int basketId);
         int AddRate(Rate rate);
+
+        IReadOnlyList<Rate> GetRateByUserId(int userId);
+        IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total);
     }
 }

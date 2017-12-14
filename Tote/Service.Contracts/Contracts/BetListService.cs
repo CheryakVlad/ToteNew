@@ -476,5 +476,43 @@ namespace Service.Contracts.Contracts
 
             }
         }
+
+        public RateDto[] GetRateByUserId(int userId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
+
+            var connection = new Connection<RateDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetRateByUserId", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetRateByUserId";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public BetDto[] GetBetByRateId(int rateId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RateId", Value = rateId });
+
+            var connection = new Connection<BetDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetBetByRateID", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetBetByRateID";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
     }
 }

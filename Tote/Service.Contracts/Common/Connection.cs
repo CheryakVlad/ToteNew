@@ -144,13 +144,22 @@ namespace Service.Contracts.Common
 
             if (t == typeof(BetDto))
             {
+                var status = new bool?();                
+                if (reader[2].ToString()=="")
+                {
+                    status = null;
+                }
+                else
+                {
+                    status = reader.GetBoolean(2);                                          
+                }
                 var BetDto = new BetDto()
                 {
                     BetId = (int)reader[0],
                     MatchId = (int)reader[1],
-                    Status = reader.GetBoolean(2),
+                    Status = status,
                     EventId = (int)reader[3],
-                    RateId= (int)reader[4]
+                    //RateId= (int)reader[4]
                 };
                 return BetDto;
             }

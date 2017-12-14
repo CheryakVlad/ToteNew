@@ -130,6 +130,22 @@
 </script>
 
 <script type="text/javascript">
+    function parseJsonDate(jsonDate) {
+        var offset = new Date().getTimezoneOffset() * 60000;
+        var parts = /\/Date\((-?\d+)([+-]\d{2})?(\d{2})?.*/.exec(jsonDate);
+        if (parts[2] == undefined) parts[2] = 0;
+        if (parts[3] == undefined) parts[3] = 0;
+        d = new Date(+parts[1] + offset + parts[2] * 3600000 + parts[3] * 60000);
+        date = d.getDate() + 1;
+        date = date < 10 ? "0" + date : date;
+        mon = d.getMonth() + 1;
+        mon = mon < 10 ? "0" + mon : mon;
+        year = d.getFullYear();
+        return (date + "." + mon + "." + year);
+    };
+</script>
+
+<script type="text/javascript">
     $(function () {
         $("#btnSort").click(function () {
             var sportId = $("#sport").val();
@@ -148,10 +164,10 @@
                     $('.table').empty();
                     $('.table').append("<tr><th>Tournament</th><th>Home Team</th> <th> Guest Team</th>  <th> Date </th><th> Score </th>  </tr>");
                     $(data).each(function (index, item) {                        
-                        
-                        var re = /-?\d+/;
+                        var date = parseJsonDate(item.Date);
+                        /*var re = /-?\d+/;
                         var m = re.exec(item.Date);
-                        var date = new Date(parseInt(m[0]));                       
+                        var date = new Date(parseInt(m[0]));  */                     
                         $('.table').append("<tr><td>" + item.Tournament.Name + "</td><td>" + item.Teams[0].Name + "</td><td>" + item.Teams[1].Name + "</td><td>" + date + "</td><td>" + item.Score + "</td><td></tr>");
                         
                     })

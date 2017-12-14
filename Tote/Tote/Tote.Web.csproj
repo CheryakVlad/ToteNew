@@ -309,6 +309,7 @@
     <Content Include="Views\Sort\MakeRate.cshtml" />
     <Content Include="Views\User\ShowUserProfile.cshtml" />
     <Content Include="Views\User\EditUserProfile.cshtml" />
+    <Content Include="Views\Sort\ShowBetsByRate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

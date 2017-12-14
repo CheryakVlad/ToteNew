@@ -10,6 +10,7 @@ namespace Tote.Controllers
         private IMatchProvider matchProvider;
         private IBetListProvider betListProvider;
         private ITeamProvider teamProvider;
+        private const string cacheKey = "sortKey";
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(MatchController));
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider)
@@ -36,9 +37,7 @@ namespace Tote.Controllers
             SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name");
             ViewBag.Tournaments = tournaments;
             SelectList teams = new SelectList(teamProvider.GetTeamsAll(), "TeamId", "Name");
-            ViewBag.Teams = teams;
-            /*SelectList country = new SelectList(betListProvider.GetSports(), "SportId", "Name");
-            ViewBag.Sports = sports;*/
+            ViewBag.Teams = teams;            
             return View();
         }
         

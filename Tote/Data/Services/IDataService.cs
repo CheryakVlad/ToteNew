@@ -27,5 +27,8 @@ namespace Data.Services
         IReadOnlyList<Basket> GetBasketByUser(int userId, out double total);
 
         Basket GetBasketById(int basketId, int userId);
+
+        IReadOnlyList<Rate> GetRateByUserId(int userId);
+        IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total);
     }
 }
