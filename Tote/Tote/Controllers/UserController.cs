@@ -1,4 +1,5 @@
-﻿using Business.Providers;
+﻿using Business.Principal;
+using Business.Providers;
 using Common.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -102,9 +103,28 @@ namespace Tote.Controllers
 
 
 
-        public ActionResult Index()
+        public ActionResult ShowUserProfile()
         {
-            return View();
+            int userId = (HttpContext.User as UserPrincipal).UserId;
+            User user = userProvider.GetUser(userId);
+            return View(user);
+        }
+        [HttpGet]
+        public ActionResult EditUserProfile(int userId)
+        {
+            User user = userProvider.GetUser(userId);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult EditUserProfile(User user)
+        {
+            bool result = userProvider.UpdateUser(user);
+            if (!result)
+            {
+                log.Error("Controller: User, Action: EditUser Don't update user");
+            }
+            return RedirectToAction("ShowUserProfile");
         }
     }
 }

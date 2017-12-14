@@ -1,0 +1,4 @@
+2017-12-13 23:02:07,384 ERROR Service.Contracts.Contracts.BetListService - Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_RoleUser_Role". Конфликт произошел в базе данных "Tote", таблица "dbo.Role", column 'RoleId'.
+Выполнение данной инструкции было прервано.
+2017-12-13 23:12:58,427 ERROR Service.Contracts.Contracts.BetListService - Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_RoleUser_Role". Конфликт произошел в базе данных "Tote", таблица "dbo.Role", column 'RoleId'.
+Выполнение данной инструкции было прервано.

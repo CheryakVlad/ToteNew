@@ -239,6 +239,9 @@ namespace Tote.Controllers
                 DateRate=DateTime.Now,
                 UserId=userId
             };
+            User user = userProvider.GetUser(userId);
+            user.Money -= amount;
+            userProvider.UpdateUser(user);
             int rateId = betListProvider.AddRate(rate);
             double total = 1;
             IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total);

@@ -30,11 +30,13 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            int userId = (HttpContext.User as UserPrincipal).UserId;
-            if(userId!=0)
+           
+            
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("List","Navigation");
+                return RedirectToAction("List", "Navigation");
             }
+
             /*User user = userProvider.ExistsUser("admin","admin");
             if (user == null)
             {

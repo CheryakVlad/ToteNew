@@ -29,8 +29,7 @@
             <th></th>
         </tr>
            
-        <tr>
-                       
+        <tr>                       
             <td>
                 @Model.Events[0].Coefficient
             </td>
@@ -39,13 +38,10 @@
             </td>
             <td>
                 @Model.Events[2].Coefficient
-            </td>
-            
-            
-        </tr>
-    
+            </td>  
+        </tr>    
     
     </table>
-
-<input type="button" value="To add the bet to the basket"/>
+@Html.ActionLink("To add the bet to the basket", "ShowCoefficient", "Sort", new { matchId=Model.MatchId}) 
+<!--<input type="button" value="To add the bet to the basket"/>-->
 

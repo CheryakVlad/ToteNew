@@ -23,6 +23,7 @@ namespace Service.Contracts.Contracts
             parameters.Add(new Parameter { Type = DbType.Decimal, Name = "@Money", Value = userDto.Money });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@FIO", Value = userDto.FIO });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RoleId", Value = userDto.RoleId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@PhoneNumber", Value = userDto.PhoneNumber });
 
             var connection = new Connection<UserDto>();
             try

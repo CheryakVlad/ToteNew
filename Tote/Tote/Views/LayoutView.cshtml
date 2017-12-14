@@ -24,15 +24,17 @@
                 @Html.ActionLink("Tote", "List", "Navigation", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "List", "Navigation")</li>
-                    <li>@Html.ActionLink("Choose a Bet", "List", "Navigation")</li>
-                    <li>@Html.ActionLink("Place a Rate", "List", "Navigation")</li>
+                    <li>@Html.ActionLink("Choose a Bet", "Sorting", "Sort")</li>
+                    <li>@Html.ActionLink("Show Basket", "ShowBasket", "Sort")</li>
                     <li>@Html.ActionLink("Sport", "ShowSports", "Sport")</li>
                     <li>@Html.ActionLink("Tournament", "ShowTournaments", "Tournament")</li>
-                    <li>@Html.ActionLink("Show Basket", "ShowBasket", "Sort")</li>
+                    <li>@Html.ActionLink("Show Profile", "ShowUserProfile", "User")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">                                        
                     <li>                        
                         <div>
