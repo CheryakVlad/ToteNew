@@ -4,7 +4,7 @@
     ViewBag.Title = "MakeRate";
     Layout = "~/Views/LayoutView.cshtml";
 }
-
+<script src="~/scripts/jquery-3.2.1.js"></script>
 <h2>MakeRate</h2>
 @using (Html.BeginForm())
 {
@@ -40,7 +40,7 @@
             @Html.DisplayNameFor(model => model.Money)
         </dt>
 
-        <dd>
+        <dd id="money">
             @Html.DisplayFor(model => model.Money)
         </dd>        
 
@@ -56,7 +56,7 @@
             @Html.DisplayName("Amount")
         </dt>
         <dd>
-            <input type="text" name="amount" value="0.00" />
+            <input type="text" id="amount" name="amount" value="0" />
         </dd>
 
     </dl>
@@ -65,3 +65,18 @@
     <input type="submit" value="Make Rate" />
 </p>
 }
+
+<script type="text/javascript">
+    $(function () {        
+
+        $('#amount').bind('keydown keyup', function (e) {
+            var money = parseFloat($('#money').text());
+            var amount = parseFloat($('#amount').val());
+            if (amount > money) {
+                $('#amount').val(money);
+            }        
+        })
+       
+    })
+
+</script>

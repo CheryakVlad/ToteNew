@@ -96,6 +96,7 @@ namespace Tote.Controllers
                 if(b.MatchId==id)
                 {
                     bet = b;
+                    break;
                 }
             }
             return View(bet);

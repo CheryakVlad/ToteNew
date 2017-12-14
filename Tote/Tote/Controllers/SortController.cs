@@ -180,7 +180,11 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult ShowCoefficient(int matchId, int eventId)
         {
-            int userId=(HttpContext.User as UserPrincipal).UserId;
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             Basket basket = new Basket()
             {
                 MatchId = matchId,
@@ -195,7 +199,11 @@ namespace Tote.Controllers
         public ActionResult ShowBasket()
         {
             double total = 1;
-            int userId = (HttpContext.User as UserPrincipal).UserId;
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId,out total);
             ViewBag.Total = total;
             return View(baskets);
@@ -204,7 +212,11 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult DeleteBasket(int basketId)
         {
-            int userId = (HttpContext.User as UserPrincipal).UserId;
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             Basket basket = betListProvider.GetBasketById(basketId, userId);
             return View(basket);
         }
@@ -224,7 +236,11 @@ namespace Tote.Controllers
         [HttpGet]
         public ActionResult MakeRate()
         {
-            int userId = (HttpContext.User as UserPrincipal).UserId;
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             User user = userProvider.GetUser(userId);
             return View(user);
         }
@@ -232,7 +248,11 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult MakeRate(decimal amount)
         {
-            int userId = (HttpContext.User as UserPrincipal).UserId;
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             Rate rate = new Rate()
             {
                 Amount=amount,
