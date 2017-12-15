@@ -83,6 +83,8 @@
     <Compile Include="Providers\TeamProvider.cs" />
     <Compile Include="Providers\TournamentProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
+    <Compile Include="Service\CacheService.cs" />
+    <Compile Include="Service\ICacheService.cs" />
     <Compile Include="Service\ILoginService.cs" />
     <Compile Include="Service\LoginService.cs" />
   </ItemGroup>

@@ -221,6 +221,9 @@
     <Content Include="scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\main.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Navigation\ChildTournament.cshtml" />
@@ -310,6 +313,7 @@
     <Content Include="Views\User\ShowUserProfile.cshtml" />
     <Content Include="Views\User\EditUserProfile.cshtml" />
     <Content Include="Views\Sort\ShowBetsByRate.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

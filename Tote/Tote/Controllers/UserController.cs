@@ -45,12 +45,25 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult EditUser(User user)
         {
-            bool result = userProvider.UpdateUser(user);
-            if(!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: User, Action: EditUser Don't update user");
-            }            
+                bool result = userProvider.UpdateUser(user);
+                if (!result)
+                {
+                    log.Error("Controller: User, Action: EditUser Don't update user");
+                }
+            }         
             return RedirectToAction("UsersAll");
+        }
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            User user = userProvider.GetUser(4);
+            //IReadOnlyList<Role> roles= userProvider.GetRolesAll();
+            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+            ViewBag.Roles = roles;
+            return View(user);
         }
 
         [HttpGet]
@@ -104,7 +117,7 @@ namespace Tote.Controllers
         }
 
 
-
+        [HttpGet]
         public ActionResult ShowUserProfile()
         {
             int userId = 0;

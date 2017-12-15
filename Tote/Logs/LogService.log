@@ -1,3 +1,7 @@
-2017-12-14 15:30:13,686 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@PhoneNumber", который не был указан.
-2017-12-14 16:12:05,015 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@PhoneNumber", который не был указан.
-2017-12-14 16:13:01,709 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@PhoneNumber", который не был указан.
+2017-12-15 13:41:36,752 ERROR Service.Contracts.Contracts.BetListService - Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_RoleUser_Role". Конфликт произошел в базе данных "Tote", таблица "dbo.Role", column 'RoleId'.
+Выполнение данной инструкции было прервано.
+2017-12-15 13:50:30,244 ERROR Service.Contracts.Contracts.BetListService - Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_RoleUser_Role". Конфликт произошел в базе данных "Tote", таблица "dbo.Role", column 'RoleId'.
+Выполнение данной инструкции было прервано.
+2017-12-15 13:52:25,311 ERROR Service.Contracts.Contracts.BetListService - Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_RoleUser_Role". Конфликт произошел в базе данных "Tote", таблица "dbo.Role", column 'RoleId'.
+Выполнение данной инструкции было прервано.
+2017-12-15 14:16:12,601 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@FIO", который не был указан.

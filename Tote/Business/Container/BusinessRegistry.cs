@@ -9,6 +9,7 @@ namespace Business.Container
     {
         public BusinessRegistry()
         {
+            For<ICacheService>().Use<CacheService>();
             For<ITeamProvider>().Use<TeamProvider>();
             For<IMatchProvider>().Use<MatchProvider>();
             For<ITournamentProvider>().Use<TournamentProvider>();

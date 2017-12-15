@@ -451,6 +451,7 @@ namespace Data.Business
                 Email = userDto.Email,
                 FIO = userDto.FIO,
                 Money = userDto.Money,
+                PhoneNumber=userDto.PhoneNumber,
                 Roles=roles
             };
                

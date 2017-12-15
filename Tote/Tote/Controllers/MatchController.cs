@@ -1,4 +1,5 @@
 ﻿using Business.Providers;
+using Business.Service;
 using Common.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -7,17 +8,19 @@ namespace Tote.Controllers
 {
     public class MatchController : Controller
     {
-        private IMatchProvider matchProvider;
-        private IBetListProvider betListProvider;
-        private ITeamProvider teamProvider;
+        private readonly IMatchProvider matchProvider;
+        private readonly IBetListProvider betListProvider;
+        private readonly ITeamProvider teamProvider;
+        private readonly ICacheService cacheService;
         private const string cacheKey = "sortKey";
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(MatchController));
 
-        public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider)
+        public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, ICacheService cacheService)
         {
             this.betListProvider = betListProvider;
             this.matchProvider = matchProvider;
             this.teamProvider = teamProvider;
+            this.cacheService = cacheService;
         }
 
         public ActionResult ShowMatches()
@@ -67,6 +70,10 @@ namespace Tote.Controllers
             {
                 log.Error("Controller: Match, Action: AddMatch Don't add Match");
             }
+            else
+            {
+                cacheService.DeleteCache();
+            }
 
             return RedirectToAction("ShowMatches");
         }
@@ -103,6 +110,10 @@ namespace Tote.Controllers
             {
                 log.Error("Controller: Match, Action: EditMatch Don't update Match");
             }
+            else
+            {
+                cacheService.DeleteCache();
+            }
             return RedirectToAction("ShowMatches");
         }
 
@@ -123,6 +134,10 @@ namespace Tote.Controllers
             if (!result)
             {
                 log.Error("Controller: Match, Action: DeleteMatch Don't delete Match");
+            }
+            else
+            {
+                cacheService.DeleteCache();
             }
             return RedirectToAction("ShowMatches");
         }

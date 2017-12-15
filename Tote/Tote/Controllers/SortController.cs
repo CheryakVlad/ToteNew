@@ -1,5 +1,6 @@
 ﻿using Business.Principal;
 using Business.Providers;
+using Business.Service;
 using Common.Models;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,15 @@ namespace Tote.Controllers
         private readonly IBetListProvider betListProvider;
         private readonly IMatchProvider matchProvider;
         private readonly IUserProvider userProvider;
+        private readonly ICacheService cacheService;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SortController));
 
-        public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider)
+        public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider, ICacheService cacheService)
         {
             this.betListProvider = rateListProvider;
             this.matchProvider = matchProvider;
             this.userProvider = userProvider;
+            this.cacheService = cacheService;
         }
         public ActionResult Sorting()
         {
@@ -34,11 +37,10 @@ namespace Tote.Controllers
             SelectList status = new SelectList(statuses);
             ViewBag.Statuses = status;
 
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheKey) as IReadOnlyList<Match>;
+            IReadOnlyList<Match> matches = cacheService.GetCache(0, "", 0);
             if (matches == null)
             {
-                matches = matchProvider.GetMatchBySportDateStatus(0, "", 0);
-                HttpRuntime.Cache.Insert(cacheKey, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);                
+                matches = cacheService.InsertCache(0, "", 0);               
             }
             
             if (matches.Count == 0)
@@ -57,11 +59,10 @@ namespace Tote.Controllers
             SelectList status = new SelectList(statuses);
             ViewBag.Statuses = status;
 
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheKey) as IReadOnlyList<Match>;
-            if(matches==null)
+            IReadOnlyList<Match> matches = cacheService.GetCache(0, "", 0);
+            if (matches == null)
             {
-                matches = matchProvider.GetMatchBySportDateStatus(0, "", 0);
-                HttpRuntime.Cache.Insert(cacheKey,matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                matches = cacheService.InsertCache(0, "", 0);               
             }
 
             
@@ -77,14 +78,13 @@ namespace Tote.Controllers
         public ActionResult Match(int sportId, string dateMatch, int status)
         {            
             string cache = sportId.ToString() + dateMatch + status.ToString();
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>; 
+            IReadOnlyList<Match> matches = cacheService.GetCache(sportId, dateMatch, status); 
             
             try
             {
                 if (matches == null)
                 {
-                    matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
-                    HttpRuntime.Cache.Insert(cache, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                    matches = cacheService.InsertCache(sportId, dateMatch, status);
                 }
                 
                 if (matches == null)
@@ -265,6 +265,8 @@ namespace Tote.Controllers
             ViewBag.Total = total;     
             return View(bets);
         }
+
+        
 
     }
 }

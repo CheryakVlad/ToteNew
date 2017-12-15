@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Common.Models.Match>
 
 @{
-    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
+    Layout = @"\Views\LayoutView.cshtml"; 
 }
 
 <!DOCTYPE html>
@@ -9,24 +9,21 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/scripts/bootstrap.js"></script>
     <script src="~/scripts/jquery-3.2.1.min.js"></script>
     <script src="~/scripts/jquery-ui-1.12.1.min.js"></script>
     <script type="text/javascript">
     $(function () {
         $("#dateField").datepicker({
-            dateFormat: 'yy-dd-mm'
+            dateFormat: 'yy-mm-dd'
         });
     });
     </script>
 
     @section Scripts
 {
-        <script src="~/scripts/main.js"></script>
-        <script type="text/javascript">
-        window.jsonVar = window.JsonClass('@Html.Raw(Url.Action("GetMessage", "Sort"))', '@Html.Raw(Url.Action("SaveMessage", "Sort"))')
-        </script>
-    }
+        
+}
 
     <title>Sort</title>
 </head>
@@ -55,67 +52,68 @@
 
     <input type="button" value="Sort" id="btnSort" />
 
-    <table class="table">
-        <tr>
-            <th>
-                Tournament
-            </th>
-            <th>
-                Home Team
-            </th>
-            <th>
-                Guest Team
-            </th>
-            <th>
-                Date
-            </th>
-            <th>
-                Score
-            </th>
-            <th>
+    <table class="table" id="table">
+        <thead>
+            
+            <tr>
+                <th>
+                    Tournament
+                </th>
+                <th>
+                    Home Team
+                </th>
+                <th>
+                    Guest Team
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Score
+                </th>
+                <th>
 
-            </th>
+                </th>
 
-        </tr>
-        
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tournament.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Teams[0].Name)
-                        (@Html.DisplayFor(modelItem => item.Teams[0].Country.Name))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Teams[1].Name)
-                        (@Html.DisplayFor(modelItem => item.Teams[1].Country.Name))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Score)
-                    </td>
-                    <td>
-                        
-                            @Html.RouteLink("Show Coefficients", new
-       {
-           controller = "Sort",
-           action = "ShowCoefficient",
-           matchId = item.MatchId
-       })
-                        
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tournament.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teams[0].Name)
+                    (@Html.DisplayFor(modelItem => item.Teams[0].Country.Name))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teams[1].Name)
+                    (@Html.DisplayFor(modelItem => item.Teams[1].Country.Name))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+                <td>
+
+                    @Html.RouteLink("Show Coefficients", new
+               {
+                   controller = "Sort",
+                   action = "ShowCoefficient",
+                   matchId = item.MatchId
+               })
 
 
+                </td>
 
-
-
-                    </td>
-
-                </tr>
+            </tr>
             }
+        </tbody>
+            
 
         
 
@@ -127,6 +125,28 @@
         $('#sport').prepend('<option value="0">None</option>');
         $("#sport :first").attr("selected", "selected");
     });
+</script>
+<script type="text/javascript">
+    function jsonDate(date) {
+        var str, year, month, day, hour, minute, d, finalDate;
+
+        str = date.replace(/\D/g, "");
+        d = new Date(parseInt(str));
+
+        year = d.getFullYear();
+        month = pad(d.getMonth() + 1);
+        day = pad(d.getDate());
+        hour = pad(d.getHours());
+        minutes = pad(d.getMinutes());
+
+        finalDate = year + "-" + month + "-" + day + " " + hour + ":" + minutes+":00";
+        return finalDate;
+    }
+        function pad(num) {
+            num = "0" + num;
+            return num.slice(-2);
+        }
+    
 </script>
 
 <script type="text/javascript">
@@ -161,20 +181,16 @@
                 dataType:'json',
                 url: '/Sort/AjaxMethod?sportId=' + sportId+'&dateMatch='+dateMatch+'&status='+status,
                 success: function (data) {
-                    $('.table').empty();
-                    $('.table').append("<tr><th>Tournament</th><th>Home Team</th> <th> Guest Team</th>  <th> Date </th><th> Score </th>  </tr>");
-                    $(data).each(function (index, item) {                        
-                        var date = parseJsonDate(item.Date);
-                        /*var re = /-?\d+/;
-                        var m = re.exec(item.Date);
-                        var date = new Date(parseInt(m[0]));  */                     
-                        $('.table').append("<tr><td>" + item.Tournament.Name + "</td><td>" + item.Teams[0].Name + "</td><td>" + item.Teams[1].Name + "</td><td>" + date + "</td><td>" + item.Score + "</td><td></tr>");
-                        
-                    })
+                    $('#table > tbody').empty();
                     
-
+                    $(data).each(function (index, item) { 
+                        var date = jsonDate(item.Date);
+                        $('#table').append("<tr><td>" + item.Tournament.Name + "</td><td>" + item.Teams[0].Name + "</td><td>" + item.Teams[1].Name + "</td><td>" + date + "</td><td>" + item.Score + "</td><td></tr>");
+                        $('#table').addClass('table');
+                    }) 
                 }
             });
+            $('#table').addClass('table');
         })
     })
 </script>

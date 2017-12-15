@@ -1,0 +1,3 @@
+2017-12-14 15:30:13,686 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@PhoneNumber", который не был указан.
+2017-12-14 16:12:05,015 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@PhoneNumber", который не был указан.
+2017-12-14 16:13:01,709 ERROR Service.Contracts.Contracts.BetListService - Процедура или функция "UpdateUser" ожидает параметр "@PhoneNumber", который не был указан.
