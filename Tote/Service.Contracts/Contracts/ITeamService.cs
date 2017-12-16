@@ -40,5 +40,16 @@ namespace Service.Contracts.Contracts
         [FaultContract(typeof(CustomException))]
         CountryDto GetCountryByTeam(int teamId);
 
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool UpdateCountry(CountryDto countryDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddCountry(CountryDto countryDto);
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool DeleteCountry(int countryId);
+
+
     }
 }

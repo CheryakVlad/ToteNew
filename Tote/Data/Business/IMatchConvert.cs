@@ -12,7 +12,7 @@ namespace Data.Business
         IReadOnlyList<Result> ToResult(IReadOnlyList<TeamService.ResultDto> resultsDto);
 
         IReadOnlyList<Event> ToEvent(IReadOnlyList<TeamService.EventDto> eventsDto);
-        IReadOnlyList<TeamService.EventDto> ToEventDto(IReadOnlyList<Event> events);
+        TeamService.EventDto[] ToEventDto(IReadOnlyList<Event> events);
 
         
 

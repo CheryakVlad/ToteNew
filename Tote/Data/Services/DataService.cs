@@ -291,5 +291,15 @@ namespace Data.Services
 
             return new List<Bet>();
         }
+
+        public Country GetCountryById(int countryId)
+        {
+            var dto = teamClient.GetCountryById(countryId);
+            if (dto != null)
+            {
+                return convert.ToCountry(dto);
+            }
+            return new Country();
+        }
     }
 }

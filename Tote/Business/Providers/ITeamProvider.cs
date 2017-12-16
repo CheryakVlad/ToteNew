@@ -17,5 +17,13 @@ namespace Business.Providers
         IReadOnlyList<Country> GetCountriesAll();
 
         IReadOnlyList<Team> GetTeamsByTournament(int tournamentId);
+
+        bool UpdateCountry(Country country);
+
+        bool AddCountry(Country country);
+
+        bool DeleteCountry(int countryId);
+
+        Country GetCountryById(int countryId);
     }
 }

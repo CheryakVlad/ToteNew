@@ -16,6 +16,36 @@ namespace Data.Clients
         {
             this.convert = convert;
         }
+
+        public bool AddCountry(Country country)
+        {
+            var countryDto = new CountryDto();
+            countryDto = convert.ToCountryDto(country);
+            var model = new bool();
+            using (var client = new TeamService.TeamServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.AddCountry(countryDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
+
         public bool AddTeam(Team team)
         {
             var teamDto = new TeamDto();
@@ -27,6 +57,33 @@ namespace Data.Clients
                 {
                     client.Open();
                     model = client.AddTeam(teamDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
+            return model;
+        }
+
+        public bool DeleteCountry(int countryId)
+        {
+            var model = new bool();
+            using (var client = new TeamService.TeamServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.DeleteCountry(countryId);
                     client.Close();
                 }
 
@@ -101,6 +158,33 @@ namespace Data.Clients
                 }
             }
 
+            return model;
+        }
+
+        public CountryDto GetCountryById(int countryId)
+        {
+            var model = new CountryDto();
+            using (var client = new TeamService.TeamServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.GetCountryById(countryId);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+
+            }
             return model;
         }
 
@@ -192,6 +276,35 @@ namespace Data.Clients
                 }
             }
 
+            return model;
+        }
+
+        public bool UpdateCountry(Country country)
+        {
+            var countryDto = new CountryDto();
+            countryDto = convert.ToCountryDto(country);
+            var model = new bool();
+            using (var client = new TeamService.TeamServiceClient())
+            {
+                try
+                {
+                    client.Open();
+                    model = client.UpdateCountry(countryDto);
+                    client.Close();
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return false;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return false;
+                }
+
+            }
             return model;
         }
 

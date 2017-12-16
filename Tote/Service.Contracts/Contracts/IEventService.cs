@@ -17,7 +17,7 @@ namespace Service.Contracts.Contracts
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        bool UpdateEvents(IReadOnlyList<EventDto> eventDto);
+        bool UpdateEvents(EventDto[] eventDto);
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         bool AddEvents(IReadOnlyList<EventDto> eventDto);

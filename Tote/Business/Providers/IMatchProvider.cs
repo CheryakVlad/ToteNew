@@ -20,7 +20,7 @@ namespace Business.Providers
         IReadOnlyList<Event> GetEventByMatch(int matchId);
 
         bool AddEvent(IReadOnlyList<Event> events);
-        bool UpdateEvent(IReadOnlyList<Event> events);
+        bool UpdateEvent(Event[] events);
         bool DeleteEvent(int matchId);
     }
 }

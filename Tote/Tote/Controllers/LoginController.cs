@@ -65,7 +65,7 @@ namespace Tote.Controllers
             }
             return View();
         }
-
+        
         public ActionResult Logout()
         {
             loginService.Logout();

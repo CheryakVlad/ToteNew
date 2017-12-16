@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Common.Models
 {
@@ -6,7 +7,9 @@ namespace Common.Models
     {
         
         public int SportId { get; set; }
-        
+
+        [Required(ErrorMessage = "Required field")]
+        [Display(Name = "Sport")]
         public string Name { get; set; }
 
         public IList<Team> Teams { get; set; }

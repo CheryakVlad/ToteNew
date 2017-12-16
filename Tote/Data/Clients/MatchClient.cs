@@ -287,7 +287,7 @@ namespace Data.Clients
             return model;
         }
 
-        public bool UpdateEvent(IReadOnlyList<Event> events)
+        public bool UpdateEvent(Event[] events)
         {
             var eventsDto = convert.ToEventDto(events);
             var model = new bool();

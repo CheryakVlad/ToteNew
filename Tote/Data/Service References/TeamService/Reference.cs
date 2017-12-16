@@ -913,6 +913,27 @@ namespace Data.TeamService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetCountryByTeam", ReplyAction="http://tempuri.org/ITeamService/GetCountryByTeamResponse")]
         System.Threading.Tasks.Task<Data.TeamService.CountryDto> GetCountryByTeamAsync(int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/UpdateCountry", ReplyAction="http://tempuri.org/ITeamService/UpdateCountryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/UpdateCountryCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool UpdateCountry(Data.TeamService.CountryDto countryDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/UpdateCountry", ReplyAction="http://tempuri.org/ITeamService/UpdateCountryResponse")]
+        System.Threading.Tasks.Task<bool> UpdateCountryAsync(Data.TeamService.CountryDto countryDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/AddCountry", ReplyAction="http://tempuri.org/ITeamService/AddCountryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/AddCountryCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddCountry(Data.TeamService.CountryDto countryDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/AddCountry", ReplyAction="http://tempuri.org/ITeamService/AddCountryResponse")]
+        System.Threading.Tasks.Task<bool> AddCountryAsync(Data.TeamService.CountryDto countryDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/DeleteCountry", ReplyAction="http://tempuri.org/ITeamService/DeleteCountryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/DeleteCountryCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteCountry(int countryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/DeleteCountry", ReplyAction="http://tempuri.org/ITeamService/DeleteCountryResponse")]
+        System.Threading.Tasks.Task<bool> DeleteCountryAsync(int countryId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1020,6 +1041,30 @@ namespace Data.TeamService {
         
         public System.Threading.Tasks.Task<Data.TeamService.CountryDto> GetCountryByTeamAsync(int teamId) {
             return base.Channel.GetCountryByTeamAsync(teamId);
+        }
+        
+        public bool UpdateCountry(Data.TeamService.CountryDto countryDto) {
+            return base.Channel.UpdateCountry(countryDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateCountryAsync(Data.TeamService.CountryDto countryDto) {
+            return base.Channel.UpdateCountryAsync(countryDto);
+        }
+        
+        public bool AddCountry(Data.TeamService.CountryDto countryDto) {
+            return base.Channel.AddCountry(countryDto);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddCountryAsync(Data.TeamService.CountryDto countryDto) {
+            return base.Channel.AddCountryAsync(countryDto);
+        }
+        
+        public bool DeleteCountry(int countryId) {
+            return base.Channel.DeleteCountry(countryId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteCountryAsync(int countryId) {
+            return base.Channel.DeleteCountryAsync(countryId);
         }
     }
     
@@ -1181,23 +1226,10 @@ namespace Data.TeamService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/UpdateEvents", ReplyAction="http://tempuri.org/IEventService/UpdateEventsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/UpdateEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CustomException))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.TeamDto[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.TeamDto))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CountryDto[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.CountryDto))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.MatchDto[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.MatchDto))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.SortDto[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.SortDto))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.ResultDto[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.ResultDto))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.EventDto[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Data.TeamService.EventDto))]
-        bool UpdateEvents(object eventDto);
+        bool UpdateEvents(Data.TeamService.EventDto[] eventDto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/UpdateEvents", ReplyAction="http://tempuri.org/IEventService/UpdateEventsResponse")]
-        System.Threading.Tasks.Task<bool> UpdateEventsAsync(object eventDto);
+        System.Threading.Tasks.Task<bool> UpdateEventsAsync(Data.TeamService.EventDto[] eventDto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/AddEvents", ReplyAction="http://tempuri.org/IEventService/AddEventsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/AddEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
@@ -1270,11 +1302,11 @@ namespace Data.TeamService {
             return base.Channel.GetEventsAllAsync();
         }
         
-        public bool UpdateEvents(object eventDto) {
+        public bool UpdateEvents(Data.TeamService.EventDto[] eventDto) {
             return base.Channel.UpdateEvents(eventDto);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateEventsAsync(object eventDto) {
+        public System.Threading.Tasks.Task<bool> UpdateEventsAsync(Data.TeamService.EventDto[] eventDto) {
             return base.Channel.UpdateEventsAsync(eventDto);
         }
         

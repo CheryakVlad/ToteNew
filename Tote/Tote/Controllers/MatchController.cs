@@ -61,21 +61,34 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult AddMatch(Match match)
         {
-            Result res = new Result {ResultId=3 };
-
-            match.Result=res;
-            match.Score = "0";
-            bool result = matchProvider.AddMatch(match);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Match, Action: AddMatch Don't add Match");
+                Result res = new Result { ResultId = 3 };
+
+                match.Result = res;
+                match.Score = "0";
+                bool result = matchProvider.AddMatch(match);
+                if (!result)
+                {
+                    log.Error("Controller: Match, Action: AddMatch Don't add Match");
+                }
+                else
+                {
+                    cacheService.DeleteCache();
+                }
+
+                return RedirectToAction("ShowMatches");
             }
             else
             {
-                cacheService.DeleteCache();
+                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+                ViewBag.Sports = sports;
+                SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name");
+                ViewBag.Tournaments = tournaments;
+                SelectList teams = new SelectList(teamProvider.GetTeamsAll(), "TeamId", "Name");
+                ViewBag.Teams = teams;
+                return View();
             }
-
-            return RedirectToAction("ShowMatches");
         }
 
         [HttpGet]
@@ -88,7 +101,7 @@ namespace Tote.Controllers
             ViewBag.Sports = sports;
             int selected = match.Tournament.TournamentId;
             SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name", selected);
-            ViewBag.Tournaments = betListProvider.GetTournamentes();//tournaments;
+            ViewBag.Tournaments = betListProvider.GetTournamentes();
             IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsAll();
             selected = match.Teams[0].TeamId;
             SelectList teamsHome = new SelectList(teamsAll, "TeamId", "Name", selected);
@@ -105,16 +118,38 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult EditMatch(Match match)
         {
-            bool result = matchProvider.UpdateMatch(match);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                bool result = matchProvider.UpdateMatch(match);
+                if (!result)
+                {
+                    log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                }
+                else
+                {
+                    cacheService.DeleteCache();
+                }
+                return RedirectToAction("ShowMatches");
             }
             else
             {
-                cacheService.DeleteCache();
+                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", match.SportId);
+                ViewBag.Sports = sports;
+                int selected = match.Tournament.TournamentId;
+                SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name", selected);
+                ViewBag.Tournaments = betListProvider.GetTournamentes();
+                IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsAll();
+                selected = match.Teams[0].TeamId;
+                SelectList teamsHome = new SelectList(teamsAll, "TeamId", "Name", selected);
+                ViewBag.TeamsHome = teamsHome;
+                selected = match.Teams[1].TeamId;
+                SelectList teamsGuest = new SelectList(teamsAll, "TeamId", "Name", selected);
+                ViewBag.TeamsGuest = teamsGuest;
+                selected = match.Result.ResultId;
+                SelectList results = new SelectList(matchProvider.GetResultsAll(), "ResultId", "Name", selected);
+                ViewBag.Results = results;
+                return View();
             }
-            return RedirectToAction("ShowMatches");
         }
 
         [HttpGet]
@@ -155,31 +190,56 @@ namespace Tote.Controllers
 
         [HttpGet]
         public ActionResult AddEvents()
-        {
-            
-            /*SelectList country = new SelectList(betListProvider.GetSports(), "SportId", "Name");
-            ViewBag.Sports = sports;*/
+        {           
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddEvents(List<Event> item)
+        {
+            if (ModelState.IsValid)
+            {
+                bool result = matchProvider.AddEvent(item.ToArray());
+                if (!result)
+                {
+                    log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                }
+                else
+                {
+                    cacheService.DeleteCache();
+                }
+                return RedirectToAction("ShowMatches");
+            }
+            else
+            {
+                return View();
+            }
         }
 
 
         [HttpGet]
         public ActionResult EditEvent(int id)
         {
-
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
             return View(events);
         }
 
         [HttpPost]
         public ActionResult EditEvent(List<Event> item)
-        {
-            bool result = matchProvider.UpdateEvent(item.ToArray());
-            if (!result)
+        {            
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                bool result = matchProvider.UpdateEvent(item.ToArray());
+                if (!result)
+                {
+                    log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                }
+                return RedirectToAction("ShowMatches");
             }
-            return RedirectToAction("ShowMatches");
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

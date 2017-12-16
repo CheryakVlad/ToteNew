@@ -21,6 +21,7 @@ namespace Data.Services
         IReadOnlyList<Team> GetTeamsAll();
         Team GetTeamById(int teamId);
         IReadOnlyList<Country> GetCountriesAll();
+        Country GetCountryById(int countryId);
 
         IReadOnlyList<Team> GetTeamsByTournament(int tournamentId);
 

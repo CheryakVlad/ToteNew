@@ -20,7 +20,7 @@ namespace Tote.Controllers
             this.betListProvider = betListProvider;
         }
 
-        //[Admin]
+        [Admin]
         public ActionResult UsersAll()
         {
             IReadOnlyList<User> users = userProvider.GetUsersAll();
@@ -32,17 +32,17 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
-        //[Admin]
+        [Admin]
         public ActionResult EditUser(int id)
         {
             User user = userProvider.GetUser(id);
-            //IReadOnlyList<Role> roles= userProvider.GetRolesAll();
             SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
             ViewBag.Roles = roles;
             return View(user);
         }
 
         [HttpPost]
+        [Admin]
         public ActionResult EditUser(User user)
         {
             if (ModelState.IsValid)
@@ -52,8 +52,15 @@ namespace Tote.Controllers
                 {
                     log.Error("Controller: User, Action: EditUser Don't update user");
                 }
-            }         
-            return RedirectToAction("UsersAll");
+                return RedirectToAction("UsersAll");
+            }  
+            else
+            {
+                SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+                ViewBag.Roles = roles;                
+                return View();
+            }
+            
         }
 
         [HttpGet]
@@ -67,6 +74,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Admin]
         public ActionResult AddUser()
         {
             SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
@@ -75,18 +83,29 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Admin]
         public ActionResult AddUser(User user)
         {
-            bool result = userProvider.AddUser(user);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: User, Action: AddUser Don't add user");
-            }
+                bool result = userProvider.AddUser(user);
+                if (!result)
+                {
+                    log.Error("Controller: User, Action: AddUser Don't add user");
+                }
 
-            return RedirectToAction("UsersAll");
+                return RedirectToAction("UsersAll");
+            }
+            else
+            {
+                SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+                ViewBag.Roles = roles;
+                return View();
+            }
         }
 
         [HttpGet]
+        [Admin]
         public ActionResult DeleteUser(int id)
         {
             User user = userProvider.GetUser(id);
@@ -105,6 +124,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Admin]
         [ActionName("DeleteUser")]
         public ActionResult Delete(int userId)
         {
@@ -118,6 +138,9 @@ namespace Tote.Controllers
 
 
         [HttpGet]
+        [User]
+        [Editor]
+        [Admin]
         public ActionResult ShowUserProfile()
         {
             int userId = 0;
@@ -130,13 +153,24 @@ namespace Tote.Controllers
             return View(user);
         }
         [HttpGet]
-        public ActionResult EditUserProfile(int userId)
+        [User]
+        [Editor]
+        [Admin]
+        public ActionResult EditUserProfile()
         {
+            int userId = 0;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                userId = (HttpContext.User as UserPrincipal).UserId;
+            }
             User user = userProvider.GetUser(userId);
             return View(user);
         }
 
         [HttpPost]
+        [User]
+        [Editor]
+        [Admin]
         public ActionResult EditUserProfile(User user)
         {
             bool result = userProvider.UpdateUser(user);

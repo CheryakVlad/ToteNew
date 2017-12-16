@@ -1,0 +1,1 @@
+2017-12-16 19:42:21,261 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "AddCountry" ожидает параметр "@Name", который не был указан.

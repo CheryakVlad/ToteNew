@@ -16,6 +16,15 @@ namespace Tote.Controllers
             this.betListProvider = betListProvider;
             this.teamProvider = teamProvider;
         }
+        public ActionResult ShowCountries()
+        {
+            IReadOnlyList<Country> countries = teamProvider.GetCountriesAll();
+            if (countries == null)
+            {
+                return RedirectToAction("InfoError", "Navigation");
+            }
+            return View(countries);
+        }
         public ActionResult ShowTeams()
         {
             IReadOnlyList<Team> teams = teamProvider.GetTeamsAll();
@@ -25,6 +34,31 @@ namespace Tote.Controllers
             }
             return PartialView(teams);
         }
+
+        [HttpGet]
+        public ActionResult AddCountry()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCountry(Country country)
+        {
+            if (ModelState.IsValid)
+            {
+                bool result = teamProvider.AddCountry(country);
+                if (!result)
+                {
+                    log.Error("Controller: Team, Action: AddTeam Don't add Team");
+                }
+                return RedirectToAction("ShowCountries");
+            }
+            else
+            {
+                return View();
+            }         
+        }
+
         [HttpGet]
         public ActionResult AddTeam()
         {
@@ -38,19 +72,48 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult AddTeam(Team team)
         {
-
-            bool result = teamProvider.AddTeam(team);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Team, Action: AddTeam Don't add Team");
+                bool result = teamProvider.AddTeam(team);
+                if (!result)
+                {
+                    log.Error("Controller: Team, Action: AddTeam Don't add Team");
+                }
+                return RedirectToAction("ShowTeams");
             }
+            else
+            {
+                return View();
+            }
+        }
 
-            return RedirectToAction("ShowTeams");
+        [HttpGet]
+        public ActionResult EditCountry(int countryId)
+        {
+            Country country = teamProvider.GetCountryById(countryId);
+            return View(country);
+        }
+        [HttpPost]
+        public ActionResult EditCountry(Country country)
+        {
+            if (ModelState.IsValid)
+            {
+                bool result = teamProvider.UpdateCountry(country);
+                if (!result)
+                {
+                    log.Error("Controller: Team, Action: EditTeam Don't update Team");
+                }
+                return RedirectToAction("ShowCountries");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
         public ActionResult EditTeam(int id)
-        {
+        {            
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
             ViewBag.Sports = sports;
             SelectList countries = new SelectList(teamProvider.GetCountriesAll(), "CountryId", "Name");
@@ -62,12 +125,19 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult EditTeam(Team team)
         {
-            bool result = teamProvider.UpdateTeam(team);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Team, Action: EditTeam Don't update Team");
+                bool result = teamProvider.UpdateTeam(team);
+                if (!result)
+                {
+                    log.Error("Controller: Team, Action: EditTeam Don't update Team");
+                }
+                return RedirectToAction("ShowTeams");
             }
-            return RedirectToAction("ShowTeams");
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -88,5 +158,26 @@ namespace Tote.Controllers
             }
             return RedirectToAction("ShowTeams");
         }
+
+        [HttpGet]
+        public ActionResult DeleteCountry(int countryId)
+        {
+            Country country = teamProvider.GetCountryById(countryId);
+            return View(country);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteCountry")]
+        public ActionResult DeleteCountry_(int countryId)
+        {
+            bool result = teamProvider.DeleteCountry(countryId);
+            if (!result)
+            {
+                log.Error("Controller: Team, Action: DeleteTeam Don't delete Team");
+            }
+            return RedirectToAction("ShowCountries");
+        }
+
+
     }
 }

@@ -84,6 +84,10 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvcValidationExtensions, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcValidationExtensions.1.1.4.0\lib\net45\MvcValidationExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -151,6 +155,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\liNone.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -224,7 +229,14 @@
     <None Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.bootstrap.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.bootstrap.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\jquery.validation.net.webforms.js" />
+    <Content Include="scripts\jquery.validation.net.webforms.min.js" />
     <Content Include="scripts\main.js" />
+    <Content Include="scripts\mvcvalidationextensions.unobtrusive.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Navigation\ChildTournament.cshtml" />
     <Content Include="Views\Navigation\List.cshtml" />
@@ -314,6 +326,11 @@
     <Content Include="Views\User\EditUserProfile.cshtml" />
     <Content Include="Views\Sort\ShowBetsByRate.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
+    <Content Include="Views\Team\ShowCountries.cshtml" />
+    <Content Include="Views\Team\AddCountry.cshtml" />
+    <Content Include="Views\Team\EditCountry.cshtml" />
+    <Content Include="Views\Team\DeleteCountry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

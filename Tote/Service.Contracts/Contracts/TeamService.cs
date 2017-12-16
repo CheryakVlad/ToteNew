@@ -14,6 +14,24 @@ namespace Service.Contracts.Contracts
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamService));
 
+        public bool AddCountry(CountryDto countryDto)
+        {
+            var parameters = new List<Parameter>();            
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = countryDto.Name });
+            var connection = new Connection<CountryDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddCountry", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddCountry";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
         public bool AddEvents(IReadOnlyList<EventDto> eventDto)
         {
             var parameters = new List<Parameter>();
@@ -83,6 +101,26 @@ namespace Service.Contracts.Contracts
                 exception.Title = "AddTeam";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public bool DeleteCountry(int countryId)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = countryId });
+
+            var connection = new Connection<CountryDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "DeleteCountry", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "DeleteCountry";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
             }
         }
 
@@ -356,7 +394,28 @@ namespace Service.Contracts.Contracts
             }
         }
 
-        public bool UpdateEvents(IReadOnlyList<EventDto> eventDto)
+        public bool UpdateCountry(CountryDto countryDto)
+        {
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = countryDto.CountryId });
+            parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = countryDto.Name });
+            
+            var connection = new Connection<CountryDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "UpdateCountry", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "UpdateCountry";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+
+            }
+        }
+
+        public bool UpdateEvents(EventDto[] eventDto)
         {            
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = eventDto[0].MatchId });

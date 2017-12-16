@@ -39,14 +39,20 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult AddTournament(Tournament tournament)
         {
-            
-            bool result = tournamentProvider.AddTournament(tournament);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Tournament, Action: AddTournament Don't add Tournament");
-            }
+                bool result = tournamentProvider.AddTournament(tournament);
+                if (!result)
+                {
+                    log.Error("Controller: Tournament, Action: AddTournament Don't add Tournament");
+                }
 
-            return RedirectToAction("ShowTournaments");
+                return RedirectToAction("ShowTournaments");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -61,12 +67,19 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult EditTournament(Tournament tournament)
         {
-            bool result = tournamentProvider.UpdateTournament(tournament);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Tournament, Action: EditTournament Don't update Tournament");
+                bool result = tournamentProvider.UpdateTournament(tournament);
+                if (!result)
+                {
+                    log.Error("Controller: Tournament, Action: EditTournament Don't update Tournament");
+                }
+                return RedirectToAction("ShowTournaments");
             }
-            return RedirectToAction("ShowTournaments");
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

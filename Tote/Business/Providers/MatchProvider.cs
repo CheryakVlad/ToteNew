@@ -63,7 +63,7 @@ namespace Business.Providers
             return matchService.GetResultsAll();
         }
 
-        public bool UpdateEvent(IReadOnlyList<Event> events)
+        public bool UpdateEvent(Event[] events)
         {
             return matchClient.UpdateEvent(events);
         }

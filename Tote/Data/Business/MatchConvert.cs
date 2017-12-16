@@ -25,7 +25,7 @@ namespace Data.Business
             return eventsList;
         }
 
-        public IReadOnlyList<EventDto> ToEventDto(IReadOnlyList<Event> events)
+        public EventDto[] ToEventDto(IReadOnlyList<Event> events)
         {
             var eventsDto = new List<EventDto>();
             foreach (var _event in events)
@@ -40,7 +40,7 @@ namespace Data.Business
 
                 eventsDto.Add(eventDto);
             }
-            return eventsDto;
+            return eventsDto.ToArray();
         }
 
         public Match ToMatch(MatchDto matchDto)

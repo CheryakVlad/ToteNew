@@ -129,20 +129,34 @@ namespace Data.Business
             return betsList;
         }
 
+        public Country ToCountry(CountryDto countryDto)
+        {
+            var country = new Country
+            {
+                CountryId = countryDto.CountryId,
+                Name = countryDto.Name
+            };
+            return country;
+        }
+
         public IReadOnlyList<Country> ToCountry(IReadOnlyList<CountryDto> countriesDto)
         {
             var countriesList = new List<Country>();
             foreach (var countryDto in countriesDto)
             {
-                var country = new Country
-                {
-                    CountryId=countryDto.CountryId,
-                    Name=countryDto.Name
-                };
-
-                countriesList.Add(country);
+                countriesList.Add(ToCountry(countryDto));
             }
             return countriesList;
+        }
+
+        public CountryDto ToCountryDto(Country country)
+        {
+            var countryDto = new CountryDto
+            {
+                CountryId = country.CountryId,
+                Name = country.Name
+            };
+            return countryDto;
         }
 
         public IReadOnlyList<Event> ToEvents(IReadOnlyList<ToteService.EventDto> eventsDto)

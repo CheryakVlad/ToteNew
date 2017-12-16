@@ -36,13 +36,19 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult AddSport(Sport sport)
         {
-            bool result = betListProvider.AddSport(sport);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Sport, Action: AddSport Don't add sport");
+                bool result = betListProvider.AddSport(sport);
+                if (!result)
+                {
+                    log.Error("Controller: Sport, Action: AddSport Don't add sport");
+                }
+                return RedirectToAction("ShowSports");
             }
-
-            return RedirectToAction("ShowSports");
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -55,12 +61,19 @@ namespace Tote.Controllers
         [HttpPost]
         public ActionResult EditSport(Sport sport)
         {
-            bool result = betListProvider.UpdateSport(sport);
-            if (!result)
+            if (ModelState.IsValid)
             {
-                log.Error("Controller: Sport, Action: EditSport Don't update sport");
+                bool result = betListProvider.UpdateSport(sport);
+                if (!result)
+                {
+                    log.Error("Controller: Sport, Action: EditSport Don't update sport");
+                }
+                return RedirectToAction("ShowSports");
             }
-            return RedirectToAction("ShowSports");
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

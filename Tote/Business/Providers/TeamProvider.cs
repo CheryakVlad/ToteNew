@@ -50,5 +50,25 @@ namespace Business.Providers
         {
             return dataService.GetTeamsByTournament(tournamentId);
         }
+
+        public bool UpdateCountry(Country country)
+        {
+            return teamClient.UpdateCountry(country);
+        }
+
+        public bool AddCountry(Country country)
+        {
+            return teamClient.AddCountry(country);
+        }
+
+        public bool DeleteCountry(int countryId)
+        {
+            return teamClient.DeleteCountry(countryId);
+        }
+
+        public Country GetCountryById(int countryId)
+        {
+            return dataService.GetCountryById(countryId);                 
+        }
     }
 }

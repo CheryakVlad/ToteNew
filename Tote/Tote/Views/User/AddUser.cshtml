@@ -1,7 +1,7 @@
 ﻿@model Common.Models.User
 
 @{
-    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
+    Layout = @"\Views\LayoutView.cshtml"; 
 }
 
 <!DOCTYPE html>
@@ -10,6 +10,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>AddUser</title>
+    <script src="~/scripts/jquery-3.2.1.js"></script>
+    <script src="~/scripts/jquery.validate.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
     @using (Html.BeginForm()) 

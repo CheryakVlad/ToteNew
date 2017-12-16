@@ -1,7 +1,7 @@
 ﻿@model List<Common.Models.Event>
 
 @{
-    Layout = null;
+    Layout = @"\Views\LayoutView.cshtml";
 }
 
 <!DOCTYPE html>
@@ -21,30 +21,64 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            @for(var i=0;i<Model.Count();i++)
-            {
-                @Html.HiddenFor(modelItem => modelItem[i].EventId)
-                @Html.HiddenFor(modelItem => modelItem[i].MatchId)
+            @Html.HiddenFor(modelItem => modelItem[0].EventId)
+            @Html.HiddenFor(modelItem => modelItem[0].MatchId)
 
-                <div class="form-group">
-                    @Html.LabelFor(modelItem => modelItem[i].Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(modelItem => modelItem[i].Name,  new { @class = "form-control" } )
-                        @Html.ValidationMessageFor(modelItem => modelItem[i].Name, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(modelItem => modelItem[0].Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(modelItem => modelItem[0].Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => modelItem[0].Name, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(modelItem => modelItem[i].Coefficient, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(modelItem => modelItem[i].Coefficient,  new { @class = "form-control" })
-                        @Html.ValidationMessageFor(modelItem => modelItem[i].Coefficient, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(modelItem => modelItem[0].Coefficient, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(modelItem => modelItem[0].Coefficient, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => modelItem[0].Coefficient, "", new { @class = "text-danger" })
                 </div>
-                
-            }
-           
-    
+            </div>
+
+            @Html.HiddenFor(modelItem => modelItem[1].EventId)
+            @Html.HiddenFor(modelItem => modelItem[1].MatchId)
+
+            <div class="form-group">
+                @Html.LabelFor(modelItem => modelItem[1].Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(modelItem => modelItem[1].Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => modelItem[1].Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(modelItem => modelItem[1].Coefficient, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(modelItem => modelItem[1].Coefficient, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => modelItem[1].Coefficient, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.HiddenFor(modelItem => modelItem[2].EventId)
+            @Html.HiddenFor(modelItem => modelItem[2].MatchId)
+
+            <div class="form-group">
+                @Html.LabelFor(modelItem => modelItem[2].Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(modelItem => modelItem[2].Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => modelItem[2].Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(modelItem => modelItem[2].Coefficient, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(modelItem => modelItem[2].Coefficient, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => modelItem[2].Coefficient, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />

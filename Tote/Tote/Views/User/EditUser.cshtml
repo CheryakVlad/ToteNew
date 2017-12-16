@@ -1,7 +1,7 @@
 ﻿@model Common.Models.User
 
 @{
-    Layout = @"\Views\LayoutView.cshtml"; //null;// @"\Views\MasterView.cshtml";
+    Layout = @"\Views\LayoutView.cshtml"; 
 }
 
 <!DOCTYPE html>
@@ -9,12 +9,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>EditUser</title>
+    <title>EditUser</title>    
     <script src="~/scripts/jquery-3.2.1.js"></script>
+    <script src="~/scripts/jquery.validate.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
@@ -93,3 +96,4 @@
     </div>
 </body>
 </html>
+
