@@ -14,35 +14,64 @@ namespace Tote.App.Business.Test
         private Mock<IMatchClient> matchClient;
         private Mock<Data.Services.IMatchService> matchService;
         private IMatchProvider matchProvider;
+        private Mock<IBetListProvider> betListProvider;
 
         private List<Common.Models.Match> GetMatches()
         {
             var matches = new List<Common.Models.Match>();
+            var teams = new List<Team>();
+            teams.Add(new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } });
+            teams.Add(new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } });
             matches.Add(new Common.Models.Match()
             {
                 MatchId = 1,
-                /*Teams = { new Team() {Name="AC Milan", Country=new Country() { Name= "Italy" } },
-                    new Team() { Name ="Juventus", Country = new Country() { Name = "Italy" } } },*/
+                Teams = teams,
                 Result = new Result() { ResultId = 1 },
                 Score = "0:2",
                 Tournament = new Tournament() { Name = "Seria A" }
             });
-            
-           /* var matches = new List<Common.Models.Match>
+            teams.RemoveAt(0);
+            teams.RemoveAt(1);
+
+            teams.Add(new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } });
+            teams.Add(new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } });
+            matches.Add(new Common.Models.Match()
             {
-                new Common.Models.Match {MatchId=1, Teams= { new Team {Name="AC Milan", Country=new Country { Name= "Italy" } },
-                    new Team { Name ="Juventus", Country = new Country { Name = "Italy" } } },Result=new Result {ResultId=1 },
-                    Score="0:2", Tournament=new Tournament { Name="Seria A"} },
-                new Common.Models.Match {MatchId=2, Teams= { new Team {Name="Napoli", Country=new Country { Name= "Italy" } },
-                    new Team { Name ="Juventus", Country = new Country { Name = "Italy" } } },Result=new Result {ResultId=1 },
-                    Score="2:1", Tournament=new Tournament { Name="Seria A"} },
-                new Common.Models.Match {MatchId=3, Teams= { new Team {Name="Napoli", Country=new Country { Name= "Italy" } },
-                    new Team { Name ="AC Milan", Country = new Country { Name = "Italy" } } },Result=new Result {ResultId=1 },
-                    Score="3:0", Tournament=new Tournament { Name="Seria A"} },
-                new Common.Models.Match {MatchId=4, Teams= { new Team {Name="Dinamo Minsk", Country=new Country { Name= "Belarus" } },
-                    new Team { Name ="Dinamo Riga", Country = new Country { Name = "Latvia" } } },Result=new Result {ResultId=1 },
-                    Score="4:4", Tournament=new Tournament { Name="KHL"} }
-            };*/
+                MatchId = 2,
+                Teams = teams,
+                Result = new Result() { ResultId = 1 },
+                Score = "2:1",
+                Tournament = new Tournament() { Name = "Seria A" }
+            });
+
+            teams.RemoveAt(0);
+            teams.RemoveAt(1);
+
+            teams.Add(new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } });
+            teams.Add(new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } });
+            matches.Add(new Common.Models.Match()
+            {
+                MatchId = 3,
+                Teams = teams,
+                Result = new Result() { ResultId = 1 },
+                Score = "3:0",
+                Tournament = new Tournament() { Name = "Seria A" }
+            });
+
+            teams.RemoveAt(0);
+            teams.RemoveAt(1);
+
+            teams.Add(new Team() { Name = "Dinamo Minsk", Country = new Country() { Name = "Belarus" } });
+            teams.Add(new Team() { Name = "Dinamo Riga", Country = new Country() { Name = "Latvia" } });
+            matches.Add(new Common.Models.Match()
+            {
+                MatchId = 4,
+                Teams = teams,
+                Result = new Result() { ResultId = 3 },
+                Score = "4:4",
+                Tournament = new Tournament() { Name = "KHL" }
+            });
+            
             return matches;
         }
         
@@ -63,6 +92,7 @@ namespace Tote.App.Business.Test
         {
             matchClient = new Mock<IMatchClient>();
             matchService = new Mock<Data.Services.IMatchService>();
+            betListProvider = new Mock<IBetListProvider>();
             matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((int sport, string dateMatch, int status)=> {
                     if(sport==0 && dateMatch==""&&status==0)
@@ -70,24 +100,49 @@ namespace Tote.App.Business.Test
                         return GetMatches().ToArray();
                         
                     }
+
                     throw new ArgumentException();
                 });
-            matchProvider = new MatchProvider(matchClient.Object, matchService.Object);
+            matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object);
+        }
+
+        
+        [TestMethod]
+        
+        public void MatchProvider_GetMatchBySportDateStatus_PassNullDate_CountValue()
+        {            
+            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", 0);
+            Assert.IsTrue(actualResult.Count == GetMatches().Count);
+           
         }
 
         [TestMethod]
-        public void MatchProvider_GetMatchBySportDateStatus_PassNull_Exception()
+        [ExpectedException(typeof(ArgumentException))]
+        public void MatchProvider_GetMatchBySportDateStatus_PassNegativeSportId_Exception()
         {
-            /* matchClient = new Mock<IMatchClient>();
-             matchService = new Mock<Data.Services.IMatchService>();
-             matchService.Setup(m => m.GetMatchBySportDateStatus(0, "", 0)).Returns(GetMatches());
-             matchProvider = new MatchProvider(matchClient.Object, matchService.Object);*/
+            betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
+            var actualResult = matchProvider.GetMatchBySportDateStatus(-1, "", 0);
+            Assert.IsNotNull(actualResult);
+            
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void MatchProvider_GetMatchBySportDateStatus_PassNegativeStatus_Exception()
+        {
+            betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
+            var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", -1);
+            Assert.IsNotNull(actualResult);
 
-            var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", 0);
+        }
+
+        public void MatchProvider_GetMatchBySportDateStatus_PassFootball_CountValue()
+        {
+            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 0);
             Assert.IsTrue(actualResult.Count == GetMatches().Count);
 
-            //matchProvider.GetMatchBySportDateStatus(0,null,0);
         }
 
 

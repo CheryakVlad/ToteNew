@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Data.SqlClient;
 using Business.Service;
 using Business.Principal;
+using Tote.Attribute;
 
 namespace Tote.Controllers
 {
@@ -22,12 +23,10 @@ namespace Tote.Controllers
             this.loginService = loginService;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
            
@@ -47,6 +46,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(string login, string password)
         {            
             var result = loginService.Login(login, password);
@@ -66,6 +66,7 @@ namespace Tote.Controllers
             return View();
         }
         
+        [User]
         public ActionResult Logout()
         {
             loginService.Logout();

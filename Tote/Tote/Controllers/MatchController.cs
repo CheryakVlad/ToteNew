@@ -3,6 +3,7 @@ using Business.Service;
 using Common.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Tote.Attribute;
 
 namespace Tote.Controllers
 {
@@ -22,7 +23,7 @@ namespace Tote.Controllers
             this.teamProvider = teamProvider;
             this.cacheService = cacheService;
         }
-
+        [Editor]
         public ActionResult ShowMatches()
         {
             IReadOnlyList<Match> matches = matchProvider.GetMatchesAll();
@@ -33,6 +34,7 @@ namespace Tote.Controllers
             return PartialView(matches);
         }
         [HttpGet]
+        [Editor]
         public ActionResult AddMatch()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -43,14 +45,14 @@ namespace Tote.Controllers
             ViewBag.Teams = teams;            
             return View();
         }
-        
+        [Editor]
         public ActionResult TournamentesBySport(int sportId)
         {
             SelectList tournaments = new SelectList(betListProvider.GetTournament(sportId), "TournamentId", "Name");
             ViewBag.Tournaments = tournaments;
             return PartialView();
         }
-
+        [Editor]
         public ActionResult MatchesByTournament(int tournamentId)
         {
             SelectList teams = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");
@@ -59,10 +61,11 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult AddMatch(Match match)
         {
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 Result res = new Result { ResultId = 3 };
 
                 match.Result = res;
@@ -78,7 +81,7 @@ namespace Tote.Controllers
                 }
 
                 return RedirectToAction("ShowMatches");
-            }
+           /* }
             else
             {
                 SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -88,10 +91,11 @@ namespace Tote.Controllers
                 SelectList teams = new SelectList(teamProvider.GetTeamsAll(), "TeamId", "Name");
                 ViewBag.Teams = teams;
                 return View();
-            }
+            }*/
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult EditMatch(int id)
         {
             
@@ -116,10 +120,11 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult EditMatch(Match match)
         {
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 bool result = matchProvider.UpdateMatch(match);
                 if (!result)
                 {
@@ -130,7 +135,7 @@ namespace Tote.Controllers
                     cacheService.DeleteCache();
                 }
                 return RedirectToAction("ShowMatches");
-            }
+            /*}
             else
             {
                 SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", match.SportId);
@@ -149,10 +154,11 @@ namespace Tote.Controllers
                 SelectList results = new SelectList(matchProvider.GetResultsAll(), "ResultId", "Name", selected);
                 ViewBag.Results = results;
                 return View();
-            }
+            }*/
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult DeleteMatch(int id)
         {
             Match match = matchProvider.GetMatchById(id);            
@@ -162,6 +168,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         [ActionName("DeleteMatch")]
         public ActionResult Delete(int matchId)
         {
@@ -176,7 +183,7 @@ namespace Tote.Controllers
             }
             return RedirectToAction("ShowMatches");
         }
-
+        [Editor]
         public ActionResult ShowCoefficient(int id)
         {
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
@@ -189,12 +196,14 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult AddEvents()
         {           
             return View();
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult AddEvents(List<Event> item)
         {
             if (ModelState.IsValid)
@@ -218,6 +227,7 @@ namespace Tote.Controllers
 
 
         [HttpGet]
+        [Editor]
         public ActionResult EditEvent(int id)
         {
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
@@ -225,6 +235,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult EditEvent(List<Event> item)
         {            
             if (ModelState.IsValid)
@@ -243,6 +254,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult DeleteEvent(int id)
         {
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
@@ -251,6 +263,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         [ActionName("DeleteEvent")]
         public ActionResult DeleteEv(int matchId)
         {

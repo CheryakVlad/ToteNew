@@ -18,13 +18,13 @@ namespace Tote.Controllers
             this.betListProvider = rateListProvider;
         }
 
-        
+        [AllowAnonymous]
         public ActionResult Index()
         {
             IReadOnlyList<Match> rates = betListProvider.GetBetList(1, 1);
             return View(rates[0]);
         }
-
+        [AllowAnonymous]
         public ActionResult ChildTournament(int id = 0)
         {
             IReadOnlyList<Tournament> tournaments = betListProvider.GetTournament(id);  
@@ -34,7 +34,7 @@ namespace Tote.Controllers
             }          
             return PartialView(tournaments);
         }
-
+        [AllowAnonymous]
         public ActionResult Menu(int category = 0)
         {
             ViewBag.SelectedCategory = category;
@@ -45,7 +45,7 @@ namespace Tote.Controllers
             }
             return PartialView(sports);
         }
-
+        [AllowAnonymous]
         public ActionResult ListBet(int? SportId, int? TournamentId = null)
         {
             if (SportId == null)
@@ -76,13 +76,13 @@ namespace Tote.Controllers
 
             return PartialView(bets);
         }
-
+        [AllowAnonymous]
         public ActionResult LogAndRedirect(Exception ex)
         {
             log.Error(ex.Message + " " + ex.StackTrace);
             return RedirectToAction("InfoError", "Navigation");
         }
-
+        [AllowAnonymous]
         public ActionResult Bet(int id)
         {
             IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
@@ -101,7 +101,7 @@ namespace Tote.Controllers
             }
             return View(bet);
         }
-
+        [AllowAnonymous]
         public ActionResult List(int? SportId, int? TournamentId = null)
         {
             log.Info("Controller: Navigation Action: List");
@@ -136,7 +136,7 @@ namespace Tote.Controllers
 
             return View(bets);
         }
-
+        [AllowAnonymous]
         public ActionResult InfoError()
         {
             return View();
@@ -150,7 +150,7 @@ namespace Tote.Controllers
             }
             return View(sports);
         }
-
+        [AllowAnonymous]
         public ActionResult Sport()
         {
             Sport sport = betListProvider.GetSport(1);

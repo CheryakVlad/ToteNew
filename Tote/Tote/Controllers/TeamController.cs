@@ -2,6 +2,7 @@
 using Common.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Tote.Attribute;
 
 namespace Tote.Controllers
 {
@@ -16,6 +17,8 @@ namespace Tote.Controllers
             this.betListProvider = betListProvider;
             this.teamProvider = teamProvider;
         }
+
+        [Editor]
         public ActionResult ShowCountries()
         {
             IReadOnlyList<Country> countries = teamProvider.GetCountriesAll();
@@ -25,6 +28,7 @@ namespace Tote.Controllers
             }
             return View(countries);
         }
+        [Editor]
         public ActionResult ShowTeams()
         {
             IReadOnlyList<Team> teams = teamProvider.GetTeamsAll();
@@ -36,12 +40,14 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult AddCountry()
         {
             return View();
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult AddCountry(Country country)
         {
             if (ModelState.IsValid)
@@ -60,6 +66,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult AddTeam()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -70,6 +77,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult AddTeam(Team team)
         {
             if (ModelState.IsValid)
@@ -88,12 +96,14 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult EditCountry(int countryId)
         {
             Country country = teamProvider.GetCountryById(countryId);
             return View(country);
         }
         [HttpPost]
+        [Editor]
         public ActionResult EditCountry(Country country)
         {
             if (ModelState.IsValid)
@@ -112,6 +122,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult EditTeam(int id)
         {            
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -123,6 +134,7 @@ namespace Tote.Controllers
             return View(team);
         }
         [HttpPost]
+        [Editor]
         public ActionResult EditTeam(Team team)
         {
             if (ModelState.IsValid)
@@ -141,6 +153,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult DeleteTeam(int id)
         {
             Team team = teamProvider.GetTeamById(id);
@@ -148,6 +161,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         [ActionName("DeleteTeam")]
         public ActionResult Delete(int teamId)
         {
@@ -160,6 +174,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult DeleteCountry(int countryId)
         {
             Country country = teamProvider.GetCountryById(countryId);
@@ -167,6 +182,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         [ActionName("DeleteCountry")]
         public ActionResult DeleteCountry_(int countryId)
         {

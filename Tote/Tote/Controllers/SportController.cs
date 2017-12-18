@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tote.Attribute;
 
 namespace Tote.Controllers
 {
@@ -18,6 +19,7 @@ namespace Tote.Controllers
             this.betListProvider = rateListProvider;
         }
 
+        [Editor]
         public ActionResult ShowSports()
         {
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
@@ -28,12 +30,14 @@ namespace Tote.Controllers
             return PartialView(sports);
         }
 
+        [Editor]
         public ActionResult AddSport()
         {
             return View();
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult AddSport(Sport sport)
         {
             if (ModelState.IsValid)
@@ -52,13 +56,16 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult EditSport(int id)
         {
             Sport sport = betListProvider.GetSport(id);
             
             return View(sport);
         }
+
         [HttpPost]
+        [Editor]
         public ActionResult EditSport(Sport sport)
         {
             if (ModelState.IsValid)
@@ -77,6 +84,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult DeleteSport(int id)
         {
             Sport sport = betListProvider.GetSport(id);
@@ -84,6 +92,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         [ActionName("DeleteSport")]
         public ActionResult Delete(int sportId)
         {

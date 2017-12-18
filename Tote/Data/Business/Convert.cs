@@ -359,9 +359,9 @@ namespace Data.Business
                 TeamId=team.TeamId,
                 Name=team.Name,
                 SportId=team.SportId,
-                Sport=team.Sport.Name,
+                //Sport=team.Sport.Name,
                 CountryId=team.CountryId,
-                Country=team.Country.Name
+                //Country=team.Country.Name
             };
 
             return teamDto;

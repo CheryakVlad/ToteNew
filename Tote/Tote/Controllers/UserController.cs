@@ -138,9 +138,7 @@ namespace Tote.Controllers
 
 
         [HttpGet]
-        [User]
-        [Editor]
-        [Admin]
+        [User]        
         public ActionResult ShowUserProfile()
         {
             int userId = 0;
@@ -154,8 +152,7 @@ namespace Tote.Controllers
         }
         [HttpGet]
         [User]
-        [Editor]
-        [Admin]
+        
         public ActionResult EditUserProfile()
         {
             int userId = 0;
@@ -168,9 +165,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
-        [User]
-        [Editor]
-        [Admin]
+        [User]        
         public ActionResult EditUserProfile(User user)
         {
             bool result = userProvider.UpdateUser(user);

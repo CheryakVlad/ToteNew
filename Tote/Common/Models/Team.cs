@@ -9,12 +9,10 @@ namespace Common.Models
         [Display(Name = "Team")]
         public string Name { get; set; }
         public int SportId { get; set; }
-        [Required(ErrorMessage = "Required field")]
-        [Display(Name = "Sport")]
+        
         public Sport Sport { get; set; }
         public int CountryId { get; set; }
-        [Required(ErrorMessage = "Required field")]
-        [Display(Name = "Country")]
+        
         public Country Country { get; set; }
     }
 }

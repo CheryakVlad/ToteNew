@@ -29,6 +29,7 @@ namespace Tote.Controllers
             this.userProvider = userProvider;
             this.cacheService = cacheService;
         }
+        [AllowAnonymous]
         public ActionResult Sorting()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -104,17 +105,18 @@ namespace Tote.Controllers
 
             return PartialView(matches);
         }
+        [AllowAnonymous]
         public ActionResult LogAndRedirect(Exception ex)
         {
             log.Error(ex.Message + " " + ex.StackTrace);
             return RedirectToAction("InfoError", "Navigation");
         }
 
-        [Json]
-        
+       // [Json]
+        [AllowAnonymous]
         public JsonResult AjaxMethod(int sportId, string dateMatch, int status)
         {
-
+            
             string cache = sportId.ToString() + dateMatch + status.ToString();
             IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>;
             try
@@ -142,6 +144,7 @@ namespace Tote.Controllers
             return Json(matches, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult ShowCoefficient(int matchId)
         {
             ViewBag.Match = matchId;
@@ -157,6 +160,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [User]
         public ActionResult ShowCoefficient(int matchId, int eventId)
         {
             int userId = 0;
@@ -175,6 +179,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [User]
         public ActionResult ShowBasket()
         {
             double total = 1;
@@ -189,6 +194,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [User]
         public ActionResult DeleteBasket(int basketId)
         {
             int userId = 0;
@@ -201,6 +207,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [User]
         [ActionName("DeleteBasket")]
         public ActionResult Delete(int basketId)
         {            
@@ -213,6 +220,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [User]
         public ActionResult MakeRate()
         {
             int userId = 0;
@@ -225,6 +233,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [User]
         public ActionResult MakeRate(decimal amount)
         {
             int userId = 0;
@@ -238,9 +247,9 @@ namespace Tote.Controllers
                 DateRate=DateTime.Now,
                 UserId=userId
             };
-            User user = userProvider.GetUser(userId);
+            /*User user = userProvider.GetUser(userId);
             user.Money -= amount;
-            userProvider.UpdateUser(user);
+            userProvider.UpdateUser(user);*/
             int rateId = betListProvider.AddRate(rate);
             double total = 1;
             IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total);
@@ -254,10 +263,11 @@ namespace Tote.Controllers
                 };
                 betListProvider.AddBet(bet, basket.BasketId);
             }
-            return View();
+            return RedirectToAction("ShowUserProfile","User");
         }
 
         [HttpGet]
+        [User]
         public ActionResult ShowBetsByRate(int rateId)
         {
             double total = 1;

@@ -9,9 +9,7 @@ namespace Common.Models
         [Required(ErrorMessage = "Required field")]
         [Display(Name = "Tournament")]
         public string Name { get; set; }
-        public int SportId { get; set; }
-        [Required(ErrorMessage = "Required field")]
-        [Display(Name = "Sport")]
+        public int SportId { get; set; }        
         public Sport Sport { get; set; }
         public IList<Match> Matches { get; set; }
 

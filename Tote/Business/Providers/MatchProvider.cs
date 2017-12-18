@@ -10,11 +10,13 @@ namespace Business.Providers
     {
         private readonly IMatchClient matchClient;
         private readonly IMatchService matchService;
+        private readonly IBetListProvider betListProvider;
 
-        public MatchProvider(IMatchClient matchClient, IMatchService matchService)
+        public MatchProvider(IMatchClient matchClient, IMatchService matchService, IBetListProvider betListProvider)
         {
             this.matchClient = matchClient;
             this.matchService = matchService;
+            this.betListProvider = betListProvider;
         }
 
         public bool AddEvent(IReadOnlyList<Event> events)
@@ -49,6 +51,28 @@ namespace Business.Providers
 
         public IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
+            if (status > 3||status<0)
+            {
+                throw new ArgumentException();
+            }
+            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            bool flag = false;
+            foreach(Sport sport in sports)
+            {
+                if(sport.SportId==sportId)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if(sportId==0)
+            {
+                flag = true;
+            }
+            if(!flag)
+            {
+                throw new ArgumentException();
+            }
             //dateMatch = "123";
             return matchService.GetMatchBySportDateStatus(sportId, dateMatch, status);
         }

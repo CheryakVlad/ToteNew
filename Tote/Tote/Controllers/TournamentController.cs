@@ -1,10 +1,8 @@
 ﻿using Business.Providers;
 using Common.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Tote.Attribute;
 
 namespace Tote.Controllers
 {
@@ -19,6 +17,7 @@ namespace Tote.Controllers
             this.betListProvider = betListProvider;
             this.tournamentProvider = tournamentProvider;
         }
+        [Editor]
         public ActionResult ShowTournaments()
         {
             IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentes();
@@ -29,6 +28,7 @@ namespace Tote.Controllers
             return PartialView(tournaments);
         }
         [HttpGet]
+        [Editor]
         public ActionResult AddTournament()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -37,6 +37,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         public ActionResult AddTournament(Tournament tournament)
         {
             if (ModelState.IsValid)
@@ -56,6 +57,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult EditTournament(int id)
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -64,7 +66,9 @@ namespace Tote.Controllers
 
             return View(tournament);
         }
+
         [HttpPost]
+        [Editor]
         public ActionResult EditTournament(Tournament tournament)
         {
             if (ModelState.IsValid)
@@ -83,6 +87,7 @@ namespace Tote.Controllers
         }
 
         [HttpGet]
+        [Editor]
         public ActionResult DeleteTournament(int id)
         {
             Tournament tournament = tournamentProvider.GetTournamentById(id);
@@ -90,6 +95,7 @@ namespace Tote.Controllers
         }
 
         [HttpPost]
+        [Editor]
         [ActionName("DeleteTournament")]
         public ActionResult Delete(int tournamentId)
         {

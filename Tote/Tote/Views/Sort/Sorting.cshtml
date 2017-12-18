@@ -12,13 +12,13 @@
     <script src="~/scripts/bootstrap.js"></script>
     <script src="~/scripts/jquery-3.2.1.min.js"></script>
     <script src="~/scripts/jquery-ui-1.12.1.min.js"></script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
     $(function () {
         $("#dateField").datepicker({
             dateFormat: 'yy-mm-dd'
         });
     });
-    </script>
+    </script>-->
 
     @section Scripts
 {
@@ -48,9 +48,10 @@
     </select>
 
     Date Match
-    <input type="text" id="dateField" value="EnterDate" />
+    <input type="date" id="dateField" value="EnterDate" />
 
     <input type="button" value="Sort" id="btnSort" />
+    
 
     <table class="table" id="table">
         <thead>
@@ -120,6 +121,8 @@
     </table>
 </body>
 </html>
+
+
 <script type="text/javascript">
     $(function () {
         $('#sport').prepend('<option value="0">None</option>');
@@ -170,10 +173,17 @@
         $("#btnSort").click(function () {
             var sportId = $("#sport").val();
             var dateMatch = $('#dateField').val();
-            if (dateMatch == 'EnterDate')
+            var date_Match=new Date();
+            if (dateMatch == '')
             {
                 dateMatch = '';
             }
+            else
+            {                
+                var parts = dateMatch.split("-");                
+                dateMatch = parts[2] + '-' + parts[0] + '-' + parts[1];                
+            }
+            
             var status = $('#status').val();           
 
             $.ajax({
