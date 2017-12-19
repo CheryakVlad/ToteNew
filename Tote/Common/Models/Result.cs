@@ -8,9 +8,9 @@ namespace Common.Models
         public string Name { get; set; }
         public IList<Match> Matches { get; set; }
 
-        public Result()
+        /*public Result()
         {
             Matches = new List<Match>();
-        }
+        }*/
     }
 }
