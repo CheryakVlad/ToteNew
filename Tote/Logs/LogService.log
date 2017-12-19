@@ -1,8 +1,0 @@
-2017-12-18 10:06:29,541 ERROR Service.Contracts.Contracts.TeamService - ѕреобразование типа данных nvarchar в тип данных datetime привело к выходу значени€ за пределы диапазона.
-2017-12-18 10:12:05,003 ERROR Service.Contracts.Contracts.TeamService - ѕреобразование типа данных nvarchar в тип данных datetime привело к выходу значени€ за пределы диапазона.
-2017-12-18 10:18:27,018 ERROR Service.Contracts.Contracts.TeamService - ѕреобразование типа данных nvarchar в тип данных datetime привело к выходу значени€ за пределы диапазона.
-2017-12-18 11:13:30,103 ERROR Service.Contracts.Contracts.TeamService - ќшибка преобразовани€ даты или времени из символьной строки.
-2017-12-18 11:14:59,836 ERROR Service.Contracts.Contracts.TeamService - ќшибка преобразовани€ даты или времени из символьной строки.
-2017-12-18 11:16:03,090 ERROR Service.Contracts.Contracts.TeamService - ѕреобразование типа данных nvarchar в тип данных datetime привело к выходу значени€ за пределы диапазона.
-2017-12-18 11:16:33,946 ERROR Service.Contracts.Contracts.TeamService - ѕреобразование типа данных nvarchar в тип данных datetime привело к выходу значени€ за пределы диапазона.
-2017-12-18 11:18:45,129 ERROR Service.Contracts.Contracts.TeamService - ќшибка преобразовани€ даты или времени из символьной строки.

@@ -9,20 +9,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    
+    
+    @section Scripts
+{
     <script src="~/scripts/bootstrap.js"></script>
     <script src="~/scripts/jquery-3.2.1.min.js"></script>
     <script src="~/scripts/jquery-ui-1.12.1.min.js"></script>
-    <!--<script type="text/javascript">
-    $(function () {
-        $("#dateField").datepicker({
-            dateFormat: 'yy-mm-dd'
-        });
-    });
-    </script>-->
-
-    @section Scripts
-{
-        
+    <script src="~/scripts/Sort/Sorting/addNoneToSportDropDown.js"></script>
+    <script src="~/scripts/Sort/Sorting/jsonDate.js"></script>
+    <script src="~/scripts/Sort/Sorting/parseJsonDate.js"></script>
+    <script src="~/scripts/Sort/Sorting/btnSortClick.js"></script>
 }
 
     <title>Sort</title>
@@ -38,7 +35,7 @@
     Select Sport
     @Html.DropDownList("sport", ViewBag.Sports as SelectList)
 
-
+    
     Select Status
     <select id="status">
         <option value="0">None</option>
@@ -75,7 +72,6 @@
                 <th>
 
                 </th>
-
             </tr>
         </thead>
         <tbody>
@@ -123,85 +119,6 @@
 </html>
 
 
-<script type="text/javascript">
-    $(function () {
-        $('#sport').prepend('<option value="0">None</option>');
-        $("#sport :first").attr("selected", "selected");
-    });
-</script>
-<script type="text/javascript">
-    function jsonDate(date) {
-        var str, year, month, day, hour, minute, d, finalDate;
 
-        str = date.replace(/\D/g, "");
-        d = new Date(parseInt(str));
 
-        year = d.getFullYear();
-        month = pad(d.getMonth() + 1);
-        day = pad(d.getDate());
-        hour = pad(d.getHours());
-        minutes = pad(d.getMinutes());
-
-        finalDate = year + "-" + month + "-" + day + " " + hour + ":" + minutes+":00";
-        return finalDate;
-    }
-        function pad(num) {
-            num = "0" + num;
-            return num.slice(-2);
-        }
-    
-</script>
-
-<script type="text/javascript">
-    function parseJsonDate(jsonDate) {
-        var offset = new Date().getTimezoneOffset() * 60000;
-        var parts = /\/Date\((-?\d+)([+-]\d{2})?(\d{2})?.*/.exec(jsonDate);
-        if (parts[2] == undefined) parts[2] = 0;
-        if (parts[3] == undefined) parts[3] = 0;
-        d = new Date(+parts[1] + offset + parts[2] * 3600000 + parts[3] * 60000);
-        date = d.getDate() + 1;
-        date = date < 10 ? "0" + date : date;
-        mon = d.getMonth() + 1;
-        mon = mon < 10 ? "0" + mon : mon;
-        year = d.getFullYear();
-        return (date + "." + mon + "." + year);
-    };
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        $("#btnSort").click(function () {
-            var sportId = $("#sport").val();
-            var dateMatch = $('#dateField').val();
-            var date_Match=new Date();
-            if (dateMatch == '')
-            {
-                dateMatch = '';
-            }
-            else
-            {                
-                var parts = dateMatch.split("-");                
-                dateMatch = parts[2] + '-' + parts[0] + '-' + parts[1];                
-            }
-            
-            var status = $('#status').val();           
-
-            $.ajax({
-                type: 'GET',
-                dataType:'json',
-                url: '/Sort/AjaxMethod?sportId=' + sportId+'&dateMatch='+dateMatch+'&status='+status,
-                success: function (data) {
-                    $('#table > tbody').empty();
-                    
-                    $(data).each(function (index, item) { 
-                        var date = jsonDate(item.Date);
-                        $('#table').append("<tr><td>" + item.Tournament.Name + "</td><td>" + item.Teams[0].Name + "</td><td>" + item.Teams[1].Name + "</td><td>" + date + "</td><td>" + item.Score + "</td><td></tr>");
-                        $('#table').addClass('table');
-                    }) 
-                }
-            });
-            $('#table').addClass('table');
-        })
-    })
-</script>
 

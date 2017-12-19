@@ -73,6 +73,17 @@ namespace Business.Providers
             {
                 throw new ArgumentException();
             }
+            /*if(dateMatch!=string.Empty)
+            {
+                try
+                {
+                    DateTime dtParse = DateTime.Parse(dateMatch);
+                }
+                catch(FormatException ex)
+                {
+                    throw new FormatException();
+                }
+            }*/
             //dateMatch = "123";
             return matchService.GetMatchBySportDateStatus(sportId, dateMatch, status);
         }

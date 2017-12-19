@@ -13,8 +13,8 @@ namespace Tote.Controllers
 {
     public class LoginController : Controller
     {
-        private IUserProvider userProvider;
-        private ILoginService loginService;
+        private readonly IUserProvider userProvider;
+        private readonly ILoginService loginService;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(LoginController));
 
         public LoginController(IUserProvider userProvider, ILoginService loginService)

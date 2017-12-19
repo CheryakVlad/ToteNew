@@ -12,6 +12,12 @@ namespace Common.Models
         [Required(ErrorMessage = "Required field")]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Required field")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "Required field")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }

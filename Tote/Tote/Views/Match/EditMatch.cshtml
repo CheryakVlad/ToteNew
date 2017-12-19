@@ -19,7 +19,7 @@
             @Html.HiddenFor(model => model.MatchId)
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2", @type = "datetime-local" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Date, new { @class = "form-control"  })
                     @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })

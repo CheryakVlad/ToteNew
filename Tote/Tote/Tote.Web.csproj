@@ -237,6 +237,10 @@
     <Content Include="scripts\jquery.validation.net.webforms.min.js" />
     <Content Include="scripts\main.js" />
     <Content Include="scripts\mvcvalidationextensions.unobtrusive.js" />
+    <Content Include="scripts\Sort\Sorting\addNoneToSportDropDown.js" />
+    <Content Include="scripts\Sort\Sorting\btnSortClick.js" />
+    <Content Include="scripts\Sort\Sorting\jsonDate.js" />
+    <Content Include="scripts\Sort\Sorting\parseJsonDate.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Navigation\ChildTournament.cshtml" />
     <Content Include="Views\Navigation\List.cshtml" />

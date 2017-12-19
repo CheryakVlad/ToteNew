@@ -1,5 +1,6 @@
 ﻿using Business.Principal;
 using Business.Providers;
+using Business.Service;
 using Common.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -11,13 +12,16 @@ namespace Tote.Controllers
     {
         private readonly IBetListProvider betListProvider;
         private readonly IUserProvider userProvider;
+        private readonly ILoginService loginService;
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserController));
 
-        public UserController(IUserProvider userProvider, IBetListProvider betListProvider)
+        public UserController(IUserProvider userProvider, IBetListProvider betListProvider, ILoginService loginService)
         {
             this.userProvider = userProvider;
             this.betListProvider = betListProvider;
+            this.loginService = loginService;
+            
         }
 
         [Admin]
@@ -36,6 +40,7 @@ namespace Tote.Controllers
         public ActionResult EditUser(int id)
         {
             User user = userProvider.GetUser(id);
+            user.ConfirmPassword = user.Password;
             SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
             ViewBag.Roles = roles;
             return View(user);
@@ -48,9 +53,15 @@ namespace Tote.Controllers
             if (ModelState.IsValid)
             {
                 bool result = userProvider.UpdateUser(user);
+                
                 if (!result)
                 {
                     log.Error("Controller: User, Action: EditUser Don't update user");
+                }
+                int userId = (HttpContext.User as UserPrincipal).UserId;
+                if (userId==user.UserId)
+                {
+                    loginService.Login(user.Login, user.Password);
                 }
                 return RedirectToAction("UsersAll");
             }  
@@ -161,6 +172,7 @@ namespace Tote.Controllers
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
             User user = userProvider.GetUser(userId);
+            user.ConfirmPassword = user.Password;
             return View(user);
         }
 
