@@ -6,50 +6,62 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\www\Service</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\123</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
-      <publishTime>11/25/2017 10:50:23</publishTime>
+      <publishTime>12/04/2017 13:28:09</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>11/25/2017 10:50:23</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>03/08/2017 19:26:22</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
-      <publishTime>12/07/2015 19:04:38</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
-      <publishTime>03/10/2016 14:26:18</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
-      <publishTime>03/10/2016 14:26:26</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
-      <publishTime>03/09/2016 12:00:14</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Web.dll">
-      <publishTime>03/10/2016 14:26:26</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.WindowsServer.dll">
-      <publishTime>03/10/2016 14:26:26</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
-      <publishTime>03/09/2016 11:57:34</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Service.Contracts.dll">
-      <publishTime>11/28/2017 16:10:43</publishTime>
+      <publishTime>12/19/2017 21:36:31</publishTime>
     </File>
     <File Include="bin/Service.dll">
-      <publishTime>11/28/2017 16:10:43</publishTime>
+      <publishTime>12/19/2017 21:36:31</publishTime>
+    </File>
+    <File Include="Log.config">
+      <publishTime>12/04/2017 13:28:09</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/25/2017 10:50:23</publishTime>
+      <publishTime>12/04/2017 13:28:10</publishTime>
+    </File>
+    <File Include="TeamService.svc">
+      <publishTime>12/19/2017 17:36:43</publishTime>
     </File>
     <File Include="ToteService.svc">
-      <publishTime>11/27/2017 22:14:34</publishTime>
+      <publishTime>12/04/2017 13:28:09</publishTime>
+    </File>
+    <File Include="UserService.svc">
+      <publishTime>12/19/2017 17:34:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/28/2017 16:10:47</publishTime>
+      <publishTime>12/19/2017 21:36:32</publishTime>
     </File>
   </ItemGroup>
 </Project>
