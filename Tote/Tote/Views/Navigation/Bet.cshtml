@@ -1,52 +1,51 @@
 ﻿@model Common.Models.Match
 
 @{
-    Layout = @"\Views\MasterView.cshtml"; //null; //@"\Views\MasterView.cshtml";
+    ViewBag.Title = "Bet";
+    Layout = "~/Views/LayoutView.cshtml";
 }
 
+<h2>Bet</h2>
 
+<input type="button" class="btn" onclick="history.back(-2); return false;" value="Back" />
 
-    <input type="button" class="btn" onclick="history.back(-2); return false;" value="Back" />
+<h2>
+    @Model.Teams[0].Name.ToString() ( @Model.Teams[0].Country.Name)
+    vs @Model.Teams[1].Name.ToString() ( @Model.Teams[1].Country.Name) by @Model.Date.ToString()
+</h2>
 
-    <h2>       
-        @Model.Teams[0].Name.ToString() ( @Model.Teams[0].Country.Name) 
-         vs @Model.Teams[1].Name.ToString() ( @Model.Teams[1].Country.Name) by @Model.Date.ToString()
-    </h2>
+<table class="table">
+    <tr>
 
-    <table class="table">
-        <tr>
-            
-            <th>
-                Win Home Team
-            </th>
-            <th>
-                Win Guest Team
-            </th>
-            <th>
-               Draw
-            </th>
-            
-            <th></th>
-        </tr>
-           
-        <tr>                       
-            <td>
-                @Model.Events[0].Coefficient
-            </td>
-            <td>
-                @Model.Events[1].Coefficient
-            </td>
-            <td>
-                @Model.Events[2].Coefficient
-            </td>  
-        </tr>    
-    
-    </table>
+        <th>
+            Win Home Team
+        </th>
+        <th>
+            Win Guest Team
+        </th>
+        <th>
+            Draw
+        </th>
+
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @Model.Events[0].Coefficient
+        </td>
+        <td>
+            @Model.Events[1].Coefficient
+        </td>
+        <td>
+            @Model.Events[2].Coefficient
+        </td>
+    </tr>
+
+</table>
 @Html.RouteLink("To add the bet to the basket", new
 {
     controller = "Sort",
     action = "ShowCoefficient",
     matchId = Model.MatchId
 }) 
-<!--<input type="button" value="To add the bet to the basket"/>-->
-

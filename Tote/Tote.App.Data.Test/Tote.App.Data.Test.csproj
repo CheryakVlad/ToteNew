@@ -67,7 +67,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Tote.App.Common.csproj">
+      <Project>{f30bb6df-bea6-4f29-8fde-44fb0c9e3355}</Project>
+      <Name>Tote.App.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Tote.App.Data.csproj">
+      <Project>{35D5B639-ABF9-4043-8D7C-CFD672A6BBE4}</Project>
+      <Name>Tote.App.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

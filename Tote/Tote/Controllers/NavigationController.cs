@@ -5,17 +5,20 @@ using System.Web.Mvc;
 using Common.Models;
 using System.ServiceModel;
 using System.Data.SqlClient;
+using Business.Service;
 
 namespace Tote.Controllers
 {
     public class NavigationController : Controller
     {
         private readonly IBetListProvider betListProvider;
+        private readonly ICacheService cacheService;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
 
-        public NavigationController(IBetListProvider rateListProvider)
+        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService)
         {
             this.betListProvider = rateListProvider;
+            this.cacheService = cacheService;
         }
 
         /*[AllowAnonymous]
@@ -27,8 +30,12 @@ namespace Tote.Controllers
         [AllowAnonymous]
         public ActionResult ChildTournament(int id = 0)
         {
-            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournament(id);  
-            if(tournaments==null)
+            IReadOnlyList<Tournament> tournaments = cacheService.GetCache(id);
+            if (tournaments == null)
+            {
+                tournaments = cacheService.InsertCache(id);
+            }
+            if (tournaments==null)
             {
                 return RedirectToAction("InfoError", "Error");
             }          
@@ -38,7 +45,11 @@ namespace Tote.Controllers
         public ActionResult Menu(int category = 0)
         {
             ViewBag.SelectedCategory = category;
-            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            IReadOnlyList<Sport> sports = cacheService.GetCache();
+            if (sports == null)
+            {
+                sports = cacheService.InsertCache();
+            }
             if (sports == null)
             {
                 return RedirectToAction("InfoError", "Error");
@@ -105,18 +116,23 @@ namespace Tote.Controllers
         public ActionResult List(int? SportId, int? TournamentId = null)
         {
             log.Info("Controller: Navigation Action: List");
-            if (SportId==null)
+            int sportId=0, tournamentId=0;
+            if (SportId!=null)
             {
-                SportId = 0;
+                sportId = 0;
             }
-            if (TournamentId == null)
+            if (TournamentId != null)
             {
-                TournamentId = 0;
+                tournamentId = 0;
             }
             IReadOnlyList<Match> bets = new List<Match>();
             try
             {
-                bets = betListProvider.GetBetList(SportId, TournamentId);
+                bets = cacheService.GetCache(sportId, tournamentId);
+                if (bets == null)
+                {
+                    bets = cacheService.InsertCache(sportId, tournamentId);
+                }
                 if (bets.Count == 0)
                 {
                     return RedirectToAction("InfoError", "Error");

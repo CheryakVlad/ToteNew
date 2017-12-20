@@ -247,7 +247,6 @@
     <Content Include="Views\Navigation\ChildTournament.cshtml" />
     <Content Include="Views\Navigation\List.cshtml" />
     <Content Include="Views\Navigation\Menu.cshtml" />
-    <Content Include="Views\Navigation\Bet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -338,6 +337,7 @@
     <Content Include="Views\Team\EditCountry.cshtml" />
     <Content Include="Views\Team\DeleteCountry.cshtml" />
     <Content Include="Views\Error\InfoError.cshtml" />
+    <Content Include="Views\Navigation\Bet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

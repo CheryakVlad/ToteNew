@@ -7,6 +7,12 @@ namespace Business.Service
     {
         IReadOnlyList<Match> GetCache(int sportId, string dateMatch, int status);
         IReadOnlyList<Match> InsertCache(int sportId, string dateMatch, int status);
-        void DeleteCache();
+        IReadOnlyList<Sport> GetCache();
+        IReadOnlyList<Sport> InsertCache();
+        IReadOnlyList<Tournament> GetCache(int sportId);
+        IReadOnlyList<Tournament> InsertCache(int sportId);
+        IReadOnlyList<Match> GetCache(int sportId, int tournamentId);
+        IReadOnlyList<Match> InsertCache(int sportId, int tournamentId);
+        void DeleteCache(string cacheKey);
     }
 }

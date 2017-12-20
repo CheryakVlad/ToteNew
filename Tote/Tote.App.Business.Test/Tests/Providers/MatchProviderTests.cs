@@ -181,7 +181,7 @@ namespace Tote.App.Business.Test
         }
 
         [TestMethod]
-        public void MatchProvider_GetMatchBySportDateStatus_PassDate_CountValue()
+        public void MatchProvider_GetMatchBySportDateStatus_PassDateMatch_CountValue()
         {
             betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, DateTime.Now.Date.ToString(), 0);           

@@ -102,7 +102,7 @@ namespace Tote.Controllers
                 }
                 else
                 {
-                    cacheService.DeleteCache();
+                    cacheService.DeleteCache(cacheKey);
                 }
 
                 return RedirectToAction("ShowMatches");
@@ -170,7 +170,7 @@ namespace Tote.Controllers
             }
             else
             {
-                cacheService.DeleteCache();
+                cacheService.DeleteCache(cacheKey);
             }
             return RedirectToAction("ShowMatches");
         }
@@ -202,7 +202,7 @@ namespace Tote.Controllers
             }
             else
             {
-                cacheService.DeleteCache();
+                cacheService.DeleteCache(cacheKey);
             }
             return RedirectToAction("ShowMatches");
         }
@@ -239,7 +239,7 @@ namespace Tote.Controllers
                 }
                 else
                 {
-                    cacheService.DeleteCache();
+                    cacheService.DeleteCache(cacheKey);
                 }
                 return RedirectToAction("ShowMatches");
             }
