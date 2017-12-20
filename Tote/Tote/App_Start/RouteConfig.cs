@@ -16,7 +16,7 @@ namespace Tote
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional }
+                defaults: new { controller = "Navigation", action = "List", id = UrlParameter.Optional }
             );
         }
     }

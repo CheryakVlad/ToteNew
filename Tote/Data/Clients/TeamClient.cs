@@ -142,8 +142,11 @@ namespace Data.Clients
                     {
                         model.Add(country);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                 }
                 catch (FaultException<CustomException> customEx)
@@ -156,6 +159,12 @@ namespace Data.Clients
                     log.Error(commEx.Message);
                     return null;
                 }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
+
             }
 
             return model;
@@ -171,6 +180,10 @@ namespace Data.Clients
                     client.Open();
                     model = client.GetCountryById(countryId);
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -183,7 +196,11 @@ namespace Data.Clients
                     log.Error(commEx.Message);
                     return null;
                 }
-
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
             }
             return model;
         }
@@ -198,6 +215,10 @@ namespace Data.Clients
                     client.Open();
                     model = client.GetTeamById(teamId);
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -208,6 +229,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -228,8 +254,11 @@ namespace Data.Clients
                     {
                         model.Add(team);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                 }
                 catch (FaultException<CustomException> customEx)
@@ -240,6 +269,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
             }
@@ -260,8 +294,11 @@ namespace Data.Clients
                     {
                         model.Add(team);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                 }
                 catch (FaultException<CustomException> customEx)
@@ -272,6 +309,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
             }

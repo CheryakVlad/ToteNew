@@ -10,7 +10,7 @@ namespace Tote.Controllers
 {
     public class NavigationController : Controller
     {
-        private IBetListProvider betListProvider;
+        private readonly IBetListProvider betListProvider;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
 
         public NavigationController(IBetListProvider rateListProvider)
@@ -18,19 +18,19 @@ namespace Tote.Controllers
             this.betListProvider = rateListProvider;
         }
 
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult Index()
         {
             IReadOnlyList<Match> rates = betListProvider.GetBetList(1, 1);
             return View(rates[0]);
-        }
+        }*/
         [AllowAnonymous]
         public ActionResult ChildTournament(int id = 0)
         {
             IReadOnlyList<Tournament> tournaments = betListProvider.GetTournament(id);  
             if(tournaments==null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                return RedirectToAction("InfoError", "Error");
             }          
             return PartialView(tournaments);
         }
@@ -41,7 +41,7 @@ namespace Tote.Controllers
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
             if (sports == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                return RedirectToAction("InfoError", "Error");
             }
             return PartialView(sports);
         }
@@ -62,7 +62,7 @@ namespace Tote.Controllers
                 bets = betListProvider.GetBetList(SportId, TournamentId);
                 if(bets==null)
                 {
-                    return RedirectToAction("InfoError", "Navigation");
+                    return RedirectToAction("InfoError", "Error");
                 }
             }
             catch (FaultException faultEx)
@@ -80,7 +80,7 @@ namespace Tote.Controllers
         public ActionResult LogAndRedirect(Exception ex)
         {
             log.Error(ex.Message + " " + ex.StackTrace);
-            return RedirectToAction("InfoError", "Navigation");
+            return RedirectToAction("InfoError", "Error");
         }
         [AllowAnonymous]
         public ActionResult Bet(int id)
@@ -88,7 +88,7 @@ namespace Tote.Controllers
             IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
             if (bets.Count == 0)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                return RedirectToAction("InfoError", "Error");
             }
             Match bet = new Match();
             foreach(Match b in bets)
@@ -119,18 +119,18 @@ namespace Tote.Controllers
                 bets = betListProvider.GetBetList(SportId, TournamentId);
                 if (bets.Count == 0)
                 {
-                    return RedirectToAction("InfoError", "Navigation");
+                    return RedirectToAction("InfoError", "Error");
                 }
             }
             catch(FaultException<SqlException> sqlEx)
-            {
+            {                
                 log.Error(sqlEx.Message+" "+ sqlEx.StackTrace);
-                return RedirectToAction("InfoError", "Navigation");
+                return RedirectToAction("InfoError", "Error");
             }
             catch(CommunicationException commEx)
-            {
+            {                
                 log.Error(commEx.Message + " " + commEx.StackTrace);
-                return RedirectToAction("InfoError","Navigation");
+                return RedirectToAction("InfoError", "Error");
             }
 
 
@@ -141,7 +141,7 @@ namespace Tote.Controllers
         {
             return View();
         }
-        public ActionResult Sports()
+        /*public ActionResult Sports()
         {
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
             if (sports == null)
@@ -160,6 +160,6 @@ namespace Tote.Controllers
             }
             return View(sport);
         }
-
+        */
     }
 }

@@ -8,15 +8,6 @@
       <xsd:import schemaLocation="http://localhost:7712/TeamService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ITeamService_GetTeam_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTeam" />
-  </wsdl:message>
-  <wsdl:message name="ITeamService_GetTeam_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTeamResponse" />
-  </wsdl:message>
-  <wsdl:message name="ITeamService_GetTeam_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q1:CustomException" />
-  </wsdl:message>
   <wsdl:message name="ITeamService_GetTeams_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTeams" />
   </wsdl:message>
@@ -24,7 +15,7 @@
     <wsdl:part name="parameters" element="tns:GetTeamsResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetTeams_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q2:CustomException" />
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q1:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetTeamById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTeamById" />
@@ -33,7 +24,7 @@
     <wsdl:part name="parameters" element="tns:GetTeamByIdResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetTeamById_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q3:CustomException" />
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q2:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_UpdateTeam_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTeam" />
@@ -42,7 +33,7 @@
     <wsdl:part name="parameters" element="tns:UpdateTeamResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_UpdateTeam_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q4:CustomException" />
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q3:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_AddTeam_InputMessage">
     <wsdl:part name="parameters" element="tns:AddTeam" />
@@ -51,7 +42,7 @@
     <wsdl:part name="parameters" element="tns:AddTeamResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_AddTeam_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q5:CustomException" />
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q4:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_DeleteTeam_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteTeam" />
@@ -60,7 +51,7 @@
     <wsdl:part name="parameters" element="tns:DeleteTeamResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_DeleteTeam_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q5:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetTeamsByTournament_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTeamsByTournament" />
@@ -69,7 +60,7 @@
     <wsdl:part name="parameters" element="tns:GetTeamsByTournamentResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetTeamsByTournament_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q6:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetCountriesAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCountriesAll" />
@@ -78,7 +69,7 @@
     <wsdl:part name="parameters" element="tns:GetCountriesAllResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetCountriesAll_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q8:CustomException" />
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q7:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetCountryById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCountryById" />
@@ -87,7 +78,7 @@
     <wsdl:part name="parameters" element="tns:GetCountryByIdResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetCountryById_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q9:CustomException" />
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q8:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetCountryByTeam_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCountryByTeam" />
@@ -96,7 +87,7 @@
     <wsdl:part name="parameters" element="tns:GetCountryByTeamResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_GetCountryByTeam_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q10:CustomException" />
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q9:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_UpdateCountry_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCountry" />
@@ -105,7 +96,7 @@
     <wsdl:part name="parameters" element="tns:UpdateCountryResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_UpdateCountry_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q11:CustomException" />
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q10:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_AddCountry_InputMessage">
     <wsdl:part name="parameters" element="tns:AddCountry" />
@@ -114,7 +105,7 @@
     <wsdl:part name="parameters" element="tns:AddCountryResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_AddCountry_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q12:CustomException" />
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q11:CustomException" />
   </wsdl:message>
   <wsdl:message name="ITeamService_DeleteCountry_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteCountry" />
@@ -123,7 +114,7 @@
     <wsdl:part name="parameters" element="tns:DeleteCountryResponse" />
   </wsdl:message>
   <wsdl:message name="ITeamService_DeleteCountry_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q13:CustomException" />
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q12:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchesAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchesAll" />
@@ -132,7 +123,7 @@
     <wsdl:part name="parameters" element="tns:GetMatchesAllResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchesAll_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q14:CustomException" />
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q13:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchById" />
@@ -141,7 +132,7 @@
     <wsdl:part name="parameters" element="tns:GetMatchByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchById_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q15:CustomException" />
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q14:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_UpdateMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMatch" />
@@ -150,7 +141,7 @@
     <wsdl:part name="parameters" element="tns:UpdateMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_UpdateMatch_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q16:CustomException" />
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q15:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_AddMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:AddMatch" />
@@ -159,7 +150,7 @@
     <wsdl:part name="parameters" element="tns:AddMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_AddMatch_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q17:CustomException" />
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q16:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_DeleteMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMatch" />
@@ -168,7 +159,7 @@
     <wsdl:part name="parameters" element="tns:DeleteMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_DeleteMatch_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q18:CustomException" />
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q17:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchBySportDateStatus_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchBySportDateStatus" />
@@ -177,7 +168,7 @@
     <wsdl:part name="parameters" element="tns:GetMatchBySportDateStatusResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetMatchBySportDateStatus_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q19:CustomException" />
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q18:CustomException" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetResultsAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetResultsAll" />
@@ -186,7 +177,7 @@
     <wsdl:part name="parameters" element="tns:GetResultsAllResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchService_GetResultsAll_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q20:CustomException" />
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q19:CustomException" />
   </wsdl:message>
   <wsdl:message name="IEventService_GetEvents_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEvents" />
@@ -195,16 +186,7 @@
     <wsdl:part name="parameters" element="tns:GetEventsResponse" />
   </wsdl:message>
   <wsdl:message name="IEventService_GetEvents_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q21:CustomException" />
-  </wsdl:message>
-  <wsdl:message name="IEventService_GetEventsAll_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetEventsAll" />
-  </wsdl:message>
-  <wsdl:message name="IEventService_GetEventsAll_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetEventsAllResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEventService_GetEventsAll_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q22:CustomException" />
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q20:CustomException" />
   </wsdl:message>
   <wsdl:message name="IEventService_UpdateEvents_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateEvents" />
@@ -213,7 +195,7 @@
     <wsdl:part name="parameters" element="tns:UpdateEventsResponse" />
   </wsdl:message>
   <wsdl:message name="IEventService_UpdateEvents_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q23:CustomException" />
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q21:CustomException" />
   </wsdl:message>
   <wsdl:message name="IEventService_AddEvents_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEvents" />
@@ -222,7 +204,7 @@
     <wsdl:part name="parameters" element="tns:AddEventsResponse" />
   </wsdl:message>
   <wsdl:message name="IEventService_AddEvents_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q24:CustomException" />
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q22:CustomException" />
   </wsdl:message>
   <wsdl:message name="IEventService_DeleteEvents_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEvents" />
@@ -231,14 +213,9 @@
     <wsdl:part name="parameters" element="tns:DeleteEventsResponse" />
   </wsdl:message>
   <wsdl:message name="IEventService_DeleteEvents_CustomExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q25:CustomException" />
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q23:CustomException" />
   </wsdl:message>
   <wsdl:portType name="ITeamService">
-    <wsdl:operation name="GetTeam">
-      <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetTeam" message="tns:ITeamService_GetTeam_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/GetTeamResponse" message="tns:ITeamService_GetTeam_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/ITeamService/GetTeamCustomExceptionFault" name="CustomExceptionFault" message="tns:ITeamService_GetTeam_CustomExceptionFault_FaultMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetTeams">
       <wsdl:input wsaw:Action="http://tempuri.org/ITeamService/GetTeams" message="tns:ITeamService_GetTeams_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITeamService/GetTeamsResponse" message="tns:ITeamService_GetTeams_OutputMessage" />
@@ -343,11 +320,6 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IEventService/GetEventsResponse" message="tns:IEventService_GetEvents_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/GetEventsCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_GetEvents_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetEventsAll">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEventService/GetEventsAll" message="tns:IEventService_GetEventsAll_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEventService/GetEventsAllResponse" message="tns:IEventService_GetEventsAll_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IEventService/GetEventsAllCustomExceptionFault" name="CustomExceptionFault" message="tns:IEventService_GetEventsAll_CustomExceptionFault_FaultMessage" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateEvents">
       <wsdl:input wsaw:Action="http://tempuri.org/IEventService/UpdateEvents" message="tns:IEventService_UpdateEvents_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEventService/UpdateEventsResponse" message="tns:IEventService_UpdateEvents_OutputMessage" />
@@ -366,18 +338,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITeamService" type="tns:ITeamService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetTeam">
-      <soap:operation soapAction="http://tempuri.org/ITeamService/GetTeam" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="CustomExceptionFault">
-        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="GetTeams">
       <soap:operation soapAction="http://tempuri.org/ITeamService/GetTeams" style="document" />
       <wsdl:input>
@@ -614,18 +574,6 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetEvents">
       <soap:operation soapAction="http://tempuri.org/IEventService/GetEvents" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="CustomExceptionFault">
-        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="GetEventsAll">
-      <soap:operation soapAction="http://tempuri.org/IEventService/GetEventsAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

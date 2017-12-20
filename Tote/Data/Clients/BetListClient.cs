@@ -85,6 +85,10 @@ namespace Data.Clients
                 {
                     client.Open();
                     model = client.GetRateIdAfterAdd(rateDto);
+                    if(model<=0)
+                    { 
+                        throw new ArgumentOutOfRangeException("Not positive number not allowed");
+                    }
                     client.Close();
                 }
                 catch (FaultException<CustomException> customEx)
@@ -95,6 +99,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return 0;
+                }
+                catch(ArgumentOutOfRangeException argEx)
+                {
+                    log.Error(argEx.Message);
                     return 0;
                 }
 
@@ -192,6 +201,10 @@ namespace Data.Clients
                 {
                     client.Open();
                     model = client.GetBasketById(basketId, userId);
+                    if(model==null)
+                    {
+                        throw new NullReferenceException();
+                    }
                     client.Close();
                 }
                 catch (FaultException<CustomException> customEx)
@@ -202,6 +215,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
             }
@@ -221,8 +239,11 @@ namespace Data.Clients
                     {
                         model.Add(basket);                        
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                 }
                 catch (FaultException<CustomException> customEx)
@@ -234,7 +255,12 @@ namespace Data.Clients
                 {
                     log.Error(commEx.Message);
                     return null;
-                }                
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
             }
 
             return model;
@@ -254,8 +280,11 @@ namespace Data.Clients
                     {
                         model.Add(rate);
                     }
-
                     client.Close();
+                    if(model==null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -266,6 +295,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -286,8 +320,11 @@ namespace Data.Clients
                     {
                         model.Add(bet);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                 }
                 catch(FaultException<CustomException> customEx)
@@ -300,8 +337,11 @@ namespace Data.Clients
                     log.Error(commEx.Message);
                     return null;
                 }
-                
-                //log/ null vernut
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
             }
 
             return model;
@@ -321,6 +361,10 @@ namespace Data.Clients
                     {
                         model.Add(bet);
                     }
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                     client.Close();
                 }
@@ -333,6 +377,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -354,8 +403,11 @@ namespace Data.Clients
                     {
                         model.Add(_event);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -366,6 +418,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -387,8 +444,11 @@ namespace Data.Clients
                     {
                         model.Add(_event);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -399,6 +459,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -420,42 +485,13 @@ namespace Data.Clients
                     {
                         model.Add(rate);
                     }
-
                     client.Close();
-                }
-
-                catch (FaultException<CustomException> customEx)
-                {
-                    log.Error(customEx.Message);
-                    return null;
-                }
-                catch (CommunicationException commEx)
-                {
-                    log.Error(commEx.Message);
-                    return null;
-                }
-
-            }
-            return model;
-        }
-
-        /*public IReadOnlyList<Match> GetMatchesByBasket(string login)
-        {
-            var model = new List<BasketDto>();
-            using (var client = new ToteService.BetListServiceClient())
-            {
-                try
-                {
-                    client.Open();
-                    var baskets = client.GetBasketByUser(login);
-                    foreach (var basket in baskets)
+                    if (model == null)
                     {
-                        model.Add(basket);
+                        throw new NullReferenceException();
                     }
-
-                    client.Close();
-
                 }
+
                 catch (FaultException<CustomException> customEx)
                 {
                     log.Error(customEx.Message);
@@ -466,43 +502,15 @@ namespace Data.Clients
                     log.Error(commEx.Message);
                     return null;
                 }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
+
             }
-
             return model;
-        }*/
-
-        /* public IReadOnlyList<BetListDto> GetMatch(int id)
-         {
-             var model = new List<BetListDto>();
-             using (var client = new ToteService.BetListServiceClient())
-             {
-                 try
-                 {
-                     client.Open();
-
-                     var events = client.GetEventsAll();
-                     foreach (var _event in events)
-                     {
-                         model.Add(_event);
-                     }
-
-                     client.Close();
-                 }
-
-                 catch (FaultException<CustomException> customEx)
-                 {
-                     log.Error(customEx.Message);
-                     return null;
-                 }
-                 catch (CommunicationException commEx)
-                 {
-                     log.Error(commEx.Message);
-                     return null;
-                 }
-
-             }
-             return model;
-         }*/
+        }        
 
         public SportDto GetSport(int? id)
         {
@@ -514,6 +522,10 @@ namespace Data.Clients
                     client.Open();
                     model = client.GetSport(id);
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 catch (FaultException<CustomException> customEx)
                 {
@@ -523,6 +535,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -545,8 +562,11 @@ namespace Data.Clients
                     {
                         model.Add(sport);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 catch (FaultException<CustomException> customEx)
                 {
@@ -556,6 +576,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -578,8 +603,11 @@ namespace Data.Clients
                     {
                         model.Add(tournament);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 catch (FaultException<CustomException> customEx)
                 {
@@ -589,6 +617,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -611,8 +644,11 @@ namespace Data.Clients
                     {
                         model.Add(tournament);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 catch (FaultException<CustomException> customEx)
                 {
@@ -622,6 +658,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
             }

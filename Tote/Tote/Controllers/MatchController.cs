@@ -23,13 +23,15 @@ namespace Tote.Controllers
             this.teamProvider = teamProvider;
             this.cacheService = cacheService;
         }
+
         [Editor]
         public ActionResult ShowMatches()
         {
             IReadOnlyList<Match> matches = matchProvider.GetMatchesAll();
             if (matches == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: Match, Action: ShowMatches Don't GetMatchesAll");
+                return RedirectToAction("InfoError", "Error");
             }
             return PartialView(matches);
         }
@@ -38,17 +40,38 @@ namespace Tote.Controllers
         public ActionResult AddMatch()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            if (sports == null)
+            {
+                log.Error("Controller: Match, Action: AddMatch Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
             SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name");
+            if (tournaments == null)
+            {
+                log.Error("Controller: Match, Action: AddMatch Don't GetTournamentes");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Tournaments = tournaments;
             SelectList teams = new SelectList(teamProvider.GetTeamsAll(), "TeamId", "Name");
-            ViewBag.Teams = teams;            
+            if (teams == null)
+            {
+                log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
+                return RedirectToAction("InfoError", "Error");
+            }
+            ViewBag.Teams = teams;
+            
             return View();
         }
         [Editor]
         public ActionResult TournamentesBySport(int sportId)
         {
             SelectList tournaments = new SelectList(betListProvider.GetTournament(sportId), "TournamentId", "Name");
+            if (tournaments == null)
+            {
+                log.Error("Controller: Match, Action: TournamentesBySport Don't GetTournament");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Tournaments = tournaments;
             return PartialView();
         }
@@ -56,6 +79,11 @@ namespace Tote.Controllers
         public ActionResult MatchesByTournament(int tournamentId)
         {
             SelectList teams = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");
+            if (teams == null)
+            {
+                log.Error("Controller: Match, Action: MatchesByTournament Don't GetTeamsByTournament");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Teams = teams;
             return PartialView();
         }
@@ -63,11 +91,8 @@ namespace Tote.Controllers
         [HttpPost]
         [Editor]
         public ActionResult AddMatch(Match match)
-        {
-            /*if (ModelState.IsValid)
-            {*/
+        {            
                 Result res = new Result { ResultId = 3 };
-
                 match.Result = res;
                 match.Score = "0";
                 bool result = matchProvider.AddMatch(match);
@@ -81,17 +106,7 @@ namespace Tote.Controllers
                 }
 
                 return RedirectToAction("ShowMatches");
-           /* }
-            else
-            {
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
-                ViewBag.Sports = sports;
-                SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name");
-                ViewBag.Tournaments = tournaments;
-                SelectList teams = new SelectList(teamProvider.GetTeamsAll(), "TeamId", "Name");
-                ViewBag.Teams = teams;
-                return View();
-            }*/
+           
         }
 
         [HttpGet]
@@ -100,21 +115,46 @@ namespace Tote.Controllers
         {
             
             Match match = matchProvider.GetMatchById(id);
+            if (match == null)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't GetMatchById");
+                return RedirectToAction("InfoError", "Error");
+            }
 
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", match.SportId);
+            if (sports == null)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
             int selected = match.Tournament.TournamentId;
             SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name", selected);
+            if (tournaments == null)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't GetTournamentes");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Tournaments = betListProvider.GetTournamentes();
             IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsAll();
+            if (teamsAll == null)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't GetTeamsAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             selected = match.Teams[0].TeamId;
-            SelectList teamsHome = new SelectList(teamsAll, "TeamId", "Name", selected);
+            SelectList teamsHome = new SelectList(teamsAll, "TeamId", "Name", selected);            
             ViewBag.TeamsHome = teamsHome;
             selected = match.Teams[1].TeamId;
-            SelectList teamsGuest = new SelectList(teamsAll, "TeamId", "Name", selected);
+            SelectList teamsGuest = new SelectList(teamsAll, "TeamId", "Name", selected);            
             ViewBag.TeamsGuest = teamsGuest;
             selected = match.Result.ResultId;
             SelectList results = new SelectList(matchProvider.GetResultsAll(),"ResultId","Name", selected);
+            if (results == null)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't GetResultsAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Results = results;
             return View(match);
         }
@@ -123,45 +163,28 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult EditMatch(Match match)
         {
-            /*if (ModelState.IsValid)
-            {*/
-                bool result = matchProvider.UpdateMatch(match);
-                if (!result)
-                {
-                    log.Error("Controller: Match, Action: EditMatch Don't update Match");
-                }
-                else
-                {
-                    cacheService.DeleteCache();
-                }
-                return RedirectToAction("ShowMatches");
-            /*}
+            bool result = matchProvider.UpdateMatch(match);
+            if (!result)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't update Match");
+            }
             else
             {
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", match.SportId);
-                ViewBag.Sports = sports;
-                int selected = match.Tournament.TournamentId;
-                SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name", selected);
-                ViewBag.Tournaments = betListProvider.GetTournamentes();
-                IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsAll();
-                selected = match.Teams[0].TeamId;
-                SelectList teamsHome = new SelectList(teamsAll, "TeamId", "Name", selected);
-                ViewBag.TeamsHome = teamsHome;
-                selected = match.Teams[1].TeamId;
-                SelectList teamsGuest = new SelectList(teamsAll, "TeamId", "Name", selected);
-                ViewBag.TeamsGuest = teamsGuest;
-                selected = match.Result.ResultId;
-                SelectList results = new SelectList(matchProvider.GetResultsAll(), "ResultId", "Name", selected);
-                ViewBag.Results = results;
-                return View();
-            }*/
+                cacheService.DeleteCache();
+            }
+            return RedirectToAction("ShowMatches");
         }
 
         [HttpGet]
         [Editor]
         public ActionResult DeleteMatch(int id)
         {
-            Match match = matchProvider.GetMatchById(id);            
+            Match match = matchProvider.GetMatchById(id);
+            if (match == null)
+            {
+                log.Error("Controller: Match, Action: DeleteMatch Don't Delete Match");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sport = betListProvider.GetSport(match.SportId).Name;
 
             return View(match);
@@ -189,7 +212,8 @@ namespace Tote.Controllers
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
             if (events == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: Match, Action: ShowCoefficient Don't Show Coefficient");
+                return RedirectToAction("InfoError", "Error");
             }
             
             return View(events);
@@ -211,7 +235,7 @@ namespace Tote.Controllers
                 bool result = matchProvider.AddEvent(item.ToArray());
                 if (!result)
                 {
-                    log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                    log.Error("Controller: Match, Action: EditMatch Don't add Match");
                 }
                 else
                 {
@@ -230,7 +254,12 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult EditEvent(int id)
         {
-            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
+            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
+            if (events == null)
+            {
+                log.Error("Controller: Match, Action: EditMatch Don't update Match");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(events);
         }
 

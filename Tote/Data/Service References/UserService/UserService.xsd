@@ -13,20 +13,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetUsersByRole">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RoleId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUsersByRoleResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetUsersByRoleResult" nillable="true" type="q2:ArrayOfUserDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetUser">
     <xs:complexType>
       <xs:sequence>
@@ -37,21 +23,7 @@
   <xs:element name="GetUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetUserResult" nillable="true" type="q3:UserDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditUser">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditUserResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="EditUserResult" nillable="true" type="q4:UserDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetUserResult" nillable="true" type="q2:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -66,7 +38,7 @@
   <xs:element name="ExistsUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="ExistsUserResult" nillable="true" type="q5:UserDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="ExistsUserResult" nillable="true" type="q3:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -78,14 +50,14 @@
   <xs:element name="GetRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetRolesResult" nillable="true" type="q6:ArrayOfRoleDto" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetRolesResult" nillable="true" type="q4:ArrayOfRoleDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="userDto" nillable="true" type="q7:UserDto" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="userDto" nillable="true" type="q5:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -99,7 +71,7 @@
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="userDto" nillable="true" type="q8:UserDto" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="userDto" nillable="true" type="q6:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

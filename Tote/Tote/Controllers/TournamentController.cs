@@ -23,7 +23,8 @@ namespace Tote.Controllers
             IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentes();
             if (tournaments == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: Tournament, Action: ShowTournaments Don't GetTournamentes");
+                return RedirectToAction("InfoError", "Error");
             }
             return PartialView(tournaments);
         }
@@ -32,6 +33,11 @@ namespace Tote.Controllers
         public ActionResult AddTournament()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            if (sports == null)
+            {
+                log.Error("Controller: Tournament, Action: AddTournament Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
             return View();
         }
@@ -61,6 +67,11 @@ namespace Tote.Controllers
         public ActionResult EditTournament(int id)
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            if (sports == null)
+            {
+                log.Error("Controller: Tournament, Action: EditTournament Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
             Tournament tournament = tournamentProvider.GetTournamentById(id);
 
@@ -91,6 +102,11 @@ namespace Tote.Controllers
         public ActionResult DeleteTournament(int id)
         {
             Tournament tournament = tournamentProvider.GetTournamentById(id);
+            if (tournament == null)
+            {
+                log.Error("Controller: Tournament, Action: DeleteTournament Don't GetTournamentById");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(tournament);
         }
 

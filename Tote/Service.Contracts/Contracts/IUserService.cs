@@ -11,18 +11,14 @@ namespace Service.Contracts.Contracts
         [FaultContract(typeof(CustomException))]
         UserDto[] GetUsers();
 
-        [OperationContract]
+        /*[OperationContract]
         [FaultContract(typeof(CustomException))]
-        UserDto[] GetUsersByRole(int RoleId);
+        UserDto[] GetUsersByRole(int RoleId);*/
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        UserDto GetUser(int userId);
+        UserDto GetUser(int userId);       
         
-        [OperationContract]
-        [FaultContract(typeof(CustomException))]
-        UserDto EditUser(int userId);
-
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         UserDto ExistsUser(string login, string password);

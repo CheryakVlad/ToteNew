@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:7712/TeamService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" />
-  <xs:element name="GetTeam">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="teamId" nillable="true" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetTeamResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamResult" nillable="true" type="q1:ArrayOfTeamDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetTeams">
     <xs:complexType>
       <xs:sequence />
@@ -23,7 +9,7 @@
   <xs:element name="GetTeamsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamsResult" nillable="true" type="q2:ArrayOfTeamDto" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamsResult" nillable="true" type="q1:ArrayOfTeamDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -37,14 +23,14 @@
   <xs:element name="GetTeamByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamByIdResult" nillable="true" type="q3:TeamDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamByIdResult" nillable="true" type="q2:TeamDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateTeam">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="teamDto" nillable="true" type="q4:TeamDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="teamDto" nillable="true" type="q3:TeamDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -58,7 +44,7 @@
   <xs:element name="AddTeam">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="teamDto" nillable="true" type="q5:TeamDto" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="teamDto" nillable="true" type="q4:TeamDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -93,7 +79,7 @@
   <xs:element name="GetTeamsByTournamentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamsByTournamentResult" nillable="true" type="q6:ArrayOfTeamDto" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTeamsByTournamentResult" nillable="true" type="q5:ArrayOfTeamDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -105,7 +91,7 @@
   <xs:element name="GetCountriesAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetCountriesAllResult" nillable="true" type="q7:ArrayOfCountryDto" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetCountriesAllResult" nillable="true" type="q6:ArrayOfCountryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -119,7 +105,7 @@
   <xs:element name="GetCountryByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetCountryByIdResult" nillable="true" type="q8:CountryDto" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetCountryByIdResult" nillable="true" type="q7:CountryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -133,14 +119,14 @@
   <xs:element name="GetCountryByTeamResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetCountryByTeamResult" nillable="true" type="q9:CountryDto" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetCountryByTeamResult" nillable="true" type="q8:CountryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateCountry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="countryDto" nillable="true" type="q10:CountryDto" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="countryDto" nillable="true" type="q9:CountryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -154,7 +140,7 @@
   <xs:element name="AddCountry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="countryDto" nillable="true" type="q11:CountryDto" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="countryDto" nillable="true" type="q10:CountryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -187,7 +173,7 @@
   <xs:element name="GetMatchesAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetMatchesAllResult" nillable="true" type="q12:ArrayOfMatchDto" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetMatchesAllResult" nillable="true" type="q11:ArrayOfMatchDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -201,14 +187,14 @@
   <xs:element name="GetMatchByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetMatchByIdResult" nillable="true" type="q13:MatchDto" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetMatchByIdResult" nillable="true" type="q12:MatchDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateMatch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="matchDto" nillable="true" type="q14:MatchDto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="matchDto" nillable="true" type="q13:MatchDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -222,7 +208,7 @@
   <xs:element name="AddMatch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="matchDto" nillable="true" type="q15:MatchDto" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="matchDto" nillable="true" type="q14:MatchDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -259,7 +245,7 @@
   <xs:element name="GetMatchBySportDateStatusResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetMatchBySportDateStatusResult" nillable="true" type="q16:ArrayOfSortDto" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetMatchBySportDateStatusResult" nillable="true" type="q15:ArrayOfSortDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -271,7 +257,7 @@
   <xs:element name="GetResultsAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetResultsAllResult" nillable="true" type="q17:ArrayOfResultDto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetResultsAllResult" nillable="true" type="q16:ArrayOfResultDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -285,26 +271,14 @@
   <xs:element name="GetEventsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsResult" nillable="true" type="q18:ArrayOfEventDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetEventsAll">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetEventsAllResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsAllResult" nillable="true" type="q19:ArrayOfEventDto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetEventsResult" nillable="true" type="q17:ArrayOfEventDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateEvents">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="eventDto" nillable="true" type="q20:ArrayOfEventDto" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="eventDto" nillable="true" type="q18:ArrayOfEventDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

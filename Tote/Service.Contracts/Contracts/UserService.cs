@@ -13,9 +13,20 @@ namespace Service.Contracts.Contracts
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
 
-        
+        private void GenerateFaultException(string title, string exceptionMessage)
+        {
+            var exception = new CustomException();
+            exception.Title = title;
+            log.Error(exception);
+            throw new FaultException<CustomException>(exception, exceptionMessage);
+        }
+
         public bool AddUser(UserDto userDto)
         {
+            if (userDto == null || userDto.Login == String.Empty)
+            {
+                GenerateFaultException("AddUser", "ArgumentException");
+            }
             var parameters = new List<Parameter>();            
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = userDto.Login });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Password", Value = userDto.Password });
@@ -42,6 +53,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteUser(int userId)
         {
+            if (userId <= 0)
+            {
+                GenerateFaultException("DeleteUser", "ArgumentException");
+            }
             var parameters = new List<Parameter>();            
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
 
@@ -56,17 +71,15 @@ namespace Service.Contracts.Contracts
                 exception.Title = "DeleteUser";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
-
             }
         }
-
-        public UserDto EditUser(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
+                
         public UserDto ExistsUser(string login, string password)
         {
+            if (login==String.Empty||password==String.Empty)
+            {
+                GenerateFaultException("GetUserByLoginPassword", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = login });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Password", Value = password });
@@ -105,6 +118,10 @@ namespace Service.Contracts.Contracts
 
         public UserDto GetUser(int userId)
         {
+            if (userId <=0)
+            {
+                GenerateFaultException("GetUserById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });            
 
@@ -138,15 +155,14 @@ namespace Service.Contracts.Contracts
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
-        }
-
-        public UserDto[] GetUsersByRole(int RoleId)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public bool UpdateUser(UserDto userDto)
         {
+            if (userDto == null)
+            {
+                GenerateFaultException("UpdateUser", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userDto.UserId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Login", Value = userDto.Login });

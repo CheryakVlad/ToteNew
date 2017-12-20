@@ -24,7 +24,8 @@ namespace Tote.Controllers
             IReadOnlyList<Country> countries = teamProvider.GetCountriesAll();
             if (countries == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: Team, Action: ShowCountries Don't GetCountriesAll");
+                return RedirectToAction("InfoError", "Error");
             }
             return View(countries);
         }
@@ -34,7 +35,8 @@ namespace Tote.Controllers
             IReadOnlyList<Team> teams = teamProvider.GetTeamsAll();
             if (teams == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: Team, Action: ShowTeams Don't GetTeamsAll");
+                return RedirectToAction("InfoError", "Error");
             }
             return PartialView(teams);
         }
@@ -70,8 +72,18 @@ namespace Tote.Controllers
         public ActionResult AddTeam()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            if (sports == null)
+            {
+                log.Error("Controller: Team, Action: AddTeam Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
             SelectList countries = new SelectList(teamProvider.GetCountriesAll(), "CountryId", "Name");
+            if (countries == null)
+            {
+                log.Error("Controller: Team, Action: AddTeam Don't GetCountriesAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Countries = countries;
             return View();
         }
@@ -100,6 +112,11 @@ namespace Tote.Controllers
         public ActionResult EditCountry(int countryId)
         {
             Country country = teamProvider.GetCountryById(countryId);
+            if (country == null)
+            {
+                log.Error("Controller: Team, Action: EditCountry Don't GetCountryById");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(country);
         }
         [HttpPost]
@@ -126,8 +143,18 @@ namespace Tote.Controllers
         public ActionResult EditTeam(int id)
         {            
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            if (sports == null)
+            {
+                log.Error("Controller: Team, Action: EditTeam Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
             SelectList countries = new SelectList(teamProvider.GetCountriesAll(), "CountryId", "Name");
+            if (countries == null)
+            {
+                log.Error("Controller: Team, Action: EditTeam Don't GetCountriesAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Countries = countries;
             Team team = teamProvider.GetTeamById(id);
 
@@ -157,6 +184,11 @@ namespace Tote.Controllers
         public ActionResult DeleteTeam(int id)
         {
             Team team = teamProvider.GetTeamById(id);
+            if (team == null)
+            {
+                log.Error("Controller: Team, Action: DeleteTeam Don't GetTeamById");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(team);
         }
 
@@ -178,6 +210,11 @@ namespace Tote.Controllers
         public ActionResult DeleteCountry(int countryId)
         {
             Country country = teamProvider.GetCountryById(countryId);
+            if (country == null)
+            {
+                log.Error("Controller: Team, Action: DeleteCountry Don't GetCountryById");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(country);
         }
 

@@ -14,8 +14,20 @@ namespace Service.Contracts.Contracts
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
 
+        private void GenerateFaultException(string title, string exceptionMessage)
+        {
+            var exception = new CustomException();
+            exception.Title = title;
+            log.Error(exception);
+            throw new FaultException<CustomException>(exception, exceptionMessage);
+        }
+
         public bool AddSport(SportDto sportDto)
         {
+            if(sportDto==null||sportDto.Name==String.Empty)
+            {
+                GenerateFaultException("AddSport", "ArgumentException");                
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = sportDto.Name });  
             var connection = new Connection<SportDto>();
@@ -24,17 +36,20 @@ namespace Service.Contracts.Contracts
                 return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddSport", parameters);
             }
             catch (SqlException sqlEx)
-            {
+            {                
                 var exception = new CustomException();
                 exception.Title = "AddSport";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
-
             }
         }
 
         public bool AddTournament(TournamentDto tournamentDto)
         {
+            if (tournamentDto == null || tournamentDto.Name == String.Empty)
+            {
+                GenerateFaultException("AddTournament", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = tournamentDto.Name });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = tournamentDto.SportId });
@@ -55,6 +70,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteSport(int sportId)
         {
+            if(sportId<=0)
+            {
+                GenerateFaultException("DeleteSport", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
 
@@ -75,6 +94,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteTournament(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                GenerateFaultException("DeleteTournament", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
 
@@ -95,7 +118,7 @@ namespace Service.Contracts.Contracts
 
         public BetListDto[] GetBets(int? sportId, int? tournamentId)
         {          
-            if (sportId == 0)
+            if (sportId <= 0)
             {
                 return GetBetsAll();
             }
@@ -120,8 +143,7 @@ namespace Service.Contracts.Contracts
              
             try
             {                 
-                connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll");
-                
+                connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll");                
                 return connection.GetConnection(CommandType.StoredProcedure, "GetBetsAll");
             }
             catch(SqlException sqlEx)
@@ -139,8 +161,7 @@ namespace Service.Contracts.Contracts
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
 
-            var connection = new Connection<BetListDto>();
-            
+            var connection = new Connection<BetListDto>();            
             try
             {       
                 return connection.GetConnection(CommandType.StoredProcedure, "GetBetsBySport", parameters); 
@@ -178,6 +199,10 @@ namespace Service.Contracts.Contracts
 
         public EventDto[] GetEvents(int? id)
         {
+            if(id==0||id==null)
+            {
+                GenerateFaultException("GetCoefficientByMatch", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = id });
 
@@ -205,7 +230,7 @@ namespace Service.Contracts.Contracts
             catch (SqlException sqlEx)
             {
                 var exception = new CustomException();
-                exception.Title = "[GetCoefficients]";
+                exception.Title = "GetCoefficients";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
@@ -213,7 +238,10 @@ namespace Service.Contracts.Contracts
 
         public SportDto GetSport(int? id)
         {
-
+            if (id <= 0 || id == null)
+            {
+                GenerateFaultException("GetSportById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = id });
 
@@ -250,6 +278,10 @@ namespace Service.Contracts.Contracts
 
         public TournamentDto GetTournamentById(int tournamentId)
         {
+            if (tournamentId <= 0 )
+            {
+                GenerateFaultException("GetSportById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
 
@@ -271,6 +303,10 @@ namespace Service.Contracts.Contracts
 
         public TournamentDto[] GetTournament(int? sportId)
         {
+            if (sportId <= 0||sportId==null)
+            {
+                GenerateFaultException("GetSportById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
 
@@ -308,6 +344,10 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateSport(SportDto sportDto)
         {
+            if(sportDto==null)
+            {
+                GenerateFaultException("UpdateSport", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportDto.SportId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = sportDto.Name });
@@ -330,6 +370,10 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateTournament(TournamentDto tournamentDto)
         {
+            if (tournamentDto == null)
+            {
+                GenerateFaultException("UpdateTournament", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentDto.TournamentId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = tournamentDto.Name });
@@ -350,13 +394,14 @@ namespace Service.Contracts.Contracts
             }
         }
 
-        public TournamentDto[] GetTournamentesBySport(int sportId)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public bool AddBasket(BasketDto basketDto)
         {
+            if (basketDto == null)
+            {
+                GenerateFaultException("AddBasket", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.String, Name = "@UserId", Value = basketDto.UserId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = basketDto.MatchId });
@@ -378,6 +423,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteBasket(int basketId)
         {
+            if (basketId <= 0)
+            {
+                GenerateFaultException("DeleteBasket", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@BasketId", Value = basketId });
 
@@ -397,6 +446,10 @@ namespace Service.Contracts.Contracts
 
         public BasketDto[] GetBasketByUser(int userId)
         {
+            if (userId <= 0)
+            {
+                GenerateFaultException("GetBasketByUser", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
 
@@ -416,6 +469,10 @@ namespace Service.Contracts.Contracts
 
         public BasketDto GetBasketById(int basketId, int userId)
         {
+            if (userId <= 0||basketId<=0)
+            {
+                GenerateFaultException("GetBasketById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@BasketId", Value = basketId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
@@ -436,6 +493,10 @@ namespace Service.Contracts.Contracts
 
         public int GetRateIdAfterAdd(RateDto rateDto)
         {
+            if (rateDto == null)
+            {
+                GenerateFaultException("AddRate", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.DateTime, Name = "@DateRate", Value = rateDto.DateRate });
             parameters.Add(new Parameter { Type = DbType.Decimal, Name = "@RateAmount", Value = rateDto.Amount });
@@ -457,6 +518,10 @@ namespace Service.Contracts.Contracts
 
         public bool AddBet(BetDto betDto, int basketId)
         {
+            if (betDto == null||basketId<=0)
+            {
+                GenerateFaultException("AddBet", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RateId", Value = betDto.RateId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = betDto.MatchId });
@@ -479,6 +544,10 @@ namespace Service.Contracts.Contracts
 
         public RateDto[] GetRateByUserId(int userId)
         {
+            if(userId<=0)
+            {
+                GenerateFaultException("GetRateByUserId", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@UserId", Value = userId });
 
@@ -498,6 +567,10 @@ namespace Service.Contracts.Contracts
 
         public BetDto[] GetBetByRateId(int rateId)
         {
+            if (rateId <= 0)
+            {
+                GenerateFaultException("GetBetByRateID", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@RateId", Value = rateId });
 

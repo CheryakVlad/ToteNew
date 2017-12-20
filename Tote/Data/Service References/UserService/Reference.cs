@@ -303,26 +303,12 @@ namespace Data.UserService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsers", ReplyAction="http://tempuri.org/IUserService/GetUsersResponse")]
         System.Threading.Tasks.Task<Data.UserService.UserDto[]> GetUsersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsersByRole", ReplyAction="http://tempuri.org/IUserService/GetUsersByRoleResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/GetUsersByRoleCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.UserService.UserDto[] GetUsersByRole(int RoleId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsersByRole", ReplyAction="http://tempuri.org/IUserService/GetUsersByRoleResponse")]
-        System.Threading.Tasks.Task<Data.UserService.UserDto[]> GetUsersByRoleAsync(int RoleId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/GetUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.UserService.UserDto GetUser(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
         System.Threading.Tasks.Task<Data.UserService.UserDto> GetUserAsync(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditUser", ReplyAction="http://tempuri.org/IUserService/EditUserResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/EditUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.UserService.UserDto EditUser(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditUser", ReplyAction="http://tempuri.org/IUserService/EditUserResponse")]
-        System.Threading.Tasks.Task<Data.UserService.UserDto> EditUserAsync(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ExistsUser", ReplyAction="http://tempuri.org/IUserService/ExistsUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.UserService.CustomException), Action="http://tempuri.org/IUserService/ExistsUserCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
@@ -395,28 +381,12 @@ namespace Data.UserService {
             return base.Channel.GetUsersAsync();
         }
         
-        public Data.UserService.UserDto[] GetUsersByRole(int RoleId) {
-            return base.Channel.GetUsersByRole(RoleId);
-        }
-        
-        public System.Threading.Tasks.Task<Data.UserService.UserDto[]> GetUsersByRoleAsync(int RoleId) {
-            return base.Channel.GetUsersByRoleAsync(RoleId);
-        }
-        
         public Data.UserService.UserDto GetUser(int userId) {
             return base.Channel.GetUser(userId);
         }
         
         public System.Threading.Tasks.Task<Data.UserService.UserDto> GetUserAsync(int userId) {
             return base.Channel.GetUserAsync(userId);
-        }
-        
-        public Data.UserService.UserDto EditUser(int userId) {
-            return base.Channel.EditUser(userId);
-        }
-        
-        public System.Threading.Tasks.Task<Data.UserService.UserDto> EditUserAsync(int userId) {
-            return base.Channel.EditUserAsync(userId);
         }
         
         public Data.UserService.UserDto ExistsUser(string login, string password) {

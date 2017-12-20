@@ -30,7 +30,8 @@ namespace Tote.Controllers
             IReadOnlyList<User> users = userProvider.GetUsersAll();
             if (users == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: User, Action: UsersAll Don't GetUsersAll");
+                return RedirectToAction("InfoError", "Error");
             }
             return View(users);
         }
@@ -40,8 +41,18 @@ namespace Tote.Controllers
         public ActionResult EditUser(int id)
         {
             User user = userProvider.GetUser(id);
+            if (user == null)
+            {
+                log.Error("Controller: User, Action: EditUser Don't GetUser");
+                return RedirectToAction("InfoError", "Error");
+            }
             user.ConfirmPassword = user.Password;
             SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+            if (roles == null)
+            {
+                log.Error("Controller: User, Action: EditUser Don't GetRolesAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Roles = roles;
             return View(user);
         }
@@ -68,13 +79,18 @@ namespace Tote.Controllers
             else
             {
                 SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+                if (roles == null)
+                {
+                    log.Error("Controller: User, Action: EditUser Don't GetRolesAll");
+                    return RedirectToAction("InfoError", "Error");
+                }
                 ViewBag.Roles = roles;                
                 return View();
             }
             
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult Edit()
         {
             User user = userProvider.GetUser(4);
@@ -82,13 +98,18 @@ namespace Tote.Controllers
             SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
             ViewBag.Roles = roles;
             return View(user);
-        }
+        }*/
 
         [HttpGet]
         [Admin]
         public ActionResult AddUser()
         {
             SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+            if (roles == null)
+            {
+                log.Error("Controller: User, Action: AddUser Don't GetRolesAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Roles = roles;
             return View();
         }
@@ -110,6 +131,11 @@ namespace Tote.Controllers
             else
             {
                 SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+                if (roles == null)
+                {
+                    log.Error("Controller: User, Action: AddUser Don't GetRolesAll");
+                    return RedirectToAction("InfoError", "Error");
+                }
                 ViewBag.Roles = roles;
                 return View();
             }
@@ -121,6 +147,11 @@ namespace Tote.Controllers
         {
             User user = userProvider.GetUser(id);
             IReadOnlyList<Role> roles = userProvider.GetRolesAll();
+            if (roles == null)
+            {
+                log.Error("Controller: User, Action: DeleteUser Don't GetRolesAll");
+                return RedirectToAction("InfoError", "Error");
+            }
             Role role = new Role();
             foreach(var _role in roles)
             {
@@ -158,6 +189,11 @@ namespace Tote.Controllers
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
             User user = userProvider.GetUser(userId);
+            if (user == null)
+            {
+                log.Error("Controller: User, Action: ShowUserProfile Don't GetUser");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Rates = betListProvider.GetRateByUserId(userId);
             return View(user);
         }
@@ -172,6 +208,11 @@ namespace Tote.Controllers
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
             User user = userProvider.GetUser(userId);
+            if (user == null)
+            {
+                log.Error("Controller: User, Action: ShowUserProfile Don't GetUser");
+                return RedirectToAction("InfoError", "Error");
+            }
             user.ConfirmPassword = user.Password;
             return View(user);
         }

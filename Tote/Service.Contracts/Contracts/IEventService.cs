@@ -11,9 +11,9 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         EventDto[] GetEvents(int id);
-        [OperationContract]
+        /*[OperationContract]
         [FaultContract(typeof(CustomException))]
-        EventDto[] GetEventsAll();
+        EventDto[] GetEventsAll();*/
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]

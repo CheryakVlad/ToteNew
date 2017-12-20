@@ -33,8 +33,13 @@ namespace Tote.Controllers
         public ActionResult Sorting()
         {
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            if (sports == null)
+            {
+                log.Error("Controller: Sort, Action: Sorting Don't GetSports");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Sports = sports;
-            string[] statuses = new string[] { "Past Events", "Current Events", "Furure Events" };
+            string[] statuses = new string[] { "Past Events", "Current Events", "Future Events" };
             SelectList status = new SelectList(statuses);
             ViewBag.Statuses = status;
 
@@ -46,12 +51,12 @@ namespace Tote.Controllers
             
             if (matches.Count == 0)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                return RedirectToAction("InfoError", "Error");
             }
             return View(matches);
             
         }
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult Sort()
         {            
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
@@ -73,16 +78,17 @@ namespace Tote.Controllers
             }
             return View(matches);
             
-        }
+        }*/
 
         [HttpGet]
         public ActionResult Match(int sportId, string dateMatch, int status)
         {            
             string cache = sportId.ToString() + dateMatch + status.ToString();
-            IReadOnlyList<Match> matches = cacheService.GetCache(sportId, dateMatch, status); 
-            
+            IReadOnlyList<Match> matches = null; 
             try
             {
+                matches = cacheService.GetCache(sportId, dateMatch, status);            
+            
                 if (matches == null)
                 {
                     matches = cacheService.InsertCache(sportId, dateMatch, status);
@@ -90,7 +96,8 @@ namespace Tote.Controllers
                 
                 if (matches == null)
                 {
-                    return RedirectToAction("InfoError", "Navigation");
+                    log.Error("Controller: Sort, Action: Match Don't GetMatches");
+                    return RedirectToAction("InfoError", "Error");
                 }
             }
 
@@ -109,25 +116,54 @@ namespace Tote.Controllers
         public ActionResult LogAndRedirect(Exception ex)
         {
             log.Error(ex.Message + " " + ex.StackTrace);
-            return RedirectToAction("InfoError", "Navigation");
+            return RedirectToAction("InfoError", "Error");
         }
 
-       // [Json]
+       
         [AllowAnonymous]
         public JsonResult AjaxMethod(int sportId, string dateMatch, int status)
         {
-            
-            string cache = sportId.ToString() + dateMatch + status.ToString();
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>;
+            /*IReadOnlyList<Match> matches = null;
             try
             {
+                matches = cacheService.GetCache(sportId, dateMatch, status);
+
                 if (matches == null)
                 {
-                    matches = matchProvider.GetMatchBySportDateStatus(sportId, dateMatch, status);
-                    HttpRuntime.Cache.Insert(cache, matches, null, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
-                }                
+                    matches = cacheService.InsertCache(sportId, dateMatch, status);
+                }
+
                 if (matches == null)
                 {
+                    log.Error("Controller: Sort, Action: Match Don't GetSports");
+                    return RedirectToAction("InfoError", "Error");
+                }
+            }
+
+            catch (FaultException faultEx)
+            {
+                LogAndRedirect(faultEx);
+            }
+            catch (SqlException sqlEx)
+            {
+                LogAndRedirect(sqlEx);
+            }
+
+            return PartialView(matches);*/
+
+            string cache = sportId.ToString() + dateMatch + status.ToString();
+            IReadOnlyList<Match> matches = null;// HttpRuntime.Cache.Get(cache) as IReadOnlyList<Match>;
+            try
+            {
+                matches = cacheService.GetCache(sportId, dateMatch, status);
+
+                if (matches == null)
+                {
+                    matches = cacheService.InsertCache(sportId, dateMatch, status);
+                }                              
+                if (matches == null)
+                {
+                    log.Error("Controller: Sort, Action: Match Don't GetMatches");
                     return Json(string.Empty, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -149,11 +185,17 @@ namespace Tote.Controllers
         {
             ViewBag.Match = matchId;
             Match match = matchProvider.GetMatchById(matchId);
+            if (match == null)
+            {
+                log.Error("Controller: Sort, Action: ShowCoefficient Don't GetMatchById");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.MatchDate = match.Date;
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(matchId);
             if (events == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                log.Error("Controller: Sort, Action: ShowCoefficient Don't GetEventByMatch");
+                return RedirectToAction("InfoError", "Error");
             }
 
             return View(events);
@@ -189,6 +231,11 @@ namespace Tote.Controllers
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
             IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId,out total);
+            if (baskets == null||total==0)
+            {
+                log.Error("Controller: Sort, Action: ShowBasket Don't GetBasketByUser");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Total = total;
             return View(baskets);
         }
@@ -203,6 +250,11 @@ namespace Tote.Controllers
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
             Basket basket = betListProvider.GetBasketById(basketId, userId);
+            if (basket == null)
+            {
+                log.Error("Controller: Sort, Action: DeleteBasket Don't Delete Basket");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(basket);
         }
 
@@ -229,6 +281,11 @@ namespace Tote.Controllers
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
             User user = userProvider.GetUser(userId);
+            if (user == null)
+            {
+                log.Error("Controller: Sort, Action: MakeRate Don't GetUser");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(user);
         }
 
@@ -247,13 +304,24 @@ namespace Tote.Controllers
                 DateRate=DateTime.Now,
                 UserId=userId
             };
+            //debit
             /*User user = userProvider.GetUser(userId);
             user.Money -= amount;
             userProvider.UpdateUser(user);*/
             int rateId = betListProvider.AddRate(rate);
+            if (rateId <= 0)
+            {
+                log.Error("Controller: Sort, Action: MakeRate Don't AddRate");
+                return RedirectToAction("InfoError", "Error");
+            }
             double total = 1;
             IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total);
-            foreach(Basket basket in baskets)
+            if (baskets == null||total==0)
+            {
+                log.Error("Controller: Sort, Action: MakeRate Don't GetBasketByUser");
+                return RedirectToAction("InfoError", "Error");
+            }
+            foreach (Basket basket in baskets)
             {
                 Bet bet = new Bet()
                 {
@@ -272,6 +340,11 @@ namespace Tote.Controllers
         {
             double total = 1;
             IReadOnlyList<Bet> bets = betListProvider.GetBetByRateId(rateId,out total);
+            if (bets == null || total == 0)
+            {
+                log.Error("Controller: Sort, Action: ShowBetsByRate Don't GetBetByRateId");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Total = total;     
             return View(bets);
         }

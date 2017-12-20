@@ -844,13 +844,6 @@ namespace Data.TeamService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TeamService.ITeamService")]
     public interface ITeamService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetTeam", ReplyAction="http://tempuri.org/ITeamService/GetTeamResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/GetTeamCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.TeamService.TeamDto[] GetTeam(System.Nullable<int> teamId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetTeam", ReplyAction="http://tempuri.org/ITeamService/GetTeamResponse")]
-        System.Threading.Tasks.Task<Data.TeamService.TeamDto[]> GetTeamAsync(System.Nullable<int> teamId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/GetTeams", ReplyAction="http://tempuri.org/ITeamService/GetTeamsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/GetTeamsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         Data.TeamService.TeamDto[] GetTeams();
@@ -961,14 +954,6 @@ namespace Data.TeamService {
         
         public TeamServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public Data.TeamService.TeamDto[] GetTeam(System.Nullable<int> teamId) {
-            return base.Channel.GetTeam(teamId);
-        }
-        
-        public System.Threading.Tasks.Task<Data.TeamService.TeamDto[]> GetTeamAsync(System.Nullable<int> teamId) {
-            return base.Channel.GetTeamAsync(teamId);
         }
         
         public Data.TeamService.TeamDto[] GetTeams() {
@@ -1217,13 +1202,6 @@ namespace Data.TeamService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEvents", ReplyAction="http://tempuri.org/IEventService/GetEventsResponse")]
         System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEventsAll", ReplyAction="http://tempuri.org/IEventService/GetEventsAllResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/GetEventsAllCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.TeamService.EventDto[] GetEventsAll();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/GetEventsAll", ReplyAction="http://tempuri.org/IEventService/GetEventsAllResponse")]
-        System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAllAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEventService/UpdateEvents", ReplyAction="http://tempuri.org/IEventService/UpdateEventsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/IEventService/UpdateEventsCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
         bool UpdateEvents(Data.TeamService.EventDto[] eventDto);
@@ -1292,14 +1270,6 @@ namespace Data.TeamService {
         
         public System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAsync(int id) {
             return base.Channel.GetEventsAsync(id);
-        }
-        
-        public Data.TeamService.EventDto[] GetEventsAll() {
-            return base.Channel.GetEventsAll();
-        }
-        
-        public System.Threading.Tasks.Task<Data.TeamService.EventDto[]> GetEventsAllAsync() {
-            return base.Channel.GetEventsAllAsync();
         }
         
         public bool UpdateEvents(Data.TeamService.EventDto[] eventDto) {

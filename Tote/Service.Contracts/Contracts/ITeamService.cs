@@ -7,9 +7,9 @@ namespace Service.Contracts.Contracts
     [ServiceContract]
     public interface ITeamService
     {
-        [OperationContract]
+        /*[OperationContract]
         [FaultContract(typeof(CustomException))]
-        TeamDto[] GetTeam(int? teamId);
+        TeamDto[] GetTeam(int? teamId);*/
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         TeamDto[] GetTeams();

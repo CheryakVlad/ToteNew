@@ -83,6 +83,10 @@ namespace Data.Clients
                     client.Open();
                     model = client.ExistsUser(login, password);
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -93,6 +97,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -113,9 +122,12 @@ namespace Data.Clients
                     {
                         model.Add(role);
                     }
-
                     client.Close();
-
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                    
                 }
                 catch (FaultException<CustomException> customEx)
                 {
@@ -125,6 +137,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
             }
@@ -142,6 +159,10 @@ namespace Data.Clients
                     client.Open();
                     model = client.GetUser(userId);
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
 
                 catch (FaultException<CustomException> customEx)
@@ -152,6 +173,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
 
@@ -173,8 +199,11 @@ namespace Data.Clients
                     {
                         model.Add(user);
                     }
-
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                 }
                 catch (FaultException<CustomException> customEx)
@@ -185,6 +214,11 @@ namespace Data.Clients
                 catch (CommunicationException commEx)
                 {
                     log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
                     return null;
                 }
             }

@@ -236,6 +236,8 @@
     <Content Include="scripts\jquery.validation.net.webforms.js" />
     <Content Include="scripts\jquery.validation.net.webforms.min.js" />
     <Content Include="scripts\main.js" />
+    <Content Include="scripts\Match\AddMatch\SportChange.js" />
+    <Content Include="scripts\Match\AddMatch\TournamentChange.js" />
     <Content Include="scripts\mvcvalidationextensions.unobtrusive.js" />
     <Content Include="scripts\Sort\Sorting\addNoneToSportDropDown.js" />
     <Content Include="scripts\Sort\Sorting\btnSortClick.js" />
@@ -254,6 +256,7 @@
     <Compile Include="Attribute\EditorAttribute.cs" />
     <Compile Include="Attribute\JsonAttribute.cs" />
     <Compile Include="Attribute\UserAttribute.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
@@ -288,7 +291,6 @@
     <Content Include="Views\Navigation\InfoError.cshtml" />
     <Content Include="Views\Navigation\ListBet.cshtml" />
     <Content Include="Views\Layout.cshtml" />
-    <Content Include="Views\Navigation\Coefficient.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\User\UsersAll.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
@@ -335,6 +337,7 @@
     <Content Include="Views\Team\AddCountry.cshtml" />
     <Content Include="Views\Team\EditCountry.cshtml" />
     <Content Include="Views\Team\DeleteCountry.cshtml" />
+    <Content Include="Views\Error\InfoError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -28,19 +28,11 @@ namespace Tote.Controllers
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
-        {
-           
-            
+        {     
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("List", "Navigation");
-            }
-
-            /*User user = userProvider.ExistsUser("admin","admin");
-            if (user == null)
-            {
-                return RedirectToAction("InfoError", "Navigation");
-            }*/
+            } 
 
             return View();
         }
@@ -50,6 +42,7 @@ namespace Tote.Controllers
         public ActionResult Login(string login, string password)
         {            
             var result = loginService.Login(login, password);
+            
             if (result == Business.Enums.LoginResult.NoError)
             {
                 return RedirectToAction("List", "Navigation");

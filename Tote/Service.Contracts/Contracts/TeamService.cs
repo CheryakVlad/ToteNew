@@ -14,8 +14,20 @@ namespace Service.Contracts.Contracts
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamService));
 
+        private void GenerateFaultException(string title, string exceptionMessage)
+        {
+            var exception = new CustomException();
+            exception.Title = title;
+            log.Error(exception);
+            throw new FaultException<CustomException>(exception, exceptionMessage);
+        }
+
         public bool AddCountry(CountryDto countryDto)
         {
+            if (countryDto == null||countryDto.Name==String.Empty)
+            {
+                GenerateFaultException("AddCountry", "ArgumentException");
+            }
             var parameters = new List<Parameter>();            
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = countryDto.Name });
             var connection = new Connection<CountryDto>();
@@ -34,6 +46,10 @@ namespace Service.Contracts.Contracts
 
         public bool AddEvents(IReadOnlyList<EventDto> eventDto)
         {
+            if (eventDto == null || eventDto.Count <3)
+            {
+                GenerateFaultException("AddEventMatch", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = eventDto[0].MatchId });
             parameters.Add(new Parameter { Type = DbType.Double, Name = "@Win", Value = eventDto[0].Coefficient });
@@ -55,7 +71,11 @@ namespace Service.Contracts.Contracts
 
         public bool AddMatch(MatchDto matchDto)
         {
-            if(matchDto.ResultId==0)
+            if (matchDto == null)
+            {
+                GenerateFaultException("AddMatch", "ArgumentException");
+            }
+            if (matchDto.ResultId==0)
             {
                 matchDto.ResultId = 3;
             }
@@ -86,6 +106,10 @@ namespace Service.Contracts.Contracts
 
         public bool AddTeam(TeamDto teamDto)
         {
+            if (teamDto == null||teamDto.Name==String.Empty)
+            {
+                GenerateFaultException("AddTeam", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = teamDto.Name });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = teamDto.CountryId });
@@ -106,6 +130,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteCountry(int countryId)
         {
+            if (countryId <=0)
+            {
+                GenerateFaultException("DeleteCountry", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = countryId });
 
@@ -126,6 +154,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteEvents(int matchId)
         {
+            if (matchId <= 0)
+            {
+                GenerateFaultException("DeleteEventMatch", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchId });
 
@@ -146,6 +178,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteMatch(int matchId)
         {
+            if (matchId <= 0)
+            {
+                GenerateFaultException("DeleteMatch", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchId });
 
@@ -166,6 +202,10 @@ namespace Service.Contracts.Contracts
 
         public bool DeleteTeam(int teamId)
         {
+            if (teamId <= 0)
+            {
+                GenerateFaultException("DeleteTeam", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
 
@@ -202,6 +242,10 @@ namespace Service.Contracts.Contracts
 
         public CountryDto GetCountryById(int countryId)
         {
+            if (countryId <= 0)
+            {
+                GenerateFaultException("GetCountryById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = countryId });
 
@@ -221,6 +265,10 @@ namespace Service.Contracts.Contracts
 
         public CountryDto GetCountryByTeam(int teamId)
         {
+            if (teamId <= 0)
+            {
+                GenerateFaultException("GetCountryByTeam", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
 
@@ -240,6 +288,10 @@ namespace Service.Contracts.Contracts
 
         public EventDto[] GetEvents(int id)
         {
+            if (id <= 0)
+            {
+                GenerateFaultException("GetCoefficientByMatch", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = id });
 
@@ -256,14 +308,14 @@ namespace Service.Contracts.Contracts
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
-
-        public EventDto[] GetEventsAll()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public MatchDto GetMatchById(int matchId)
         {
+            if (matchId <= 0)
+            {
+                GenerateFaultException("GetMatchById", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchId });
 
@@ -283,6 +335,10 @@ namespace Service.Contracts.Contracts
 
         public SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
+            if (sportId <= 0||status<=0)
+            {
+                GenerateFaultException("GetMatchesBySportDateStatusSP", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@DateMatch", Value = dateMatch });
@@ -332,15 +388,14 @@ namespace Service.Contracts.Contracts
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
-        }
-
-        public TeamDto[] GetTeam(int? teamId)
-        {
-            throw new NotImplementedException();
-        }
+        }               
 
         public TeamDto GetTeamById(int teamId)
         {
+            if (teamId <= 0)
+            {
+                GenerateFaultException("GetMatchesBySportDateStatusSP", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
 
@@ -376,6 +431,10 @@ namespace Service.Contracts.Contracts
 
         public TeamDto[] GetTeamsByTournament(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                GenerateFaultException("GetTeamByTournament", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
            
@@ -396,6 +455,10 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateCountry(CountryDto countryDto)
         {
+            if (countryDto == null)
+            {
+                GenerateFaultException("UpdateCountry", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@CountryId", Value = countryDto.CountryId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = countryDto.Name });
@@ -416,7 +479,11 @@ namespace Service.Contracts.Contracts
         }
 
         public bool UpdateEvents(EventDto[] eventDto)
-        {            
+        {
+            if (eventDto == null||eventDto.Length < 3)
+            {
+                GenerateFaultException("UpdateCountry", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = eventDto[0].MatchId });
             parameters.Add(new Parameter { Type = DbType.Double, Name = "@Win", Value = eventDto[0].Coefficient });
@@ -440,6 +507,10 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateMatch(MatchDto matchDto)
         {
+            if (matchDto == null)
+            {
+                GenerateFaultException("UpdateMatch", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchDto.MatchId });
             parameters.Add(new Parameter { Type = DbType.DateTime, Name = "@DateMatch", Value = matchDto.Date });
@@ -464,6 +535,10 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateTeam(TeamDto teamDto)
         {
+            if (teamDto == null)
+            {
+                GenerateFaultException("UpdateTeam", "ArgumentException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamDto.TeamId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Name", Value = teamDto.Name });

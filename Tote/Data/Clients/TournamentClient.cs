@@ -80,6 +80,10 @@ namespace Data.Clients
                     client.Open();
                     model = client.GetTournamentById(tournamentId);
                     client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 catch (FaultException<CustomException> customEx)
                 {
@@ -91,7 +95,11 @@ namespace Data.Clients
                     log.Error(commEx.Message);
                     return null;
                 }
-
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
             }
 
             return model;

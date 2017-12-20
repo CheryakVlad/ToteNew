@@ -25,7 +25,7 @@ namespace Tote.Controllers
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
             if (sports == null)
             {
-                return RedirectToAction("InfoError", "Navigation");
+                return RedirectToAction("InfoError", "Error");
             }
             return PartialView(sports);
         }
@@ -60,7 +60,11 @@ namespace Tote.Controllers
         public ActionResult EditSport(int id)
         {
             Sport sport = betListProvider.GetSport(id);
-            
+            if (sport == null)
+            {
+                log.Error("Controller: Sport, Action: EditSport Don't GetSport");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(sport);
         }
 
@@ -88,6 +92,11 @@ namespace Tote.Controllers
         public ActionResult DeleteSport(int id)
         {
             Sport sport = betListProvider.GetSport(id);
+            if (sport == null)
+            {
+                log.Error("Controller: Sport, Action: DeleteSport Don't GetSport");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(sport);
         }
 
@@ -99,7 +108,7 @@ namespace Tote.Controllers
             bool result = betListProvider.DeleteSport(sportId);
             if (!result)
             {
-                log.Error("Controller: User, Action: DeleteUser Don't delete sport");
+                log.Error("Controller: Sport, Action: DeleteUser Don't delete sport");
             }
             return RedirectToAction("ShowSports");
         }

@@ -318,18 +318,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTournamentesBySport">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sportId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetTournamentesBySportResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Service.Contracts.Dto" minOccurs="0" name="GetTournamentesBySportResult" nillable="true" type="q21:ArrayOfTournamentDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>

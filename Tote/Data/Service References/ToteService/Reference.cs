@@ -1138,13 +1138,6 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/DeleteTournament", ReplyAction="http://tempuri.org/ITournamentService/DeleteTournamentResponse")]
         System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentesBySport", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesBySportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/GetTournamentesBySportCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
-        Data.ToteService.TournamentDto[] GetTournamentesBySport(int sportId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentesBySport", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesBySportResponse")]
-        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesBySportAsync(int sportId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1220,14 +1213,6 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId) {
             return base.Channel.DeleteTournamentAsync(tournamentId);
-        }
-        
-        public Data.ToteService.TournamentDto[] GetTournamentesBySport(int sportId) {
-            return base.Channel.GetTournamentesBySport(sportId);
-        }
-        
-        public System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesBySportAsync(int sportId) {
-            return base.Channel.GetTournamentesBySportAsync(sportId);
         }
     }
 }
