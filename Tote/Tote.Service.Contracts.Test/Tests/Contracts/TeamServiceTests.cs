@@ -5,80 +5,73 @@ using Service.Contracts.Contracts;
 using Service.Contracts.Dto;
 using Common.Models;
 using System.Collections.Generic;
+using System.Linq;
+using Service.Contracts.Common;
 
 namespace Tote.Service.Contracts.Test.Tests.Contracts
 {
     [TestClass]
     public class TeamServiceTests
     {
+        private Mock<IMatchService> matchService;
+        private IMatchService teamService;
         
-        private List<Common.Models.Match> GetMatches()
+        private List<SortDto> GetSort()
         {
-            var matches = new List<Common.Models.Match>();
-            var teams = new List<Team>();
-            teams.Add(new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } });
-            teams.Add(new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } });
-            matches.Add(new Common.Models.Match()
+            var sort = new List<SortDto>();
+            sort.Add(new SortDto()
             {
                 MatchId = 1,
-                Teams = teams,
-                Result = new Result() { ResultId = 1 },
-                Score = "0:2",
-                Tournament = new Tournament() { Name = "Seria A" },
-                SportId = 1,
-                Date = DateTime.Now.AddHours(1)
+                Tournament = "Seria A",
+                TeamHome= "AC Milan",
+                TeamHomeCountry="Italy",
+                TeamGuest="Juventus",
+                TeamGuestCountry="Italy",
+                Score= "",
+                DateMatch= DateTime.Now.AddHours(1),
+                SportId=1
             });
-            teams.RemoveAt(0);
-            teams.RemoveAt(0);
-
-            teams.Add(new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } });
-            teams.Add(new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } });
-            matches.Add(new Common.Models.Match()
+            sort.Add(new SortDto()
             {
-                MatchId = 2,
-                Teams = teams,
-                Result = new Result() { ResultId = 1 },
+                MatchId = 1,
+                Tournament = "Seria A",
+                TeamHome = "AC Milan",
+                TeamHomeCountry = "Italy",
+                TeamGuest = "Napoli",
+                TeamGuestCountry = "Italy",
+                Score = "0:3",
+                DateMatch = DateTime.Now.AddHours(-10),
+                SportId = 1
+            });
+
+            sort.Add(new SortDto()
+            {
+                MatchId = 1,
+                Tournament = "Seria A",
+                TeamHome = "Napoli",
+                TeamHomeCountry = "Italy",
+                TeamGuest = "Juventus",
+                TeamGuestCountry = "Italy",
                 Score = "2:1",
-                Tournament = new Tournament() { Name = "Seria A" },
-                SportId = 1,
-                Date = DateTime.Now.AddHours(-10)
+                DateMatch = DateTime.Now,
+                SportId = 1
             });
 
-            teams.RemoveAt(0);
-            teams.RemoveAt(0);
-
-            teams.Add(new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } });
-            teams.Add(new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } });
-            matches.Add(new Common.Models.Match()
+            sort.Add(new SortDto()
             {
-                MatchId = 3,
-                Teams = teams,
-                Result = new Result() { ResultId = 1 },
-                Score = "3:0",
-                Tournament = new Tournament() { Name = "Seria A" },
-                SportId = 1,
-                Date = DateTime.Now
+                MatchId = 1,
+                Tournament = "KHL",
+                TeamHome = "Dinamo Minsk",
+                TeamHomeCountry = "Belarus",
+                TeamGuest = "Dinamo Riga",
+                TeamGuestCountry = "Latvia",
+                Score = "",
+                DateMatch = DateTime.Now.AddHours(1),
+                SportId = 2
             });
-
-            teams.RemoveAt(0);
-            teams.RemoveAt(0);
-
-            teams.Add(new Team() { Name = "Dinamo Minsk", Country = new Country() { Name = "Belarus" } });
-            teams.Add(new Team() { Name = "Dinamo Riga", Country = new Country() { Name = "Latvia" } });
-            matches.Add(new Common.Models.Match()
-            {
-                MatchId = 4,
-                Teams = teams,
-                Result = new Result() { ResultId = 3 },
-                Score = "4:4",
-                Tournament = new Tournament() { Name = "KHL" },
-                SportId = 2,
-                Date = DateTime.Now.AddHours(1)
-            });
-
-            return matches;
+            return sort;
         }
-
+       
 
         private List<Sport> GetSports()
         {
@@ -94,39 +87,46 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
         [TestInitialize]
         public void TestInitialize()
         {
-            /*matchClient = new Mock<IMatchClient>();
-            matchService = new Mock<Data.Services.IMatchService>();
-            betListProvider = new Mock<IBetListProvider>();*/
+            matchService = new Mock<IMatchService>();            
             matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((int sport, string dateMatch, int status) => {
-                    IEnumerable<Common.Models.Match> matches = GetMatches();
+                    IEnumerable<SortDto> sorts = GetSort();
                     if (sport == 0 && dateMatch == "" && status == 0)
                     {
-                        return GetMatches().ToArray();
+                        return GetSort().ToArray();
 
                     }
                     if (sport > 0)
                     {
-                        matches = matches.Where(m => m.SportId == sport);
-                        return matches.ToArray();
+                        sorts = sorts.Where(m => m.SportId == sport);
+                        return sorts.ToArray();
                     }
                     if (status == 3)
                     {
-                        matches = matches.Where(m => m.Date > DateTime.Now);
-                        return matches.ToArray();
+                        sorts = sorts.Where(m => m.DateMatch > DateTime.Now);
+                        return sorts.ToArray();
                     }
                     if (dateMatch != "")
                     {
                         DateTime date = DateTime.Parse(dateMatch).Date;
-                        matches = matches.Where(m => m.Date.Date == date);
-                        return matches.ToArray();
+                        sorts = sorts.Where(m => m.DateMatch.Date == date);
+                        return sorts.ToArray();
                     }
 
                     throw new ArgumentException();
                 });
-            //matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object);
+            teamService = new TeamService();
         }
 
+        [TestMethod]
+
+        public void MatchProvider_GetMatchBySportDateStatus_PassNullDate_CountValue()
+        {
+            var connection = new Connection<SortDto>();
+            var actualResult = teamService.GetMatchBySportDateStatus(0, "", 0);
+            Assert.IsTrue(actualResult.Length == GetSort().Count);
+
+        }
 
 
 

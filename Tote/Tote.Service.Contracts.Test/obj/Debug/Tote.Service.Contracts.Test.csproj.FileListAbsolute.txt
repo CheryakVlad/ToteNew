@@ -13,3 +13,5 @@ D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\log4net.xml
 D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\obj\Debug\Tote.Service.Contracts.Test.csprojResolveAssemblyReference.cache
 D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\obj\Debug\Tote.Service.Contracts.Test.dll
 D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\obj\Debug\Tote.Service.Contracts.Test.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Common.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.Service.Contracts.Test\bin\Debug\Common.pdb

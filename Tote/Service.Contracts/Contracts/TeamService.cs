@@ -335,7 +335,7 @@ namespace Service.Contracts.Contracts
 
         public SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
-            if (sportId <= 0||status<=0)
+            if (sportId < 0||status < 0)
             {
                 GenerateFaultException("GetMatchesBySportDateStatusSP", "ArgumentException");
             }
