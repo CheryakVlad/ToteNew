@@ -1,4 +1,12 @@
+USE [Tote]
+GO
 
+/****** Object:  StoredProcedure [dbo].[GetBetsBySportTournament]    Script Date: 12/21/2017 13:44:08 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE PROCEDURE [dbo].[GetBetsBySportTournament]
 @SportId int,
@@ -18,7 +26,8 @@ INNER JOIN TeamTournament ON TeamHome.TeamId=TeamTournament.TeamId
 INNER JOIN Tournament ON TeamTournament.TournamentId=Tournament.TournamentId
 INNER JOIN Sport ON Tournament.SportId=Sport.SportId
 WHERE TeamMatchHome.Home='True' AND TeamMatchGuest.Home='False' AND Sport.SportId=@SportId AND Tournament.TournamentId=@TournamentId
-
+AND Sport.DeleteStatus='False'
 RETURN
+GO
 
 
