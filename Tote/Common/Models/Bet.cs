@@ -15,9 +15,6 @@ namespace Common.Models
         public int RateId { get; set; }
         public bool? Status { get; set; }
                               
-        /*public Bet()
-        {
-            Teams = new List<Team>();
-        }*/
+        
     }
 }

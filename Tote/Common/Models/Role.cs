@@ -6,6 +6,6 @@ namespace Common.Models
     {
         public int RoleId { get; set; }
         public string Name { get; set; }
-        public IList<User> Users { get; set; }
+        public List<User> Users { get; set; }
     }
 }

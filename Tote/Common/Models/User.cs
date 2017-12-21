@@ -28,7 +28,7 @@ namespace Common.Models
         [Required(ErrorMessage = "Required field")]
         [Display(Name = "Money")]
         public decimal Money { get; set; }
-        public IList<Role> Roles { get; set; }
+        public List<Role> Roles { get; set; }
         public int RoleId { get; set; }
         [Required(ErrorMessage = "Required field")]
         [Display(Name = "Phone Numbers")]

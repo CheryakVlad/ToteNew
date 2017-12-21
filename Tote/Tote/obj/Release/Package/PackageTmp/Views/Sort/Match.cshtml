@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Common.Models.Match>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<table class="table">
+    <tr>
+        <th>
+            Tournament
+        </th>
+        <th>
+            Home Team
+        </th>
+        <th>
+            Guest Team
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tournament.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams[0].Name)
+                @Html.DisplayFor(modelItem => item.Teams[0].Country.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams[1].Name)
+                @Html.DisplayFor(modelItem => item.Teams[1].Country.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            
+
+        </tr>
+    }
+
+</table>

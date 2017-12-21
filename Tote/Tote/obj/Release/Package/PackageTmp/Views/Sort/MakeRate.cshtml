@@ -1,0 +1,82 @@
+﻿@model Common.Models.User
+
+@{
+    ViewBag.Title = "MakeRate";
+    Layout = "~/Views/LayoutView.cshtml";
+}
+<script src="~/scripts/jquery-3.2.1.js"></script>
+<h2>MakeRate</h2>
+@using (Html.BeginForm())
+{
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Money)
+        </dt>
+
+        <dd id="money">
+            @Html.DisplayFor(model => model.Money)
+        </dd>        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Amount")
+        </dt>
+        <dd>
+            <input type="text" id="amount" name="amount" value="0" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <input type="submit" value="Make Rate" />
+</p>
+}
+
+<script type="text/javascript">
+    $(function () {        
+
+        $('#amount').bind('keydown keyup', function (e) {
+            var money = parseFloat($('#money').text());
+            var amount = parseFloat($('#amount').val());
+            if (amount > money) {
+                $('#amount').val(money);
+            }        
+        })
+       
+    })
+
+</script>

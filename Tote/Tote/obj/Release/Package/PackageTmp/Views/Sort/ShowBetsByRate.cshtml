@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Common.Models.Bet>
+
+@{
+    ViewBag.Title = "ShowBetsByRate";
+    Layout = "~/Views/LayoutView.cshtml";
+}
+
+<br />
+<br />
+<br />
+<h2>Show Bets By Rate</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Match")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Event")
+        </th>
+        <th>
+            @Html.DisplayName("Coefficient")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Match.Teams[0].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[0].Country.Name)) vs
+                @Html.DisplayFor(modelItem => item.Match.Teams[1].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[1].Country.Name))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Match.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Match.Events[0].Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Match.Events[0].Coefficient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            
+        </tr>
+    }
+    <tr>
+        <td>@Html.DisplayName("Total")</td>
+        <td></td>
+        <td></td>
+        <td>
+            @ViewBag.Total
+        </td>
+    </tr>
+    
+</table>
+

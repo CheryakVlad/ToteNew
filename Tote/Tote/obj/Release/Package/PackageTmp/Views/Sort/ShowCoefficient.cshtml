@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Common.Models.Event>
+
+@{
+    Layout = "~/Views/LayoutView.cshtml";
+}
+
+<br />
+<br />
+<br />
+    <script src="~/scripts/addBetToBasket.js"></script>
+
+           
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Event")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Coefficient)
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm())
+                {
+                <tr>
+                    <td>
+                        
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Coefficient)
+                    </td>
+                    @if (ViewBag.MatchDate > DateTime.Now)
+                    {
+                        <td>
+                            <input type="hidden" name="matchId" value=@ViewBag.Match />
+                            <input type="hidden" name="eventId" value=@item.EventId />
+                            <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()" />
+                        </td>
+                    }
+                    
+                </tr>
+                }
+
+            }
+        </table>
+

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tote Application</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/scripts/jquery-3.2.1.js"></script>
+    <script src="~/scripts/jquery.validate.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Tote", "List", "Navigation", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "List", "Navigation")</li>
+                    <li>@Html.ActionLink("Choose a Bet", "Sorting", "Sort")</li>
+                    
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Show Basket", "ShowBasket", "Sort")</li>
+                        <li>@Html.ActionLink("Show Profile", "ShowUserProfile", "User")</li>
+                    }
+                    @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Editor"))
+                    {
+                        <li>@Html.ActionLink("Sports", "ShowSports", "Sport")</li>
+                        <li>@Html.ActionLink("Tournaments", "ShowTournaments", "Tournament")</li>
+                        <li>@Html.ActionLink("Teams", "ShowTeams", "Team")</li>
+                        <li>@Html.ActionLink("Matches", "ShowMatches", "Match")</li>
+                    }
+                    @if (HttpContext.Current.User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Users", "UsersAll", "User")</li>                        
+                    }
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">                                        
+                    <li>                        
+                        <div>
+                            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                            {                               
+                                <span style="color:#ffffff">
+                                    @HttpContext.Current.User.Identity.Name
+                                </span>
+                                @Html.ActionLink("Logout", "Logout", "Login")                                
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Login", "Login", "Login")
+                            }
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tote Application</p>
+        </footer>
+    </div>
+
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

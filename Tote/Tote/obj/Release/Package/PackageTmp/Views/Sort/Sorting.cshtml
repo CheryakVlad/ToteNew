@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Common.Models.Match>
+
+@{
+    Layout = @"\Views\LayoutView.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+    
+    @section Scripts
+{
+    <script src="~/scripts/bootstrap.js"></script>
+    <script src="~/scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/scripts/Sort/Sorting/addNoneToSportDropDown.js"></script>
+    <script src="~/scripts/Sort/Sorting/jsonDate.js"></script>
+    <script src="~/scripts/Sort/Sorting/parseJsonDate.js"></script>
+    <script src="~/scripts/Sort/Sorting/btnSortClick.js"></script>
+}
+
+    <title>Sort</title>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <h2>
+        Sorting
+    </h2>
+
+    Select Sport
+    @Html.DropDownList("sport", ViewBag.Sports as SelectList)
+
+    
+    Select Status
+    <select id="status">
+        <option value="0">None</option>
+        <option value="1">Past Events</option>
+        <option value="2">Current Events</option>
+        <option value="3">Future Events</option>
+    </select>
+
+    Date Match
+    <input type="date" id="dateField" value="EnterDate" />
+
+    <input type="button" value="Sort" id="btnSort" />
+    
+
+    <table class="table" id="table">
+        <thead>
+            
+            <tr>
+                <th>
+                    Tournament
+                </th>
+                <th>
+                    Home Team
+                </th>
+                <th>
+                    Guest Team
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Score
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tournament.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teams[0].Name)
+                    (@Html.DisplayFor(modelItem => item.Teams[0].Country.Name))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teams[1].Name)
+                    (@Html.DisplayFor(modelItem => item.Teams[1].Country.Name))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+                <td>
+
+                    @Html.RouteLink("Show Coefficients", new
+               {
+                   controller = "Sort",
+                   action = "ShowCoefficient",
+                   matchId = item.MatchId
+               })
+
+
+                </td>
+
+            </tr>
+            }
+        </tbody>
+            
+
+        
+
+    </table>
+</body>
+</html>
+
+
+
+
+

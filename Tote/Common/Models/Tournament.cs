@@ -13,9 +13,6 @@ namespace Common.Models
         public Sport Sport { get; set; }
         public IList<Match> Matches { get; set; }
 
-        /*public Tournament()
-        {
-            Matches = new List<Match>();
-        }*/
+        
     }
 }

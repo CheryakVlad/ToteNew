@@ -1,25 +1,21 @@
-﻿@model List<Common.Models.Bet>
+﻿@model List<Common.Models.Match>
 @{
-    Layout = @"\Views\MasterView.cshtml";
+    Layout = @"\Views\Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Navigation</title>
-</head>
-<body>
+<br />
+<br />
+<br />
     <div id="list">
-    @foreach (var bet in Model)
+    @foreach (var match in Model)
     {
-        @Html.RouteLink(bet.Match.Teams[0].Name.ToString()+" ("+bet.Match.Teams[0].Country.Name+")"
-       +" vs "+ bet.Match.Teams[1].Name.ToString()+"("+bet.Match.Teams[1].Country.Name+")"+" by "+bet.Match.Date.ToString(), new
+        @Html.RouteLink(match.Teams[0].Name.ToString()+" ("+match.Teams[0].Country.Name+")"
+       +" vs "+ match.Teams[1].Name.ToString()+"("+match.Teams[1].Country.Name+")"+" by "+match.Date.ToString(), new
    {
        controller = "Navigation",
        action = "Bet",
-       id = bet.BetId
+       id = match.MatchId
    }, new
    {
        @class = "btn btn-block btn-default btn-lg"
@@ -27,8 +23,6 @@
    })
     }
     </div>
-</body>
-</html>
 
 
 

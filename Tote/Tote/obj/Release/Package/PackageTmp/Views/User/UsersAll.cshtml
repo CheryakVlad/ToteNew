@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Common.Models.User>
+
+@{
+    Layout = @"\Views\LayoutView.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+<br />
+<br />
+<br />
+    <p>
+        @Html.ActionLink("Create New User", "AddUser")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Money)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Money)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditUser", new { id=item.UserId }) |
+                @Html.ActionLink("Delete", "DeleteUser", new { id=item.UserId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+

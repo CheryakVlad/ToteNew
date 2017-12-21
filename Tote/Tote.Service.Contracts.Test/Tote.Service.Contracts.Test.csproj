@@ -66,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Tote.App.Common.csproj">
+      <Project>{F30BB6DF-BEA6-4F29-8FDE-44FB0C9E3355}</Project>
+      <Name>Tote.App.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Service.Contracts\Tote.Service.Contracts.csproj">
       <Project>{53016262-bbb5-4b33-8a2b-4be859a11d33}</Project>
       <Name>Tote.Service.Contracts</Name>

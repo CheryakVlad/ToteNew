@@ -66,3 +66,6 @@ D:\22-11-2017\ToteNew.git\Tote\Tote\bin\Data.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote\obj\Release\Tote.Web.csprojResolveAssemblyReference.cache
 D:\22-11-2017\ToteNew.git\Tote\Tote\obj\Release\Tote.dll
 D:\22-11-2017\ToteNew.git\Tote\Tote\obj\Release\Tote.pdb
+D:\22-11-2017\ToteNew.git\Tote\Tote\bin\MvcValidationExtensions.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote\bin\Newtonsoft.Json.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote\bin\Newtonsoft.Json.xml

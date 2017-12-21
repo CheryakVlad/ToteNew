@@ -6,11 +6,8 @@ namespace Common.Models
     {
         public int ResultId { get; set; }
         public string Name { get; set; }
-        public IList<Match> Matches { get; set; }
+        public List<Match> Matches { get; set; }
 
-        /*public Result()
-        {
-            Matches = new List<Match>();
-        }*/
+        
     }
 }

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Common.Models.Event>
+
+@{
+    Layout = @"\Views\LayoutView.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowCoefficient</title>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Event")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coefficient)
+            </th>
+                        
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coefficient)
+            </td>
+            
+            
+        </tr>
+    }
+    
+    </table>
+    <br />
+    @Html.RouteLink("Edit", new
+       {
+           controller = "Match",
+           action = "EditEvent",
+           id = Model.ToArray()[0].MatchId
+       }, new
+       {
+           @class = "btn btn-block btn-default btn-lg"
+
+       })
+   
+
+</body>
+</html>
