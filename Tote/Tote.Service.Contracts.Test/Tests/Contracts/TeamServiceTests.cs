@@ -11,11 +11,7 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
     [TestClass]
     public class TeamServiceTests
     {
-        private Mock<IMatchClient> matchClient;
-        private Mock<Data.Services.IMatchService> matchService;
-        private IMatchProvider matchProvider;
-        private Mock<IBetListProvider> betListProvider;
-
+        
         private List<Common.Models.Match> GetMatches()
         {
             var matches = new List<Common.Models.Match>();
@@ -98,9 +94,9 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
         [TestInitialize]
         public void TestInitialize()
         {
-            matchClient = new Mock<IMatchClient>();
+            /*matchClient = new Mock<IMatchClient>();
             matchService = new Mock<Data.Services.IMatchService>();
-            betListProvider = new Mock<IBetListProvider>();
+            betListProvider = new Mock<IBetListProvider>();*/
             matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((int sport, string dateMatch, int status) => {
                     IEnumerable<Common.Models.Match> matches = GetMatches();
@@ -128,7 +124,7 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
 
                     throw new ArgumentException();
                 });
-            matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object);
+            //matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object);
         }
 
 
