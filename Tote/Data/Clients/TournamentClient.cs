@@ -8,13 +8,24 @@ namespace Data.Clients
 {
     public class TournamentClient : ITournamentClient
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TournamentClient));
+        private readonly log4net.ILog log;
         private readonly IConvert convert;
 
         public TournamentClient(IConvert convert)
         {
             this.convert = convert;
+            this.log = log4net.LogManager.GetLogger(typeof(TournamentClient));
         }
+
+        public static TournamentClient createTournamentClient(IConvert convert)
+        {
+            if (convert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new TournamentClient(convert);
+        }
+
         public bool AddTournament(Tournament tournament)
         {
             var tournamentDto = new TournamentDto();

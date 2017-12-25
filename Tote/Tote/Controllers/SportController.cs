@@ -2,8 +2,6 @@
 using Common.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Tote.Attribute;
 
@@ -11,12 +9,21 @@ namespace Tote.Controllers
 {
     public class SportController : Controller
     {
-        private IBetListProvider betListProvider;
+        private readonly IBetListProvider betListProvider;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SportController));
 
         public SportController(IBetListProvider rateListProvider)
-        {
+        {            
             this.betListProvider = rateListProvider;
+        }
+
+        public static SportController createSportController(IBetListProvider rateListProvider)
+        {
+            if(rateListProvider==null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new SportController(rateListProvider);
         }
 
         [Editor]

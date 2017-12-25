@@ -1,5 +1,6 @@
 ﻿using Business.Providers;
 using Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
@@ -8,14 +9,24 @@ namespace Tote.Controllers
 {
     public class TeamController : Controller
     {
-        private ITeamProvider teamProvider;
-        private IBetListProvider betListProvider;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamController));
+        private readonly ITeamProvider teamProvider;
+        private readonly IBetListProvider betListProvider;
+        private readonly log4net.ILog log;
 
         public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider)
         {
             this.betListProvider = betListProvider;
             this.teamProvider = teamProvider;
+            this.log = log4net.LogManager.GetLogger(typeof(TeamController));
+        }
+
+        public static TeamController createMatchController(IBetListProvider betListProvider, ITeamProvider teamProvider)
+        {
+            if (betListProvider == null || teamProvider == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new TeamController(betListProvider, teamProvider);
         }
 
         [Editor]
@@ -231,6 +242,69 @@ namespace Tote.Controllers
             return RedirectToAction("ShowCountries");
         }
 
+        [Editor]
+        public ActionResult ShowTournamentsByTeam(int id)
+        {
+            Team team = teamProvider.GetTeamById(id);
+            ViewBag.Team = team;
+            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentesByTeamId(id);
+            return View(tournaments);
+        }
+
+        [HttpGet]
+        [Editor]
+        public ActionResult AddTournamentForTeam(int id)
+        {
+            Team team = teamProvider.GetTeamById(id);            
+            List<Tournament> tournamentesSport = betListProvider.GetTournament(team.SportId) as List<Tournament>;
+            List<Tournament> tournamentesTeam = betListProvider.GetTournamentesByTeamId(id) as List<Tournament>;
+            tournamentesSport.RemoveAll(element=> tournamentesTeam.Exists(elementTeam => elementTeam.TournamentId == element.TournamentId));
+            SelectList tournaments = new SelectList(tournamentesSport, "TournamentId", "Name");
+            if (tournaments == null)
+            {
+                log.Error("Controller: Team, Action: AddTournamentForTeam Don't GetTournamentes");
+                return RedirectToAction("InfoError", "Error");
+            }
+            ViewBag.Tournaments = tournaments;
+                        
+            return View(team);
+        }
+
+        [HttpPost]
+        [Editor]
+        public ActionResult AddTournamentForTeam(Team team)
+        {
+            bool result = teamProvider.AddTournamentForTeam(team.Tournament.TournamentId, team.TeamId);
+            if (!result)
+            {
+                log.Error("Controller: Team, Action: AddTournamentForTeam Don't add Tournament For Team");
+            }
+            return RedirectToAction("ShowTournamentsByTeam", new { id=team.TeamId});
+            
+        }
+
+        [HttpGet]
+        [Editor]
+        public ActionResult DeleteTournamentForTeam(int teamId, int tournamentId)            
+        {
+            Team team = teamProvider.GetTeamById(teamId);
+            ViewBag.Team = team;
+            Tournament tournament = betListProvider.GetTournamentById(tournamentId);
+            return View(tournament);
+        }
+
+        [HttpPost]
+        [Editor]
+        [ActionName("DeleteTournamentForTeam")]
+        public ActionResult DeleteTournamentTeam(int teamId, int tournamentId)
+        {
+            bool result = teamProvider.DeleteTournamentForTeam(tournamentId, teamId);
+            if (!result)
+            {
+                log.Error("Controller: Team, Action: DeleteTournamentForTeam Don't Delete Tournament For Team");
+            }
+            return RedirectToAction("ShowTournamentsByTeam", new { id = teamId });
+        }
 
     }
 }

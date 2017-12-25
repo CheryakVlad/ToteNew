@@ -50,6 +50,16 @@ namespace Service.Contracts.Contracts
         [FaultContract(typeof(CustomException))]
         bool DeleteCountry(int countryId);
 
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool AddTournamentForTeam(int tournamentId, int teamId);
+
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        bool DeleteTournamentForTeam(int tournamentId, int teamId);
+
+        
+
 
     }
 }

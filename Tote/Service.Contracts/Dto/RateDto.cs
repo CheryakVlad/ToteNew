@@ -14,5 +14,7 @@ namespace Service.Contracts.Dto
         public decimal Amount { get; set; }
         [DataMember]
         public int UserId { get; set; }
+        [DataMember]
+        public bool Status { get; set; }
     }
 }

@@ -17,7 +17,8 @@ namespace Service.Contracts.Dto
         public int CountryId { get; set; }
         [DataMember]
         public string Country { get; set; }
-
+        [DataMember]
+        public int TournamentId { get; set; }
 
     }
 }

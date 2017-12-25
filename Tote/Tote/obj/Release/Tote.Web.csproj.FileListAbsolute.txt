@@ -69,3 +69,4 @@ D:\22-11-2017\ToteNew.git\Tote\Tote\obj\Release\Tote.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote\bin\MvcValidationExtensions.dll
 D:\22-11-2017\ToteNew.git\Tote\Tote\bin\Newtonsoft.Json.dll
 D:\22-11-2017\ToteNew.git\Tote\Tote\bin\Newtonsoft.Json.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote\bin\LogWeb.config

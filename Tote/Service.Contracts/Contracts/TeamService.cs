@@ -559,5 +559,51 @@ namespace Service.Contracts.Contracts
 
             }
         }
+
+        public bool AddTournamentForTeam(int tournamentId, int teamId)
+        {
+            if (tournamentId == 0 || teamId == 0)
+            {
+                GenerateFaultException("AddTeamTournament", "ArgumentException");
+            }
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
+            var connection = new Connection<TeamDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "AddTeamTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "AddTeamTournament";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public bool DeleteTournamentForTeam(int tournamentId, int teamId)
+        {
+            if (tournamentId == 0 || teamId == 0)
+            {
+                GenerateFaultException("DeleteTeamTournament", "ArgumentException");
+            }
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
+            var connection = new Connection<TeamDto>();
+            try
+            {
+                return connection.GetConnectionUpdate(CommandType.StoredProcedure, "DeleteTeamTournament", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "DeleteTeamTournament";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
     }
 }

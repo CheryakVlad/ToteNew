@@ -14,6 +14,10 @@ namespace Business.Providers
 
         bool DeleteTeam(int teamId);
 
+        bool AddTournamentForTeam(int tournamentId, int teamId);
+
+        bool DeleteTournamentForTeam(int tournamentId, int teamId);
+
         IReadOnlyList<Country> GetCountriesAll();
 
         IReadOnlyList<Team> GetTeamsByTournament(int tournamentId);

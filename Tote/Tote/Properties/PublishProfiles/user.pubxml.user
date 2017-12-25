@@ -16,19 +16,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 13:28:11</publishTime>
     </File>
     <File Include="bin/Business.dll">
-      <publishTime>12/20/2017 23:52:22</publishTime>
+      <publishTime>12/25/2017 21:53:51</publishTime>
     </File>
     <File Include="bin/Common.dll">
-      <publishTime>12/20/2017 23:52:18</publishTime>
+      <publishTime>12/25/2017 21:53:44</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>12/20/2017 23:52:21</publishTime>
+      <publishTime>12/25/2017 21:53:51</publishTime>
     </File>
     <File Include="bin/Dependencies.dll">
-      <publishTime>12/20/2017 23:52:22</publishTime>
+      <publishTime>12/25/2017 21:53:52</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>12/04/2017 13:28:12</publishTime>
+    </File>
+    <File Include="bin/LogWeb.config">
+      <publishTime>12/25/2017 21:48:39</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/04/2017 13:28:11</publishTime>
@@ -130,7 +133,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 13:28:12</publishTime>
     </File>
     <File Include="bin/Tote.dll">
-      <publishTime>12/20/2017 23:52:29</publishTime>
+      <publishTime>12/25/2017 21:53:58</publishTime>
     </File>
     <File Include="bin/WebActivatorEx.dll">
       <publishTime>12/04/2017 13:28:12</publishTime>
@@ -309,6 +312,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Log.config">
       <publishTime>12/04/2017 13:28:11</publishTime>
     </File>
+    <File Include="LogWeb.config">
+      <publishTime>12/25/2017 21:48:39</publishTime>
+    </File>
     <File Include="packages.config">
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
@@ -421,7 +427,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2017 18:55:50</publishTime>
     </File>
     <File Include="Views/Layout.cshtml">
-      <publishTime>12/20/2017 00:25:50</publishTime>
+      <publishTime>12/24/2017 17:54:42</publishTime>
     </File>
     <File Include="Views/LayoutView.cshtml">
       <publishTime>12/19/2017 17:57:52</publishTime>
@@ -436,19 +442,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2017 17:37:22</publishTime>
     </File>
     <File Include="Views/Match/AddEvents.cshtml">
-      <publishTime>12/19/2017 17:57:19</publishTime>
+      <publishTime>12/23/2017 22:10:51</publishTime>
     </File>
     <File Include="Views/Match/AddMatch.cshtml">
-      <publishTime>12/20/2017 00:31:09</publishTime>
+      <publishTime>12/25/2017 16:05:48</publishTime>
     </File>
     <File Include="Views/Match/DeleteEvent.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:11:55</publishTime>
     </File>
     <File Include="Views/Match/DeleteMatch.cshtml">
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
     <File Include="Views/Match/EditEvent.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:11:55</publishTime>
     </File>
     <File Include="Views/Match/EditMatch.cshtml">
       <publishTime>12/19/2017 17:58:25</publishTime>
@@ -457,7 +463,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2017 17:38:00</publishTime>
     </File>
     <File Include="Views/Match/ShowCoefficient.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:11:55</publishTime>
     </File>
     <File Include="Views/Match/ShowMatches.cshtml">
       <publishTime>12/19/2017 17:57:20</publishTime>
@@ -514,16 +520,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
     <File Include="Views/Sort/Sorting.cshtml">
-      <publishTime>12/19/2017 17:58:25</publishTime>
+      <publishTime>12/23/2017 22:31:55</publishTime>
     </File>
     <File Include="Views/Sport/AddSport.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:31:55</publishTime>
     </File>
     <File Include="Views/Sport/DeleteSport.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:31:55</publishTime>
     </File>
     <File Include="Views/Sport/EditSport.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:31:55</publishTime>
     </File>
     <File Include="Views/Sport/ShowSports.cshtml">
       <publishTime>12/19/2017 17:57:52</publishTime>
@@ -534,23 +540,32 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Team/AddTeam.cshtml">
       <publishTime>12/19/2017 17:57:52</publishTime>
     </File>
+    <File Include="Views/Team/AddTournamentForTeam.cshtml">
+      <publishTime>12/25/2017 11:26:18</publishTime>
+    </File>
     <File Include="Views/Team/DeleteCountry.cshtml">
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
     <File Include="Views/Team/DeleteTeam.cshtml">
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
+    <File Include="Views/Team/DeleteTournamentForTeam.cshtml">
+      <publishTime>12/25/2017 13:26:40</publishTime>
+    </File>
     <File Include="Views/Team/EditCountry.cshtml">
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
     <File Include="Views/Team/EditTeam.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/24/2017 21:00:04</publishTime>
     </File>
     <File Include="Views/Team/ShowCountries.cshtml">
       <publishTime>12/19/2017 17:57:20</publishTime>
     </File>
     <File Include="Views/Team/ShowTeams.cshtml">
-      <publishTime>12/19/2017 17:57:52</publishTime>
+      <publishTime>12/25/2017 13:33:54</publishTime>
+    </File>
+    <File Include="Views/Team/ShowTournamentsByTeam.cshtml">
+      <publishTime>12/25/2017 13:37:07</publishTime>
     </File>
     <File Include="Views/Tournament/AddTournament.cshtml">
       <publishTime>12/19/2017 17:57:52</publishTime>
@@ -565,25 +580,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2017 17:57:52</publishTime>
     </File>
     <File Include="Views/User/AddUser.cshtml">
-      <publishTime>12/19/2017 17:58:25</publishTime>
+      <publishTime>12/23/2017 22:34:40</publishTime>
     </File>
     <File Include="Views/User/DeleteUser.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/23/2017 22:35:41</publishTime>
     </File>
     <File Include="Views/User/Edit.cshtml">
       <publishTime>12/19/2017 17:56:47</publishTime>
     </File>
     <File Include="Views/User/EditUser.cshtml">
-      <publishTime>12/19/2017 17:58:25</publishTime>
+      <publishTime>12/23/2017 22:35:41</publishTime>
     </File>
     <File Include="Views/User/EditUserProfile.cshtml">
-      <publishTime>12/19/2017 17:58:25</publishTime>
+      <publishTime>12/23/2017 22:36:22</publishTime>
     </File>
     <File Include="Views/User/ShowUserProfile.cshtml">
-      <publishTime>12/19/2017 17:57:20</publishTime>
+      <publishTime>12/25/2017 19:35:33</publishTime>
     </File>
     <File Include="Views/User/UsersAll.cshtml">
-      <publishTime>12/19/2017 17:58:25</publishTime>
+      <publishTime>12/23/2017 22:36:22</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>12/04/2017 13:28:11</publishTime>
@@ -592,7 +607,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2017 17:37:22</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/20/2017 23:52:30</publishTime>
+      <publishTime>12/25/2017 21:53:59</publishTime>
     </File>
   </ItemGroup>
 </Project>

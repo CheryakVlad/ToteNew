@@ -61,13 +61,25 @@
     </dl>
 </div>
 
+<br />
+<p>
+    @Html.ActionLink("Edit User Profile", "EditUserProfile") |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
 <table class="table">
     <tr>
+        <th>
+            Rate Id
+        </th>
         <th>
             Date And Time
         </th>
         <th>
             Amount
+        </th>
+        <th>
+            Status
         </th>
         <th></th>
     </tr>
@@ -75,10 +87,16 @@
     {
         <tr>
             <td>
+                @item.RateId
+            </td>
+            <td>
                 @item.DateRate
             </td>
             <td>
                 @item.Amount
+            </td>
+            <td>
+                @item.Status
             </td>
             <td>
                 @Html.RouteLink("Show Bets", new
@@ -92,8 +110,4 @@
         </tr>
     }
 </table>
-<br />
-<p>
-    @Html.ActionLink("Edit User Profile", "EditUserProfile") |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

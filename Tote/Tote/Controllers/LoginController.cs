@@ -1,13 +1,8 @@
 ﻿using Business.Providers;
-using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
-using Common.Models;
-using System.ServiceModel;
-using System.Data.SqlClient;
 using Business.Service;
 using Business.Principal;
-using Tote.Attribute;
+using System;
 
 namespace Tote.Controllers
 {
@@ -15,15 +10,23 @@ namespace Tote.Controllers
     {
         private readonly IUserProvider userProvider;
         private readonly ILoginService loginService;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(LoginController));
+        private readonly log4net.ILog log;  
 
         public LoginController(IUserProvider userProvider, ILoginService loginService)
         {
             this.userProvider = userProvider;
             this.loginService = loginService;
+            this.log = log4net.LogManager.GetLogger(typeof(LoginController));
         }
 
-        
+        public static LoginController createLoginController(IUserProvider userProvider, ILoginService loginService)
+        {
+            if (userProvider == null|| loginService == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new LoginController(userProvider, loginService);
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -59,9 +62,15 @@ namespace Tote.Controllers
             return View();
         }
         
-        [User]
+        //[User]
+        [AllowAnonymous]
         public ActionResult Logout()
         {
+            string role = "";
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                role = (HttpContext.User as UserPrincipal).Roles[0];
+            }
             loginService.Logout();
             return RedirectToAction("Login", "Login");
         }

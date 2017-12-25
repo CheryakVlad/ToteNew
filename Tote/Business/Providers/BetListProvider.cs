@@ -16,6 +16,15 @@ namespace Business.Providers
             this.betListClient = betListClient;
         }
 
+        public static BetListProvider createBetListProvider(IDataService dataService, IBetListClient betListClient)
+        {
+            if (dataService == null || betListClient == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new BetListProvider(dataService, betListClient);
+        }
+
         public bool AddSport(Sport sport)
         {
             return betListClient.AddSport(sport);
@@ -119,6 +128,16 @@ namespace Business.Providers
         public IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total)
         {
             return dataService.GetBetByRateId(rateId, out total);
+        }
+
+        public IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId)
+        {
+            return dataService.GetTournamentesByTeamId(teamId);
+        }
+
+        public Tournament GetTournamentById(int tournamentId)
+        {
+            return dataService.GetTournamentById(tournamentId);
         }
     }
 }

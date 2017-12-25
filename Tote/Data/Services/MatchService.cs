@@ -16,6 +16,16 @@ namespace Data.Services
             this.matchClient = matchClient;
             this.convert = convert;
         }
+        
+        public static MatchService createMatchService(IMatchClient matchClient, IMatchConvert convert)
+        {
+            if (matchClient == null || convert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new MatchService(matchClient, convert);
+        }
+
         public Match GetMatchById(int matchId)
         {
             var dto = matchClient.GetMatchById(matchId);

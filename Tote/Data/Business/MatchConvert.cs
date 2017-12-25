@@ -95,20 +95,12 @@ namespace Data.Business
             var matchDto = new MatchDto
             {
                 MatchId = match.MatchId,
-                TeamIdHome = match.Teams[0].TeamId,
-                //TeamHome = match.Teams[0].Name,
-                TeamIdGuest = match.Teams[1].TeamId,
-                //TeamGuest = match.Teams[1].Name,
-                Date = match.Date,
-                /*CountryHomeId = match.Teams[0].Country.CountryId,
-                CountryHome = match.Teams[0].Country.Name,
-                CountryGuestId = match.Teams[1].Country.CountryId,
-                CountryGuest = match.Teams[1].Country.Name,*/
-                TournamentId = match.Tournament.TournamentId,
-                /*Tournament = match.Tournament.Name,*/
+                TeamIdHome = match.TeamHomeId,                
+                TeamIdGuest = match.TeamGuestId,                
+                Date = match.Date,               
+                TournamentId = match.TournamentId,                
                 Score = match.Score,
-                ResultId = match.Result.ResultId
-                //Result = match.Result.Name
+                ResultId = match.Result.ResultId                
             };
 
             return matchDto;

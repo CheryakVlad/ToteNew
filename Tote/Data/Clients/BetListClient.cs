@@ -1,8 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Data.ToteService;
 using System.ServiceModel;
-using System.Data.SqlClient;
 using System;
 using Common.Models;
 using Data.Business;
@@ -11,12 +9,22 @@ namespace Data.Clients
 {
     public class BetListClient : IBetListClient
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListClient));
+        private readonly log4net.ILog log;
         private readonly IConvert convert;
 
         public BetListClient(IConvert convert)
         {
             this.convert = convert;
+            this.log = log4net.LogManager.GetLogger(typeof(BetListClient));
+        }
+
+        public static BetListClient createBetListClient(IConvert convert)
+        {
+            if (convert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new BetListClient(convert);
         }
 
         public bool AddBasket(Basket basket)
@@ -630,6 +638,44 @@ namespace Data.Clients
             return model;
         }
 
+        public TournamentDto GetTournamentById(int tournamentId)
+        {
+            var model = new TournamentDto();
+            using (var client = new ToteService.TournamentServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var tournament = client.GetTournamentById(tournamentId);
+
+                    model = tournament;
+
+                    client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
+                return model;
+            }
+        }
+
         public IReadOnlyList<TournamentDto> GetTournamentes()
         {
             var model = new List<TournamentDto>();
@@ -667,6 +713,45 @@ namespace Data.Clients
                 }
             }
 
+            return model;
+        }
+
+        public IReadOnlyList<TournamentDto> GetTournamentesByTeamId(int teamId)
+        {
+            var model = new List<TournamentDto>();
+            using (var client = new ToteService.TournamentServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var tournaments = client.GetTournamentesByTeamId(teamId);
+                    foreach (var tournament in tournaments)
+                    {
+                        model.Add(tournament);
+                    }
+                    client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    log.Error(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    log.Error(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    log.Error(nullEx.Message);
+                    return null;
+                }
+            }
             return model;
         }
 

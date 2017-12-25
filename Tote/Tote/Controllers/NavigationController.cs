@@ -13,7 +13,7 @@ namespace Tote.Controllers
     {
         private readonly IBetListProvider betListProvider;
         private readonly ICacheService cacheService;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
+        private readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
 
         public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService)
         {
@@ -21,12 +21,15 @@ namespace Tote.Controllers
             this.cacheService = cacheService;
         }
 
-        /*[AllowAnonymous]
-        public ActionResult Index()
+        public static NavigationController createMatchController(IBetListProvider rateListProvider, ICacheService cacheService)
         {
-            IReadOnlyList<Match> rates = betListProvider.GetBetList(1, 1);
-            return View(rates[0]);
-        }*/
+            if (rateListProvider == null || cacheService == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new NavigationController(rateListProvider, cacheService);
+        }
+
         [AllowAnonymous]
         public ActionResult ChildTournament(int id = 0)
         {

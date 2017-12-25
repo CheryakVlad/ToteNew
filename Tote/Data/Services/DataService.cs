@@ -14,13 +14,22 @@ namespace Data.Services
         private readonly IConvert convert;
         private readonly IMatchService matchService;
 
-        public DataService(IBetListClient client, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient, IMatchService matchService)
+        public DataService(IBetListClient betListClient, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient, IMatchService matchService)
         {
-            this.betListClient = client;
+            this.betListClient = betListClient;
             this.convert = convert;
             this.tournamentClient = tournamentClient;
             this.teamClient = teamClient;
             this.matchService = matchService;
+        }
+
+        public static DataService createDataService(IBetListClient betListClient, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient, IMatchService matchService)
+        {
+            if (betListClient == null|| convert==null|| tournamentClient==null|| teamClient==null|| matchService==null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new DataService(betListClient, convert, tournamentClient, teamClient, matchService);
         }
 
         public IReadOnlyList<Match> GetBets(int? sportId, int? tournamentId)
@@ -300,6 +309,17 @@ namespace Data.Services
                 return convert.ToCountry(dto);
             }
             return new Country();
+        }
+
+        public IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId)
+        {
+            var dto = betListClient.GetTournamentesByTeamId(teamId);
+
+            if (dto != null)
+            {
+                return convert.ToTournament(dto);
+            }
+            return new List<Tournament>();
         }
     }
 }

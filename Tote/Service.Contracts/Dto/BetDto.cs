@@ -17,6 +17,8 @@ namespace Service.Contracts.Dto
         [DataMember]
         public bool? Status { get; set; }
         [DataMember]
+        public string Stat { get; set; }
+        [DataMember]
         public int EventId { get; set; }
         [DataMember]
         public int RateId { get; set; }

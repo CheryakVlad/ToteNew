@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Common.Models;
 using Data.TeamService;
 using Data.ToteService;
@@ -82,9 +81,11 @@ namespace Data.Business
         public Bet ToBet(BetDto betDto)
         {
             var bet = new Bet
-            {   BetId=betDto.BetId,
+            {
+                BetId =betDto.BetId,
                 MatchId=betDto.MatchId,
                 RateId=betDto.RateId,
+                Status=betDto.Status,
                 Event=new Event() { EventId=betDto.EventId}
             };
 
@@ -240,7 +241,6 @@ namespace Data.Business
             {
                 rates.Add(ToRate(rateDto));
             }
-
             return rates;
         }
 
@@ -251,7 +251,8 @@ namespace Data.Business
                 RateId=rateDto.RateId,
                 DateRate=rateDto.DateRate,
                 Amount=rateDto.Amount,
-                UserId=rateDto.UserId
+                UserId=rateDto.UserId,
+                Status=rateDto.Status
             };
 
             return Rate;
@@ -302,14 +303,8 @@ namespace Data.Business
         {
             var sports = new List<Sport>();
             foreach (var sportDto in sportsDto)
-            {
-                var sport = new Sport
-                {
-                    SportId=sportDto.SportId,
-                    Name=sportDto.Name
-                };
-
-                sports.Add(sport);
+            {    
+                sports.Add(ToSport(sportDto));
             }
 
             return sports;
@@ -358,10 +353,8 @@ namespace Data.Business
             {
                 TeamId=team.TeamId,
                 Name=team.Name,
-                SportId=team.SportId,
-                //Sport=team.Sport.Name,
-                CountryId=team.CountryId,
-                //Country=team.Country.Name
+                SportId=team.SportId,                
+                CountryId=team.CountryId,                
             };
 
             return teamDto;
@@ -372,28 +365,7 @@ namespace Data.Business
             var teamsList = new List<Team>();
             foreach (var teamDto in teamsDto)
             {
-                var sport = new Sport
-                {
-                    SportId = teamDto.SportId,
-                    Name = teamDto.Sport
-                };
-                var country = new Country
-                {
-                    CountryId = teamDto.CountryId,
-                    Name = teamDto.Country
-                };
-                
-                var team = new Team
-                {
-                    TeamId = teamDto.TeamId,
-                    Name = teamDto.Name,
-                    SportId = teamDto.SportId,
-                    Sport = sport,
-                    CountryId = teamDto.CountryId,
-                    Country = country
-                };
-
-                teamsList.Add(team);
+                teamsList.Add(ToTeam(teamDto));
             }
             return teamsList;
         }
@@ -419,19 +391,7 @@ namespace Data.Business
             var tournaments = new List<Tournament>();
             foreach (var tournamentDto in tournamentsDto)
             {
-                var tournament = new Tournament
-                {
-                    TournamentId=tournamentDto.TournamentId,
-                    Name=tournamentDto.Name,
-                    SportId=tournamentDto.SportId,
-                    Sport = new Sport
-                    {
-                        SportId = tournamentDto.SportId,
-                        Name = tournamentDto.Sport
-                    }
-                };
-
-                tournaments.Add(tournament);
+                tournaments.Add(ToTournament(tournamentDto));
             }
 
             return tournaments;
@@ -494,26 +454,7 @@ namespace Data.Business
             var usersList = new List<User>();
             foreach (var userDto in usersDto)
             {
-                var role = new Role
-                {
-                    Name = userDto.Role
-                };
-                var roles = new List<Role>();
-                roles.Add(role);
-
-                var user = new  User
-                {
-                    UserId=userDto.UserId,
-                    Login=userDto.Login,
-                    Password=userDto.Password,
-                    Email=userDto.Email,
-                    FIO=userDto.FIO,
-                    Money = userDto.Money,
-                    Roles = roles,
-                    PhoneNumber=userDto.PhoneNumber
-                };
-
-                usersList.Add(user);
+                usersList.Add(ToUser(userDto));
             }
             return usersList;
         }

@@ -215,6 +215,15 @@
   <wsdl:message name="ITournamentService_DeleteTournament_CustomExceptionFault_FaultMessage">
     <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q23:CustomException" />
   </wsdl:message>
+  <wsdl:message name="ITournamentService_GetTournamentesByTeamId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTournamentesByTeamId" />
+  </wsdl:message>
+  <wsdl:message name="ITournamentService_GetTournamentesByTeamId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTournamentesByTeamIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITournamentService_GetTournamentesByTeamId_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception" name="detail" element="q24:CustomException" />
+  </wsdl:message>
   <wsdl:portType name="IBetListService">
     <wsdl:operation name="GetBets">
       <wsdl:input wsaw:Action="http://tempuri.org/IBetListService/GetBets" message="tns:IBetListService_GetBets_InputMessage" />
@@ -332,6 +341,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ITournamentService/DeleteTournament" message="tns:ITournamentService_DeleteTournament_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITournamentService/DeleteTournamentResponse" message="tns:ITournamentService_DeleteTournament_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/ITournamentService/DeleteTournamentCustomExceptionFault" name="CustomExceptionFault" message="tns:ITournamentService_DeleteTournament_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTournamentesByTeamId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITournamentService/GetTournamentesByTeamId" message="tns:ITournamentService_GetTournamentesByTeamId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITournamentService/GetTournamentesByTeamIdResponse" message="tns:ITournamentService_GetTournamentesByTeamId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ITournamentService/GetTournamentesByTeamIdCustomExceptionFault" name="CustomExceptionFault" message="tns:ITournamentService_GetTournamentesByTeamId_CustomExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBetListService" type="tns:IBetListService">
@@ -605,6 +619,18 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteTournament">
       <soap:operation soapAction="http://tempuri.org/ITournamentService/DeleteTournament" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournamentesByTeamId">
+      <soap:operation soapAction="http://tempuri.org/ITournamentService/GetTournamentesByTeamId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

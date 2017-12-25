@@ -2,6 +2,7 @@
 using Common.Models;
 using Data.Business;
 using Data.Clients;
+using System;
 
 namespace Data.Services
 {
@@ -10,10 +11,19 @@ namespace Data.Services
         private readonly IUserClient userClient;
         private readonly IConvert convert;
 
-        public UserService(IUserClient client, IConvert convert)
+        public UserService(IUserClient userClient, IConvert convert)
         {
-            this.userClient = client;
+            this.userClient = userClient;
             this.convert = convert;
+        }
+
+        public static UserService createUserService(IUserClient userClient, IConvert convert)
+        {
+            if (userClient == null || convert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new UserService(userClient, convert);
         }
 
         public User GetUserById(int id)

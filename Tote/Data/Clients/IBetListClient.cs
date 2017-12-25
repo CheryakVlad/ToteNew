@@ -15,7 +15,9 @@ namespace Data.Clients
         bool DeleteSport(int sportId);
 
         IReadOnlyList<ToteService.TournamentDto> GetTournament(int? sportId);
+        IReadOnlyList<ToteService.TournamentDto> GetTournamentesByTeamId(int teamId);
         IReadOnlyList<ToteService.TournamentDto> GetTournamentes();
+        ToteService.TournamentDto GetTournamentById(int tournamentId);
 
         IReadOnlyList<ToteService.EventDto> GetEvents();
         IReadOnlyList<ToteService.EventDto> GetEvents(int id);

@@ -16,6 +16,15 @@ namespace Business.Providers
             this.userClient = userClient;
         }
 
+        public static UserProvider createTournamentProvider(IUserService userService, IUserClient userClient)
+        {
+            if (userService == null || userClient == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new UserProvider(userService, userClient);
+        }
+
         public User ExistsUser(string login, string password)
         {
             return userService.ExistsUser(login, password);

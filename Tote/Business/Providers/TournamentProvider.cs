@@ -16,6 +16,15 @@ namespace Business.Providers
             this.dataService = dataService;
         }
 
+        public static TournamentProvider createTournamentProvider(ITournamentClient tournamentClient, IDataService dataService)
+        {
+            if (tournamentClient == null || dataService == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new TournamentProvider(tournamentClient, dataService);
+        }
+
         public bool AddTournament(Tournament tournament)
         {
             return tournamentClient.AddTournament(tournament);

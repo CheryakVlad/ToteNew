@@ -19,6 +19,15 @@ namespace Business.Providers
             this.betListProvider = betListProvider;
         }
 
+        public static MatchProvider createMatchProvider(IMatchClient matchClient, IMatchService matchService, IBetListProvider betListProvider)
+        {
+            if (matchClient == null || matchService == null|| betListProvider==null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new MatchProvider(matchClient, matchService, betListProvider);
+        }
+
         public bool AddEvent(IReadOnlyList<Event> events)
         {
             return matchClient.AddEvent(events);

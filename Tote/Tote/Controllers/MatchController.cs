@@ -1,7 +1,9 @@
 ﻿using Business.Providers;
 using Business.Service;
 using Common.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Tote.Attribute;
 
@@ -9,12 +11,12 @@ namespace Tote.Controllers
 {
     public class MatchController : Controller
     {
+        private const string cacheKey = "sortKey";
         private readonly IMatchProvider matchProvider;
         private readonly IBetListProvider betListProvider;
         private readonly ITeamProvider teamProvider;
         private readonly ICacheService cacheService;
-        private const string cacheKey = "sortKey";
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(MatchController));
+        private readonly log4net.ILog log; 
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, ICacheService cacheService)
         {
@@ -22,6 +24,16 @@ namespace Tote.Controllers
             this.matchProvider = matchProvider;
             this.teamProvider = teamProvider;
             this.cacheService = cacheService;
+            this.log = log4net.LogManager.GetLogger(typeof(MatchController));
+        }
+
+        public static MatchController createMatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, ICacheService cacheService)
+        {
+            if (betListProvider == null || matchProvider == null|| teamProvider==null|| cacheService==null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new MatchController(betListProvider, matchProvider, teamProvider, cacheService);
         }
 
         [Editor]
@@ -35,6 +47,7 @@ namespace Tote.Controllers
             }
             return PartialView(matches);
         }
+
         [HttpGet]
         [Editor]
         public ActionResult AddMatch()
@@ -46,14 +59,15 @@ namespace Tote.Controllers
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Sports = sports;
-            SelectList tournaments = new SelectList(betListProvider.GetTournamentes(), "TournamentId", "Name");
+            
+            SelectList tournaments = new SelectList(betListProvider.GetTournament(Int32.Parse(sports.First().Value)), "TournamentId", "Name");
             if (tournaments == null)
             {
                 log.Error("Controller: Match, Action: AddMatch Don't GetTournamentes");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Tournaments = tournaments;
-            SelectList teams = new SelectList(teamProvider.GetTeamsAll(), "TeamId", "Name");
+            SelectList teams = new SelectList(teamProvider.GetTeamsByTournament(Int32.Parse(tournaments.First().Value)), "TeamId", "Name");
             if (teams == null)
             {
                 log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
@@ -63,6 +77,7 @@ namespace Tote.Controllers
             
             return View();
         }
+
         [Editor]
         public ActionResult TournamentesBySport(int sportId)
         {

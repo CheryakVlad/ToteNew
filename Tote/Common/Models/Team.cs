@@ -12,6 +12,8 @@ namespace Common.Models
         
         public Sport Sport { get; set; }
         public int CountryId { get; set; }
+
+        public Tournament Tournament { get; set; }
         
         public Country Country { get; set; }
     }

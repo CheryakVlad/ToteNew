@@ -16,6 +16,16 @@ namespace Business.Providers
             this.teamClient = teamClient;
             this.dataService = dataService;
         }
+
+        public static TeamProvider createTeamProvider(ITeamClient teamClient, IDataService dataService)
+        {
+            if (teamClient == null || dataService == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new TeamProvider(teamClient, dataService);
+        }
+
         public bool AddTeam(Team team)
         {
             return teamClient.AddTeam(team);
@@ -69,6 +79,16 @@ namespace Business.Providers
         public Country GetCountryById(int countryId)
         {
             return dataService.GetCountryById(countryId);                 
+        }
+
+        public bool AddTournamentForTeam(int tournamentId, int teamId)
+        {
+            return teamClient.AddTournamentForTeam(tournamentId, teamId);
+        }
+
+        public bool DeleteTournamentForTeam(int tournamentId, int teamId)
+        {
+            return teamClient.DeleteTournamentForTeam(tournamentId, teamId);
         }
     }
 }

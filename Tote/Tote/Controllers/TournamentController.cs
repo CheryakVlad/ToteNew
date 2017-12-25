@@ -1,5 +1,6 @@
 ﻿using Business.Providers;
 using Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
@@ -8,15 +9,26 @@ namespace Tote.Controllers
 {
     public class TournamentController : Controller
     {
-        private ITournamentProvider tournamentProvider;
-        private IBetListProvider betListProvider;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TournamentController));
+        private readonly ITournamentProvider tournamentProvider;
+        private readonly IBetListProvider betListProvider;
+        private readonly log4net.ILog log;
 
         public TournamentController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider)
         {
             this.betListProvider = betListProvider;
             this.tournamentProvider = tournamentProvider;
+            this.log = log4net.LogManager.GetLogger(typeof(TournamentController));
         }
+
+        public static TournamentController createMatchController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider)
+        {
+            if (betListProvider == null || tournamentProvider == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new TournamentController(betListProvider, tournamentProvider);
+        }
+
         [Editor]
         public ActionResult ShowTournaments()
         {

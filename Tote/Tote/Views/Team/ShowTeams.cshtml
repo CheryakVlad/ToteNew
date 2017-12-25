@@ -36,6 +36,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditTeam", new { id=item.TeamId }) |
+                @Html.ActionLink("Tournament's Team", "ShowTournamentsByTeam", new { id = item.TeamId }) |
                 @Html.ActionLink("Delete", "DeleteTeam", new { id=item.TeamId })
             </td>
         </tr>

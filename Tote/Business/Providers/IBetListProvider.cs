@@ -18,6 +18,8 @@ namespace Business.Providers
         IReadOnlyList<Sport> GetSports();
         IReadOnlyList<Tournament> GetTournament(int? sportId);
         IReadOnlyList<Tournament> GetTournamentes();
+        IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId);
+        Tournament GetTournamentById(int tournamentId);
 
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);

@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Contracts.Common
 {
@@ -137,29 +134,20 @@ namespace Service.Contracts.Common
                     RateId=(int)reader[0],
                     DateRate= reader.GetDateTime(1),
                     Amount= reader.GetDecimal(2),
-                    UserId=(int) reader[3]
+                    UserId=(int) reader[3], 
+                    Status=reader.GetBoolean(4)
                 };
                 return RateDto;
             }
 
             if (t == typeof(BetDto))
-            {
-                var status = new bool?();                
-                if (reader[2].ToString()=="")
-                {
-                    status = null;
-                }
-                else
-                {
-                    status = reader.GetBoolean(2);                                          
-                }
+            {                
                 var BetDto = new BetDto()
                 {
                     BetId = (int)reader[0],
                     MatchId = (int)reader[1],
-                    Status = status,
-                    EventId = (int)reader[3],
-                    //RateId= (int)reader[4]
+                    Status = reader.GetBoolean(2),                    
+                    EventId = (int)reader[3]                    
                 };
                 return BetDto;
             }
@@ -233,7 +221,7 @@ namespace Service.Contracts.Common
                     Money = reader.GetDecimal(5),
                     FIO = reader[6].ToString(),
                     PhoneNumber = reader[7].ToString(),
-                    Role = reader[8].ToString()                    
+                    Role = reader[9].ToString()                    
                 };
                 return UserDto;
             }

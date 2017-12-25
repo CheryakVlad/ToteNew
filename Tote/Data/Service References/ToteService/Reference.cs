@@ -529,6 +529,9 @@ namespace Data.ToteService {
         private int RateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -581,6 +584,19 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int UserId {
             get {
                 return this.UserIdField;
@@ -623,6 +639,9 @@ namespace Data.ToteService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> StatusField;
@@ -685,6 +704,19 @@ namespace Data.ToteService {
                 if ((this.RateIdField.Equals(value) != true)) {
                     this.RateIdField = value;
                     this.RaisePropertyChanged("RateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Stat {
+            get {
+                return this.StatField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatField, value) != true)) {
+                    this.StatField = value;
+                    this.RaisePropertyChanged("Stat");
                 }
             }
         }
@@ -1138,6 +1170,14 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/DeleteTournament", ReplyAction="http://tempuri.org/ITournamentService/DeleteTournamentResponse")]
         System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentesByTeamId", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesByTeamIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/ITournamentService/GetTournamentesByTeamIdCustomExceptionFault" +
+            "", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.TournamentDto[] GetTournamentesByTeamId(int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITournamentService/GetTournamentesByTeamId", ReplyAction="http://tempuri.org/ITournamentService/GetTournamentesByTeamIdResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesByTeamIdAsync(int teamId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1213,6 +1253,14 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<bool> DeleteTournamentAsync(int tournamentId) {
             return base.Channel.DeleteTournamentAsync(tournamentId);
+        }
+        
+        public Data.ToteService.TournamentDto[] GetTournamentesByTeamId(int teamId) {
+            return base.Channel.GetTournamentesByTeamId(teamId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.TournamentDto[]> GetTournamentesByTeamIdAsync(int teamId) {
+            return base.Channel.GetTournamentesByTeamIdAsync(teamId);
         }
     }
 }

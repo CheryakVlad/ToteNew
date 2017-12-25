@@ -20,7 +20,7 @@ namespace Tote.Controllers
         private readonly IMatchProvider matchProvider;
         private readonly IUserProvider userProvider;
         private readonly ICacheService cacheService;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SortController));
+        private readonly log4net.ILog log;
 
         public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider, ICacheService cacheService)
         {
@@ -28,7 +28,18 @@ namespace Tote.Controllers
             this.matchProvider = matchProvider;
             this.userProvider = userProvider;
             this.cacheService = cacheService;
+            this.log = log4net.LogManager.GetLogger(typeof(SortController));
         }
+        public static SortController createMatchController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider, ICacheService cacheService)
+        {
+            if (rateListProvider == null || cacheService == null|| matchProvider==null|| userProvider==null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new SortController(rateListProvider, matchProvider, userProvider, cacheService);
+        }
+
+
         [AllowAnonymous]
         public ActionResult Sorting()
         {

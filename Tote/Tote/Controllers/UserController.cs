@@ -2,6 +2,7 @@
 using Business.Providers;
 using Business.Service;
 using Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
@@ -13,15 +14,23 @@ namespace Tote.Controllers
         private readonly IBetListProvider betListProvider;
         private readonly IUserProvider userProvider;
         private readonly ILoginService loginService;
-
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserController));
+        private readonly log4net.ILog log;
 
         public UserController(IUserProvider userProvider, IBetListProvider betListProvider, ILoginService loginService)
         {
             this.userProvider = userProvider;
             this.betListProvider = betListProvider;
             this.loginService = loginService;
-            
+            this.log = log4net.LogManager.GetLogger(typeof(UserController));
+        }
+
+        public static UserController createMatchController(IUserProvider userProvider, IBetListProvider betListProvider, ILoginService loginService)
+        {
+            if (betListProvider == null || userProvider == null|| loginService==null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new UserController(userProvider, betListProvider, loginService);
         }
 
         [Admin]

@@ -7,8 +7,7 @@ namespace Common.Models
     public class Match
     {
         public int MatchId { get; set; }
-        /*[Required(ErrorMessage = "Required field")]
-        [Display(Name = "Date Match")]*/
+        
         public DateTime Date { get; set; }
         public int SportId { get; set; }
         public int TournamentId { get; set; }
@@ -26,10 +25,7 @@ namespace Common.Models
         public IList<Team> Teams { get; set; }
         public static double SumCoefficient { get; set; }
 
-        /*public Match()
-        {
-            Bets = new List<Bet>();
-        }*/
+        
 
     }
 }

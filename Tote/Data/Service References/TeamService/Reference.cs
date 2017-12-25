@@ -40,6 +40,9 @@ namespace Data.TeamService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int TeamIdField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TournamentIdField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -124,6 +127,19 @@ namespace Data.TeamService {
                 if ((this.TeamIdField.Equals(value) != true)) {
                     this.TeamIdField = value;
                     this.RaisePropertyChanged("TeamId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TournamentId {
+            get {
+                return this.TournamentIdField;
+            }
+            set {
+                if ((this.TournamentIdField.Equals(value) != true)) {
+                    this.TournamentIdField = value;
+                    this.RaisePropertyChanged("TournamentId");
                 }
             }
         }
@@ -927,6 +943,20 @@ namespace Data.TeamService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/DeleteCountry", ReplyAction="http://tempuri.org/ITeamService/DeleteCountryResponse")]
         System.Threading.Tasks.Task<bool> DeleteCountryAsync(int countryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/AddTournamentForTeam", ReplyAction="http://tempuri.org/ITeamService/AddTournamentForTeamResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/AddTournamentForTeamCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool AddTournamentForTeam(int tournamentId, int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/AddTournamentForTeam", ReplyAction="http://tempuri.org/ITeamService/AddTournamentForTeamResponse")]
+        System.Threading.Tasks.Task<bool> AddTournamentForTeamAsync(int tournamentId, int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/DeleteTournamentForTeam", ReplyAction="http://tempuri.org/ITeamService/DeleteTournamentForTeamResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.TeamService.CustomException), Action="http://tempuri.org/ITeamService/DeleteTournamentForTeamCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        bool DeleteTournamentForTeam(int tournamentId, int teamId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeamService/DeleteTournamentForTeam", ReplyAction="http://tempuri.org/ITeamService/DeleteTournamentForTeamResponse")]
+        System.Threading.Tasks.Task<bool> DeleteTournamentForTeamAsync(int tournamentId, int teamId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1050,6 +1080,22 @@ namespace Data.TeamService {
         
         public System.Threading.Tasks.Task<bool> DeleteCountryAsync(int countryId) {
             return base.Channel.DeleteCountryAsync(countryId);
+        }
+        
+        public bool AddTournamentForTeam(int tournamentId, int teamId) {
+            return base.Channel.AddTournamentForTeam(tournamentId, teamId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddTournamentForTeamAsync(int tournamentId, int teamId) {
+            return base.Channel.AddTournamentForTeamAsync(tournamentId, teamId);
+        }
+        
+        public bool DeleteTournamentForTeam(int tournamentId, int teamId) {
+            return base.Channel.DeleteTournamentForTeam(tournamentId, teamId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteTournamentForTeamAsync(int tournamentId, int teamId) {
+            return base.Channel.DeleteTournamentForTeamAsync(tournamentId, teamId);
         }
     }
     

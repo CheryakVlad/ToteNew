@@ -210,7 +210,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Log.config" />
+    <Content Include="LogWeb.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\user.pubxml" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -338,6 +340,9 @@
     <Content Include="Views\Team\DeleteCountry.cshtml" />
     <Content Include="Views\Error\InfoError.cshtml" />
     <Content Include="Views\Navigation\Bet.cshtml" />
+    <Content Include="Views\Team\AddTournamentForTeam.cshtml" />
+    <Content Include="Views\Team\ShowTournamentsByTeam.cshtml" />
+    <Content Include="Views\Team\DeleteTournamentForTeam.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

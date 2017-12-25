@@ -14,5 +14,6 @@ namespace Common.Models
         [Required(ErrorMessage = "Required field")]
         [Display(Name = "Date Rate")]
         public DateTime DateRate { get; set; }
+        public bool Status { get; set; }
     }
 }

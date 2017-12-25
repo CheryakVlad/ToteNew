@@ -9,12 +9,22 @@ namespace Data.Clients
 {
     public class MatchClient : IMatchClient
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(MatchClient));
+        private readonly log4net.ILog log;
         private readonly IMatchConvert convert;
 
         public MatchClient(IMatchConvert convert)
         {
             this.convert = convert;
+            this.log = log4net.LogManager.GetLogger(typeof(MatchClient));
+        }
+
+        public static MatchClient createMatchClient(IMatchConvert convert)
+        {
+            if (convert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new MatchClient(convert);
         }
 
         public bool AddEvent(IReadOnlyList<Event> events)

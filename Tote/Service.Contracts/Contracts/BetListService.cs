@@ -280,7 +280,7 @@ namespace Service.Contracts.Contracts
         {
             if (tournamentId <= 0 )
             {
-                GenerateFaultException("GetSportById", "ArgumentException");
+                GenerateFaultException("GetTournamentById", "ArgumentException");
             }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
@@ -583,6 +583,29 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBetByRateID";
+                log.Error(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public TournamentDto[] GetTournamentesByTeamId(int teamId)
+        {
+            if (teamId <= 0)
+            {
+                GenerateFaultException("GetTournamentesByTeamId", "ArgumentException");
+            }
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamId", Value = teamId });
+
+            var connection = new Connection<TournamentDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetTournamentsByTeamId", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetTournamentsByTeamId";
                 log.Error(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }

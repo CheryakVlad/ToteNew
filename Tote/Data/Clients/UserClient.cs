@@ -9,12 +9,22 @@ namespace Data.Clients
 {
     public class UserClient : IUserClient
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(UserClient));
+        private readonly log4net.ILog log;
         private readonly IConvert convert;
 
         public UserClient(IConvert convert)
         {
             this.convert = convert;
+            this.log = log4net.LogManager.GetLogger(typeof(UserClient));
+        }
+
+        public static UserClient createUserClient(IConvert convert)
+        {
+            if (convert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return new UserClient(convert);
         }
 
         public bool AddUser(User user)

@@ -14,7 +14,9 @@ namespace Data.Services
         Tournament GetTournamentById(int tournamentId);
         IReadOnlyList<Sport> GetSports();
         IReadOnlyList<Tournament> GetTournament(int? sportId);
+        IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId);
         IReadOnlyList<Tournament> GetTournamentes();
+        //Tournament GetTournamentById(int tournamentId);
 
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);

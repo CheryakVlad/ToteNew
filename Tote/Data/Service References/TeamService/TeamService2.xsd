@@ -165,6 +165,36 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddTournamentForTeam">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tournamentId" type="xs:int" />
+        <xs:element minOccurs="0" name="teamId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTournamentForTeamResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddTournamentForTeamResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTournamentForTeam">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tournamentId" type="xs:int" />
+        <xs:element minOccurs="0" name="teamId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTournamentForTeamResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteTournamentForTeamResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetMatchesAll">
     <xs:complexType>
       <xs:sequence />
