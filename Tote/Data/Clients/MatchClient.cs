@@ -4,31 +4,45 @@ using Data.TeamService;
 using Data.Business;
 using System.ServiceModel;
 using System;
+using log4net;
+using Common.Logger;
 
 namespace Data.Clients
 {
     public class MatchClient : IMatchClient
     {
-        private readonly log4net.ILog log;
         private readonly IMatchConvert convert;
+        private readonly ILogService<MatchClient> logService;
 
-        public MatchClient(IMatchConvert convert)
+        public MatchClient(IMatchConvert convert):this(convert, new LogService<MatchClient>())
         {
-            this.convert = convert;
-            this.log = log4net.LogManager.GetLogger(typeof(MatchClient));
+
         }
 
-        public static MatchClient createMatchClient(IMatchConvert convert)
+        public MatchClient(IMatchConvert convert, ILogService<MatchClient> logService)
         {
             if (convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new MatchClient(convert);
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<MatchClient>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
-
+       
         public bool AddEvent(IReadOnlyList<Event> events)
-        {            
+        {
+            if (events == null)
+            {
+                logService.LogError("Class: MatchClient Method:AddEvent events is null");
+                return false;
+            }
             var eventsDto = convert.ToEventDto(events);
             var model = new bool();
             using (var client = new TeamService.EventServiceClient())
@@ -42,12 +56,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -57,6 +71,11 @@ namespace Data.Clients
 
         public bool AddMatch(Match match)
         {
+            if (match == null)
+            {
+                logService.LogError("Class: MatchClient Method:AddMatch match is null");
+                return false;
+            }
             var matchDto = new MatchDto();
             matchDto = convert.ToMatchDto(match);
             var model = new bool();
@@ -71,12 +90,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -86,6 +105,11 @@ namespace Data.Clients
 
         public bool DeleteEvent(int matchId)
         {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: MatchClient Method: DeleteEvent matchId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new TeamService.EventServiceClient())
             {
@@ -98,12 +122,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -113,6 +137,11 @@ namespace Data.Clients
 
         public bool DeleteMatch(int matchId)
         {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: MatchClient Method: DeleteMatch matchId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new TeamService.MatchServiceClient())
             {
@@ -125,12 +154,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -140,6 +169,11 @@ namespace Data.Clients
 
         public IReadOnlyList<EventDto> GetEventByMatch(int matchId)
         {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: MatchClient Method: GetEventByMatch matchId is not positive");
+                return null;
+            }
             var model = new List<EventDto>();
             using (var client = new TeamService.EventServiceClient())
             {
@@ -160,26 +194,30 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
-
             return model;
         }
 
         public MatchDto GetMatchById(int matchId)
         {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: MatchClient Method: GetMatchById matchId is not positive");
+                return null;
+            }
             var model = new MatchDto();
             using (var client = new TeamService.MatchServiceClient())
             {
@@ -196,17 +234,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -216,6 +254,11 @@ namespace Data.Clients
 
         public IReadOnlyList<SortDto> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
+            if (sportId < 0||status<0||status>3)
+            {
+                logService.LogError("Class: MatchClient Method: GetMatchBySportDateStatus sportId is not positive or status must be in the interval [0;3]");
+                return null;
+            }
             var model = new List<SortDto>();
             using (var client = new TeamService.MatchServiceClient())
             {
@@ -236,17 +279,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -275,17 +318,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -315,17 +358,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -335,6 +378,11 @@ namespace Data.Clients
 
         public bool UpdateEvent(Event[] events)
         {
+            if (events == null )
+            {
+                logService.LogError("Class: MatchClient Method: GetMatchBySportDateStatus events is null");
+                return false;
+            }
             var eventsDto = convert.ToEventDto(events);
             var model = new bool();
             using (var client = new TeamService.EventServiceClient())
@@ -348,12 +396,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -363,6 +411,11 @@ namespace Data.Clients
 
         public bool UpdateMatch(Match match)
         {
+            if (match == null)
+            {
+                logService.LogError("Class: MatchClient Method: GetMatchBySportDateStatus match is null");
+                return false;
+            }
             var matchDto = new MatchDto();
             matchDto = convert.ToMatchDto(match);
             var model = new bool();
@@ -377,12 +430,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 

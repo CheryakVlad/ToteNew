@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common.Models;
 using Data.Services;
 using Data.Clients;
+using Common.Logger;
 
 namespace Business.Providers
 {
@@ -11,24 +12,29 @@ namespace Business.Providers
         private readonly IMatchClient matchClient;
         private readonly IMatchService matchService;
         private readonly IBetListProvider betListProvider;
+        private readonly ILogService<MatchProvider> logService;
 
-        public MatchProvider(IMatchClient matchClient, IMatchService matchService, IBetListProvider betListProvider)
-        {
-            this.matchClient = matchClient;
-            this.matchService = matchService;
-            this.betListProvider = betListProvider;
-        }
-
-        public static MatchProvider createMatchProvider(IMatchClient matchClient, IMatchService matchService, IBetListProvider betListProvider)
+        public MatchProvider(IMatchClient matchClient, IMatchService matchService, IBetListProvider betListProvider, ILogService<MatchProvider> logService)
         {
             if (matchClient == null || matchService == null|| betListProvider==null)
             {
                 throw new ArgumentNullException();
             }
-            return new MatchProvider(matchClient, matchService, betListProvider);
+            this.matchClient = matchClient;
+            this.matchService = matchService;
+            this.betListProvider = betListProvider;
+            if (logService == null)
+            {
+                this.logService = new LogService<MatchProvider>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
 
-        public bool AddEvent(IReadOnlyList<Event> events)
+        
+        /*public bool AddEvent(IReadOnlyList<Event> events)
         {
             return matchClient.AddEvent(events);
         }
@@ -46,15 +52,25 @@ namespace Business.Providers
         public bool DeleteMatch(int matchId)
         {
             return matchClient.DeleteMatch(matchId);
-        }
+        }*/
 
         public IReadOnlyList<Event> GetEventByMatch(int matchId)
         {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: MatchProvider Method: GetEventByMatch  matchId can not negative");
+                throw new ArgumentOutOfRangeException("matchId can not negative");
+            }
             return matchService.GetEventsByMatch(matchId);
         }
 
         public Match GetMatchById(int matchId)
         {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: MatchProvider Method: GetMatchById  matchId can not negative");
+                throw new ArgumentOutOfRangeException("matchId can not negative");
+            }
             return matchService.GetMatchById(matchId);
         }
 
@@ -62,7 +78,8 @@ namespace Business.Providers
         {
             if (status > 3||status<0)
             {
-                throw new ArgumentException();
+                logService.LogError("Class: MatchProvider Method: GetMatchBySportDateStatus status must be in the interval [0;3]");
+                throw new ArgumentOutOfRangeException();
             }
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
             bool flag = false;
@@ -80,6 +97,7 @@ namespace Business.Providers
             }
             if(!flag)
             {
+                logService.LogError("Class: MatchProvider Method: GetMatchBySportDateStatus  sportId must be positive");
                 throw new ArgumentException();
             }
             /*if(dateMatch!=string.Empty)
@@ -107,7 +125,7 @@ namespace Business.Providers
             return matchService.GetResultsAll();
         }
 
-        public bool UpdateEvent(Event[] events)
+        /*public bool UpdateEvent(Event[] events)
         {
             return matchClient.UpdateEvent(events);
         }
@@ -115,6 +133,6 @@ namespace Business.Providers
         public bool UpdateMatch(Match match)
         {
             return matchClient.UpdateMatch(match);
-        }
+        }*/
     }
 }

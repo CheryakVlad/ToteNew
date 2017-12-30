@@ -86,7 +86,9 @@ namespace Data.Business
                 MatchId=betDto.MatchId,
                 RateId=betDto.RateId,
                 Status=betDto.Status,
-                Event=new Event() { EventId=betDto.EventId}
+                Event=new Event() { EventId=betDto.EventId},
+                Sport=new Sport() { Name=betDto.Sport },
+                Tournament=new Tournament() { Name=betDto.Tournament}
             };
 
             return bet;

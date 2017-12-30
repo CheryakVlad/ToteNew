@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -83,10 +87,22 @@
     <Compile Include="Providers\TeamProvider.cs" />
     <Compile Include="Providers\TournamentProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
-    <Compile Include="Service\CacheService.cs" />
-    <Compile Include="Service\ICacheService.cs" />
-    <Compile Include="Service\ILoginService.cs" />
-    <Compile Include="Service\LoginService.cs" />
+    <Compile Include="Service\CacheService\CacheService.cs" />
+    <Compile Include="Service\CacheService\ICacheService.cs" />
+    <Compile Include="Service\LoginService\ILoginService.cs" />
+    <Compile Include="Service\UpdateServices\IUpdateBetListService.cs" />
+    <Compile Include="Service\UpdateServices\IUpdateMatchService.cs" />
+    <Compile Include="Service\UpdateServices\IUpdateSportService.cs" />
+    <Compile Include="Service\UpdateServices\IUpdateTeamService.cs" />
+    <Compile Include="Service\UpdateServices\IUpdateTournamentService.cs" />
+    <Compile Include="Service\UpdateServices\IUpdateUserService.cs" />
+    <Compile Include="Service\LoginService\LoginService.cs" />
+    <Compile Include="Service\UpdateServices\UpdateBetListService.cs" />
+    <Compile Include="Service\UpdateServices\UpdateMatchService.cs" />
+    <Compile Include="Service\UpdateServices\UpdateSportService.cs" />
+    <Compile Include="Service\UpdateServices\UpdateTeamService.cs" />
+    <Compile Include="Service\UpdateServices\UpdateTournamentService.cs" />
+    <Compile Include="Service\UpdateServices\UpdateUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Tote.App.Common.csproj">

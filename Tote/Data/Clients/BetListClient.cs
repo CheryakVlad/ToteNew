@@ -4,31 +4,45 @@ using System.ServiceModel;
 using System;
 using Common.Models;
 using Data.Business;
+using log4net;
+using Common.Logger;
 
 namespace Data.Clients
 {
     public class BetListClient : IBetListClient
     {
-        private readonly log4net.ILog log;
         private readonly IConvert convert;
+        private readonly ILogService<BetListClient> logService;
 
-        public BetListClient(IConvert convert)
+        public BetListClient(IConvert convert):this(convert, new LogService<BetListClient>())
         {
-            this.convert = convert;
-            this.log = log4net.LogManager.GetLogger(typeof(BetListClient));
+            
         }
 
-        public static BetListClient createBetListClient(IConvert convert)
+        public BetListClient(IConvert convert, ILogService<BetListClient> logService)
         {
             if (convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new BetListClient(convert);
-        }
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<BetListClient>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }        
 
         public bool AddBasket(Basket basket)
         {
+            if (basket == null)
+            {
+                logService.LogError("Class: BetListClient Method:AddBasket Basket is null");
+                return false; 
+            }
             var basketDto = new BasketDto();
             basketDto = convert.ToBasketDto(basket);
             var model = new bool();
@@ -42,12 +56,12 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
             }
@@ -56,6 +70,11 @@ namespace Data.Clients
 
         public bool AddBet(Bet bet, int basketId)
         {
+            if (bet == null||basketId<=0)
+            {
+                logService.LogError("Class: BetListClient Method: AddBet Bet is null or basketId is not positive");
+                return false;
+            }
             var betDto = new BetDto();
             betDto = convert.ToBetDto(bet);
             var model = new bool();
@@ -69,12 +88,12 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -84,6 +103,11 @@ namespace Data.Clients
 
         public int AddRate(Rate rate)
         {
+            if (rate == null)
+            {
+                logService.LogError("Class: BetListClient Method: AddRate Rate is null");
+                return 0;
+            }
             var rateDto = new RateDto();
             rateDto = convert.ToRateDto(rate);
             var model = new int();
@@ -101,17 +125,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return 0;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return 0;
                 }
                 catch(ArgumentOutOfRangeException argEx)
                 {
-                    log.Error(argEx.Message);
+                    logService.LogError(argEx.Message);
                     return 0;
                 }
 
@@ -121,6 +145,11 @@ namespace Data.Clients
 
         public bool AddSport(Sport sport)
         {
+            if (sport == null)
+            {
+                logService.LogError("Class: BetListClient Method: AddSport Sport is null");
+                return false;
+            }
             var sportDto = new SportDto();
             sportDto = convert.ToSportDto(sport);
             var model = new bool();
@@ -134,12 +163,12 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -149,6 +178,11 @@ namespace Data.Clients
 
         public bool DeleteBasket(int basketId)
         {
+            if (basketId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket basketId is not positive");
+                return false;
+            }
             var model = new bool();            
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -161,12 +195,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
             }
@@ -175,6 +209,11 @@ namespace Data.Clients
 
         public bool DeleteSport(int sportId)
         {
+            if (sportId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket sportId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -187,12 +226,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -202,6 +241,11 @@ namespace Data.Clients
 
         public BasketDto GetBasketById(int basketId, int userId)
         {
+            if (basketId <= 0|| userId<=0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket basketId or userId is not positive");
+                return null;
+            }
             var model = new BasketDto();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -217,17 +261,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -236,6 +280,11 @@ namespace Data.Clients
 
         public IReadOnlyList<BasketDto> GetBasketByUser(int userId)
         {
+            if (userId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket userId is not positive");
+                return null;
+            }
             var model = new List<BasketDto>();            
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -256,17 +305,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -276,6 +325,11 @@ namespace Data.Clients
 
         public IReadOnlyList<BetDto> GetBetByRateId(int rateId)
         {
+            if (rateId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket rateId is not positive");
+                return null;
+            }
             var model = new List<BetDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -297,17 +351,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -317,6 +371,11 @@ namespace Data.Clients
 
         public IReadOnlyList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
+            if (sportId <= 0 || tournamentId<=0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket sportId or tournamentId is not positive");
+                return null;
+            }
             var model = new List<BetListDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -337,17 +396,17 @@ namespace Data.Clients
                 }
                 catch(FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch(CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -379,17 +438,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -420,17 +479,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -440,6 +499,11 @@ namespace Data.Clients
 
         public IReadOnlyList<EventDto> GetEvents(int id)
         {
+            if (id <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket id is not positive");
+                return null;
+            }
             var model = new List<EventDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -461,17 +525,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -481,6 +545,11 @@ namespace Data.Clients
 
         public IReadOnlyList<RateDto> GetRateByUserId(int userId)
         {
+            if (userId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket userId is not positive");
+                return null;
+            }
             var model = new List<RateDto>();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -502,17 +571,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -522,6 +591,11 @@ namespace Data.Clients
 
         public SportDto GetSport(int? id)
         {
+            if (id <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket id is not positive");
+                return null;
+            }
             var model = new SportDto();
             using (var client = new ToteService.BetListServiceClient())
             {
@@ -537,17 +611,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -578,17 +652,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -599,6 +673,11 @@ namespace Data.Clients
 
         public IReadOnlyList<TournamentDto> GetTournament(int? sportId)
         {
+            if (sportId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket sportId is not positive");
+                return null;
+            }
             var model = new List<TournamentDto>();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -619,17 +698,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -640,6 +719,11 @@ namespace Data.Clients
 
         public TournamentDto GetTournamentById(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket tournamentId is not positive");
+                return null;
+            }
             var model = new TournamentDto();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -659,17 +743,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
                 return model;
@@ -698,17 +782,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -718,6 +802,11 @@ namespace Data.Clients
 
         public IReadOnlyList<TournamentDto> GetTournamentesByTeamId(int teamId)
         {
+            if (teamId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket teamId is not positive");
+                return null;
+            }
             var model = new List<TournamentDto>();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -738,17 +827,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -757,6 +846,11 @@ namespace Data.Clients
 
         public bool UpdateSport(Sport sport)
         {
+            if (sport == null)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket sport is null");
+                return false;
+            }
             var sportDto = new SportDto();
             sportDto = convert.ToSportDto(sport);
             var model = new bool();
@@ -771,12 +865,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 

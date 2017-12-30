@@ -19,10 +19,11 @@
 namespace Tote.DependencyResolution {
     using StructureMap;
     using Dependencies.Registries;
-
+    using Common.Logger;
     public static class IoC {
         public static IContainer Initialize() {
             return new Container(c => {
+                c.For(typeof(ILogService<>)).Use(typeof(LogService<>));
                 c.AddRegistry<DefaultRegistry>();
                 c.AddRegistry<CommonRegistry>();
             });

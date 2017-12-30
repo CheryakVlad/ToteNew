@@ -4,31 +4,45 @@ using Common.Models;
 using Data.TeamService;
 using Data.Business;
 using System.ServiceModel;
+using log4net;
+using Common.Logger;
 
 namespace Data.Clients
 {
     public class TeamClient : ITeamClient
-    {
-        private readonly log4net.ILog log;
+    {        
         private readonly IConvert convert;
+        private readonly ILogService<TeamClient> logService;
 
-        public TeamClient(IConvert convert)
+        public TeamClient(IConvert convert):this(convert,new LogService<TeamClient>())
         {
-            this.convert = convert;
-            this.log = log4net.LogManager.GetLogger(typeof(TeamClient));
+
         }
 
-        public static TeamClient createTeamClient(IConvert convert)
+        public TeamClient(IConvert convert, ILogService<TeamClient> logService)
         {
             if (convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new TeamClient(convert);
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<TeamClient>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
-
+        
         public bool AddCountry(Country country)
         {
+            if (country == null)
+            {
+                logService.LogError("Class: TeamClient Method: AddCountry country is null");
+                return false;
+            }
             var countryDto = new CountryDto();
             countryDto = convert.ToCountryDto(country);
             var model = new bool();
@@ -43,12 +57,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -58,6 +72,11 @@ namespace Data.Clients
 
         public bool AddTeam(Team team)
         {
+            if (team == null)
+            {
+                logService.LogError("Class: TeamClient Method: AddTeam team is null");
+                return false;
+            }
             var teamDto = new TeamDto();
             teamDto = convert.ToTeamDto(team);
             var model = new bool();
@@ -72,12 +91,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -86,7 +105,12 @@ namespace Data.Clients
         }
 
         public bool AddTournamentForTeam(int tournamentId, int teamId)
-        {                 
+        {
+            if (tournamentId <= 0|| teamId <= 0)
+            {
+                logService.LogError("Class: TeamClient Method: AddTournamentForTeam tournamentId or teamId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -99,12 +123,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -114,6 +138,11 @@ namespace Data.Clients
 
         public bool DeleteCountry(int countryId)
         {
+            if (countryId <= 0)
+            {
+                logService.LogError("Class: TeamClient Method: DeleteCountry countryId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -126,12 +155,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -141,6 +170,11 @@ namespace Data.Clients
 
         public bool DeleteTeam(int teamId)
         {
+            if (teamId <= 0)
+            {
+                logService.LogError("Class: TeamClient Method: DeleteTeam teamId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -153,12 +187,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -168,6 +202,11 @@ namespace Data.Clients
 
         public bool DeleteTournamentForTeam(int tournamentId, int teamId)
         {
+            if (teamId <= 0 || tournamentId <= 0)
+            {
+                logService.LogError("Class: TeamClient Method: DeleteTournamentForTeam teamId or tournamentId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -180,12 +219,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -215,17 +254,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -236,6 +275,11 @@ namespace Data.Clients
 
         public CountryDto GetCountryById(int countryId)
         {
+            if (countryId <= 0 )
+            {
+                logService.LogError("Class: TeamClient Method: GetCountryById countryId is not positive");
+                return null;
+            }
             var model = new CountryDto();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -252,17 +296,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -271,6 +315,11 @@ namespace Data.Clients
 
         public TeamDto GetTeamById(int teamId)
         {
+            if (teamId <= 0)
+            {
+                logService.LogError("Class: TeamClient Method: GetTeamById teamId is not positive");
+                return null;
+            }
             var model = new TeamDto();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -287,17 +336,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -327,17 +376,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -347,6 +396,11 @@ namespace Data.Clients
 
         public IReadOnlyList<TeamDto> GetTeamsByTournament(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                logService.LogError("Class: TeamClient Method: GetTeamsByTournament tournamentId is not positive");
+                return null;
+            }
             var model = new List<TeamDto>();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -367,17 +421,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -387,6 +441,11 @@ namespace Data.Clients
 
         public bool UpdateCountry(Country country)
         {
+            if (country == null)
+            {
+                logService.LogError("Class: TeamClient Method: UpdateCountry country is null");
+                return false;
+            }
             var countryDto = new CountryDto();
             countryDto = convert.ToCountryDto(country);
             var model = new bool();
@@ -401,12 +460,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -416,6 +475,11 @@ namespace Data.Clients
 
         public bool UpdateTeam(Team team)
         {
+            if (team == null)
+            {
+                logService.LogError("Class: TeamClient Method: UpdateTeam team is null");
+                return false;
+            }
             var teamDto = new TeamDto();
             teamDto = convert.ToTeamDto(team);
             var model = new bool();
@@ -430,12 +494,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 

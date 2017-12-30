@@ -59,7 +59,7 @@
                 <div class="form-group">
                     @Html.Label("Guest Team", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.Teams[1].TeamId, ViewBag.Teams as SelectList, new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.Teams[1].TeamId, ViewBag.TeamsGuest as SelectList, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Teams[1].TeamId, "", new { @class = "text-danger" })
                     </div>
                 </div>

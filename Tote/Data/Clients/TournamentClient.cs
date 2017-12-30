@@ -3,31 +3,45 @@ using Common.Models;
 using Data.Business;
 using System.ServiceModel;
 using Data.ToteService;
+using log4net;
+using Common.Logger;
 
 namespace Data.Clients
 {
     public class TournamentClient : ITournamentClient
-    {
-        private readonly log4net.ILog log;
+    {        
         private readonly IConvert convert;
+        private readonly ILogService<TournamentClient> logService;
 
-        public TournamentClient(IConvert convert)
+        public TournamentClient(IConvert convert):this(convert, new LogService<TournamentClient>())
         {
-            this.convert = convert;
-            this.log = log4net.LogManager.GetLogger(typeof(TournamentClient));
+
         }
 
-        public static TournamentClient createTournamentClient(IConvert convert)
+        public TournamentClient(IConvert convert, ILogService<TournamentClient> logService)
         {
             if (convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new TournamentClient(convert);
-        }
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<TournamentClient>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }        
 
         public bool AddTournament(Tournament tournament)
         {
+            if (tournament == null)
+            {
+                logService.LogError("Class: TournamentClient Method: AddTournament tournament is null");
+                return false;
+            }
             var tournamentDto = new TournamentDto();
             tournamentDto = convert.ToTournamentDto(tournament);
             var model = new bool();
@@ -42,12 +56,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -57,6 +71,11 @@ namespace Data.Clients
 
         public bool DeleteTournament(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                logService.LogError("Class: TournamentClient Method: AddTournament tournamentId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -69,12 +88,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
             }
@@ -83,6 +102,11 @@ namespace Data.Clients
 
         public TournamentDto GetTournamentById(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                logService.LogError("Class: TournamentClient Method: GetTournamentById tournamentId is not positive");
+                return null;
+            }
             var model = new TournamentDto();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -98,17 +122,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -118,6 +142,11 @@ namespace Data.Clients
 
         public bool UpdateTournament(Tournament tournament)
         {
+            if (tournament == null)
+            {
+                logService.LogError("Class: TournamentClient Method: UpdateTournament tournament is null");
+                return false;
+            }
             var tournamentDto = new TournamentDto();
             tournamentDto = convert.ToTournamentDto(tournament);
             var model = new bool();
@@ -132,12 +161,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 

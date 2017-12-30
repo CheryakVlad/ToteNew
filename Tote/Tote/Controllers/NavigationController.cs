@@ -6,6 +6,8 @@ using Common.Models;
 using System.ServiceModel;
 using System.Data.SqlClient;
 using Business.Service;
+using log4net;
+using Common.Logger;
 
 namespace Tote.Controllers
 {
@@ -13,8 +15,43 @@ namespace Tote.Controllers
     {
         private readonly IBetListProvider betListProvider;
         private readonly ICacheService cacheService;
-        private readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(NavigationController));
+        private readonly ILog log;
+        private readonly ILogService<NavigationController> logService;
+        //private readonly ILogger logger;
 
+        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService) 
+            :this(rateListProvider, cacheService, new LogService<NavigationController>() /*LogManager.GetLogger(typeof(NavigationController))*/)
+        {
+
+        }
+
+        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, ILogService<NavigationController> logService  /*ILog log*/)
+        {
+            if (rateListProvider == null || cacheService == null)
+            {
+                throw new ArgumentNullException();
+            }
+            this.betListProvider = rateListProvider;
+            this.cacheService = cacheService;
+            this.logService = logService;
+            /*if (logger == null)
+            {
+                this.logger = new Logger(typeof(NavigationController));
+            }
+            else
+            {
+                this.logger = logger;
+            }*/
+            /*if (log == null)
+            {
+                this.log = LogManager.GetLogger(typeof(NavigationController));
+            }
+            else
+            {
+                this.log = log;
+            }*/
+        }
+        /*
         public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService)
         {
             this.betListProvider = rateListProvider;
@@ -29,7 +66,7 @@ namespace Tote.Controllers
             }
             return new NavigationController(rateListProvider, cacheService);
         }
-
+        */
         [AllowAnonymous]
         public ActionResult ChildTournament(int id = 0)
         {
@@ -118,7 +155,8 @@ namespace Tote.Controllers
         [AllowAnonymous]
         public ActionResult List(int? SportId, int? TournamentId = null)
         {
-            log.Info("Controller: Navigation Action: List");
+            logService.LogInfoMessage("Controller: Navigation, Action: List");
+            //log.Info("Controller: Navigation, Action: List");
             int sportId=0, tournamentId=0;
             if (SportId!=null)
             {
@@ -142,13 +180,15 @@ namespace Tote.Controllers
                 }
             }
             catch(FaultException<SqlException> sqlEx)
-            {                
-                log.Error(sqlEx.Message+" "+ sqlEx.StackTrace);
+            {
+                logService.LogError(sqlEx.Message + " " + sqlEx.StackTrace);
+                //log.Error(sqlEx.Message+" "+ sqlEx.StackTrace);
                 return RedirectToAction("InfoError", "Error");
             }
             catch(CommunicationException commEx)
-            {                
-                log.Error(commEx.Message + " " + commEx.StackTrace);
+            {
+                logService.LogError(commEx.Message + " " + commEx.StackTrace);
+                //log.Error(commEx.Message + " " + commEx.StackTrace);
                 return RedirectToAction("InfoError", "Error");
             }
 
@@ -160,25 +200,6 @@ namespace Tote.Controllers
         {
             return View();
         }
-        /*public ActionResult Sports()
-        {
-            IReadOnlyList<Sport> sports = betListProvider.GetSports();
-            if (sports == null)
-            {
-                return RedirectToAction("InfoError", "Navigation");
-            }
-            return View(sports);
-        }
-        [AllowAnonymous]
-        public ActionResult Sport()
-        {
-            Sport sport = betListProvider.GetSport(1);
-            if (sport == null)
-            {
-                return RedirectToAction("InfoError", "Navigation");
-            }
-            return View(sport);
-        }
-        */
+        
     }
 }

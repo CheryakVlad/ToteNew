@@ -517,6 +517,8 @@ namespace Service.Contracts.Contracts
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@ResultId", Value = matchDto.ResultId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = matchDto.TournamentId });
             parameters.Add(new Parameter { Type = DbType.String, Name = "@Score", Value = matchDto.Score });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamHomeId", Value = matchDto.TeamIdHome });
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TeamGuestId", Value = matchDto.TeamIdGuest });
 
             var connection = new Connection<MatchDto>();
             try

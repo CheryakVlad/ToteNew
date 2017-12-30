@@ -72,6 +72,10 @@
       <Project>{165b48bc-8bb9-4dc6-a4ab-970a4f4bceb4}</Project>
       <Name>Tote.App.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Tote.App.Common.csproj">
+      <Project>{f30bb6df-bea6-4f29-8fde-44fb0c9e3355}</Project>
+      <Name>Tote.App.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Tote.App.Data.csproj">
       <Project>{35d5b639-abf9-4043-8d7c-cfd672a6bbe4}</Project>
       <Name>Tote.App.Data</Name>

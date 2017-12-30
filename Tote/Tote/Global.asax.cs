@@ -2,7 +2,6 @@
 using Common.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,6 +16,7 @@ namespace Tote
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            log4net.Config.XmlConfigurator.Configure();
         }
 
         public void Application_PostAuthenticateRequest(Object sender, EventArgs e)

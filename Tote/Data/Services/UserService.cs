@@ -3,6 +3,7 @@ using Common.Models;
 using Data.Business;
 using Data.Clients;
 using System;
+using Common.Logger;
 
 namespace Data.Services
 {
@@ -10,21 +11,25 @@ namespace Data.Services
     {
         private readonly IUserClient userClient;
         private readonly IConvert convert;
+        private readonly ILogService<UserService> logService;
 
-        public UserService(IUserClient userClient, IConvert convert)
-        {
-            this.userClient = userClient;
-            this.convert = convert;
-        }
-
-        public static UserService createUserService(IUserClient userClient, IConvert convert)
+        public UserService(IUserClient userClient, IConvert convert, ILogService<UserService> logService)
         {
             if (userClient == null || convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new UserService(userClient, convert);
-        }
+            this.userClient = userClient;
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<UserService>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }        
 
         public User GetUserById(int id)
         {
@@ -34,6 +39,7 @@ namespace Data.Services
             {
                 return convert.ToUser(dto);
             }
+            logService.LogError("Class: UserService Method: GetUserById user is null");
             return new User();
         }
 
@@ -45,6 +51,7 @@ namespace Data.Services
             {
                 return convert.ToUsers(dto);
             }
+            logService.LogError("Class: UserService Method: GetUsersAll List<User> is null");
             return new List<User>();
         }
 
@@ -56,6 +63,7 @@ namespace Data.Services
             {
                 return convert.ToUser(dto);
             }
+            logService.LogError("Class: UserService Method: ExistsUser User is null");
             return new User();
         }
 
@@ -67,6 +75,7 @@ namespace Data.Services
             {
                 return convert.ToRoles(dto);
             }
+            logService.LogError("Class: UserService Method: GetRolesAll List<Role> is null");
             return new List<Role>();
         }
     }

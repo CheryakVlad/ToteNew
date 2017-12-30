@@ -4,31 +4,45 @@ using Data.UserService;
 using System.ServiceModel;
 using Common.Models;
 using Data.Business;
+using log4net;
+using Common.Logger;
 
 namespace Data.Clients
 {
     public class UserClient : IUserClient
-    {
-        private readonly log4net.ILog log;
+    {        
         private readonly IConvert convert;
+        private readonly ILogService<UserClient> logService;
 
-        public UserClient(IConvert convert)
+        public UserClient(IConvert convert):this(convert, new LogService<UserClient>())
         {
-            this.convert = convert;
-            this.log = log4net.LogManager.GetLogger(typeof(UserClient));
+
         }
 
-        public static UserClient createUserClient(IConvert convert)
+        public UserClient(IConvert convert, ILogService<UserClient> logService)
         {
             if (convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new UserClient(convert);
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<UserClient>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
 
         public bool AddUser(User user)
         {
+            if (user == null)
+            {
+                logService.LogError("Class: UserClient Method: AddUser user is null");
+                return false;
+            }
             var userDto = new UserDto();
             userDto = convert.ToUserDto(user);
             var model = new bool();
@@ -43,12 +57,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -57,7 +71,12 @@ namespace Data.Clients
         }
 
         public bool DeleteUser(int userId)
-        {            
+        {
+            if (userId <= 0)
+            {
+                logService.LogError("Class: UserClient Method: DeleteUser userId is not positive");
+                return false;
+            }
             var model = new bool();
             using (var client = new UserService.UserServiceClient())
             {
@@ -70,12 +89,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 
@@ -85,6 +104,11 @@ namespace Data.Clients
 
         public UserDto ExistsUser(string login, string password)
         {
+            if (string.IsNullOrEmpty(login)||string.IsNullOrEmpty(password))
+            {
+                logService.LogError("Class: UserClient Method: DeleteUser login or password is Null Or Empty");
+                return null;
+            }
             var model = new UserDto();
             using (var client = new UserService.UserServiceClient())
             {
@@ -101,17 +125,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -141,17 +165,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -161,6 +185,11 @@ namespace Data.Clients
 
         public UserDto GetUser(int userId)
         {
+            if (userId<=0)
+            {
+                logService.LogError("Class: UserClient Method: DeleteUser userId is not positive");
+                return null;
+            }
             var model = new UserDto();
             using (var client = new UserService.UserServiceClient())
             {
@@ -177,17 +206,17 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
 
@@ -218,17 +247,17 @@ namespace Data.Clients
                 }
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return null;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return null;
                 }
                 catch (NullReferenceException nullEx)
                 {
-                    log.Error(nullEx.Message);
+                    logService.LogError(nullEx.Message);
                     return null;
                 }
             }
@@ -238,6 +267,11 @@ namespace Data.Clients
 
         public bool UpdateUser(User user)
         {
+            if (user == null)
+            {
+                logService.LogError("Class: UserClient Method: DeleteUser user is null");
+                return false; 
+            }
             var userDto = new UserDto();
             userDto = convert.ToUserDto(user);
             var model = new bool();            
@@ -252,12 +286,12 @@ namespace Data.Clients
 
                 catch (FaultException<CustomException> customEx)
                 {
-                    log.Error(customEx.Message);
+                    logService.LogError(customEx.Message);
                     return false;
                 }
                 catch (CommunicationException commEx)
                 {
-                    log.Error(commEx.Message);
+                    logService.LogError(commEx.Message);
                     return false;
                 }
 

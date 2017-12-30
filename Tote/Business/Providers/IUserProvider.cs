@@ -12,10 +12,10 @@ namespace Business.Providers
 
         IReadOnlyList<Role> GetRolesAll();
 
-        bool UpdateUser(User user);
+        /*bool UpdateUser(User user);
 
         bool AddUser(User user);
 
-        bool DeleteUser(int userId);
+        bool DeleteUser(int userId);*/
     }
 }

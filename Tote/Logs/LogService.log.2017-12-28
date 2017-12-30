@@ -1,0 +1,35 @@
+2017-12-28 10:59:47,676 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 18:27:06,014 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 18:42:45,794 ERROR Service.Contracts.Contracts.TeamService - Service.Contracts.Exception.CustomException
+2017-12-28 18:54:29,390 ERROR Service.Contracts.Contracts.TeamService - Service.Contracts.Exception.CustomException
+2017-12-28 18:59:33,694 ERROR Service.Contracts.Contracts.TeamService - Service.Contracts.Exception.CustomException
+2017-12-28 19:48:30,469 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "UpdateMatch" ожидает параметр "@Score", который не был указан.
+2017-12-28 19:53:09,955 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "UpdateMatch" ожидает параметр "@Score", который не был указан.
+2017-12-28 19:55:15,039 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "UpdateMatch" ожидает параметр "@Score", который не был указан.
+2017-12-28 20:29:30,667 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 20:32:57,430 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 20:34:54,334 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 20:36:55,561 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 20:51:20,475 ERROR Service.Contracts.Contracts.TeamService - Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_TeamMatch_Team". Конфликт произошел в базе данных "Tote", таблица "dbo.Team", column 'TeamId'.
+Выполнение данной инструкции было прервано.
+Выполнение данной инструкции было прервано.
+2017-12-28 22:01:43,480 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "UpdateMatch" ожидает параметр "@Score", который не был указан.

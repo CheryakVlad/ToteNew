@@ -4,14 +4,48 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
+using log4net;
+using Business.Service;
+using Common.Logger;
 
 namespace Tote.Controllers
 {
     public class SportController : Controller
     {
-        private readonly IBetListProvider betListProvider;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(SportController));
+        private const string sportCacheKey = "sportKey";
 
+        private readonly IBetListProvider betListProvider;
+        private readonly ICacheService cacheService;
+        private readonly IUpdateSportService sportService;
+        private readonly ILog log;
+        private readonly ILogService<SportController> logService;
+
+
+        public SportController(IBetListProvider betListProvider, ICacheService cacheService, IUpdateSportService sportService) 
+            :this(betListProvider, cacheService, sportService, new LogService <SportController>())
+        {
+
+        }
+
+        public SportController(IBetListProvider betListProvider, ICacheService cacheService, IUpdateSportService sportService, ILogService<SportController> logService)
+        {
+            if (betListProvider == null|| cacheService==null|| sportService==null)
+            {
+                throw new ArgumentNullException();
+            }
+            this.betListProvider = betListProvider;
+            this.cacheService = cacheService;
+            this.sportService = sportService;
+            if (logService == null)
+            {
+                this.logService = new LogService<SportController>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }
+        /*
         public SportController(IBetListProvider rateListProvider)
         {            
             this.betListProvider = rateListProvider;
@@ -24,14 +58,16 @@ namespace Tote.Controllers
                 throw new ArgumentNullException();
             }
             return new SportController(rateListProvider);
-        }
+        }*/
 
         [Editor]
         public ActionResult ShowSports()
         {
+            logService.LogInfoMessage("Controller: Sport, Action: ShowSports");
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
             if (sports == null)
             {
+                logService.LogError("Controller: Sport, Action: ShowSports Don't show sport");
                 return RedirectToAction("InfoError", "Error");
             }
             return PartialView(sports);
@@ -40,6 +76,7 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult AddSport()
         {
+            logService.LogInfoMessage("Controller: Sport, Action: AddSport");
             return View();
         }
 
@@ -49,16 +86,22 @@ namespace Tote.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = betListProvider.AddSport(sport);
+                bool result = sportService.AddSport(sport);
                 if (!result)
                 {
-                    log.Error("Controller: Sport, Action: AddSport Don't add sport");
+                    ModelState.AddModelError("", "You can not add a sport with the following parameters");
+                    logService.LogError("Controller: Sport, Action: AddSport Don't add sport");
+                    return View(sport);
+                }
+                else
+                {
+                    cacheService.DeleteCache(sportCacheKey);
                 }
                 return RedirectToAction("ShowSports");
             }
             else
             {
-                return View();
+                return View(sport);
             }
         }
 
@@ -66,10 +109,11 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult EditSport(int id)
         {
+            logService.LogInfoMessage("Controller: Sport, Action: EditSport");
             Sport sport = betListProvider.GetSport(id);
             if (sport == null)
             {
-                log.Error("Controller: Sport, Action: EditSport Don't GetSport");
+                logService.LogError("Controller: Sport, Action: EditSport Don't GetSport");
                 return RedirectToAction("InfoError", "Error");
             }
             return View(sport);
@@ -81,10 +125,16 @@ namespace Tote.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = betListProvider.UpdateSport(sport);
+                bool result = sportService.UpdateSport(sport);
                 if (!result)
                 {
-                    log.Error("Controller: Sport, Action: EditSport Don't update sport");
+                    logService.LogError("Controller: Sport, Action: EditSport Don't update sport");
+                    ModelState.AddModelError("", "You can not edit a sport with the following parameters");                    
+                    return View(sport);
+                }
+                else
+                {
+                    cacheService.DeleteCache(sportCacheKey);
                 }
                 return RedirectToAction("ShowSports");
             }
@@ -98,10 +148,11 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult DeleteSport(int id)
         {
+            logService.LogInfoMessage("Controller: Sport, Action: DeleteSport");
             Sport sport = betListProvider.GetSport(id);
             if (sport == null)
             {
-                log.Error("Controller: Sport, Action: DeleteSport Don't GetSport");
+                logService.LogError("Controller: Sport, Action: DeleteSport Don't GetSport");
                 return RedirectToAction("InfoError", "Error");
             }
             return View(sport);
@@ -111,11 +162,15 @@ namespace Tote.Controllers
         [Editor]
         [ActionName("DeleteSport")]
         public ActionResult Delete(int sportId)
-        {
-            bool result = betListProvider.DeleteSport(sportId);
+        {            
+            bool result = sportService.DeleteSport(sportId);
             if (!result)
             {
-                log.Error("Controller: Sport, Action: DeleteUser Don't delete sport");
+                logService.LogError("Controller: Sport, Action: DeleteUser Don't delete sport");
+            }
+            else
+            {
+                cacheService.DeleteCache(sportCacheKey);
             }
             return RedirectToAction("ShowSports");
         }

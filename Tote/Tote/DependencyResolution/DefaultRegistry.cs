@@ -15,10 +15,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Tote.DependencyResolution {
+namespace Tote.DependencyResolution
+{
+    using Common.Logger;
+    using Controllers;
+    using log4net;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
-	
+
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
@@ -26,6 +30,16 @@ namespace Tote.DependencyResolution {
         {
             Scan(
                 scan => {
+                    For(typeof(ILogService<>)).Use(typeof(LogService<>));
+                    //For<ILog>().Use(y => LogManager.GetLogger(typeof(NavigationController)));
+                    /*For<ILog>().Use(y => LogManager.GetLogger(typeof(ErrorController)));
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(LoginController)));
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(MatchController)));
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(SortController)));
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(SportController)));
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(TeamController)));
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(TournamentController)));*/
+                    For<ILog>().Use(y => LogManager.GetLogger(typeof(Logger)));
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                     scan.With(new ControllerConvention());

@@ -13,8 +13,14 @@ namespace Business.Service
 
         public LoginService(IUserProvider userProvider)
         {
+            if (userProvider == null)
+            {
+                throw new ArgumentNullException();
+            }
             this.userProvider = userProvider;
         }
+               
+
         public LoginResult Login(string login, string password)
         {
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))

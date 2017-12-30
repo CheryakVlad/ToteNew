@@ -22,6 +22,10 @@ namespace Service.Contracts.Dto
         public int EventId { get; set; }
         [DataMember]
         public int RateId { get; set; }
+        [DataMember]
+        public string Sport { get; set; }
+        [DataMember]
+        public string Tournament { get; set; }
     }
         
 }

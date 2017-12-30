@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common.Models;
 using Data.Services;
 using Data.Clients;
+using Common.Logger;
 
 namespace Business.Providers
 {
@@ -10,23 +11,33 @@ namespace Business.Providers
     {
         private readonly IUserService userService;
         private readonly IUserClient userClient;
-        public UserProvider(IUserService userService, IUserClient userClient)
-        {
-            this.userService = userService;
-            this.userClient = userClient;
-        }
-
-        public static UserProvider createTournamentProvider(IUserService userService, IUserClient userClient)
+        private readonly ILogService<UserProvider> logService;
+        public UserProvider(IUserService userService, IUserClient userClient, ILogService<UserProvider> logService)
         {
             if (userService == null || userClient == null)
             {
                 throw new ArgumentNullException();
             }
-            return new UserProvider(userService, userClient);
+            this.userService = userService;
+            this.userClient = userClient;
+            if (logService == null)
+            {
+                this.logService = new LogService<UserProvider>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
 
+        
         public User ExistsUser(string login, string password)
         {
+            if (string.IsNullOrEmpty(login)||string.IsNullOrEmpty(password))
+            {
+                logService.LogError("Class: UserProvider Method: ExistsUser  login or password is null or empty");
+                throw new ArgumentNullException("login or password is null or empty");
+            }
             return userService.ExistsUser(login, password);
         }
 
@@ -37,6 +48,11 @@ namespace Business.Providers
 
         public User GetUser(int id)
         {
+            if (id <= 0)
+            {
+                logService.LogError("Class: UserProvider Method: GetUser  userId must be positive");
+                throw new ArgumentOutOfRangeException("userId must be positive");
+            }
             return userService.GetUserById(id);
         }
 
@@ -47,6 +63,11 @@ namespace Business.Providers
 
         public bool IsValidUser(string login, string password)
         {
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                logService.LogError("Class: UserProvider Method: IsValidUser  login or password is null or empty");
+                throw new ArgumentNullException("login or password is null or empty");
+            }
             var user = userService.ExistsUser(login, password);
             if (user.Login!=null)
             {
@@ -55,7 +76,7 @@ namespace Business.Providers
             return false;
         }
 
-        public bool UpdateUser(User user)
+        /*public bool UpdateUser(User user)
         {
             
             return userClient.UpdateUser(user);
@@ -69,6 +90,6 @@ namespace Business.Providers
         public bool DeleteUser(int userId)
         {
             return userClient.DeleteUser(userId);
-        }
+        }*/
     }
 }

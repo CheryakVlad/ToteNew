@@ -9,19 +9,13 @@ namespace Service.Contracts.Common
 {
     public class Connection<T> where T : class
     {
+        private CreateDto createDto;
+        private Dictionary<object, Func<SqlDataReader, object>> dtoDictionary;
         public SqlCommand GetCommand(SqlConnection connection, SqlCommand command, CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
         {
             command.Connection = connection;
             command.CommandType = type;
-            command.CommandText = commandText;
-            try
-            {
-                connection.Open();
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
+            command.CommandText = commandText;            
 
             if (parameters != null)
             {
@@ -46,6 +40,7 @@ namespace Service.Contracts.Common
             {
                 using (var command = new SqlCommand())
                 {
+                    connection.Open();
                     var number = GetCommand(connection, command, type, commandText, parameters).ExecuteNonQuery();   
                     if(number>0)
                     {
@@ -64,7 +59,8 @@ namespace Service.Contracts.Common
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultDb"].ConnectionString))
             {
                 using (var command = new SqlCommand())
-                {                    
+                {
+                    connection.Open();
                     var reader = GetCommand(connection, command, type, commandText, parameters).ExecuteReader();                    
                     while (reader.Read())
                     {
@@ -83,6 +79,7 @@ namespace Service.Contracts.Common
             {
                 using (var command = new SqlCommand())
                 {
+                    connection.Open();
                     var reader = GetCommand(connection, command, type, commandText, parameters).ExecuteReader();
                     
                     while (reader.Read())
@@ -98,10 +95,50 @@ namespace Service.Contracts.Common
             }
             return ListDto.ToArray();
         }
-        public object CreateListDto(SqlDataReader reader)
+
+        public void DefineDto(object obj, Func<SqlDataReader, object> body)
+        {      
+            if (dtoDictionary.ContainsKey(typeof(T)))
+            {
+                throw new ArgumentException();
+            }
+            dtoDictionary.Add(obj, body);
+        }
+
+                
+        public Connection()
         {
-            Type t = typeof(T);
-            if (t == typeof(BasketDto))
+            /*dictionary = new Dictionary<T, Func<SqlDataReader, object>>()
+            {
+                {T, CreateTournamentDto }
+            };*/
+            createDto = new CreateDto();
+            dtoDictionary = new Dictionary<object, Func<SqlDataReader, object>>()
+            {
+                {typeof(TournamentDto), createDto.CreateTournamentDto},
+                {typeof(SportDto), createDto.CreateSportDto},
+                {typeof(BetListDto), createDto.CreateBetListDto},
+                {typeof(BasketDto), createDto.CreateBasketDto},
+                {typeof(TeamDto), createDto.CreateTeamDto},
+                {typeof(RateDto), createDto.CreateRateDto},
+                {typeof(BetDto), createDto.CreateBetDto},
+                {typeof(EventDto), createDto.CreateEventDto},
+                {typeof(RoleDto), createDto.CreateRoleDto},
+                {typeof(CountryDto), createDto.CreateCountryDto},
+                {typeof(ResultDto), createDto.CreateResultDto},
+                {typeof(SortDto), createDto.CreateSortDto},
+                {typeof(UserDto), createDto.CreateUserDto},
+                {typeof(MatchDto), createDto.CreateMatchDto}
+            };
+        }
+        public object CreateListDto(SqlDataReader reader)
+        {            
+            if (!dtoDictionary.ContainsKey(typeof(T)))
+            {
+                throw new ArgumentException();
+            }
+            return dtoDictionary[typeof(T)](reader);
+            /*if (t == typeof(BasketDto))
             {
                 var BasketDto = new BasketDto()
                 {
@@ -147,7 +184,9 @@ namespace Service.Contracts.Common
                     BetId = (int)reader[0],
                     MatchId = (int)reader[1],
                     Status = reader.GetBoolean(2),                    
-                    EventId = (int)reader[3]                    
+                    EventId = (int)reader[3],
+                    Sport=reader[4].ToString(),
+                    Tournament=reader[5].ToString()                    
                 };
                 return BetDto;
             }
@@ -254,7 +293,7 @@ namespace Service.Contracts.Common
             {
                 var BetListDto = new BetListDto()
                 {
-                    MatchId = (int)reader[0],                    
+                    MatchId = (int)reader[0],
                     CommandHome = reader[1].ToString(),
                     CommandGuest = reader[2].ToString(),
                     Date = reader.GetDateTime(3),
@@ -283,12 +322,13 @@ namespace Service.Contracts.Common
                         TournamentId = (int)reader[0],
                         Name = reader[1].ToString(),
                         SportId = (int)reader[2],
-                        Sport=reader[3].ToString()
+                        Sport = reader[3].ToString()
                     };
                     return TournamentDto;
                 }
-            }
+            }*/
         }
-
     }
+
 }
+

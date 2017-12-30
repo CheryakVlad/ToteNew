@@ -25,13 +25,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Tote", "List", "Navigation", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "List", "Navigation")</li>
+                    <li>@Html.ActionLink("Navigation", "List", "Navigation")</li>
                     <li>@Html.ActionLink("Search", "Sorting", "Sort")</li>
 
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -41,6 +42,7 @@
                     }
                     @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Editor"))
                     {
+                        <li>@Html.ActionLink("Countries", "ShowCountries", "Team")</li>
                         <li>@Html.ActionLink("Sports", "ShowSports", "Sport")</li>
                         <li>@Html.ActionLink("Tournaments", "ShowTournaments", "Tournament")</li>
                         <li>@Html.ActionLink("Teams", "ShowTeams", "Team")</li>

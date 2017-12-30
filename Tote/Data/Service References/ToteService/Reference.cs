@@ -641,10 +641,16 @@ namespace Data.ToteService {
         private int RateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SportField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TournamentField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -709,6 +715,19 @@ namespace Data.ToteService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sport {
+            get {
+                return this.SportField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SportField, value) != true)) {
+                    this.SportField = value;
+                    this.RaisePropertyChanged("Sport");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Stat {
             get {
                 return this.StatField;
@@ -730,6 +749,19 @@ namespace Data.ToteService {
                 if ((this.StatusField.Equals(value) != true)) {
                     this.StatusField = value;
                     this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Tournament {
+            get {
+                return this.TournamentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TournamentField, value) != true)) {
+                    this.TournamentField = value;
+                    this.RaisePropertyChanged("Tournament");
                 }
             }
         }

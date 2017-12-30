@@ -95,8 +95,8 @@ namespace Data.Business
             var matchDto = new MatchDto
             {
                 MatchId = match.MatchId,
-                TeamIdHome = match.TeamHomeId,                
-                TeamIdGuest = match.TeamGuestId,                
+                TeamIdHome = match.Teams[0].TeamId,                
+                TeamIdGuest = match.Teams[1].TeamId,                
                 Date = match.Date,               
                 TournamentId = match.TournamentId,                
                 Score = match.Score,

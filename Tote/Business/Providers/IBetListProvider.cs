@@ -24,21 +24,21 @@ namespace Business.Providers
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);
 
-        bool UpdateSport(Sport sport);
+        /*bool UpdateSport(Sport sport);
 
         bool AddSport(Sport sport);
 
         bool DeleteSport(int sportId);
 
         bool AddBasket(Basket basket);
-        bool DeleteBasket(int basketId);
+        bool DeleteBasket(int basketId);*/
         IReadOnlyList<Basket> GetBasketByUser(int userId, out double total);
 
-        IReadOnlyList<Match> GetMatchesByBasket(int userId);
+        //IReadOnlyList<Match> GetMatchesByBasket(int userId);
         Basket GetBasketById(int basketId, int userId);
 
-        bool AddBet(Bet bet, int basketId);
-        int AddRate(Rate rate);
+        /*bool AddBet(Bet bet, int basketId);
+        int AddRate(Rate rate);*/
 
         IReadOnlyList<Rate> GetRateByUserId(int userId);
         IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total);

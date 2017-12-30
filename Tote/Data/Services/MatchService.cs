@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common.Models;
 using Data.Clients;
 using Data.Business;
+using Common.Logger;
 
 namespace Data.Services
 {
@@ -10,22 +11,27 @@ namespace Data.Services
     {
         private readonly IMatchClient matchClient;
         private readonly IMatchConvert convert;
+        private readonly ILogService<MatchService> logService;
 
-        public MatchService(IMatchClient matchClient, IMatchConvert convert)
-        {
-            this.matchClient = matchClient;
-            this.convert = convert;
-        }
-        
-        public static MatchService createMatchService(IMatchClient matchClient, IMatchConvert convert)
+        public MatchService(IMatchClient matchClient, IMatchConvert convert, ILogService<MatchService> logService)
         {
             if (matchClient == null || convert == null)
             {
                 throw new ArgumentNullException();
             }
-            return new MatchService(matchClient, convert);
+            this.matchClient = matchClient;
+            this.convert = convert;
+            if (logService == null)
+            {
+                this.logService = new LogService<MatchService>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
-
+        
+        
         public Match GetMatchById(int matchId)
         {
             var dto = matchClient.GetMatchById(matchId);
@@ -34,6 +40,7 @@ namespace Data.Services
             {
                 return convert.ToMatch(dto);
             }
+            logService.LogError("Class: MatchService Method: GetUserById user is null");
             return new Match();
         }
 

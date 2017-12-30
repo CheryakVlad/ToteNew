@@ -3,6 +3,7 @@ using Data.Services;
 using System.Collections.Generic;
 using System;
 using Data.Clients;
+using Common.Logger;
 
 namespace Business.Providers
 {
@@ -10,22 +11,27 @@ namespace Business.Providers
     {
         private readonly IDataService dataService;
         private readonly IBetListClient betListClient;
-        public BetListProvider(IDataService dataService, IBetListClient betListClient)
-        {
-            this.dataService = dataService;
-            this.betListClient = betListClient;
-        }
-
-        public static BetListProvider createBetListProvider(IDataService dataService, IBetListClient betListClient)
+        private readonly ILogService<BetListProvider> logService;
+        public BetListProvider(IDataService dataService, IBetListClient betListClient, ILogService<BetListProvider> logService)
         {
             if (dataService == null || betListClient == null)
             {
                 throw new ArgumentNullException();
             }
-            return new BetListProvider(dataService, betListClient);
+            this.dataService = dataService;
+            this.betListClient = betListClient;
+            if (logService == null)
+            {
+                this.logService = new LogService<BetListProvider>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
+        
 
-        public bool AddSport(Sport sport)
+        /*public bool AddSport(Sport sport)
         {
             return betListClient.AddSport(sport);
         }
@@ -33,10 +39,10 @@ namespace Business.Providers
         public bool DeleteSport(int sportId)
         {
             return betListClient.DeleteSport(sportId);
-        }
+        }*/
 
         public IReadOnlyList<Match> GetBetAll()
-        {
+        {            
             return dataService.GetBetsAll();
         }
 
@@ -52,6 +58,11 @@ namespace Business.Providers
 
         public IReadOnlyList<Event> GetEvents(int id)
         {
+            if (id <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetEvents  ID can not negative");
+                throw new ArgumentOutOfRangeException("ID can not negative");
+            }
             return dataService.GetEvents(id);
         }
 
@@ -80,7 +91,7 @@ namespace Business.Providers
             return dataService.GetTournamentes();
         }
 
-        public bool UpdateSport(Sport sport)
+        /*public bool UpdateSport(Sport sport)
         {
             return betListClient.UpdateSport(sport);
         }
@@ -93,24 +104,34 @@ namespace Business.Providers
         public bool DeleteBasket(int basketId)
         {
             return betListClient.DeleteBasket(basketId);
-        }
+        }*/
 
         public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
         {
+            if (userId <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetBasketByUser  userID can not negative");
+                throw new ArgumentOutOfRangeException("userID can not negative");
+            }            
             return dataService.GetBasketByUser(userId, out total);
         }
 
-        public IReadOnlyList<Match> GetMatchesByBasket(int userId)
+        /*public IReadOnlyList<Match> GetMatchesByBasket(int userId)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         public Basket GetBasketById(int basketId, int userId)
         {
+            if (userId <= 0|| basketId <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetBasketById  userID or basketId can not negative");
+                throw new ArgumentOutOfRangeException("userID or basketId can not negative");
+            }
             return dataService.GetBasketById(basketId, userId);
         }
 
-        public bool AddBet(Bet bet, int basketId)
+        /*public bool AddBet(Bet bet, int basketId)
         {
             return betListClient.AddBet(bet, basketId);
         }
@@ -118,25 +139,45 @@ namespace Business.Providers
         public int AddRate(Rate rate)
         {
             return betListClient.AddRate(rate);
-        }
+        }*/
 
         public IReadOnlyList<Rate> GetRateByUserId(int userId)
         {
+            if (userId <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetRateByUserId  userID can not negative");
+                throw new ArgumentOutOfRangeException("userID can not negative");
+            }
             return dataService.GetRateByUserId(userId);
         }
 
         public IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total)
         {
+            if (rateId <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetBetByRateId  rateId can not negative");
+                throw new ArgumentOutOfRangeException("rateId can not negative");
+            }
             return dataService.GetBetByRateId(rateId, out total);
         }
 
         public IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId)
         {
+            if (teamId <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetTournamentesByTeamId  teamId can not negative");
+                throw new ArgumentOutOfRangeException("teamId can not negative");
+            }
             return dataService.GetTournamentesByTeamId(teamId);
         }
 
         public Tournament GetTournamentById(int tournamentId)
         {
+            if (tournamentId <= 0)
+            {
+                logService.LogError("Class: BetListProvider Method: GetTournamentById  tournamentId can not negative");
+                throw new ArgumentOutOfRangeException("tournamentId can not negative");
+            }
             return dataService.GetTournamentById(tournamentId);
         }
     }

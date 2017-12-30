@@ -14,7 +14,9 @@ namespace Common.Models
         public Event Event { get; set; }
         public int RateId { get; set; }
         public bool? Status { get; set; }
-                              
-        
+        public Sport Sport { get; set; }
+        public Tournament Tournament { get; set; }
+
+
     }
 }

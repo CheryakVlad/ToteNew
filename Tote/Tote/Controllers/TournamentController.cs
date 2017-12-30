@@ -4,15 +4,51 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
+using log4net;
+using Business.Service;
+using Common.Logger;
 
 namespace Tote.Controllers
 {
     public class TournamentController : Controller
     {
+        private const string tournamentCacheKey = "tournamentKey";
+
         private readonly ITournamentProvider tournamentProvider;
         private readonly IBetListProvider betListProvider;
-        private readonly log4net.ILog log;
+        private readonly ICacheService cacheService;
+        private readonly IUpdateTournamentService tournamentService;
+        private readonly ILog log;
+        private readonly ILogService<TournamentController> logService;
 
+        public TournamentController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider,
+            ICacheService cacheService, IUpdateTournamentService tournamentService) 
+            :this(betListProvider, tournamentProvider, cacheService, tournamentService, new LogService<TournamentController>())
+        {
+
+        }
+
+        public TournamentController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider,
+            ICacheService cacheService, IUpdateTournamentService tournamentService, ILogService<TournamentController> logService)
+        {
+            if (betListProvider == null || tournamentProvider == null|| cacheService==null|| tournamentService==null)
+            {
+                throw new ArgumentNullException();
+            }
+            this.betListProvider = betListProvider;
+            this.tournamentProvider = tournamentProvider;
+            this.cacheService = cacheService;
+            this.tournamentService = tournamentService;
+            if (logService == null)
+            {
+                this.logService = new LogService<TournamentController>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }
+        /*
         public TournamentController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider)
         {
             this.betListProvider = betListProvider;
@@ -28,14 +64,15 @@ namespace Tote.Controllers
             }
             return new TournamentController(betListProvider, tournamentProvider);
         }
-
+        */
         [Editor]
         public ActionResult ShowTournaments()
         {
+            logService.LogInfoMessage("Controller: Tournament, Action: ShowTournaments");
             IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentes();
             if (tournaments == null)
             {
-                log.Error("Controller: Tournament, Action: ShowTournaments Don't GetTournamentes");
+                logService.LogError("Controller: Tournament, Action: ShowTournaments Don't GetTournamentes");
                 return RedirectToAction("InfoError", "Error");
             }
             return PartialView(tournaments);
@@ -44,10 +81,11 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult AddTournament()
         {
+            logService.LogInfoMessage("Controller: Tournament, Action: AddTournament");
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
             if (sports == null)
             {
-                log.Error("Controller: Tournament, Action: AddTournament Don't GetSports");
+                logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Sports = sports;
@@ -58,19 +96,42 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult AddTournament(Tournament tournament)
         {
+            bool result = true;       
             if (ModelState.IsValid)
             {
-                bool result = tournamentProvider.AddTournament(tournament);
+                result = tournamentService.AddTournament(tournament);
                 if (!result)
-                {
-                    log.Error("Controller: Tournament, Action: AddTournament Don't add Tournament");
-                }
+                {                    
+                    ModelState.AddModelError("", "You can not add a tournament with the following parameters");
+                    logService.LogError("Controller: Tournament, Action: AddTournament Don't add Tournament");
 
+                    SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name",tournament.SportId);
+                    if (sports == null)
+                    {
+                        logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
+                        return RedirectToAction("InfoError", "Error");
+                    }
+                    ViewBag.Sports = sports;
+
+                    return View(tournament);                    
+                }
+                else
+                {
+                    cacheService.DeleteCache(tournamentCacheKey);
+                }
                 return RedirectToAction("ShowTournaments");
             }
             else
             {
-                return View();
+                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", tournament.SportId);
+                if (sports == null)
+                {
+                    logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
+                    return RedirectToAction("InfoError", "Error");
+                }
+                ViewBag.Sports = sports;
+
+                return View(tournament);
             }
         }
 
@@ -78,10 +139,11 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult EditTournament(int id)
         {
+            logService.LogInfoMessage("Controller: Tournament, Action: EditTournament");
             SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
             if (sports == null)
             {
-                log.Error("Controller: Tournament, Action: EditTournament Don't GetSports");
+                logService.LogError("Controller: Tournament, Action: EditTournament Don't GetSports");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Sports = sports;
@@ -96,16 +158,39 @@ namespace Tote.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = tournamentProvider.UpdateTournament(tournament);
+                bool result = tournamentService.UpdateTournament(tournament);
                 if (!result)
                 {
-                    log.Error("Controller: Tournament, Action: EditTournament Don't update Tournament");
+                    ModelState.AddModelError("", "You can not add a tournament with the following parameters");
+                    logService.LogError("Controller: Tournament, Action: AddTournament Don't add Tournament");
+
+                    SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", tournament.SportId);
+                    if (sports == null)
+                    {
+                        logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
+                        return RedirectToAction("InfoError", "Error");
+                    }
+                    ViewBag.Sports = sports;
+
+                    return View(tournament);
+                }
+                else
+                {
+                    cacheService.DeleteCache(tournamentCacheKey);
                 }
                 return RedirectToAction("ShowTournaments");
             }
             else
             {
-                return View();
+                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", tournament.SportId);
+                if (sports == null)
+                {
+                    logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
+                    return RedirectToAction("InfoError", "Error");
+                }
+                ViewBag.Sports = sports;
+
+                return View(tournament);
             }
         }
 
@@ -113,10 +198,11 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult DeleteTournament(int id)
         {
+            logService.LogInfoMessage("Controller: Tournament, Action: DeleteTournament");
             Tournament tournament = tournamentProvider.GetTournamentById(id);
             if (tournament == null)
             {
-                log.Error("Controller: Tournament, Action: DeleteTournament Don't GetTournamentById");
+                logService.LogError("Controller: Tournament, Action: DeleteTournament Don't GetTournamentById");
                 return RedirectToAction("InfoError", "Error");
             }
             return View(tournament);
@@ -127,10 +213,14 @@ namespace Tote.Controllers
         [ActionName("DeleteTournament")]
         public ActionResult Delete(int tournamentId)
         {
-            bool result = tournamentProvider.DeleteTournament(tournamentId);
+            bool result = tournamentService.DeleteTournament(tournamentId);
             if (!result)
             {
-                log.Error("Controller: Tournament, Action: DeleteTournament Don't delete Tournament");
+                logService.LogError("Controller: Tournament, Action: DeleteTournament Don't delete Tournament");
+            }
+            else
+            {
+                cacheService.DeleteCache(tournamentCacheKey);
             }
             return RedirectToAction("ShowTournaments");
         }
