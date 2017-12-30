@@ -5,26 +5,44 @@ using Service.Contracts.Common;
 using System.Data.SqlClient;
 using System.ServiceModel;
 using Service.Contracts.Exception;
-using System;
+using Service.Contracts.Logger;
 
 namespace Service.Contracts.Contracts
 {
 
     public class BetListService : IBetListService,ITournamentService
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
+        private readonly ILogService<BetListService> logService;
+
+        public BetListService():this(new LogService<BetListService>())
+        {
+
+        }
+
+        public BetListService(ILogService<BetListService> logService)
+        {
+            if (logService == null)
+            {
+                this.logService = new LogService<BetListService>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }
 
         private void GenerateFaultException(string title, string exceptionMessage)
         {
             var exception = new CustomException();
             exception.Title = title;
-            log.Error(exception);
+            logService.LogError(exception.Title);
             throw new FaultException<CustomException>(exception, exceptionMessage);
         }
 
         public bool AddSport(SportDto sportDto)
         {
-            if(sportDto==null||sportDto.Name==String.Empty)
+            if(sportDto==null||string.IsNullOrEmpty(sportDto.Name))
             {
                 GenerateFaultException("AddSport", "ArgumentException");                
             }
@@ -39,14 +57,14 @@ namespace Service.Contracts.Contracts
             {                
                 var exception = new CustomException();
                 exception.Title = "AddSport";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public bool AddTournament(TournamentDto tournamentDto)
         {
-            if (tournamentDto == null || tournamentDto.Name == String.Empty)
+            if (tournamentDto == null || string.IsNullOrEmpty(tournamentDto.Name))
             {
                 GenerateFaultException("AddTournament", "ArgumentException");
             }
@@ -63,7 +81,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -86,7 +104,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteSport";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -110,7 +128,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -135,8 +153,6 @@ namespace Service.Contracts.Contracts
             }            
         }
 
-        
-
         public BetListDto[] GetBetsAll()
         {
             var connection = new Connection<BetListDto>();
@@ -150,7 +166,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBetsAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);                
             }
         }
@@ -158,6 +174,10 @@ namespace Service.Contracts.Contracts
 
         public BetListDto[] GetBetsBySport(int sportId)
         {
+            if(sportId<0)
+            {
+                GenerateFaultException("GetBetsBySport", "ArgumentOutOfRangeException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
 
@@ -170,7 +190,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBetsBySport";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
                 
             }
@@ -178,6 +198,10 @@ namespace Service.Contracts.Contracts
 
         public BetListDto[] GetBetsBySportTournament(int sportId, int tournamentId)
         {
+            if (sportId < 0 || tournamentId<0)
+            {
+                GenerateFaultException("GetBetsBySportTournament", "ArgumentOutOfRangeException");
+            }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@SportId", Value = sportId });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@TournamentId", Value = tournamentId });
@@ -191,7 +215,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBetsBySportTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
                 
             }
@@ -199,7 +223,7 @@ namespace Service.Contracts.Contracts
 
         public EventDto[] GetEvents(int? id)
         {
-            if(id==0||id==null)
+            if(id <= 0||id == null)
             {
                 GenerateFaultException("GetCoefficientByMatch", "ArgumentException");
             }
@@ -215,7 +239,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetCoefficientByMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -231,7 +255,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetCoefficients";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -254,7 +278,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetSportById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);                
             }
             
@@ -271,7 +295,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetSportsAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);                
             }
         }
@@ -295,7 +319,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTournamentById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -303,7 +327,7 @@ namespace Service.Contracts.Contracts
 
         public TournamentDto[] GetTournament(int? sportId)
         {
-            if (sportId <= 0||sportId==null)
+            if (sportId <= 0||sportId == null)
             {
                 GenerateFaultException("GetSportById", "ArgumentException");
             }
@@ -319,7 +343,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTournamentsBySportId";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);                
             }
             
@@ -336,7 +360,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTournamentsAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);                
             }
             
@@ -344,7 +368,7 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateSport(SportDto sportDto)
         {
-            if(sportDto==null)
+            if(sportDto == null)
             {
                 GenerateFaultException("UpdateSport", "ArgumentException");
             }
@@ -362,7 +386,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateSport";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -388,7 +412,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -415,7 +439,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddBasket";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -439,7 +463,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteBasket";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -462,14 +486,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBasketByUser";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public BasketDto GetBasketById(int basketId, int userId)
         {
-            if (userId <= 0||basketId<=0)
+            if (userId <= 0||basketId <= 0)
             {
                 GenerateFaultException("GetBasketById", "ArgumentException");
             }
@@ -486,7 +510,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBasketById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -511,14 +535,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddRate";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public bool AddBet(BetDto betDto, int basketId)
         {
-            if (betDto == null||basketId<=0)
+            if (betDto == null||basketId <= 0)
             {
                 GenerateFaultException("AddBet", "ArgumentException");
             }
@@ -536,7 +560,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddBet";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -544,7 +568,7 @@ namespace Service.Contracts.Contracts
 
         public RateDto[] GetRateByUserId(int userId)
         {
-            if(userId<=0)
+            if(userId <= 0)
             {
                 GenerateFaultException("GetRateByUserId", "ArgumentException");
             }
@@ -560,7 +584,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetRateByUserId";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -583,7 +607,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetBetByRateID";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -606,7 +630,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTournamentsByTeamId";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }

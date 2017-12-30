@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Common.Models;
 using System;
 using System.Linq;
+using Common.Logger;
 
 namespace Tote.App.Business.Test
 {
@@ -16,6 +17,7 @@ namespace Tote.App.Business.Test
         private Mock<Data.Services.IMatchService> matchService;
         private IMatchProvider matchProvider;
         private Mock<IBetListProvider> betListProvider;
+        private Mock<ILogService<MatchProvider>> logService;
 
         private List<Common.Models.Match> GetMatches()
         {
@@ -102,6 +104,7 @@ namespace Tote.App.Business.Test
             matchClient = new Mock<IMatchClient>();
             matchService = new Mock<Data.Services.IMatchService>();
             betListProvider = new Mock<IBetListProvider>();
+            logService = new Mock<ILogService<MatchProvider>>();
             matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((int sport, string dateMatch, int status)=> {
                     IEnumerable<Common.Models.Match> matches = GetMatches();
@@ -129,7 +132,7 @@ namespace Tote.App.Business.Test
 
                     throw new ArgumentException();
                 });
-            matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object);
+            matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object, logService.Object);
         }
 
         

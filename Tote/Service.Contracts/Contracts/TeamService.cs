@@ -1,24 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Service.Contracts.Dto;
 using Service.Contracts.Common;
 using System.Data;
 using System.Data.SqlClient;
 using Service.Contracts.Exception;
 using System.ServiceModel;
+using Service.Contracts.Logger;
 
 namespace Service.Contracts.Contracts
 {
     public class TeamService : ITeamService,IMatchService,IEventService
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamService));
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamService));
+        private readonly ILogService<TeamService> logService;
+
+        public TeamService():this(new LogService<TeamService>())
+        {
+
+        }
+
+        public TeamService(ILogService<TeamService> logService)
+        {
+            if (logService == null)
+            {
+                this.logService = new LogService<TeamService>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }
 
         private void GenerateFaultException(string title, string exceptionMessage)
         {
             var exception = new CustomException();
             exception.Title = title;
-            log.Error(exception);
+            logService.LogError(exception.Title);
             throw new FaultException<CustomException>(exception, exceptionMessage);
         }
 
@@ -39,7 +57,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddCountry";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -64,7 +82,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddEventMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -99,14 +117,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public bool AddTeam(TeamDto teamDto)
         {
-            if (teamDto == null||teamDto.Name==String.Empty)
+            if (teamDto == null||string.IsNullOrEmpty(teamDto.Name))
             {
                 GenerateFaultException("AddTeam", "ArgumentException");
             }
@@ -123,14 +141,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddTeam";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public bool DeleteCountry(int countryId)
         {
-            if (countryId <=0)
+            if (countryId <= 0)
             {
                 GenerateFaultException("DeleteCountry", "ArgumentException");
             }
@@ -146,7 +164,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteCountry";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -170,7 +188,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteEventMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -194,7 +212,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -218,7 +236,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteTeam";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -235,7 +253,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetCountriesAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -258,7 +276,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetCountryById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -281,7 +299,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetCountryByTeam";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -304,7 +322,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetCoefficientByMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -328,14 +346,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetMatchById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public SortDto[] GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
-            if (sportId < 0||status < 0)
+            if (sportId < 0 || status < 0 || status>3)
             {
                 GenerateFaultException("GetMatchesBySportDateStatusSP", "ArgumentException");
             }
@@ -353,7 +371,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetMatchesBySportDateStatusSP";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -369,7 +387,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetMatchesAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -385,7 +403,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetResultsAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }               
@@ -408,7 +426,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTeamById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -424,7 +442,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTeamsAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -448,7 +466,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTeamByTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
@@ -472,7 +490,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateCountry";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -480,7 +498,7 @@ namespace Service.Contracts.Contracts
 
         public bool UpdateEvents(EventDto[] eventDto)
         {
-            if (eventDto == null||eventDto.Length < 3)
+            if (eventDto == null || eventDto.Length < 3)
             {
                 GenerateFaultException("UpdateCountry", "ArgumentException");
             }
@@ -499,7 +517,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateEventMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -510,6 +528,10 @@ namespace Service.Contracts.Contracts
             if (matchDto == null)
             {
                 GenerateFaultException("UpdateMatch", "ArgumentException");
+            }
+            if (matchDto.Score == null)
+            {
+                matchDto.Score = "0";
             }
             var parameters = new List<Parameter>();
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchDto.MatchId });
@@ -529,7 +551,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateMatch";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -556,7 +578,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateTeam";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -564,7 +586,7 @@ namespace Service.Contracts.Contracts
 
         public bool AddTournamentForTeam(int tournamentId, int teamId)
         {
-            if (tournamentId == 0 || teamId == 0)
+            if (tournamentId <= 0 || teamId <= 0)
             {
                 GenerateFaultException("AddTeamTournament", "ArgumentException");
             }
@@ -580,14 +602,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddTeamTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
 
         public bool DeleteTournamentForTeam(int tournamentId, int teamId)
         {
-            if (tournamentId == 0 || teamId == 0)
+            if (tournamentId <= 0 || teamId <= 0)
             {
                 GenerateFaultException("DeleteTeamTournament", "ArgumentException");
             }
@@ -603,7 +625,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteTeamTournament";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }

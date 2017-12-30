@@ -1,7 +1,5 @@
 ﻿using Service.Contracts.Dto;
 using Service.Contracts.Exception;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.ServiceModel;
 
 namespace Service.Contracts.Contracts

@@ -115,7 +115,7 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
 
                     throw new ArgumentException();
                 });
-            teamService = new TeamService();
+            //teamService = new TeamService();
         }
 
         [TestMethod]

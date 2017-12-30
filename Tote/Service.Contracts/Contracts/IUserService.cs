@@ -9,11 +9,7 @@ namespace Service.Contracts.Contracts
     {
         [OperationContract]
         [FaultContract(typeof(CustomException))]
-        UserDto[] GetUsers();
-
-        /*[OperationContract]
-        [FaultContract(typeof(CustomException))]
-        UserDto[] GetUsersByRole(int RoleId);*/
+        UserDto[] GetUsers();        
 
         [OperationContract]
         [FaultContract(typeof(CustomException))]

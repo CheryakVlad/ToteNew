@@ -28,18 +28,7 @@ namespace Business.Providers
             {
                 this.logService = logService;
             }
-        }
-        
-
-        /*public bool AddSport(Sport sport)
-        {
-            return betListClient.AddSport(sport);
-        }
-
-        public bool DeleteSport(int sportId)
-        {
-            return betListClient.DeleteSport(sportId);
-        }*/
+        }    
 
         public IReadOnlyList<Match> GetBetAll()
         {            

@@ -6,24 +6,43 @@ using System.Data;
 using System.Data.SqlClient;
 using Service.Contracts.Exception;
 using System.ServiceModel;
+using Service.Contracts.Logger;
 
 namespace Service.Contracts.Contracts
 {
     public class UserService : IUserService
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
+        private readonly ILogService<UserService> logService;
+
+        public UserService():this(new LogService<UserService>())
+        {
+
+        }
+
+        public UserService(ILogService<UserService> logService)
+        {
+            if (logService == null)
+            {
+                this.logService = new LogService<UserService>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+        }
 
         private void GenerateFaultException(string title, string exceptionMessage)
         {
             var exception = new CustomException();
             exception.Title = title;
-            log.Error(exception);
+            logService.LogError(exception.Title);
             throw new FaultException<CustomException>(exception, exceptionMessage);
         }
 
         public bool AddUser(UserDto userDto)
         {
-            if (userDto == null || userDto.Login == String.Empty)
+            if (userDto == null || string.IsNullOrEmpty(userDto.Login) || string.IsNullOrEmpty(userDto.Password))
             {
                 GenerateFaultException("AddUser", "ArgumentException");
             }
@@ -45,7 +64,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "AddUser";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -69,14 +88,14 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "DeleteUser";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }
         }
                 
         public UserDto ExistsUser(string login, string password)
         {
-            if (login==String.Empty||password==String.Empty)
+            if (string.IsNullOrEmpty(login)||string.IsNullOrEmpty(password))
             {
                 GenerateFaultException("GetUserByLoginPassword", "ArgumentException");
             }
@@ -93,7 +112,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetUserByLoginPassword";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -110,7 +129,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetRoles";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -118,7 +137,7 @@ namespace Service.Contracts.Contracts
 
         public UserDto GetUser(int userId)
         {
-            if (userId <=0)
+            if (userId <= 0)
             {
                 GenerateFaultException("GetUserById", "ArgumentException");
             }
@@ -134,7 +153,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetUserById";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }
@@ -151,9 +170,8 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetUsersAll";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
-
             }
         }        
 
@@ -182,7 +200,7 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "UpdateUser";
-                log.Error(sqlEx.Message);
+                logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
 
             }

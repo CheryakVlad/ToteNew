@@ -40,7 +40,7 @@ namespace Data.Services
             {
                 return convert.ToMatch(dto);
             }
-            logService.LogError("Class: MatchService Method: GetUserById user is null");
+            logService.LogError("Class: MatchService Method: GetMatchById Match is null");
             return new Match();
         }
 
@@ -52,6 +52,7 @@ namespace Data.Services
             {
                 return convert.ToMatches(dto);
             }
+            logService.LogError("Class: MatchService Method: GetMatchsAll List<Match> is null");
             return new List<Match>();
         }
 
@@ -63,6 +64,7 @@ namespace Data.Services
             {
                 return convert.ToMatches(dto);
             }
+            logService.LogError("Class: MatchService Method: GetMatchBySportDateStatus List<Match> is null");
             return new List<Match>();
         }
 
@@ -74,6 +76,7 @@ namespace Data.Services
             {
                 return convert.ToResult(dto);
             }
+            logService.LogError("Class: MatchService Method: GetResultsAll List<Result> is null");
             return new List<Result>();
         }
 
@@ -85,6 +88,7 @@ namespace Data.Services
             {
                 return convert.ToEvent(dto);
             }
+            logService.LogError("Class: MatchService Method: GetEventsByMatch List<Event> is null");
             return new List<Event>();
         }
     }

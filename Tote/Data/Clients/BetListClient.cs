@@ -371,9 +371,9 @@ namespace Data.Clients
 
         public IReadOnlyList<BetListDto> GetBets(int? sportId, int? tournamentId)
         {
-            if (sportId <= 0 || tournamentId<=0)
+            if (sportId < 0 || tournamentId < 0)
             {
-                logService.LogError("Class: BetListClient Method: DeleteBasket sportId or tournamentId is not positive");
+                logService.LogError("Class: BetListClient Method: GetBets sportId or tournamentId is not positive");
                 return null;
             }
             var model = new List<BetListDto>();

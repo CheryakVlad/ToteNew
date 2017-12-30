@@ -1,0 +1,63 @@
+2017-12-30 12:28:49,714 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-30 12:28:49,789 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Navigate
+2017-12-30 12:28:49,789 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Navigate is null
+2017-12-30 12:28:49,791 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Navigate
+2017-12-30 12:30:11,084 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Sport
+2017-12-30 12:30:11,086 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Sport is null
+2017-12-30 12:30:11,088 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Sport
+2017-12-30 12:30:15,740 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:30:15,740 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:30:15,742 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:30:15,753 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:30:15,754 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:30:15,755 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:30:15,772 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:30:15,773 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:30:15,774 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:30:15,796 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:30:15,796 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:30:15,797 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:30:17,751 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:30:17,759 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:30:17,761 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:30:17,764 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:30:17,765 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:30:17,761 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:14,643 INFO Tote.Controllers.LoginController - user: admin login
+2017-12-30 12:31:14,826 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-30 12:31:14,827 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Navigate
+2017-12-30 12:31:14,829 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Navigate is null
+2017-12-30 12:31:14,829 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Navigate
+2017-12-30 12:31:14,878 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Sport
+2017-12-30 12:31:14,879 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Sport is null
+2017-12-30 12:31:14,880 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Sport
+2017-12-30 12:31:15,055 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:31:15,056 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:31:15,063 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:15,063 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:31:15,067 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:31:15,068 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:15,062 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:31:15,058 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:31:15,071 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:31:15,072 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:15,070 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:31:15,078 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:15,124 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:31:15,124 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:31:15,125 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:15,192 INFO Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament
+2017-12-30 12:31:15,218 ERROR Business.Service.CacheService - CacheService method:GetCache cacheKey: Tournament is null
+2017-12-30 12:31:15,221 INFO Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament
+2017-12-30 12:31:24,443 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2017-12-30 12:32:22,099 INFO Tote.Controllers.SportController - Controller: Sport, Action: AddSport
+2017-12-30 12:32:27,913 INFO Business.Service.CacheService - CacheService method:DeleteCache cacheKey:sportKey
+2017-12-30 12:32:27,940 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2017-12-30 23:49:59,412 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-30 23:49:59,491 ERROR Data.Clients.BetListClient - Class: BetListClient Method: DeleteBasket sportId or tournamentId is not positive
+2017-12-30 23:49:59,492 ERROR Data.Services.DataService - Class: DataService Method: GetBets List<Match> is null
+2017-12-30 23:50:00,924 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2017-12-30 23:57:03,044 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-30 23:57:03,060 ERROR Data.Clients.BetListClient - Class: BetListClient Method: DeleteBasket sportId or tournamentId is not positive
+2017-12-30 23:57:03,061 ERROR Data.Services.DataService - Class: DataService Method: GetBets List<Match> is null
+2017-12-30 23:57:03,273 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError

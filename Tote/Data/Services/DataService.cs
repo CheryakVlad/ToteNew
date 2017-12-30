@@ -3,6 +3,7 @@ using Data.Business;
 using Data.Clients;
 using System.Collections.Generic;
 using System;
+using Common.Logger;
 
 namespace Data.Services
 {
@@ -13,8 +14,10 @@ namespace Data.Services
         private readonly ITeamClient teamClient;
         private readonly IConvert convert;
         private readonly IMatchService matchService;
+        private readonly ILogService<DataService> logService;
 
-        public DataService(IBetListClient betListClient, IConvert convert, ITournamentClient tournamentClient, ITeamClient teamClient, IMatchService matchService)
+        public DataService(IBetListClient betListClient, IConvert convert, ITournamentClient tournamentClient,
+            ITeamClient teamClient, IMatchService matchService, ILogService<DataService> logService)
         {
             if (betListClient == null|| convert==null|| tournamentClient==null|| teamClient==null|| matchService==null)
             {
@@ -25,6 +28,14 @@ namespace Data.Services
             this.tournamentClient = tournamentClient;
             this.teamClient = teamClient;
             this.matchService = matchService;
+            if (logService == null)
+            {
+                this.logService = new LogService<DataService>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
         }
         
 
@@ -37,6 +48,7 @@ namespace Data.Services
             {
                 return convert.ToMatchList(dto);
             }
+            logService.LogError("Class: DataService Method: GetBets List<Match> is null");
             return new List<Match>();
         }
 
@@ -48,6 +60,7 @@ namespace Data.Services
             {
                 return convert.ToMatchList(dto);
             }
+            logService.LogError("Class: DataService Method: GetBetsAll List<Match> is null");
             return new List<Match>();
             
         }
@@ -60,6 +73,7 @@ namespace Data.Services
             {
                 return convert.ToEvents(dto);
             }
+            logService.LogError("Class: DataService Method: GetEvents List<Event> is null");
             return new List<Event>();
         }
 
@@ -71,6 +85,7 @@ namespace Data.Services
             {
                 return convert.ToEvents(dto);
             }
+            logService.LogError("Class: DataService Method: GetEvents List<Event> is null");
             return new List<Event>();
         }
 
@@ -83,6 +98,7 @@ namespace Data.Services
             {
                 return convert.ToMatchList(dto,eventDto);
             }
+            logService.LogError("Class: DataService Method: GetMatchesAll List<Match> is null");
             return new List<Match>();
         }
 
@@ -94,6 +110,7 @@ namespace Data.Services
             {
                 return convert.ToSport(dto);
             }
+            logService.LogError("Class: DataService Method: GetSport Sport is null");
             return new Sport();
         }
 
@@ -105,6 +122,7 @@ namespace Data.Services
             {
                 return convert.ToSport(dto);
             }
+            logService.LogError("Class: DataService Method: GetSports List<Sport> is null");
             return new List<Sport>();
         }
 
@@ -116,6 +134,7 @@ namespace Data.Services
             {
                 return convert.ToTournament(dto);
             }
+            logService.LogError("Class: DataService Method: GetTournament List<Tournament> is null");
             return new List<Tournament>();
         }
 
@@ -127,6 +146,7 @@ namespace Data.Services
             {
                 return convert.ToTournament(dto);
             }
+            logService.LogError("Class: DataService Method: GetTournament List<Tournament> is null");
             return new Tournament();
         }
 
@@ -138,6 +158,7 @@ namespace Data.Services
             {
                 return convert.ToTournament(dto);
             }
+            logService.LogError("Class: DataService Method: GetTournamentes List<Tournament> is null");
             return new List<Tournament>();
         }
 
@@ -149,6 +170,7 @@ namespace Data.Services
             {
                 return convert.ToTeams(dto);
             }
+            logService.LogError("Class: DataService Method: GetTeamsAll List<Team> is null");
             return new List<Team>();
         }
 
@@ -159,18 +181,10 @@ namespace Data.Services
             {
                 return convert.ToTeam(dto);
             }
+            logService.LogError("Class: DataService Method: GetTeamById Team is null");
             return new Team();
         }
-
-        public IReadOnlyList<Match> GetMatchsAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Match GetMatchById(int matchId)
-        {
-            throw new NotImplementedException();
-        }
+               
 
         public IReadOnlyList<Country> GetCountriesAll()
         {
@@ -179,6 +193,7 @@ namespace Data.Services
             {
                 return convert.ToCountry(dto);
             }
+            logService.LogError("Class: DataService Method: GetCountriesAll List<Country> is null");
             return new List<Country>();
         }
 
@@ -190,12 +205,18 @@ namespace Data.Services
             {
                 return convert.ToTeams(dto);
             }
+            logService.LogError("Class: DataService Method: GetTeamsByTournament List<Team> is null");
             return new List<Team>();
         }
 
         public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
         {
             total = 1;
+            if(userId<=0)
+            {                
+                logService.LogError("Class: DataService Method: GetBasketByUser userId is not positive");
+                return new List<Basket>();
+            }            
             var basketsDto = betListClient.GetBasketByUser(userId);
             var baskets = convert.ToBasket(basketsDto);
             var basketsMatch = new List<Basket>();
@@ -221,7 +242,7 @@ namespace Data.Services
             {
                 return basketsMatch;
             }
-
+            logService.LogError("Class: DataService Method: GetBasketByUser List<Basket> is null");
             return new List<Basket>();
         }
 
@@ -250,7 +271,7 @@ namespace Data.Services
             {
                 return basketMatch;
             }
-
+            logService.LogError("Class: DataService Method: GetBasketById Basket is null");
             return new Basket();
         }
 
@@ -262,6 +283,7 @@ namespace Data.Services
             {
                 return convert.ToRate(dto);
             }
+            logService.LogError("Class: DataService Method: GetRateByUserId List<Rate> is null");
             return new List<Rate>();
         }
 
@@ -293,7 +315,7 @@ namespace Data.Services
             {
                 return betsRate;
             }
-
+            logService.LogError("Class: DataService Method: GetBetByRateId List<Bet> is null");
             return new List<Bet>();
         }
 
@@ -304,6 +326,7 @@ namespace Data.Services
             {
                 return convert.ToCountry(dto);
             }
+            logService.LogError("Class: DataService Method: GetCountryById Country is null");
             return new Country();
         }
 
@@ -315,6 +338,7 @@ namespace Data.Services
             {
                 return convert.ToTournament(dto);
             }
+            logService.LogError("Class: DataService Method: GetTournamentesByTeamId List<Tournament> is null");
             return new List<Tournament>();
         }
     }
