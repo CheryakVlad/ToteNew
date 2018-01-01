@@ -1,3 +1,5 @@
+N
+GO
 
 CREATE PROCEDURE [dbo].[GetBetsBySport]
 @SportId int
@@ -15,9 +17,9 @@ INNER JOIN TeamTournament ON TeamHome.TeamId=TeamTournament.TeamId
 INNER JOIN Tournament ON TeamTournament.TournamentId=Tournament.TournamentId
 INNER JOIN Sport ON Tournament.SportId=Sport.SportId
 WHERE TeamMatchHome.Home='True' AND TeamMatchGuest.Home='False' AND Sport.SportId=@SportId
-
+AND Match.DeleteStatus='False'
 
 RETURN
-
+GO
 
 

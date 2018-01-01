@@ -1,10 +1,12 @@
 
+
 CREATE TABLE [dbo].[Match](
 	[MatchId] [int] IDENTITY(1,1) NOT NULL,
 	[DateMatch] [datetime] NOT NULL,
 	[ResultId] [int] NOT NULL,
 	[TournamentId] [int] NOT NULL,
 	[Score] [nvarchar](50) NULL,
+	[DeleteStatus] [bit] NULL,
  CONSTRAINT [PK_Match] PRIMARY KEY CLUSTERED 
 (
 	[MatchId] ASC

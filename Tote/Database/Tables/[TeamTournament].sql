@@ -1,7 +1,9 @@
 
+
 CREATE TABLE [dbo].[TeamTournament](
 	[TeamId] [int] NOT NULL,
 	[TournamentId] [int] NOT NULL,
+	[DeleteStatus] [bit] NULL,
  CONSTRAINT [PK_TeamTournament] PRIMARY KEY CLUSTERED 
 (
 	[TeamId] ASC,

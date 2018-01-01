@@ -1,4 +1,6 @@
 
+GO
+
 CREATE TRIGGER [dbo].[DELETE_Sport] ON [dbo].[Sport] 
 FOR DELETE 
 AS

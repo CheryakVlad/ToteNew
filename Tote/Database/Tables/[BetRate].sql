@@ -1,4 +1,5 @@
 
+
 CREATE TABLE [dbo].[BetRate](
 	[BetId] [int] NOT NULL,
 	[RateId] [int] NOT NULL,

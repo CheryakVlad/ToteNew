@@ -1,0 +1,170 @@
+2017-12-31 00:07:10,656 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 00:10:25,898 INFO Tote.Controllers.LoginController - user: admin login
+2017-12-31 00:10:26,022 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 00:10:29,960 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2017-12-31 00:16:16,553 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddCountry
+2017-12-31 00:16:40,663 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddCountry
+2017-12-31 00:16:47,005 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2017-12-31 00:16:50,302 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddCountry
+2017-12-31 00:16:56,298 ERROR Tote.Controllers.TeamController - Controller: Sport, Action: AddSport Don't add country
+2017-12-31 00:16:59,958 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 00:19:17,112 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 00:19:40,671 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 00:19:55,276 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 00:20:02,285 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 00:20:04,980 ERROR Data.Clients.MatchClient - Процедура или функция "UpdateMatch" ожидает параметр "@Score", который не был указан.
+2017-12-31 00:20:04,981 ERROR Tote.Controllers.MatchController - Controller: Match, Action: AddMatch Don't add Match
+2017-12-31 00:20:38,730 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 00:33:32,359 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 00:34:13,885 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 00:34:26,029 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 00:34:30,374 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 14:45:37,303 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 17:54:20,554 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 17:55:58,602 INFO Tote.Controllers.LoginController - user: admin login
+2017-12-31 17:55:58,884 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 17:56:12,316 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2017-12-31 17:56:31,751 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 17:56:45,488 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 17:57:09,068 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 17:57:40,608 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 17:57:52,314 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 17:57:55,354 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 17:57:57,402 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTournamentForTeam
+2017-12-31 17:58:01,162 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 17:58:04,501 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 17:58:07,106 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 17:58:08,590 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTournamentForTeam
+2017-12-31 17:58:11,684 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 17:58:16,616 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 17:58:44,914 INFO Tote.Controllers.MatchController - Controller: Match, Action: AddMatch
+2017-12-31 17:59:12,025 INFO Tote.Controllers.MatchController - Controller: Match, Action: MatchesByTournament
+2017-12-31 17:59:15,180 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 17:59:46,978 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
+2017-12-31 17:59:49,548 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditEvent
+2017-12-31 18:00:08,690 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:00:35,882 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2017-12-31 18:00:50,624 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2017-12-31 18:01:05,331 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 18:02:03,004 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:02:05,007 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 18:02:21,324 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:02:23,302 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 18:02:35,394 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:02:41,523 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:02:42,782 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTournamentForTeam
+2017-12-31 18:02:45,736 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:02:48,556 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:02:50,293 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:02:51,666 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTournamentForTeam
+2017-12-31 18:02:54,500 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:03:00,273 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:03:16,077 INFO Tote.Controllers.MatchController - Controller: Match, Action: AddMatch
+2017-12-31 18:03:28,005 INFO Tote.Controllers.MatchController - Controller: Match, Action: MatchesByTournament
+2017-12-31 18:03:32,699 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:03:41,087 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
+2017-12-31 18:03:43,065 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditEvent
+2017-12-31 18:04:00,293 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:04:26,650 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2017-12-31 18:04:39,330 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2017-12-31 18:04:41,640 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: AddTournament
+2017-12-31 18:04:54,324 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2017-12-31 18:04:59,941 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:05:00,942 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 18:05:08,678 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2017-12-31 18:05:12,214 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddCountry
+2017-12-31 18:05:17,366 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2017-12-31 18:05:18,741 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddCountry
+2017-12-31 18:05:27,217 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2017-12-31 18:05:32,783 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:05:34,324 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 18:05:52,830 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:05:54,398 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2017-12-31 18:06:10,839 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:08:36,846 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:08:38,564 INFO Tote.Controllers.MatchController - Controller: Match, Action: AddMatch
+2017-12-31 18:09:01,105 INFO Tote.Controllers.MatchController - Controller: Match, Action: TournamentesBySport
+2017-12-31 18:09:01,163 INFO Tote.Controllers.MatchController - Controller: Match, Action: MatchesByTournament
+2017-12-31 18:09:02,659 INFO Tote.Controllers.MatchController - Controller: Match, Action: MatchesByTournament
+2017-12-31 18:09:07,865 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:09:10,728 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:09:13,238 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTournamentForTeam
+2017-12-31 18:09:15,369 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:09:19,372 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2017-12-31 18:09:21,999 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:09:23,743 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTournamentForTeam
+2017-12-31 18:09:25,932 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTournamentsByTeam
+2017-12-31 18:09:32,252 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:09:33,371 INFO Tote.Controllers.MatchController - Controller: Match, Action: AddMatch
+2017-12-31 18:09:45,985 INFO Tote.Controllers.MatchController - Controller: Match, Action: TournamentesBySport
+2017-12-31 18:09:46,076 INFO Tote.Controllers.MatchController - Controller: Match, Action: MatchesByTournament
+2017-12-31 18:09:47,051 INFO Tote.Controllers.MatchController - Controller: Match, Action: MatchesByTournament
+2017-12-31 18:09:49,638 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:09:53,551 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
+2017-12-31 18:09:55,950 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditEvent
+2017-12-31 18:10:23,915 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 18:10:30,048 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2017-12-31 18:10:34,846 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2017-12-31 18:10:44,965 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2017-12-31 18:10:55,231 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2017-12-31 18:10:58,558 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2017-12-31 18:11:02,193 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2017-12-31 18:11:38,110 INFO Tote.Controllers.SortController - Controller: Sort, Action: MakeRate User:admin
+2017-12-31 18:13:19,009 ERROR Data.Clients.BetListClient - Имя столбца или число предоставленных значений не соответствует определению таблицы.
+2017-12-31 18:13:19,011 ERROR Business.Service.UpdateBetListService - Class: UpdateBetListService Method: AddBets  AddRate rateId not positive
+2017-12-31 18:35:32,033 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 18:35:49,540 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2017-12-31 18:35:53,214 INFO Tote.Controllers.SortController - Controller: Sort, Action: MakeRate User:admin
+2017-12-31 18:36:02,150 ERROR Business.Service.UpdateBetListService - Class: UpdateBetListService Method: AddBets  AddBet don't add to DB
+2017-12-31 18:36:02,169 ERROR Business.Service.UpdateBetListService - Class: UpdateBetListService Method: AddBets  AddBet don't add to DB
+2017-12-31 18:36:02,204 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 18:37:55,094 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2017-12-31 18:38:11,921 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 19:04:57,121 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 19:05:31,182 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 19:05:54,926 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 19:05:57,507 ERROR Tote.Controllers.MatchController - Controller: Match, Action: AddMatch Don't add Match
+2017-12-31 19:06:14,843 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 20:42:38,439 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 20:43:26,571 INFO Tote.Controllers.LoginController - user: admin login
+2017-12-31 20:43:26,580 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 20:43:28,970 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 20:43:39,947 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:43:40,830 ERROR Data.Clients.BetListClient - Сервер не смог обработать запрос в связи с внутренней ошибкой.  Для получения дополнительных сведений об ошибке либо включите IncludeExceptionDetailInFaults (с помощью атрибута ServiceBehaviorAttribute или через поведение < serviceDebug >) на сервере для того чтобы выслать информацию об исключении назад клиенту, или включить трассировку согласно инструкции Microsoft .NET Framework SDK и проверить записи журнала трассировки клиента.
+2017-12-31 20:45:06,795 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2017-12-31 20:45:10,723 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 20:45:13,755 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:45:20,746 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:45:26,386 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:45:26,419 ERROR Data.Clients.BetListClient - Сервер не смог обработать запрос в связи с внутренней ошибкой.  Для получения дополнительных сведений об ошибке либо включите IncludeExceptionDetailInFaults (с помощью атрибута ServiceBehaviorAttribute или через поведение < serviceDebug >) на сервере для того чтобы выслать информацию об исключении назад клиенту, или включить трассировку согласно инструкции Microsoft .NET Framework SDK и проверить записи журнала трассировки клиента.
+2017-12-31 20:47:12,585 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:52:51,458 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:53:30,161 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 20:54:20,687 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 20:54:25,867 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 20:54:37,322 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 20:54:43,954 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 20:55:09,886 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 20:55:15,243 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2017-12-31 20:55:16,681 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 20:57:33,867 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 20:57:41,683 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 20:57:44,674 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 20:57:53,246 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 20:57:59,803 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 20:58:10,610 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 20:58:35,869 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 21:19:03,677 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 21:19:14,985 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 21:21:10,446 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 22:05:40,414 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 22:06:31,135 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 22:06:48,195 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 22:06:52,315 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 22:07:47,705 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 22:08:59,122 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 22:09:02,832 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2017-12-31 22:09:10,264 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2017-12-31 22:09:14,205 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2017-12-31 22:09:20,873 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2017-12-31 22:20:33,029 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin

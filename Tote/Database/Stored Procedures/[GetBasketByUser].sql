@@ -1,3 +1,7 @@
+
+GO
+
+
 CREATE PROCEDURE [dbo].[GetBasketByUser]
 @UserId int
 AS
@@ -7,6 +11,6 @@ FROM Basket
 WHERE Basket.UserId=@UserId
 
 RETURN
-
+GO
 
 

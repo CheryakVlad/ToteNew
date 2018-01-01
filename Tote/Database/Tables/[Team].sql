@@ -5,6 +5,7 @@ CREATE TABLE [dbo].[Team](
 	[Name] [nvarchar](50) NOT NULL,
 	[CountryId] [int] NOT NULL,
 	[SportId] [int] NULL,
+	[DeleteStatus] [bit] NULL,
  CONSTRAINT [PK_Team] PRIMARY KEY CLUSTERED 
 (
 	[TeamId] ASC

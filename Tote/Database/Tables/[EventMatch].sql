@@ -1,4 +1,5 @@
 
+
 CREATE TABLE [dbo].[EventMatch](
 	[EventId] [int] NOT NULL,
 	[MatchId] [int] NOT NULL,

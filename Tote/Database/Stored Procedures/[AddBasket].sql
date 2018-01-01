@@ -1,4 +1,6 @@
 
+GO
+
 CREATE PROC [dbo].[AddBasket]
 @UserId int,
 @MatchId int,
@@ -6,5 +8,7 @@ CREATE PROC [dbo].[AddBasket]
 AS
 
 INSERT INTO Basket VALUES(@UserId,@MatchId,@EventId)
+
+GO
 
 

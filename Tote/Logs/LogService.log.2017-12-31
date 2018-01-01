@@ -1,0 +1,2 @@
+2017-12-31 00:20:03,703 ERROR Service.Contracts.Contracts.TeamService - Процедура или функция "UpdateMatch" ожидает параметр "@Score", который не был указан.
+2017-12-31 18:13:16,131 ERROR Service.Contracts.Contracts.BetListService - Имя столбца или число предоставленных значений не соответствует определению таблицы.

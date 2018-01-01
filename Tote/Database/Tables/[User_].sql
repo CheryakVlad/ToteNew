@@ -9,6 +9,7 @@ CREATE TABLE [dbo].[User_](
 	[Money] [money] NOT NULL,
 	[FIO] [nvarchar](70) NULL,
 	[PhoneNumber] [nvarchar](50) NULL,
+	[DeleteStatus] [bit] NULL,
  CONSTRAINT [PK_User_] PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC

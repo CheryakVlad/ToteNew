@@ -1,4 +1,7 @@
 
+GO
+
+
 CREATE PROCEDURE [dbo].[GetMatchesAll]
 
 AS
@@ -21,8 +24,8 @@ INNER JOIN Tournament ON TeamTournament.TournamentId=Tournament.TournamentId
 INNER JOIN Sport ON Tournament.SportId=Sport.SportId
 INNER JOIN Result ON Match.ResultId=Result.ResultId
 WHERE TeamMatchHome.Home='True' AND TeamMatchGuest.Home='False'
-
+AND Match.DeleteStatus='False'
 RETURN
-
+GO
 
 

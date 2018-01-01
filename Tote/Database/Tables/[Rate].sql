@@ -5,6 +5,7 @@ CREATE TABLE [dbo].[Rate](
 	[DateRate] [datetime] NOT NULL,
 	[RateAmount] [money] NOT NULL,
 	[UserId] [int] NOT NULL,
+	[StatusWin] [bit] NULL,
  CONSTRAINT [PK_Rate] PRIMARY KEY CLUSTERED 
 (
 	[RateId] ASC

@@ -1,4 +1,5 @@
 
+
 CREATE TABLE [dbo].[Bet](
 	[BetId] [int] IDENTITY(1,1) NOT NULL,
 	[MatchId] [int] NOT NULL,

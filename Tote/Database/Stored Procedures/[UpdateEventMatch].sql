@@ -1,3 +1,7 @@
+
+GO
+
+
 CREATE PROC [dbo].[UpdateEventMatch]
 @MatchId int,
 @Win float,
@@ -15,4 +19,10 @@ WHERE EventId=2 AND MatchId=@MatchId
 UPDATE EventMatch
 SET Coefficient=@Draw
 WHERE EventId=3 AND MatchId=@MatchId
+
+
+
+
+GO
+
 

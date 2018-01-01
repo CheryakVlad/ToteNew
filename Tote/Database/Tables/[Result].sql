@@ -1,4 +1,5 @@
 
+
 CREATE TABLE [dbo].[Result](
 	[ResultId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](5) NOT NULL,
