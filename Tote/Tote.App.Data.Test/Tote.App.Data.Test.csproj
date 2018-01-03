@@ -76,6 +76,10 @@
       <Project>{35D5B639-ABF9-4043-8D7C-CFD672A6BBE4}</Project>
       <Name>Tote.App.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Service.Contracts\Tote.Service.Contracts.csproj">
+      <Project>{53016262-BBB5-4B33-8A2B-4BE859A11D33}</Project>
+      <Name>Tote.Service.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

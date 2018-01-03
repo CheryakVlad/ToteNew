@@ -224,7 +224,9 @@ namespace Data.Services
             {
                 var match = matchService.GetMatchById(basket.MatchId);
                 var _events = matchService.GetEventsByMatch(basket.MatchId);
-                
+                var sport = GetSport(match.SportId);
+                match.SportName = sport.Name;
+
                 foreach(var _event in _events )
                 {
                     if(_event.EventId== basket.EventId)

@@ -1,0 +1,163 @@
+2018-01-01 11:57:57,673 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 11:59:36,609 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-01 11:59:36,991 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 11:59:46,310 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:00:19,707 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:00:23,767 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:00:36,342 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:00:40,425 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2018-01-01 12:00:58,790 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:02:05,152 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:02:08,831 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2018-01-01 12:02:13,871 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:02:16,735 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:02:23,392 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:02:29,316 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:02:32,435 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2018-01-01 12:03:11,221 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:03:25,901 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:03:28,752 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:03:39,162 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:03:42,732 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:10:56,987 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBetsByRate User:admin
+2018-01-01 12:11:01,594 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:11:04,327 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:11:13,218 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:11:17,192 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:28:06,451 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:28:15,447 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:28:17,672 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:28:25,490 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:28:31,964 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:29:50,818 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:29:54,706 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:30:01,991 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:30:03,545 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-01 12:30:04,392 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 12:30:24,415 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:30:27,529 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditMatch
+2018-01-01 12:30:35,586 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-01 12:30:37,228 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
+2018-01-01 20:33:50,229 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:04:52,886 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:05:24,379 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-01 22:05:24,507 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:05:37,385 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:06:01,995 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:09:53,036 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:10:22,083 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:10:31,876 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:12:22,745 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:19:10,926 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:19:25,820 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:19:28,215 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:20:00,691 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:20:43,941 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:20:50,010 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:21:01,275 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:21:36,588 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:22:30,225 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:22:43,414 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:30:10,102 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:32:02,231 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:38:08,778 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:38:54,989 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:38:58,617 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:49:55,537 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:51:25,487 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:51:36,238 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:53:10,503 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:57:00,635 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 22:57:09,329 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 22:57:11,343 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 22:57:34,709 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:02:18,255 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:02:41,395 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:02:56,900 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:05:35,111 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:06:08,730 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:07:52,342 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:08:07,857 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:08:26,988 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:08:26,990 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:11:00,148 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:11:08,425 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:11:11,642 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:11:53,063 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:11:53,064 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:11:53,107 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:11:53,108 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:12:45,951 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:12:49,467 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:13:05,993 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:13:08,381 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:13:33,594 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:13:33,595 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:13:46,645 ERROR Data.Clients.UserClient - Не удается открыть базу данных "Tote", запрашиваемую именем входа. Не удалось выполнить вход.
+Ошибка входа пользователя "vladDb".
+2018-01-01 23:13:46,646 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:15:50,516 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:17:19,580 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:17:47,112 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:18:27,548 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:18:32,674 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:19:02,762 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:19:14,896 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:19:37,054 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:19:37,055 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:27:03,268 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:27:10,744 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:27:14,290 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:27:36,858 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:27:36,859 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:27:36,915 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:27:36,916 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:28:04,388 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:28:06,850 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:29:17,973 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:29:36,535 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:30:02,562 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:30:02,564 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:32:04,231 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:32:19,069 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:32:36,481 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:33:07,080 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:33:07,083 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:33:07,142 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:33:07,143 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:33:07,144 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't GetRolesAll
+2018-01-01 23:33:07,199 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-01 23:35:11,549 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:36:05,690 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:40:33,698 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:41:34,768 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:41:34,770 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:41:34,822 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:41:34,823 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:41:34,823 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't GetRolesAll
+2018-01-01 23:42:14,948 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:42:14,949 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:42:15,117 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:42:15,118 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:42:15,119 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't GetRolesAll
+2018-01-01 23:42:26,564 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:44:03,640 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:44:53,685 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:45:55,016 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:47:09,822 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:47:23,036 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:47:47,970 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:47:47,971 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:47:59,182 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't GetRolesAll
+2018-01-01 23:57:42,105 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:58:03,358 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:58:23,132 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser
+2018-01-01 23:58:47,219 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:58:47,220 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't update user
+2018-01-01 23:58:47,269 ERROR Data.Clients.UserClient - При установлении соединения с SQL Server произошла ошибка, связанная с сетью или с определенным экземпляром. Сервер не найден или недоступен. Убедитесь, что имя экземпляра указано правильно и что на SQL Server разрешены удаленные соединения. (provider: Shared Memory Provider, error: 40 - Не удалось открыть подключение к SQL Server)
+2018-01-01 23:58:47,270 ERROR Data.Services.UserService - Class: UserService Method: GetRolesAll List<Role> is null
+2018-01-01 23:58:47,271 ERROR Tote.Controllers.UserController - Controller: User, Action: EditUser Don't GetRolesAll
+2018-01-01 23:58:47,294 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-01 23:59:12,435 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-01 23:59:14,918 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-01 23:59:21,105 INFO Tote.Controllers.UserController - Controller: User, Action: EditUser

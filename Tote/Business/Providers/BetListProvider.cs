@@ -50,7 +50,7 @@ namespace Business.Providers
             if (id <= 0)
             {
                 logService.LogError("Class: BetListProvider Method: GetEvents  ID can not negative");
-                throw new ArgumentOutOfRangeException("ID can not negative");
+                return null;
             }
             return dataService.GetEvents(id);
         }
@@ -79,63 +79,36 @@ namespace Business.Providers
         {
             return dataService.GetTournamentes();
         }
-
-        /*public bool UpdateSport(Sport sport)
-        {
-            return betListClient.UpdateSport(sport);
-        }
-
-        public bool AddBasket(Basket basket)
-        {
-            return betListClient.AddBasket(basket);
-        }
-
-        public bool DeleteBasket(int basketId)
-        {
-            return betListClient.DeleteBasket(basketId);
-        }*/
-
+                
         public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
         {
             if (userId <= 0)
             {
+                total = 1;
                 logService.LogError("Class: BetListProvider Method: GetBasketByUser  userID can not negative");
-                throw new ArgumentOutOfRangeException("userID can not negative");
+                return null;
             }            
             return dataService.GetBasketByUser(userId, out total);
         }
 
-        /*public IReadOnlyList<Match> GetMatchesByBasket(int userId)
-        {
-            throw new NotImplementedException();
-        }*/
-
+        
         public Basket GetBasketById(int basketId, int userId)
         {
             if (userId <= 0|| basketId <= 0)
             {
                 logService.LogError("Class: BetListProvider Method: GetBasketById  userID or basketId can not negative");
-                throw new ArgumentOutOfRangeException("userID or basketId can not negative");
+                return null;
             }
             return dataService.GetBasketById(basketId, userId);
         }
 
-        /*public bool AddBet(Bet bet, int basketId)
-        {
-            return betListClient.AddBet(bet, basketId);
-        }
-
-        public int AddRate(Rate rate)
-        {
-            return betListClient.AddRate(rate);
-        }*/
-
+        
         public IReadOnlyList<Rate> GetRateByUserId(int userId)
         {
             if (userId <= 0)
             {
                 logService.LogError("Class: BetListProvider Method: GetRateByUserId  userID can not negative");
-                throw new ArgumentOutOfRangeException("userID can not negative");
+                return null;
             }
             return dataService.GetRateByUserId(userId);
         }
@@ -144,8 +117,9 @@ namespace Business.Providers
         {
             if (rateId <= 0)
             {
+                total = 1;
                 logService.LogError("Class: BetListProvider Method: GetBetByRateId  rateId can not negative");
-                throw new ArgumentOutOfRangeException("rateId can not negative");
+                return null;
             }
             return dataService.GetBetByRateId(rateId, out total);
         }
@@ -155,7 +129,7 @@ namespace Business.Providers
             if (teamId <= 0)
             {
                 logService.LogError("Class: BetListProvider Method: GetTournamentesByTeamId  teamId can not negative");
-                throw new ArgumentOutOfRangeException("teamId can not negative");
+                return null;
             }
             return dataService.GetTournamentesByTeamId(teamId);
         }
@@ -165,7 +139,7 @@ namespace Business.Providers
             if (tournamentId <= 0)
             {
                 logService.LogError("Class: BetListProvider Method: GetTournamentById  tournamentId can not negative");
-                throw new ArgumentOutOfRangeException("tournamentId can not negative");
+                return null;
             }
             return dataService.GetTournamentById(tournamentId);
         }

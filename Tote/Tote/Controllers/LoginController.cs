@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Business.Service;
 using Business.Principal;
 using System;
-using log4net;
 using Tote.Attribute;
 using Common.Logger;
 
@@ -12,24 +11,16 @@ namespace Tote.Controllers
     public class LoginController : Controller
     {
         private readonly IUserProvider userProvider;
-        private readonly ILoginService loginService;
-        private readonly ILog log;
+        private readonly ILoginService loginService;       
         private readonly ILogService<LoginController> logService;
 
-        /*public LoginController(IUserProvider userProvider, ILoginService loginService)
-        {
-            this.userProvider = userProvider;
-            this.loginService = loginService;
-            this.log = log4net.LogManager.GetLogger(typeof(LoginController));
-        }*/
-
         public LoginController(IUserProvider userProvider, ILoginService loginService) 
-            :this(userProvider, loginService, new LogService<LoginController>() /*LogManager.GetLogger(typeof(LoginController))*/)
+            :this(userProvider, loginService, new LogService<LoginController>())
         {
 
         }
 
-        public LoginController(IUserProvider userProvider, ILoginService loginService, ILogService<LoginController> logService /*ILog log*/)
+        public LoginController(IUserProvider userProvider, ILoginService loginService, ILogService<LoginController> logService)
         {
             if (userProvider == null || loginService == null)
             {
@@ -45,24 +36,10 @@ namespace Tote.Controllers
             {
                 this.logService = logService;
             }
-            /*if (log == null)
-            {
-                this.log = LogManager.GetLogger(typeof(LoginController));
-            }
-            else
-            {
-                this.log = log;
-            }*/
+            
         }
 
-        /*public static LoginController createLoginController(IUserProvider userProvider, ILoginService loginService)
-        {
-            if (userProvider == null|| loginService == null)
-            {
-                throw new ArgumentNullException();
-            }
-            return new LoginController(userProvider, loginService);
-        }*/
+        
 
         [HttpGet]
         [AllowAnonymous]
@@ -100,8 +77,7 @@ namespace Tote.Controllers
             return View();
         }
         
-        [User]
-        //[AllowAnonymous]
+        [User]        
         public ActionResult Logout()
         {
             string role = "";

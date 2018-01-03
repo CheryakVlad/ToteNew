@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
-using log4net;
 using Business.Service;
 using Common.Logger;
 
@@ -16,8 +15,7 @@ namespace Tote.Controllers
 
         private readonly IBetListProvider betListProvider;
         private readonly ICacheService cacheService;
-        private readonly IUpdateSportService sportService;
-        private readonly ILog log;
+        private readonly IUpdateSportService sportService;        
         private readonly ILogService<SportController> logService;
 
 
@@ -45,27 +43,13 @@ namespace Tote.Controllers
                 this.logService = logService;
             }
         }
-        /*
-        public SportController(IBetListProvider rateListProvider)
-        {            
-            this.betListProvider = rateListProvider;
-        }
-
-        public static SportController createSportController(IBetListProvider rateListProvider)
-        {
-            if(rateListProvider==null)
-            {
-                throw new ArgumentNullException();
-            }
-            return new SportController(rateListProvider);
-        }*/
-
+        
         [Editor]
         public ActionResult ShowSports()
         {
             logService.LogInfoMessage("Controller: Sport, Action: ShowSports");
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
-            if (sports == null)
+            if (sports.Count == 0)
             {
                 logService.LogError("Controller: Sport, Action: ShowSports Don't show sport");
                 return RedirectToAction("InfoError", "Error");

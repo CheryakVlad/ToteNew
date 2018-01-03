@@ -4,7 +4,6 @@ using Data.TeamService;
 using Data.Business;
 using System.ServiceModel;
 using System;
-using log4net;
 using Common.Logger;
 
 namespace Data.Clients
@@ -254,7 +253,7 @@ namespace Data.Clients
 
         public IReadOnlyList<SortDto> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
-            if (sportId < 0||status<0||status>3)
+            if (sportId < 0 || status<0 || status>3)
             {
                 logService.LogError("Class: MatchClient Method: GetMatchBySportDateStatus sportId is not positive or status must be in the interval [0;3]");
                 return null;

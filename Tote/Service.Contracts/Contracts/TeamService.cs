@@ -12,7 +12,6 @@ namespace Service.Contracts.Contracts
 {
     public class TeamService : ITeamService,IMatchService,IEventService
     {
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(TeamService));
         private readonly ILogService<TeamService> logService;
 
         public TeamService():this(new LogService<TeamService>())
@@ -449,7 +448,7 @@ namespace Service.Contracts.Contracts
 
         public TeamDto[] GetTeamsByTournament(int tournamentId)
         {
-            if (tournamentId <= 0)
+            if (tournamentId < 0)
             {
                 GenerateFaultException("GetTeamByTournament", "ArgumentException");
             }

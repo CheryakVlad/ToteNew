@@ -118,7 +118,8 @@ namespace Service.Contracts.Common
                 Money = reader.GetDecimal(5),
                 FIO = reader[6].ToString(),
                 PhoneNumber = reader[7].ToString(),
-                Role = reader[9].ToString()
+                Role = reader[9].ToString(),
+                RoleId = (int)reader[10]
             };
             return UserDto;
         }
@@ -141,7 +142,7 @@ namespace Service.Contracts.Common
                 Score = reader[12].ToString(),
                 ResultId = (int)reader[13],
                 Result = reader[14].ToString(),
-                SportId = (int)reader[15]
+                SportId = (int)reader[15]               
             };
             return MatchDto;
         }

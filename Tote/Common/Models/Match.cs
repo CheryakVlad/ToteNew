@@ -10,6 +10,7 @@ namespace Common.Models
         
         public DateTime Date { get; set; }
         public int SportId { get; set; }
+        public string SportName { get; set; }
         public int TournamentId { get; set; }
         public int TeamHomeId { get; set; }
         public int TeamGuestId { get; set; }

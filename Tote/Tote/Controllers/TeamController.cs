@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
-using log4net;
 using Business.Service;
 using Common.Logger;
 
@@ -14,8 +13,7 @@ namespace Tote.Controllers
     {
         private readonly ITeamProvider teamProvider;
         private readonly IBetListProvider betListProvider;
-        private readonly IUpdateTeamService teamService;
-        private readonly ILog log;
+        private readonly IUpdateTeamService teamService;       
         private readonly ILogService<TeamController> logService;
 
         public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService) 
@@ -42,29 +40,13 @@ namespace Tote.Controllers
                 this.logService = logService;
             }
         }
-        /*
-        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider)
-        {
-            this.betListProvider = betListProvider;
-            this.teamProvider = teamProvider;
-            this.log = log4net.LogManager.GetLogger(typeof(TeamController));
-        }
-
-        public static TeamController createMatchController(IBetListProvider betListProvider, ITeamProvider teamProvider)
-        {
-            if (betListProvider == null || teamProvider == null)
-            {
-                throw new ArgumentNullException();
-            }
-            return new TeamController(betListProvider, teamProvider);
-        }
-        */
+        
         [Editor]
         public ActionResult ShowCountries()
         {
             logService.LogInfoMessage("Controller: Team, Action: ShowCountries");
             IReadOnlyList<Country> countries = teamProvider.GetCountriesAll();
-            if (countries == null)
+            if (countries.Count == 0)
             {
                 logService.LogError("Controller: Team, Action: ShowCountries Don't GetCountriesAll");
                 return RedirectToAction("InfoError", "Error");
@@ -76,7 +58,7 @@ namespace Tote.Controllers
         {
             logService.LogInfoMessage("Controller: Team, Action: ShowTeams");
             IReadOnlyList<Team> teams = teamProvider.GetTeamsAll();
-            if (teams == null)
+            if (teams.Count == 0)
             {
                 logService.LogError("Controller: Team, Action: ShowTeams Don't GetTeamsAll");
                 return RedirectToAction("InfoError", "Error");
@@ -113,23 +95,47 @@ namespace Tote.Controllers
                 return View();
             }         
         }
+        private SelectList GetSports(int sport = 1)
+        {
+            IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+            if (sportsAll.Count == 0)
+            {
+                logService.LogError("Controller: Team, Don't GetSports");
+                return null;
+            }
+            SelectList sports = new SelectList(sportsAll, "SportId", "Name", sport);
+
+            return sports;
+        }
+        private SelectList GetCountries(int country = 1)
+        {
+            IReadOnlyList<Country> countriesAll = teamProvider.GetCountriesAll();
+            if (countriesAll.Count == 0)
+            {
+                logService.LogError("Controller: Team, Don't GetCountriesAll");
+                return null;
+            }
+            SelectList countries = new SelectList(countriesAll, "CountryId", "Name", country);
+
+            return countries;
+        }
 
         [HttpGet]
         [Editor]
         public ActionResult AddTeam()
         {
             logService.LogInfoMessage("Controller: Team, Action: AddTeam");
-            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+
+            SelectList sports = GetSports();
             if (sports == null)
             {
-                logService.LogError("Controller: Team, Action: AddTeam Don't GetSports");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Sports = sports;
-            SelectList countries = new SelectList(teamProvider.GetCountriesAll(), "CountryId", "Name");
+            
+            SelectList countries = GetCountries();
             if (countries == null)
             {
-                logService.LogError("Controller: Team, Action: AddTeam Don't GetCountriesAll");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Countries = countries;
@@ -167,6 +173,9 @@ namespace Tote.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "You can not add a team with the following parameters");
+                logService.LogError("Controller: Team, Action: AddTeam Don't add Team");
+
                 SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", team.SportId);
                 if (sports == null)
                 {
@@ -217,6 +226,8 @@ namespace Tote.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "You can not add a country with the following parameters");
+                logService.LogError("Controller: Sport, Action: AddSport Don't update country");
                 return View(country);
             }
         }
@@ -267,7 +278,7 @@ namespace Tote.Controllers
                         return RedirectToAction("InfoError", "Error");
                     }
                     ViewBag.Countries = countries;
-                    ModelState.AddModelError("", "You can not add a team with the following parameters");
+                    ModelState.AddModelError("", "You can not edit a team with the following parameters");
                     logService.LogError("Controller: Team, Action: AddTeam Don't update team");
                     return View(team);
                 }
@@ -275,6 +286,9 @@ namespace Tote.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "You can not edit a team with the following parameters");
+                logService.LogError("Controller: Team, Action: AddTeam Don't update team");
+
                 SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", team.SportId);
                 if (sports == null)
                 {
@@ -354,8 +368,18 @@ namespace Tote.Controllers
         {
             logService.LogInfoMessage("Controller: Team, Action: ShowTournamentsByTeam");
             Team team = teamProvider.GetTeamById(id);
+            if(team == null)
+            {
+                logService.LogError("Controller: Team, Action: ShowTournamentsByTeam Don't GetTeamById");
+                return RedirectToAction("InfoError", "Error");
+            }
             ViewBag.Team = team;
             IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentesByTeamId(id);
+            if(tournaments.Count == 0)
+            {
+                logService.LogError("Controller: Team, Action: ShowTournamentsByTeam Don't GetTournamentesByTeamId");
+                return RedirectToAction("InfoDB", "Error");
+            }
             return View(tournaments);
         }
 
@@ -367,13 +391,13 @@ namespace Tote.Controllers
             Team team = teamProvider.GetTeamById(id);            
             List<Tournament> tournamentesSport = betListProvider.GetTournament(team.SportId) as List<Tournament>;
             List<Tournament> tournamentesTeam = betListProvider.GetTournamentesByTeamId(id) as List<Tournament>;
-            tournamentesSport.RemoveAll(element=> tournamentesTeam.Exists(elementTeam => elementTeam.TournamentId == element.TournamentId));
-            SelectList tournaments = new SelectList(tournamentesSport, "TournamentId", "Name");
-            if (tournaments == null)
+            if (tournamentesSport.Count == 0 || tournamentesTeam.Count == 0)
             {
                 logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't GetTournamentes");
                 return RedirectToAction("InfoError", "Error");
             }
+            tournamentesSport.RemoveAll(element=> tournamentesTeam.Exists(elementTeam => elementTeam.TournamentId == element.TournamentId));
+            SelectList tournaments = new SelectList(tournamentesSport, "TournamentId", "Name");            
             ViewBag.Tournaments = tournaments;
                         
             return View(team);
@@ -386,7 +410,7 @@ namespace Tote.Controllers
             bool result = teamService.AddTournamentForTeam(team.Tournament.TournamentId, team.TeamId);
             if (!result)
             {
-                logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't add Tournament For Team");
+                logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't add Tournament For Team");                
             }
             return RedirectToAction("ShowTournamentsByTeam", new { id=team.TeamId});
             
@@ -397,9 +421,14 @@ namespace Tote.Controllers
         public ActionResult DeleteTournamentForTeam(int teamId, int tournamentId)            
         {
             logService.LogInfoMessage("Controller: Team, Action: DeleteTournamentForTeam");
-            Team team = teamProvider.GetTeamById(teamId);
+            Team team = teamProvider.GetTeamById(teamId);            
             ViewBag.Team = team;
             Tournament tournament = betListProvider.GetTournamentById(tournamentId);
+            if(team == null || tournament == null)
+            {
+                logService.LogError("Controller: Team, Action: DeleteTournamentForTeam Don't GetTournamentById or GetTeamById");
+                return RedirectToAction("InfoError", "Error");
+            }
             return View(tournament);
         }
 

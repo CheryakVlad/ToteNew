@@ -12,8 +12,8 @@ namespace Service.Contracts.Contracts
 
     public class BetListService : IBetListService,ITournamentService
     {
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
         private readonly ILogService<BetListService> logService;
+        
 
         public BetListService():this(new LogService<BetListService>())
         {

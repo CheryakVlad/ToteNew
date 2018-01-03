@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Tote.Attribute;
-using log4net;
 using Common.Logger;
 
 namespace Tote.Controllers
@@ -16,8 +15,7 @@ namespace Tote.Controllers
         private readonly IBetListProvider betListProvider;
         private readonly IUserProvider userProvider;
         private readonly ILoginService loginService;
-        private readonly IUpdateUserService userService;
-        private readonly ILog log;
+        private readonly IUpdateUserService userService;        
         private readonly ILogService<UserController> logService;
 
         public UserController(IUserProvider userProvider, IBetListProvider betListProvider, ILoginService loginService, IUpdateUserService userService) 
@@ -44,28 +42,9 @@ namespace Tote.Controllers
             else
             {
                 this.logService = logService;
-                //this.log = LogManager.GetLogger(typeof(UserController));
-                           
             }
         }
-        /*
-        public UserController(IUserProvider userProvider, IBetListProvider betListProvider, ILoginService loginService)
-        {
-            this.userProvider = userProvider;
-            this.betListProvider = betListProvider;
-            this.loginService = loginService;
-            this.log = log4net.LogManager.GetLogger(typeof(UserController));
-        }
-
-        public static UserController createMatchController(IUserProvider userProvider, IBetListProvider betListProvider, ILoginService loginService)
-        {
-            if (betListProvider == null || userProvider == null|| loginService==null)
-            {
-                throw new ArgumentNullException();
-            }
-            return new UserController(userProvider, betListProvider, loginService);
-        }
-        */
+        
         [Admin]
         public ActionResult UsersAll()
         {
@@ -91,7 +70,7 @@ namespace Tote.Controllers
                 return RedirectToAction("InfoError", "Error");
             }
             user.ConfirmPassword = user.Password;
-            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.Roles[0].RoleId);
             if (roles == null)
             {
                 logService.LogError("Controller: User, Action: EditUser Don't GetRolesAll");
@@ -99,6 +78,19 @@ namespace Tote.Controllers
             }
             ViewBag.Roles = roles;
             return View(user);
+        }
+
+        private SelectList GetRolesAll(int roleId)
+        {
+            IReadOnlyList<Role> rolesAll = userProvider.GetRolesAll();
+            if (rolesAll.Count == 0)
+            {
+                logService.LogError("Controller: User, Don't GetRolesAll");
+                return null;
+            }
+            SelectList roles = new SelectList(rolesAll, "RoleId", "Name", roleId);
+            
+            return roles;
         }
 
         [HttpPost]
@@ -113,11 +105,10 @@ namespace Tote.Controllers
                 {
                     ModelState.AddModelError("", "You can not edit a user with the following parameters");
                     logService.LogError("Controller: User, Action: EditUser Don't update user");
-
-                    SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
-                    if (roles == null)
+                                       
+                    SelectList roles = GetRolesAll(user.Roles[0].RoleId);
+                    if(roles==null)
                     {
-                        logService.LogError("Controller: User, Action: EditUser Don't GetRolesAll");
                         return RedirectToAction("InfoError", "Error");
                     }
                     ViewBag.Roles = roles;
@@ -133,28 +124,26 @@ namespace Tote.Controllers
                 return RedirectToAction("UsersAll");
             }  
             else
-            {
-                SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+            {                
+                SelectList roles = GetRolesAll(user.Roles[0].RoleId);
                 if (roles == null)
                 {
-                    logService.LogError("Controller: User, Action: EditUser Don't GetRolesAll");
                     return RedirectToAction("InfoError", "Error");
                 }
-                ViewBag.Roles = roles;                
+                ViewBag.Roles = roles;
                 return View(user);
-            }
-            
-        }        
+            }            
+        }       
+        
 
         [HttpGet]
         [Admin]
         public ActionResult AddUser()
         {
             logService.LogInfoMessage("Controller: User, Action: AddUser");
-            SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name");
+            SelectList roles = GetRolesAll(1);
             if (roles == null)
             {
-                logService.LogError("Controller: User, Action: AddUser Don't GetRolesAll");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Roles = roles;
@@ -173,10 +162,9 @@ namespace Tote.Controllers
                     ModelState.AddModelError("", "You can not add a user with the following parameters");
                     logService.LogError("Controller: User, Action: EditUser Don't add user");
 
-                    SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+                    SelectList roles = GetRolesAll(user.Roles[0].RoleId);
                     if (roles == null)
                     {
-                        logService.LogError("Controller: User, Action: EditUser Don't GetRolesAll");
                         return RedirectToAction("InfoError", "Error");
                     }
                     ViewBag.Roles = roles;
@@ -188,10 +176,9 @@ namespace Tote.Controllers
             }
             else
             {
-                SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+                SelectList roles = GetRolesAll(user.Roles[0].RoleId);
                 if (roles == null)
                 {
-                    logService.LogError("Controller: User, Action: AddUser Don't GetRolesAll");
                     return RedirectToAction("InfoError", "Error");
                 }
                 ViewBag.Roles = roles;
@@ -206,7 +193,7 @@ namespace Tote.Controllers
             logService.LogInfoMessage("Controller: User, Action: DeleteUser");
             User user = userProvider.GetUser(id);
             IReadOnlyList<Role> roles = userProvider.GetRolesAll();
-            if (roles == null)
+            if (roles.Count == 0)
             {
                 logService.LogError("Controller: User, Action: DeleteUser Don't GetRolesAll");
                 return RedirectToAction("InfoError", "Error");
@@ -290,10 +277,9 @@ namespace Tote.Controllers
                     ModelState.AddModelError("", "You can not add a user with the following parameters");
                     logService.LogError("Controller: User, Action: EditUser Don't edit user");
 
-                    SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+                    SelectList roles = GetRolesAll(user.Roles[0].RoleId);
                     if (roles == null)
                     {
-                        logService.LogError("Controller: User, Action: EditUser Don't GetRolesAll");
                         return RedirectToAction("InfoError", "Error");
                     }
                     ViewBag.Roles = roles;
@@ -305,10 +291,9 @@ namespace Tote.Controllers
             }
             else
             {
-                SelectList roles = new SelectList(userProvider.GetRolesAll(), "RoleId", "Name", user.RoleId);
+                SelectList roles = GetRolesAll(user.Roles[0].RoleId);
                 if (roles == null)
                 {
-                    logService.LogError("Controller: User, Action: EditUser Don't GetRolesAll");
                     return RedirectToAction("InfoError", "Error");
                 }
                 ViewBag.Roles = roles;

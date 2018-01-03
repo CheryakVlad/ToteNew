@@ -29,31 +29,17 @@ namespace Business.Providers
                 this.logService = logService;
             }
         }
-
         
-        /*public bool AddTournament(Tournament tournament)
-        {
-            return tournamentClient.AddTournament(tournament);
-        }
-
-        public bool DeleteTournament(int tournamentId)
-        {
-            return tournamentClient.DeleteTournament(tournamentId);
-        }*/
 
         public Tournament GetTournamentById(int tournamentId)
         {
             if (tournamentId <= 0)
             {
                 logService.LogError("Class: TournamentProvider Method: GetTournamentById  tournamentId must be positive");
-                throw new ArgumentOutOfRangeException("tournamentId must be positive");
+                return null;
             }
             return dataService.GetTournamentById(tournamentId);
         }
-
-        /*public bool UpdateTournament(Tournament tournament)
-        {
-            return tournamentClient.UpdateTournament(tournament);
-        }*/
+        
     }
 }

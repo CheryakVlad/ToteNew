@@ -7,15 +7,17 @@ using Common.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Service.Contracts.Common;
+using Service.Contracts.Logger;
 
 namespace Tote.Service.Contracts.Test.Tests.Contracts
 {
     [TestClass]
     public class TeamServiceTests
     {
-        private Mock<IMatchService> matchService;
+        //private Mock<IMatchService> matchService;
         private IMatchService teamService;
-        
+        private Mock<ILogService<BetListService>> logService;
+
         private List<SortDto> GetSort()
         {
             var sort = new List<SortDto>();
@@ -87,7 +89,8 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
         [TestInitialize]
         public void TestInitialize()
         {
-            matchService = new Mock<IMatchService>();            
+            logService = new Mock<ILogService<BetListService>>();
+            /*matchService = new Mock<IMatchService>();            
             matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((int sport, string dateMatch, int status) => {
                     IEnumerable<SortDto> sorts = GetSort();
@@ -114,13 +117,13 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
                     }
 
                     throw new ArgumentException();
-                });
-            //teamService = new TeamService();
+                });*/
+            //teamService = new TeamService(logService.Object);
         }
 
         [TestMethod]
 
-        public void MatchProvider_GetMatchBySportDateStatus_PassNullDate_CountValue()
+        public void TeamService_GetMatchBySportDateStatus_PassNullDate_CountValue()
         {
             var connection = new Connection<SortDto>();
             var actualResult = teamService.GetMatchBySportDateStatus(0, "", 0);

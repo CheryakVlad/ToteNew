@@ -4,7 +4,6 @@ using System.ServiceModel;
 using System;
 using Common.Models;
 using Data.Business;
-using log4net;
 using Common.Logger;
 
 namespace Data.Clients

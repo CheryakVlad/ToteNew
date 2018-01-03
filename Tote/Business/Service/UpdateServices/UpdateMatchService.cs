@@ -32,7 +32,7 @@ namespace Business.Service
             if (events == null)
             {
                 logService.LogError("Class: UpdateMatchService Method: AddEvent  Events don't add to DB");
-                throw new NullReferenceException("Events is null");
+                return false;
             }
             return matchClient.AddEvent(events);
         }
@@ -42,7 +42,7 @@ namespace Business.Service
             if (match == null)
             {
                 logService.LogError("Class: UpdateMatchService Method: AddMatch  Match don't add to DB");
-                throw new NullReferenceException("Match is null");
+                return false;
             }
             return matchClient.AddMatch(match);
         }
@@ -52,7 +52,7 @@ namespace Business.Service
             if (matchId <= 0)
             {
                 logService.LogError("Class: UpdateMatchService Method: DeleteEvent  Event don't delete from DB");
-                throw new ArgumentOutOfRangeException("matchId <= 0");
+                return false;
             }
             return matchClient.DeleteEvent(matchId);
         }
@@ -62,7 +62,7 @@ namespace Business.Service
             if (matchId <= 0)
             {
                 logService.LogError("Class: UpdateMatchService Method: DeleteMatch  Match don't delete from DB");
-                throw new ArgumentOutOfRangeException("matchId <= 0");
+                return false;
             }
             return matchClient.DeleteMatch(matchId);
         }
@@ -72,7 +72,7 @@ namespace Business.Service
             if (events == null)
             {
                 logService.LogError("Class: UpdateMatchService Method: UpdateEvent  Events don't update from DB");
-                throw new ArgumentOutOfRangeException("events == null");
+                return false;
             }
             return matchClient.UpdateEvent(events);
         }
@@ -82,7 +82,7 @@ namespace Business.Service
             if (match == null)
             {
                 logService.LogError("Class: UpdateMatchService Method: UpdateMatch  Match don't update from DB");
-                throw new ArgumentOutOfRangeException("match == null");
+                return false;
             }
             return matchClient.UpdateMatch(match);
         }

@@ -31,7 +31,7 @@ namespace Business.Service
             if (sport == null)
             {
                 logService.LogError("Class: UpdateSportService Method: AddSport  Sport don't add to DB");
-                throw new NullReferenceException("Sport is null");
+                return false;
             }
             return betListClient.AddSport(sport);
         }
@@ -41,7 +41,7 @@ namespace Business.Service
             if (sportId <= 0)
             {
                 logService.LogError("Class: UpdateSportService Method: DeleteSport  Sport don't delete from DB");
-                throw new ArgumentOutOfRangeException("sportId <= 0");
+                return false;
             }
             return betListClient.DeleteSport(sportId);
         }
@@ -51,7 +51,7 @@ namespace Business.Service
             if (sport == null)
             {
                 logService.LogError("Class: UpdateSportService Method: UpdateSport  Sport don't update from DB");
-                throw new NullReferenceException("Sport is null");
+                return false;
             }
             return betListClient.UpdateSport(sport);
         }

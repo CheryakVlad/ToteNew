@@ -14,6 +14,12 @@
                 @Html.DisplayName("Match")
             </th>
             <th>
+                @Html.DisplayName("Sport")
+            </th>
+            <th>
+                @Html.DisplayName("Tournament")
+            </th>
+            <th>
                 @Html.DisplayName("Date")
             </th>
             <th>
@@ -31,6 +37,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Match.Teams[0].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[0].Country.Name)) vs 
                     @Html.DisplayFor(modelItem => item.Match.Teams[1].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[1].Country.Name))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Match.SportName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Match.Tournament.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Match.Date)
@@ -56,13 +68,15 @@
                @ViewBag.Total
             </td>
         </tr>
-        
-        <tr>
-            <td>
-                @Html.ActionLink("Make the Rate", "MakeRate")            
-            </td>
+        @if (ViewBag.MakeRate)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Make the Rate", "MakeRate")            
+                </td>
             
-        </tr>
+            </tr>
+        }
     </table>
 
     

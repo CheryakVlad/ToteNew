@@ -21,61 +21,56 @@ namespace Tote.App.Business.Test
 
         private List<Common.Models.Match> GetMatches()
         {
-            var matches = new List<Common.Models.Match>();
-            var teams = new List<Team>();
-            teams.Add(new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } });
-            teams.Add(new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } });
+            var matches = new List<Common.Models.Match>();            
             matches.Add(new Common.Models.Match()
             {
                 MatchId = 1,
-                Teams = teams,
+                Teams = new List<Team>() {
+                    new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } },
+                    new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } }
+                },
                 Result = new Result() { ResultId = 1 },
                 Score = "0:2",
                 Tournament = new Tournament() { Name = "Seria A" },
                 SportId = 1,
                 Date = DateTime.Now.AddHours(1)
             });
-            teams.RemoveAt(0);
-            teams.RemoveAt(0);
-
-            teams.Add(new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } });
-            teams.Add(new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } });
+            
             matches.Add(new Common.Models.Match()
             {
                 MatchId = 2,
-                Teams = teams,
+                Teams = new List<Team>() {
+                    new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } },
+                    new Team() { Name = "Juventus", Country = new Country() { Name = "Italy" } }
+                },
                 Result = new Result() { ResultId = 1 },
                 Score = "2:1",
                 Tournament = new Tournament() { Name = "Seria A" },
                 SportId = 1,
                 Date = DateTime.Now.AddHours(-10)
             });
-
-            teams.RemoveAt(0);
-            teams.RemoveAt(0);
-
-            teams.Add(new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } });
-            teams.Add(new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } });
+            
             matches.Add(new Common.Models.Match()
             {
                 MatchId = 3,
-                Teams = teams,
+                Teams = new List<Team>() {
+                    new Team() { Name = "Napoli", Country = new Country() { Name = "Italy" } },
+                    new Team() { Name = "AC Milan", Country = new Country() { Name = "Italy" } }
+                },
                 Result = new Result() { ResultId = 1 },
                 Score = "3:0",
                 Tournament = new Tournament() { Name = "Seria A" },
                 SportId = 1,
                 Date = DateTime.Now
             });
-
-            teams.RemoveAt(0);
-            teams.RemoveAt(0);
-
-            teams.Add(new Team() { Name = "Dinamo Minsk", Country = new Country() { Name = "Belarus" } });
-            teams.Add(new Team() { Name = "Dinamo Riga", Country = new Country() { Name = "Latvia" } });
+            
             matches.Add(new Common.Models.Match()
             {
                 MatchId = 4,
-                Teams = teams,
+                Teams = new List<Team>() {
+                    new Team() { Name = "Dinamo Minsk", Country = new Country() { Name = "Belarus" } },
+                    new Team() { Name = "Dinamo Riga", Country = new Country() { Name = "Latvia" } }
+                },
                 Result = new Result() { ResultId = 3 },
                 Score = "4:4",
                 Tournament = new Tournament() { Name = "KHL" },
@@ -146,23 +141,21 @@ namespace Tote.App.Business.Test
            
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]        
         public void MatchProvider_GetMatchBySportDateStatus_PassNegativeSportId_Exception()
         {
             betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
-            var actualResult = matchProvider.GetMatchBySportDateStatus(-1, "", 0);
-            Assert.IsNotNull(actualResult);
+            var actualResult = matchProvider.GetMatchBySportDateStatus(-1, "", 0);            
+            Assert.IsNull(actualResult);
             
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]        
         public void MatchProvider_GetMatchBySportDateStatus_PassNegativeStatus_Exception()
         {
             betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", -1);
-            Assert.IsNotNull(actualResult);
+            Assert.IsNull(actualResult);
 
         }
         [TestMethod]
@@ -171,7 +164,6 @@ namespace Tote.App.Business.Test
             betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 0);            
             Assert.IsTrue(actualResult.Count == 3);
-
         }
 
         [TestMethod]
@@ -180,7 +172,6 @@ namespace Tote.App.Business.Test
             betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", 3);
             Assert.IsTrue(actualResult.Count == 2);
-
         }
 
         [TestMethod]
@@ -199,16 +190,17 @@ namespace Tote.App.Business.Test
             var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 3);            
             Assert.IsTrue(actualResult.Count == 3);
         }
-
-
-        /*[TestMethod]
-        [ExpectedException(typeof(FormatException))]
-        public void MatchProvider_GetMatchBySportDateStatus_PassDateMatch_Exception()
+        [TestMethod]
+        public void MatchProvider_GetMatchBySportDateStatus_PassSportStatus_Content()
         {
-            betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
-            var actualResult = matchProvider.GetMatchBySportDateStatus(0, "asdf", 0);
-            Assert.IsNotNull(actualResult);
-        }*/
+            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 3);
+            Assert.IsTrue(actualResult[0].MatchId == 1);
+            Assert.IsTrue(actualResult[0].SportId == 1);
+            Assert.IsTrue(actualResult[0].Teams[0].Name == "AC Milan");
+        }
+
+                
 
     }
 }

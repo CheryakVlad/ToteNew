@@ -31,23 +31,13 @@ namespace Business.Providers
             }
         }
                 
-
-        /*public bool AddTeam(Team team)
-        {
-            return teamClient.AddTeam(team);
-        }
-
-        public bool DeleteTeam(int teamId)
-        {
-            return teamClient.DeleteTeam(teamId);
-        }
-        */
+        
         public Team GetTeamById(int teamId)
         {
             if (teamId <= 0)
             {
                 logService.LogError("Class: TeamProvider Method: GetTeamById  teamId must be positive");
-                throw new ArgumentOutOfRangeException("teamId must be positive");
+                return null;
             }
             return dataService.GetTeamById(teamId);
         }
@@ -56,12 +46,7 @@ namespace Business.Providers
         {
             return dataService.GetTeamsAll();
         }
-
-        /*public bool UpdateTeam(Team team)
-        {
-            return teamClient.UpdateTeam(team);
-        }*/
-
+        
         public IReadOnlyList<Country> GetCountriesAll()
         {
             return dataService.GetCountriesAll();
@@ -69,47 +54,23 @@ namespace Business.Providers
 
         public IReadOnlyList<Team> GetTeamsByTournament(int tournamentId)
         {
-            if (tournamentId <= 0)
+            if (tournamentId < 0)
             {
-                logService.LogError("Class: TeamProvider Method: GetTeamsByTournament  tournamentId must be positive");
-                throw new ArgumentOutOfRangeException("tournamentId must be positive");
+                logService.LogError("Class: TeamProvider Method: GetTeamsByTournament  tournamentId must be not negative");
+                return null;                
             }
             return dataService.GetTeamsByTournament(tournamentId);
         }
 
-        /*public bool UpdateCountry(Country country)
-        {
-            return teamClient.UpdateCountry(country);
-        }
-
-        public bool AddCountry(Country country)
-        {
-            return teamClient.AddCountry(country);
-        }
-
-        public bool DeleteCountry(int countryId)
-        {
-            return teamClient.DeleteCountry(countryId);
-        }*/
-
+        
         public Country GetCountryById(int countryId)
         {
             if (countryId <= 0)
             {
                 logService.LogError("Class: TeamProvider Method: GetCountryById  countryId must be positive");
-                throw new ArgumentOutOfRangeException("countryId must be positive");
+                return null;
             }
             return dataService.GetCountryById(countryId);                 
-        }
-
-        /*public bool AddTournamentForTeam(int tournamentId, int teamId)
-        {
-            return teamClient.AddTournamentForTeam(tournamentId, teamId);
-        }
-
-        public bool DeleteTournamentForTeam(int tournamentId, int teamId)
-        {
-            return teamClient.DeleteTournamentForTeam(tournamentId, teamId);
-        }*/
+        }        
     }
 }

@@ -18,3 +18,6 @@ D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Data.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\StructureMap.pdb
 D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\StructureMap.xml
 D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\log4net.xml
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Log.config
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Service.Contracts.dll
+D:\22-11-2017\ToteNew.git\Tote\Tote.App.Data.Test\bin\Debug\Service.Contracts.pdb

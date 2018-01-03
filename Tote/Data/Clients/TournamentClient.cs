@@ -3,7 +3,6 @@ using Common.Models;
 using Data.Business;
 using System.ServiceModel;
 using Data.ToteService;
-using log4net;
 using Common.Logger;
 
 namespace Data.Clients

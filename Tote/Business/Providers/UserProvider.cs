@@ -36,7 +36,7 @@ namespace Business.Providers
             if (string.IsNullOrEmpty(login)||string.IsNullOrEmpty(password))
             {
                 logService.LogError("Class: UserProvider Method: ExistsUser  login or password is null or empty");
-                throw new ArgumentNullException("login or password is null or empty");
+                return null;
             }
             return userService.ExistsUser(login, password);
         }
@@ -51,7 +51,7 @@ namespace Business.Providers
             if (id <= 0)
             {
                 logService.LogError("Class: UserProvider Method: GetUser  userId must be positive");
-                throw new ArgumentOutOfRangeException("userId must be positive");
+                return null;
             }
             return userService.GetUserById(id);
         }
@@ -66,7 +66,7 @@ namespace Business.Providers
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 logService.LogError("Class: UserProvider Method: IsValidUser  login or password is null or empty");
-                throw new ArgumentNullException("login or password is null or empty");
+                return false;
             }
             var user = userService.ExistsUser(login, password);
             if (user.Login!=null)
@@ -75,21 +75,6 @@ namespace Business.Providers
             }
             return false;
         }
-
-        /*public bool UpdateUser(User user)
-        {
-            
-            return userClient.UpdateUser(user);
-        }
-
-        public bool AddUser(User user)
-        {
-            return userClient.AddUser(user);
-        }
-
-        public bool DeleteUser(int userId)
-        {
-            return userClient.DeleteUser(userId);
-        }*/
+               
     }
 }

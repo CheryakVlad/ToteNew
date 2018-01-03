@@ -31,7 +31,7 @@ namespace Business.Service
             if (tournament == null)
             {
                 logService.LogError("Class: UpdateTournamentService Method: AddTournament  Tournament don't add to DB");
-                throw new ArgumentNullException("Tournament is null");
+                return false;
             }
             return tournamentClient.AddTournament(tournament);
         }
@@ -41,7 +41,7 @@ namespace Business.Service
             if (tournamentId <= 0)
             {
                 logService.LogError("Class: UpdateTournamentService Method: DeleteTournament  Tournament don't delete from DB");
-                throw new ArgumentOutOfRangeException("tournamentId <= 0");
+                return false;
             }
             return tournamentClient.DeleteTournament(tournamentId);
         }
@@ -51,7 +51,7 @@ namespace Business.Service
             if (tournament == null)
             {
                 logService.LogError("Class: UpdateTournamentService Method: UpdateTournament  Tournament don't update to DB");
-                throw new ArgumentNullException("Tournament is null");
+                return false;
             }
             return tournamentClient.UpdateTournament(tournament);
         }

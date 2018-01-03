@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Web.Mvc;
-using log4net;
 using Common.Logger;
 
 namespace Tote.Controllers
 {
     public class ErrorController : Controller
-    {
-        private readonly ILog log;
+    {        
         private readonly ILogService<ErrorController> logService;
 
-        public ErrorController():this(new LogService<ErrorController>()/*LogManager.GetLogger(typeof(ErrorController))*/)
+        public ErrorController():this(new LogService<ErrorController>())
         {
 
         }
-        public ErrorController(ILogService<ErrorController> logService/*ILog log*/)
+        public ErrorController(ILogService<ErrorController> logService)
         {
             if (logService == null)
             {
@@ -24,14 +22,7 @@ namespace Tote.Controllers
             {
                 this.logService = logService;
             }
-            /*if (log == null)
-            {
-                log = LogManager.GetLogger(typeof(ErrorController));
-            }
-            else
-            {
-                this.log = log;
-            }*/
+            
         }
         
 
@@ -39,7 +30,13 @@ namespace Tote.Controllers
         public ActionResult InfoError()
         {
             logService.LogInfoMessage("Controller: ErrorController; Action: InfoError");
-            //log.Info("Controller: ErrorController; Action: InfoError");
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult InfoDB()
+        {
+            logService.LogInfoMessage("Controller: ErrorController; Action: InfoDB");
             return View();
         }
 
@@ -47,7 +44,6 @@ namespace Tote.Controllers
         public ActionResult LogAndRedirect(Exception ex)
         {
             logService.LogError(ex.Message + " " + ex.StackTrace);
-            //log.Error(ex.Message + " " + ex.StackTrace);
             return RedirectToAction("InfoError", "Error");
         }
     }

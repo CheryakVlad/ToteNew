@@ -12,7 +12,6 @@ namespace Service.Contracts.Contracts
 {
     public class UserService : IUserService
     {
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(BetListService));
         private readonly ILogService<UserService> logService;
 
         public UserService():this(new LogService<UserService>())

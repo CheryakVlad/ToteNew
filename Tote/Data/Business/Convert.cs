@@ -415,6 +415,7 @@ namespace Data.Business
         {
             var role = new Role
             {
+                RoleId=userDto.RoleId,
                 Name = userDto.Role
             };
             var roles = new List<Role>();

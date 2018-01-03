@@ -58,6 +58,11 @@ namespace Data.Services
 
         public IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status)
         {
+            if (sportId < 0 || status < 0 || status > 3)
+            {
+                logService.LogError("Class: MatchService Method: GetMatchBySportDateStatus sportId is not positive or status must be in the interval [0;3]");
+                return null;
+            }
             var dto = matchClient.GetMatchBySportDateStatus(sportId, dateMatch, status);
 
             if (dto != null)
@@ -65,7 +70,7 @@ namespace Data.Services
                 return convert.ToMatches(dto);
             }
             logService.LogError("Class: MatchService Method: GetMatchBySportDateStatus List<Match> is null");
-            return new List<Match>();
+            return new List<Match>().ToArray();
         }
 
         public IReadOnlyList<Result> GetResultsAll()

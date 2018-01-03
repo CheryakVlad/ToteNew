@@ -31,7 +31,7 @@ namespace Business.Service
             if (user == null)
             {
                 logService.LogError("Class: UpdateUserService Method: AddUser  User don't add to DB");
-                throw new ArgumentNullException("User is null");
+                return false;
             }
             return userClient.AddUser(user);
         }
@@ -41,7 +41,7 @@ namespace Business.Service
             if (userId <= 0)
             {
                 logService.LogError("Class: UpdateUserService Method: DeleteUser  User don't delete from DB");
-                throw new ArgumentOutOfRangeException("userId <= 0");
+                return false;
             }
             return userClient.DeleteUser(userId);
         }
@@ -51,7 +51,7 @@ namespace Business.Service
             if (user == null)
             {
                 logService.LogError("Class: UpdateUserService Method: UpdateUser  User don't update to DB");
-                throw new ArgumentNullException("User is null");
+                return false;
             }            
             return userClient.UpdateUser(user);
         }

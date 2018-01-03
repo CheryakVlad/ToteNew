@@ -10,5 +10,6 @@ namespace Common.Models
         public int EventId { get; set; }
         public static double SumCoefficient{ get; set; }
         public Match Match { get; set; }
+        public Tournament Tournament { get; set; }
     }
 }

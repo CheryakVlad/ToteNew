@@ -32,34 +32,14 @@ namespace Business.Providers
                 this.logService = logService;
             }
         }
-
         
-        /*public bool AddEvent(IReadOnlyList<Event> events)
-        {
-            return matchClient.AddEvent(events);
-        }
-
-        public bool AddMatch(Match match)
-        {
-            return matchClient.AddMatch(match);
-        }
-
-        public bool DeleteEvent(int matchId)
-        {
-            return matchClient.DeleteEvent(matchId);
-        }
-
-        public bool DeleteMatch(int matchId)
-        {
-            return matchClient.DeleteMatch(matchId);
-        }*/
 
         public IReadOnlyList<Event> GetEventByMatch(int matchId)
         {
             if (matchId <= 0)
             {
                 logService.LogError("Class: MatchProvider Method: GetEventByMatch  matchId can not negative");
-                throw new ArgumentOutOfRangeException("matchId can not negative");
+                return null;
             }
             return matchService.GetEventsByMatch(matchId);
         }
@@ -69,7 +49,7 @@ namespace Business.Providers
             if (matchId <= 0)
             {
                 logService.LogError("Class: MatchProvider Method: GetMatchById  matchId can not negative");
-                throw new ArgumentOutOfRangeException("matchId can not negative");
+                return null;
             }
             return matchService.GetMatchById(matchId);
         }
@@ -79,7 +59,7 @@ namespace Business.Providers
             if (status > 3||status<0)
             {
                 logService.LogError("Class: MatchProvider Method: GetMatchBySportDateStatus status must be in the interval [0;3]");
-                throw new ArgumentOutOfRangeException();
+                return null;
             }
             IReadOnlyList<Sport> sports = betListProvider.GetSports();
             bool flag = false;
@@ -98,20 +78,9 @@ namespace Business.Providers
             if(!flag)
             {
                 logService.LogError("Class: MatchProvider Method: GetMatchBySportDateStatus  sportId must be positive");
-                throw new ArgumentException();
+                return null;
             }
-            /*if(dateMatch!=string.Empty)
-            {
-                try
-                {
-                    DateTime dtParse = DateTime.Parse(dateMatch);
-                }
-                catch(FormatException ex)
-                {
-                    throw new FormatException();
-                }
-            }*/
-            //dateMatch = "123";
+            
             return matchService.GetMatchBySportDateStatus(sportId, dateMatch, status);
         }
 
@@ -124,15 +93,6 @@ namespace Business.Providers
         {
             return matchService.GetResultsAll();
         }
-
-        /*public bool UpdateEvent(Event[] events)
-        {
-            return matchClient.UpdateEvent(events);
-        }
-
-        public bool UpdateMatch(Match match)
-        {
-            return matchClient.UpdateMatch(match);
-        }*/
+                
     }
 }

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Tote.Attribute;
-using log4net;
 using Common.Logger;
 
 namespace Tote.Controllers
@@ -20,18 +19,17 @@ namespace Tote.Controllers
         private readonly ITeamProvider teamProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateMatchService matchService;
-        private readonly ILog log;
         private readonly ILogService<MatchController> logService;
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider,
             ICacheService cacheService, IUpdateMatchService matchService) 
-            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, new LogService<MatchController>() /*LogManager.GetLogger(typeof(MatchController))*/)
+            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, new LogService<MatchController>())
         {
 
         }
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, 
-            ICacheService cacheService, IUpdateMatchService matchService, ILogService<MatchController> logService /*ILog log*/)
+            ICacheService cacheService, IUpdateMatchService matchService, ILogService<MatchController> logService)
         {
             if (betListProvider == null || matchProvider == null || teamProvider == null || cacheService == null|| matchProvider==null)
             {
@@ -51,25 +49,7 @@ namespace Tote.Controllers
                 this.logService = logService;
             }
         }
-        /*
-        public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, ICacheService cacheService)
-        {
-            this.betListProvider = betListProvider;
-            this.matchProvider = matchProvider;
-            this.teamProvider = teamProvider;
-            this.cacheService = cacheService;
-            this.log = log4net.LogManager.GetLogger(typeof(MatchController));
-        }
-
-        public static MatchController createMatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, ICacheService cacheService)
-        {
-            if (betListProvider == null || matchProvider == null|| teamProvider==null|| cacheService==null)
-            {
-                throw new ArgumentNullException();
-            }
-            return new MatchController(betListProvider, matchProvider, teamProvider, cacheService);
-        }
-        */
+        
         [Editor]
         public ActionResult ShowMatches()
         {
@@ -77,11 +57,59 @@ namespace Tote.Controllers
             IReadOnlyList<Match> matches = matchProvider.GetMatchesAll();
             if (matches == null)
             {
-                logService.LogError("Controller: Match, Action: ShowMatches Don't GetMatchesAll");
-                //log.Error("Controller: Match, Action: ShowMatches Don't GetMatchesAll");
+                logService.LogError("Controller: Match, Action: ShowMatches Don't GetMatchesAll");                
                 return RedirectToAction("InfoError", "Error");
             }
             return PartialView(matches);
+        }
+
+        private SelectList GetSports(int sport = 1)
+        {
+            IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+            if (sportsAll.Count == 0)
+            {
+                logService.LogError("Controller: Match, Don't GetSports");
+                return null;
+            }
+            SelectList sports = new SelectList(sportsAll, "SportId", "Name", sport);
+
+            return sports;
+        }
+
+        private SelectList GetTournaments(int sport = 1, int tournament = 1)
+        {
+            IReadOnlyList<Tournament> tournamentsAll = betListProvider.GetTournament(sport);
+            if (tournamentsAll.Count == 0)
+            {
+                logService.LogError("Controller: Match, Don't GetTournament");
+                return null;
+            }
+            SelectList tournaments = new SelectList(tournamentsAll, "TournamentId", "Name", tournament);
+
+            return tournaments;
+        }
+        private SelectList GetTeams(int tournament = 1, int team = 1)
+        {
+            IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsByTournament(tournament);
+            if (teamsAll.Count == 0)
+            {
+                logService.LogError("Controller: Match, Don't GetTeamsByTournament");
+                return null;
+            }
+            SelectList teams = new SelectList(teamsAll, "TeamId", "Name", team);
+            return teams;
+        }
+
+        private SelectList GetResults(int result = 1)
+        {
+            IReadOnlyList<Result> resultsAll = matchProvider.GetResultsAll();
+            if (resultsAll.Count == 0)
+            {
+                logService.LogError("Controller: Match, Don't GetResultsAll");
+                return null;
+            }
+            SelectList results = new SelectList(resultsAll, "ResultId", "Name", result);
+            return results;
         }
 
         [HttpGet]
@@ -89,40 +117,28 @@ namespace Tote.Controllers
         public ActionResult AddMatch()
         {
             logService.LogInfoMessage("Controller: Match, Action: AddMatch");
-            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+
+            SelectList sports = GetSports();
             if (sports == null)
             {
-                logService.LogError("Controller: Match, Action: AddMatch Don't GetSports");
-                //log.Error("Controller: Match, Action: AddMatch Don't GetSports");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Sports = sports;
-            
-            SelectList tournaments = new SelectList(betListProvider.GetTournament(Int32.Parse(sports.First().Value)), "TournamentId", "Name");
+
+            SelectList tournaments = GetTournaments(Int32.Parse(sports.First().Value));
             if (tournaments == null)
             {
-                logService.LogError("Controller: Match, Action: AddMatch Don't GetTournamentes");
-                //log.Error("Controller: Match, Action: AddMatch Don't GetTournamentes");
-                return RedirectToAction("InfoError", "Error");
+                return RedirectToAction("InfoDB", "Error");
             }
             ViewBag.Tournaments = tournaments;
-            SelectList teams = new SelectList(teamProvider.GetTeamsByTournament(Int32.Parse(tournaments.First().Value)), "TeamId", "Name");
+
+            SelectList teams = GetTeams(Int32.Parse(tournaments.First().Value));
             if (teams == null)
             {
-                logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                //log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                return RedirectToAction("InfoError", "Error");
+                return RedirectToAction("InfoDB", "Error");
             }
             ViewBag.Teams = teams;
-
-            SelectList teamsGuest = new SelectList(teamProvider.GetTeamsByTournament(Int32.Parse(tournaments.First().Value)), "TeamId", "Name"); ;
-            if (teamsGuest == null)
-            {
-                logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                //log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                return RedirectToAction("InfoError", "Error");
-            }
-            ViewBag.TeamsGuest = teamsGuest;
+            ViewBag.TeamsGuest = teams;
 
             return View();
         }
@@ -131,38 +147,23 @@ namespace Tote.Controllers
         public ActionResult TournamentesBySport(int sportId)
         {
             logService.LogInfoMessage("Controller: Match, Action: TournamentesBySport");
-            SelectList tournaments = new SelectList(betListProvider.GetTournament(sportId), "TournamentId", "Name");
-            if (tournaments == null)
-            {
-                logService.LogError("Controller: Match, Action: TournamentesBySport Don't GetTournament");
-                //log.Error("Controller: Match, Action: TournamentesBySport Don't GetTournament");
-                return RedirectToAction("InfoError", "Error");
-            }
+            SelectList tournaments = new SelectList(betListProvider.GetTournament(sportId), "TournamentId", "Name");            
             ViewBag.Tournaments = tournaments;
             return PartialView();
         }
+
         [Editor]
         public ActionResult MatchesByTournament(int tournamentId)
         {
             logService.LogInfoMessage("Controller: Match, Action: MatchesByTournament");
-            SelectList teams = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");
-            if (teams == null)
-            {
-                logService.LogError("Controller: Match, Action: MatchesByTournament Don't GetTeamsByTournament");
-                //log.Error("Controller: Match, Action: MatchesByTournament Don't GetTeamsByTournament");
-                return RedirectToAction("InfoError", "Error");
-            }
+            SelectList teams, teamsGuest;            
+            teams = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");            
             ViewBag.Teams = teams;
 
-            SelectList teamsGuest = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name"); ;
-            if (teamsGuest == null)
-            {
-                logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                //log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                return RedirectToAction("InfoError", "Error");
-            }
+            teamsGuest = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");             
             ViewBag.TeamsGuest = teamsGuest;
             return PartialView();
+            
         }
 
         [HttpPost]
@@ -174,65 +175,92 @@ namespace Tote.Controllers
             Result res = new Result { ResultId = 3 };
             match.Result = res;
             match.Score = "0";
-            if (match.Teams[0].TeamId != match.Teams[1].TeamId || match.Date > DateTime.Now)
+            if (match.Teams != null)
             {
-                result = matchService.AddMatch(match);
-                flag = false;
-            }
-            if (!result||flag)
-            {
-                ModelState.AddModelError("", "You can not add a match with the following parameters");
-                logService.LogError("Controller: Match, Action: AddMatch Don't add Match");
-                //log.Error("Controller: Match, Action: AddMatch Don't add Match");
-
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
-                if (sports == null)
+                if (match.Teams[0].TeamId != match.Teams[1].TeamId && match.Date > DateTime.Now)
                 {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetSports");
-                    //log.Error("Controller: Match, Action: AddMatch Don't GetSports");
-                    return RedirectToAction("InfoError", "Error");
+                    result = matchService.AddMatch(match);
+                    flag = false;
                 }
-                ViewBag.Sports = sports;
-
-                SelectList tournaments = new SelectList(betListProvider.GetTournament(match.SportId), "TournamentId", "Name",match.TournamentId);
-                if (tournaments == null)
+                if (!result || flag)
                 {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetTournamentes");
-                    //log.Error("Controller: Match, Action: AddMatch Don't GetTournamentes");
-                    return RedirectToAction("InfoError", "Error");
-                }
-                ViewBag.Tournaments = tournaments;
+                    ModelState.AddModelError("", "You can not add a match with the following parameters");
+                    logService.LogError("Controller: Match, Action: AddMatch Don't add Match");
 
-                IReadOnlyList<Team> teamsList = teamProvider.GetTeamsByTournament(match.TournamentId);
-                Team teamHome = teamsList.Where(t=>t.TeamId==match.Teams[0].TeamId).First();
-                SelectList teams = new SelectList(teamsList, "TeamId", "Name", new SelectListItem { Text = teamHome.Name, Value = teamHome.TeamId.ToString() });
-                if (teams == null)
+                    SelectList sports = GetSports();
+                    if (sports == null)
+                    {
+                        return RedirectToAction("InfoError", "Error");
+                    }
+                    ViewBag.Sports = sports;
+
+                    SelectList tournaments = GetTournaments(match.SportId, match.TournamentId);
+                    if (tournaments == null)
+                    {
+                        return RedirectToAction("InfoDB", "Error");
+                    }
+                    ViewBag.Tournaments = tournaments;
+
+                    IReadOnlyList<Team> teamsList = teamProvider.GetTeamsByTournament(match.TournamentId);
+                    Team teamHome = teamsList.Where(t => t.TeamId == match.Teams[0].TeamId).First();
+                    Team teamGuest = teamsList.Where(t => t.TeamId == match.Teams[1].TeamId).First();
+                    if (teamsList.Count == 0 || teamHome == null || teamGuest == null)
+                    {
+                        logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
+                        return RedirectToAction("InfoDB", "Error");
+                    }
+                    SelectList teams = new SelectList(teamsList, "TeamId", "Name", new SelectListItem { Text = teamHome.Name, Value = teamHome.TeamId.ToString() });
+                    ViewBag.Teams = teams;
+
+                    SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", new SelectListItem { Text = teamGuest.Name, Value = teamGuest.TeamId.ToString() });
+                    ViewBag.TeamsGuest = teamsGuest;
+
+                }
+
+                else
                 {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                    //log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                    return RedirectToAction("InfoError", "Error");
+                    cacheService.DeleteCache(cacheSortKey);
+                    cacheService.DeleteCache(cacheNavigationKey);
+                    return RedirectToAction("ShowMatches");
                 }
-                ViewBag.Teams = teams;
-
-                Team teamGuest = teamsList.Where(t => t.TeamId == match.Teams[1].TeamId).First();
-                SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", new SelectListItem { Text = teamGuest.Name, Value = teamGuest.TeamId.ToString() }); ;
-                if (teamsGuest == null)
-                {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                    //log.Error("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                    return RedirectToAction("InfoError", "Error");
-                }
-                ViewBag.TeamsGuest = teamsGuest;
-
             }
             else
-           // if(ModelState.IsValid)            
             {
-                cacheService.DeleteCache(cacheSortKey);
-                cacheService.DeleteCache(cacheNavigationKey);
-                return RedirectToAction("ShowMatches");
-            }
+                if (!result || flag)
+                {
+                    ModelState.AddModelError("", "You can not add a match with the following parameters");
+                    logService.LogError("Controller: Match, Action: AddMatch Don't add Match");
 
+                    SelectList sports = GetSports();
+                    if (sports == null)
+                    {
+                        return RedirectToAction("InfoError", "Error");
+                    }
+                    ViewBag.Sports = sports;
+
+                    SelectList tournaments = GetTournaments(match.SportId, match.TournamentId);
+                    if (tournaments == null)
+                    {
+                        return RedirectToAction("InfoDB", "Error");
+                    }
+                    ViewBag.Tournaments = tournaments;
+
+                    IReadOnlyList<Team> teamsList = teamProvider.GetTeamsByTournament(match.TournamentId);
+                    Team teamHome = teamsList.Where(t => t.TeamId == match.Teams[0].TeamId).First();
+                    Team teamGuest = teamsList.Where(t => t.TeamId == match.Teams[1].TeamId).First();
+                    if (teamsList.Count == 0 || teamHome == null || teamGuest == null)
+                    {
+                        logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
+                        return RedirectToAction("InfoDB", "Error");
+                    }
+                    SelectList teams = new SelectList(teamsList, "TeamId", "Name", new SelectListItem { Text = teamHome.Name, Value = teamHome.TeamId.ToString() });
+                    ViewBag.Teams = teams;
+
+                    SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", new SelectListItem { Text = teamGuest.Name, Value = teamGuest.TeamId.ToString() });
+                    ViewBag.TeamsGuest = teamsGuest;
+                }
+                
+            }
             return View(match);            
 
         }
@@ -249,49 +277,41 @@ namespace Tote.Controllers
                 return RedirectToAction("InfoError", "Error");
             }
 
-            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", match.SportId);
+            SelectList sports = GetSports(match.SportId);
             if (sports == null)
             {
-                logService.LogError("Controller: Match, Action: EditMatch Don't GetSports");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Sports = sports;
-            int selected = match.Tournament.TournamentId;
-            SelectList tournaments = new SelectList(betListProvider.GetTournament(match.SportId), "TournamentId", "Name", new SelectListItem { Text = match.Tournament.Name, Value = match.Tournament.TournamentId.ToString() });
+
+            SelectList tournaments = GetTournaments(match.SportId, match.Tournament.TournamentId);
             if (tournaments == null)
             {
-                logService.LogError("Controller: Match, Action: EditMatch Don't GetTournamentes");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Tournaments = tournaments;
 
             IReadOnlyList<Team> teamsList = teamProvider.GetTeamsByTournament(match.Tournament.TournamentId);
             Team teamHome = teamsList.Where(t => t.TeamId == match.Teams[0].TeamId).First();
-            SelectList teams = new SelectList(teamsList, "TeamId", "Name",teamHome.TeamId );
-            if (teams == null)
-            {
-                logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                return RedirectToAction("InfoError", "Error");
-            }
-            ViewBag.Teams = teams;
-
             Team teamGuest = teamsList.Where(t => t.TeamId == match.Teams[1].TeamId).First();
-            SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", teamGuest.TeamId); ;
-            if (teamsGuest == null)
+            if (teamsList.Count == 0 || teamHome == null || teamGuest == null)
             {
-                logService.LogError("Controller: Match, Action: EditMatch Don't GetTeamsAll");
+                logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsByTournament");
                 return RedirectToAction("InfoError", "Error");
             }
+            SelectList teams = new SelectList(teamsList, "TeamId", "Name",teamHome.TeamId);            
+            ViewBag.Teams = teams;
+            
+            SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", teamGuest.TeamId);            
             ViewBag.TeamsGuest = teamsGuest;
 
-            selected = match.Result.ResultId;
-            SelectList results = new SelectList(matchProvider.GetResultsAll(),"ResultId","Name", selected);
+            SelectList results = GetResults(match.Result.ResultId);
             if (results == null)
             {
-                logService.LogError("Controller: Match, Action: EditMatch Don't GetResultsAll");
                 return RedirectToAction("InfoError", "Error");
             }
-            ViewBag.Results = results;
+            ViewBag.Results = results;                       
+
             return View(match);
         }
 
@@ -311,52 +331,41 @@ namespace Tote.Controllers
                 ModelState.AddModelError("", "You can not update a match with the following parameters");
                 logService.LogError("Controller: Match, Action: AddMatch Don't add Match");
 
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+                SelectList sports = GetSports(match.SportId);
                 if (sports == null)
                 {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetSports");
                     return RedirectToAction("InfoError", "Error");
                 }
                 ViewBag.Sports = sports;
 
-                SelectList tournaments = new SelectList(betListProvider.GetTournament(match.SportId), "TournamentId", "Name", match.TournamentId);
+                SelectList tournaments = GetTournaments(match.SportId, match.TournamentId);
                 if (tournaments == null)
                 {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetTournamentes");
                     return RedirectToAction("InfoError", "Error");
                 }
-                ViewBag.Tournaments = tournaments;
+                ViewBag.Tournaments = tournaments;                
 
                 IReadOnlyList<Team> teamsList = teamProvider.GetTeamsByTournament(match.TournamentId);
-                
-                SelectList teams = new SelectList(teamsList, "TeamId", "Name", match.Teams[0].TeamId);
-                if (teams == null)
+                if (teamsList == null)
                 {
                     logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
                     return RedirectToAction("InfoError", "Error");
                 }
+                SelectList teams = new SelectList(teamsList, "TeamId", "Name", match.Teams[0].TeamId);                
                 ViewBag.Teams = teams;
-
-                
-                SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", match.Teams[1].TeamId); 
-                if (teamsGuest == null)
-                {
-                    logService.LogError("Controller: Match, Action: AddMatch Don't GetTeamsAll");
-                    return RedirectToAction("InfoError", "Error");
-                }
+                                
+                SelectList teamsGuest = new SelectList(teamsList, "TeamId", "Name", match.Teams[1].TeamId);                 
                 ViewBag.TeamsGuest = teamsGuest;
-                
-                SelectList results = new SelectList(matchProvider.GetResultsAll(), "ResultId", "Name", match.Result.ResultId);
+
+                SelectList results = GetResults(match.Result.ResultId);
                 if (results == null)
                 {
-                    logService.LogError("Controller: Match, Action: EditMatch Don't GetResultsAll");
                     return RedirectToAction("InfoError", "Error");
                 }
-                ViewBag.Results = results;
+                ViewBag.Results = results;                
 
             }
-            else
-            //if (ModelState.IsValid)
+            else            
             {
                 cacheService.DeleteCache(cacheSortKey);
                 cacheService.DeleteCache(cacheNavigationKey);

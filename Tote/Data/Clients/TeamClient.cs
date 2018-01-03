@@ -4,7 +4,6 @@ using Common.Models;
 using Data.TeamService;
 using Data.Business;
 using System.ServiceModel;
-using log4net;
 using Common.Logger;
 
 namespace Data.Clients
@@ -396,9 +395,9 @@ namespace Data.Clients
 
         public IReadOnlyList<TeamDto> GetTeamsByTournament(int tournamentId)
         {
-            if (tournamentId <= 0)
+            if (tournamentId < 0)
             {
-                logService.LogError("Class: TeamClient Method: GetTeamsByTournament tournamentId is not positive");
+                logService.LogError("Class: TeamClient Method: GetTeamsByTournament tournamentId is negative");
                 return null;
             }
             var model = new List<TeamDto>();

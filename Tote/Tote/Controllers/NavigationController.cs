@@ -6,7 +6,6 @@ using Common.Models;
 using System.ServiceModel;
 using System.Data.SqlClient;
 using Business.Service;
-using log4net;
 using Common.Logger;
 
 namespace Tote.Controllers
@@ -14,18 +13,17 @@ namespace Tote.Controllers
     public class NavigationController : Controller
     {
         private readonly IBetListProvider betListProvider;
-        private readonly ICacheService cacheService;
-        private readonly ILog log;
+        private readonly ICacheService cacheService;        
         private readonly ILogService<NavigationController> logService;
-        //private readonly ILogger logger;
+        
 
         public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService) 
-            :this(rateListProvider, cacheService, new LogService<NavigationController>() /*LogManager.GetLogger(typeof(NavigationController))*/)
+            :this(rateListProvider, cacheService, new LogService<NavigationController>())
         {
 
         }
 
-        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, ILogService<NavigationController> logService  /*ILog log*/)
+        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, ILogService<NavigationController> logService)
         {
             if (rateListProvider == null || cacheService == null)
             {
@@ -34,39 +32,16 @@ namespace Tote.Controllers
             this.betListProvider = rateListProvider;
             this.cacheService = cacheService;
             this.logService = logService;
-            /*if (logger == null)
+            if (logService == null)
             {
-                this.logger = new Logger(typeof(NavigationController));
+                this.logService = new LogService<NavigationController>();
             }
             else
             {
-                this.logger = logger;
-            }*/
-            /*if (log == null)
-            {
-                this.log = LogManager.GetLogger(typeof(NavigationController));
-            }
-            else
-            {
-                this.log = log;
-            }*/
+                this.logService = logService;
+            }            
         }
-        /*
-        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService)
-        {
-            this.betListProvider = rateListProvider;
-            this.cacheService = cacheService;
-        }
-
-        public static NavigationController createMatchController(IBetListProvider rateListProvider, ICacheService cacheService)
-        {
-            if (rateListProvider == null || cacheService == null)
-            {
-                throw new ArgumentNullException();
-            }
-            return new NavigationController(rateListProvider, cacheService);
-        }
-        */
+        
         [AllowAnonymous]
         public ActionResult ChildTournament(int id = 0)
         {
@@ -75,7 +50,7 @@ namespace Tote.Controllers
             {
                 tournaments = cacheService.InsertCache(id);
             }
-            if (tournaments==null)
+            if (tournaments == null)
             {
                 return RedirectToAction("InfoError", "Error");
             }          
@@ -111,7 +86,7 @@ namespace Tote.Controllers
             try
             {
                 bets = betListProvider.GetBetList(SportId, TournamentId);
-                if(bets==null)
+                if(bets == null)
                 {
                     return RedirectToAction("InfoError", "Error");
                 }
@@ -130,14 +105,14 @@ namespace Tote.Controllers
         [AllowAnonymous]
         public ActionResult LogAndRedirect(Exception ex)
         {
-            log.Error(ex.Message + " " + ex.StackTrace);
+            logService.LogError(ex.Message + " " + ex.StackTrace);
             return RedirectToAction("InfoError", "Error");
         }
         [AllowAnonymous]
         public ActionResult Bet(int id)
         {
             IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
-            if (bets.Count == 0)
+            if (bets == null)
             {
                 return RedirectToAction("InfoError", "Error");
             }
@@ -155,8 +130,7 @@ namespace Tote.Controllers
         [AllowAnonymous]
         public ActionResult List(int? SportId, int? TournamentId = null)
         {
-            logService.LogInfoMessage("Controller: Navigation, Action: List");
-            //log.Info("Controller: Navigation, Action: List");
+            logService.LogInfoMessage("Controller: Navigation, Action: List");            
             int sportId=0, tournamentId=0;
             if (SportId!=null)
             {
@@ -174,32 +148,25 @@ namespace Tote.Controllers
                 {
                     bets = cacheService.InsertCache(sportId, tournamentId);
                 }
-                if (bets.Count == 0)
+                if (bets == null)
                 {
                     return RedirectToAction("InfoError", "Error");
                 }
             }
             catch(FaultException<SqlException> sqlEx)
             {
-                logService.LogError(sqlEx.Message + " " + sqlEx.StackTrace);
-                //log.Error(sqlEx.Message+" "+ sqlEx.StackTrace);
+                logService.LogError(sqlEx.Message + " " + sqlEx.StackTrace);                
                 return RedirectToAction("InfoError", "Error");
             }
             catch(CommunicationException commEx)
             {
-                logService.LogError(commEx.Message + " " + commEx.StackTrace);
-                //log.Error(commEx.Message + " " + commEx.StackTrace);
+                logService.LogError(commEx.Message + " " + commEx.StackTrace);                
                 return RedirectToAction("InfoError", "Error");
             }
 
 
             return View(bets);
         }
-        [AllowAnonymous]
-        public ActionResult InfoError()
-        {
-            return View();
-        }
-        
+                
     }
 }

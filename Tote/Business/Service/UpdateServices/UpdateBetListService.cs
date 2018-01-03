@@ -35,7 +35,7 @@ namespace Business.Service
             if(matchId<=0||eventId<=0||userId<=0)
             {
                 logService.LogError("Class: UpdateBetListService Method: AddBasket ArgumentOutOfRangeException");
-                throw new ArgumentOutOfRangeException("Not positive Id not allowed");
+                return false;
             }
             Basket basket = new Basket()
             {
@@ -51,20 +51,20 @@ namespace Business.Service
             if(amount<=0||userId<=0)
             {
                 logService.LogError("Class: UpdateBetListService Method: AddBets ArgumentOutOfRangeException");
-                throw new ArgumentOutOfRangeException("Not positive userId or amount not allowed");
+                return;
             }
             int rateId = AddRate(amount, userId);
             if(rateId<=0)
             {
                 logService.LogError("Class: UpdateBetListService Method: AddBets  AddRate rateId not positive");
-                throw new ArgumentOutOfRangeException("Not positive userId or amount not allowed");
+                return;
             }
             double total = 1;
             IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total);
             if (baskets == null)
             {
                 logService.LogError("Class: UpdateBetListService Method: AddBets  GetBasketByUser is null");
-                throw new NullReferenceException("Basket is null");
+                return;
             }
 
             foreach (Basket basket in baskets)
@@ -88,7 +88,7 @@ namespace Business.Service
             if(bet==null||basketId<=0)
             {
                 logService.LogError("Class: UpdateBetListService Method: AddBet  AddBet don't add to DB");
-                throw new NullReferenceException("Bet is null or basketId<=0");
+                return false;
             }
             return betListClient.AddBet(bet, basketId);
         }
@@ -98,7 +98,7 @@ namespace Business.Service
             if (amount <= 0 || userId <= 0)
             {
                 logService.LogError("Class: UpdateBetListService Method: AddRate  Rate don't add to DB");
-                throw new ArgumentOutOfRangeException("amount<=0 or userId<=0");
+                return 0;
             }
             Rate rate = new Rate()
             {
@@ -115,7 +115,7 @@ namespace Business.Service
             if (basketId <= 0)
             {
                 logService.LogError("Class: UpdateBetListService Method: DeleteBasket Basket don't delete to DB");
-                throw new ArgumentOutOfRangeException("amount<=0 or userId<=0");
+                return false;
             }
             return betListClient.DeleteBasket(basketId);               
         }

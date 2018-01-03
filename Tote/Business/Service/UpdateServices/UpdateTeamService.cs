@@ -31,7 +31,7 @@ namespace Business.Service
             if (country == null)
             {
                 logService.LogError("Class: UpdateTeamService Method: AddCountry  Country don't add to DB");
-                throw new NullReferenceException("Country is null");
+                return false;
             }
             return teamClient.AddCountry(country);
         }
@@ -41,7 +41,7 @@ namespace Business.Service
             if (team == null)
             {
                 logService.LogError("Class: UpdateTeamService Method: AddTeam  Team don't add to DB");
-                throw new NullReferenceException("Team is null");
+                return false;
             }
             return teamClient.AddTeam(team);
         }
@@ -51,7 +51,7 @@ namespace Business.Service
             if (tournamentId <= 0|| teamId<=0)            
             {
                 logService.LogError("Class: UpdateTeamService Method: AddTournamentForTeam  Don't add tournament for team");
-                throw new ArgumentOutOfRangeException("AddTournamentForTeam");
+                return false;
             }
             return teamClient.AddTournamentForTeam(tournamentId, teamId);
         }
@@ -61,7 +61,7 @@ namespace Business.Service
             if (countryId <= 0)
             {
                 logService.LogError("Class: UpdateTeamService Method: DeleteCountry  Country don't delete from DB");
-                throw new ArgumentOutOfRangeException("countryId <= 0");
+                return false;
             }
             return teamClient.DeleteCountry(countryId);
         }
@@ -71,7 +71,7 @@ namespace Business.Service
             if (teamId <= 0)
             {
                 logService.LogError("Class: UpdateTeamService Method: DeleteTeam  Team don't delete from DB");
-                throw new ArgumentOutOfRangeException("teamId <= 0");
+                return false;
             }
             return teamClient.DeleteTeam(teamId);
         }
@@ -81,7 +81,7 @@ namespace Business.Service
             if (teamId <= 0||tournamentId<=0)
             {
                 logService.LogError("Class: UpdateTeamService Method: DeleteTournamentForTeam  Don't Delete Tournament For Team");
-                throw new ArgumentOutOfRangeException("teamId <= 0");
+                return false;
             }
             return teamClient.DeleteTournamentForTeam(tournamentId, teamId);
         }
@@ -91,7 +91,7 @@ namespace Business.Service
             if (country == null)
             {
                 logService.LogError("Class: UpdateTeamService Method: UpdateCountry  Country don't update to DB");
-                throw new NullReferenceException("Country is null");
+                return false;
             }
             return teamClient.UpdateCountry(country);
         }
@@ -101,7 +101,7 @@ namespace Business.Service
             if (team == null)
             {
                 logService.LogError("Class: UpdateTeamService Method: UpdateTeam  Team don't update to DB");
-                throw new NullReferenceException("Team is null");
+                return false;
             }
             return teamClient.UpdateTeam(team);
         }
