@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Service.Contracts.Common;
 using Service.Contracts.Logger;
+using System.Data;
+using System.ServiceModel;
+using Service.Contracts.Exception;
 
 namespace Tote.Service.Contracts.Test.Tests.Contracts
 {
@@ -15,10 +18,11 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
     public class TeamServiceTests
     {
         //private Mock<IMatchService> matchService;
-        private IMatchService teamService;
-        private Mock<ILogService<BetListService>> logService;
+        private TeamService teamService;
+        private Mock<ILogService<TeamService>> logService;
+        private Mock<IConnection<SortDto>> connectionSortDto;
 
-        private List<SortDto> GetSort()
+        private List<SortDto> GetSortDto()
         {
             var sort = new List<SortDto>();
             sort.Add(new SortDto()
@@ -89,48 +93,118 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
         [TestInitialize]
         public void TestInitialize()
         {
-            logService = new Mock<ILogService<BetListService>>();
-            /*matchService = new Mock<IMatchService>();            
-            matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
-                .Returns((int sport, string dateMatch, int status) => {
-                    IEnumerable<SortDto> sorts = GetSort();
-                    if (sport == 0 && dateMatch == "" && status == 0)
-                    {
-                        return GetSort().ToArray();
+            logService = new Mock<ILogService<TeamService>>();
+            connectionSortDto = new Mock<IConnection<SortDto>>();
 
-                    }
-                    if (sport > 0)
-                    {
-                        sorts = sorts.Where(m => m.SportId == sport);
-                        return sorts.ToArray();
-                    }
-                    if (status == 3)
-                    {
-                        sorts = sorts.Where(m => m.DateMatch > DateTime.Now);
-                        return sorts.ToArray();
-                    }
-                    if (dateMatch != "")
-                    {
-                        DateTime date = DateTime.Parse(dateMatch).Date;
-                        sorts = sorts.Where(m => m.DateMatch.Date == date);
-                        return sorts.ToArray();
-                    }
-
-                    throw new ArgumentException();
-                });*/
-            //teamService = new TeamService(logService.Object);
+            connectionSortDto.Setup(m => m.GetConnection(It.IsAny<CommandType>(), It.IsAny<string>(), It.IsAny<List<Parameter>>()))
+                .Returns((CommandType storedProcedure, string spName, List<Parameter> parameter) => {
+                    IEnumerable<SortDto> sorts = GetSortDto();
+                    
+                    return sorts.ToArray();                    
+                   
+                });
+            teamService = new TeamService(logService.Object, connectionSortDto.Object);
         }
 
         [TestMethod]
 
         public void TeamService_GetMatchBySportDateStatus_PassNullDate_CountValue()
-        {
-            var connection = new Connection<SortDto>();
+        {            
             var actualResult = teamService.GetMatchBySportDateStatus(0, "", 0);
-            Assert.IsTrue(actualResult.Length == GetSort().Count);
-
+            Assert.IsTrue(actualResult.Length == GetSortDto().Count);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(FaultException<CustomException>))]
+        public void TeamService_GetMatchBySportDateStatus_PassNegativeSportId_Exception()
+        {
+            var actualResult = teamService.GetMatchBySportDateStatus(-1, "", 0);            
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException<CustomException>))]
+        public void TeamService_GetMatchBySportDateStatus_PassNegativeStatus_Exception()
+        {
+            var actualResult = teamService.GetMatchBySportDateStatus(0, "", -1);            
+        }
+
+        [TestMethod]
+        public void TeamService_GetMatchBySportDateStatus_PassFootball_CountValue()
+        {
+            connectionSortDto.Setup(m => m.GetConnection(It.IsAny<CommandType>(), It.IsAny<string>(), It.IsAny<List<Parameter>>()))
+                .Returns((CommandType storedProcedure, string spName, List<Parameter> parameter) => {                  
+
+                    return GetSortDto().Where(m => m.SportId == 1).ToArray();                   
+
+                });
+
+            teamService = new TeamService(logService.Object, connectionSortDto.Object);
+            var actualResult = teamService.GetMatchBySportDateStatus(1, "", 0);
+            Assert.IsTrue(actualResult.Length == 3);
+        }
+
+        [TestMethod]
+        public void TeamService_GetMatchBySportDateStatus_PassStatus_CountValue()
+        {
+            connectionSortDto.Setup(m => m.GetConnection(It.IsAny<CommandType>(), It.IsAny<string>(), It.IsAny<List<Parameter>>()))
+                .Returns((CommandType storedProcedure, string spName, List<Parameter> parameter) => {
+
+                    return GetSortDto().Where(m => m.DateMatch > DateTime.Now).ToArray();
+
+                });
+
+            teamService = new TeamService(logService.Object, connectionSortDto.Object);
+            var actualResult = teamService.GetMatchBySportDateStatus(0, "", 3);
+            Assert.IsTrue(actualResult.Length == 2);
+        }
+
+        [TestMethod]
+        public void TeamService_GetMatchBySportDateStatus_PassDateMatch_CountValue()
+        {
+            connectionSortDto.Setup(m => m.GetConnection(It.IsAny<CommandType>(), It.IsAny<string>(), It.IsAny<List<Parameter>>()))
+                .Returns((CommandType storedProcedure, string spName, List<Parameter> parameter) => {
+
+                    return GetSortDto().Where(m => m.DateMatch.Date == DateTime.Now.Date).ToArray();
+
+                });
+
+            teamService = new TeamService(logService.Object, connectionSortDto.Object);
+            var actualResult = teamService.GetMatchBySportDateStatus(0, DateTime.Now.Date.ToString(), 0);
+            var matches = GetSortDto().Where(m => m.DateMatch.Date == DateTime.Now.Date);
+            Assert.IsTrue(actualResult.Length == matches.Count());
+        }
+
+        [TestMethod]
+        public void TeamService_GetMatchBySportDateStatus_PassSportStatus_CountValue()
+        {
+            connectionSortDto.Setup(m => m.GetConnection(It.IsAny<CommandType>(), It.IsAny<string>(), It.IsAny<List<Parameter>>()))
+                .Returns((CommandType storedProcedure, string spName, List<Parameter> parameter) => {
+
+                    return GetSortDto().Where(m => m.SportId == 1 && m.DateMatch > DateTime.Now).ToArray();
+
+                });
+
+            teamService = new TeamService(logService.Object, connectionSortDto.Object);
+            var actualResult = teamService.GetMatchBySportDateStatus(1, "", 3);
+            Assert.IsTrue(actualResult.Length == 1);
+        }
+
+        [TestMethod]
+        public void TeamService_GetMatchBySportDateStatus_PassSportStatus_Content()
+        {
+            connectionSortDto.Setup(m => m.GetConnection(It.IsAny<CommandType>(), It.IsAny<string>(), It.IsAny<List<Parameter>>()))
+                .Returns((CommandType storedProcedure, string spName, List<Parameter> parameter) => {
+
+                    return GetSortDto().Where(m => m.SportId == 1 && m.DateMatch > DateTime.Now).ToArray();
+
+                });
+
+            teamService = new TeamService(logService.Object, connectionSortDto.Object);
+            var actualResult = teamService.GetMatchBySportDateStatus(1, "", 3);
+            Assert.IsTrue(actualResult[0].MatchId == 1);
+            Assert.IsTrue(actualResult[0].SportId == 1);
+            Assert.IsTrue(actualResult[0].TeamHome == "AC Milan");
+        }
 
 
     }

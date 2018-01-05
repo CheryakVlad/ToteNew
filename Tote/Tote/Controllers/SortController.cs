@@ -131,7 +131,7 @@ namespace Tote.Controllers
             {
                 matches = cacheService.GetCache(sportId, dateMatch, status);
 
-                if (matches.Count == 0)
+                if (matches == null)
                 {
                     matches = cacheService.InsertCache(sportId, dateMatch, status);
                 }                              

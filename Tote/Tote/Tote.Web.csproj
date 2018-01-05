@@ -274,7 +274,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\MatchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -299,7 +298,6 @@
     <Content Include="Views\Sport\EditSport.cshtml" />
     <Content Include="Views\Sport\AddSport.cshtml" />
     <Content Include="Views\Sport\DeleteSport.cshtml" />
-    <Content Include="Views\Sort\Sort.cshtml" />
     <Content Include="Views\Sort\Match.cshtml" />
     <Content Include="Views\Tournament\ShowTournaments.cshtml" />
     <Content Include="Views\Tournament\AddTournament.cshtml" />
@@ -351,6 +349,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business\Tote.App.Business.csproj">

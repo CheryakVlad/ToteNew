@@ -8,19 +8,28 @@ using Service.Contracts.Exception;
 using System.ServiceModel;
 using Service.Contracts.Logger;
 
+
 namespace Service.Contracts.Contracts
 {
     public class TeamService : ITeamService,IMatchService,IEventService
     {
         private readonly ILogService<TeamService> logService;
+        private IConnection<SortDto> connectionSortDto;
+        //private IDictionary<object, Func<CommandType, string, List<Parameter>, object>> dtoDictionary;
 
-        public TeamService():this(new LogService<TeamService>())
+        public TeamService():this(new LogService<TeamService>(), new Connection<SortDto>())
         {
-
+            
         }
 
-        public TeamService(ILogService<TeamService> logService)
+        public TeamService(ILogService<TeamService> logService, IConnection<SortDto> connectionSortDto)
         {
+            if(connectionSortDto == null)
+            {
+                throw new ArgumentNullException();
+            }
+            this.connectionSortDto = connectionSortDto;
+                      
             if (logService == null)
             {
                 this.logService = new LogService<TeamService>();
@@ -29,6 +38,7 @@ namespace Service.Contracts.Contracts
             {
                 this.logService = logService;
             }
+
         }
 
         private void GenerateFaultException(string title, string exceptionMessage)
@@ -242,11 +252,11 @@ namespace Service.Contracts.Contracts
         }
 
         public CountryDto[] GetCountriesAll()
-        {
+        {            
             var connection = new Connection<CountryDto>();
             try
             {
-                return connection.GetConnection(CommandType.StoredProcedure, "GetCountriesAll");
+                return connection.GetConnection(CommandType.StoredProcedure, "GetCountriesAll");                
             }
             catch (SqlException sqlEx)
             {
@@ -340,6 +350,7 @@ namespace Service.Contracts.Contracts
             try
             {
                 return connection.GetConnection(CommandType.StoredProcedure, "GetMatchById", parameters)[0];
+                
             }
             catch (SqlException sqlEx)
             {
@@ -361,10 +372,11 @@ namespace Service.Contracts.Contracts
             parameters.Add(new Parameter { Type = DbType.String, Name = "@DateMatch", Value = dateMatch });
             parameters.Add(new Parameter { Type = DbType.Int32, Name = "@Status", Value = status });
 
-            var connection = new Connection<SortDto>();
+            //var connection = new Connection<SortDto>();
             try
             {
-                return connection.GetConnection(CommandType.StoredProcedure, "GetMatchesBySportDateStatusSP", parameters);
+                //return connection.GetConnection(CommandType.StoredProcedure, "GetMatchesBySportDateStatusSP", parameters);
+                return connectionSortDto.GetConnection(CommandType.StoredProcedure, "GetMatchesBySportDateStatusSP", parameters);
             }
             catch (SqlException sqlEx)
             {

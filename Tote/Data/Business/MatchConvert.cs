@@ -107,6 +107,10 @@ namespace Data.Business
 
         public IReadOnlyList<Match> ToMatches(IReadOnlyList<SortDto> sortesDto)
         {
+            if(sortesDto.Count == 0)
+            {
+                return null;
+            }
             var matches = new List<Match>();
             foreach (var sortDto in sortesDto)
             {

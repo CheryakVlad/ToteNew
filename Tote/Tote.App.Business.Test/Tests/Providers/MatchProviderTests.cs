@@ -137,8 +137,7 @@ namespace Tote.App.Business.Test
         {            
             betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", 0);
-            Assert.IsTrue(actualResult.Count == GetMatches().Count);
-           
+            Assert.IsTrue(actualResult.Count == GetMatches().Count);           
         }
 
         [TestMethod]        
@@ -146,8 +145,7 @@ namespace Tote.App.Business.Test
         {
             betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(-1, "", 0);            
-            Assert.IsNull(actualResult);
-            
+            Assert.IsNull(actualResult);            
         }
 
         [TestMethod]        
@@ -156,8 +154,8 @@ namespace Tote.App.Business.Test
             betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", -1);
             Assert.IsNull(actualResult);
-
         }
+
         [TestMethod]
         public void MatchProvider_GetMatchBySportDateStatus_PassFootball_CountValue()
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using Service.Contracts.Dto;
+﻿using Service.Contracts.Dto;
 using Service.Contracts.Common;
 using System.Collections.Generic;
 using System.Data;
@@ -94,7 +93,7 @@ namespace Service.Contracts.Contracts
                 
         public UserDto ExistsUser(string login, string password)
         {
-            if (string.IsNullOrEmpty(login)||string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 GenerateFaultException("GetUserByLoginPassword", "ArgumentException");
             }

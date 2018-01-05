@@ -115,11 +115,11 @@ namespace Service.Contracts.Common
                 Login = reader[1].ToString(),
                 Password = reader[2].ToString(),
                 Email = reader[3].ToString(),
-                Money = reader.GetDecimal(5),
-                FIO = reader[6].ToString(),
-                PhoneNumber = reader[7].ToString(),
-                Role = reader[9].ToString(),
-                RoleId = (int)reader[10]
+                Money = reader.GetDecimal(4),
+                FIO = reader[5].ToString(),
+                PhoneNumber = reader[6].ToString(),
+                Role = reader[8].ToString(),
+                RoleId = (int)reader[9]
             };
             return UserDto;
         }
