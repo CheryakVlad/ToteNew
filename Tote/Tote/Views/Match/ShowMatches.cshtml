@@ -3,6 +3,7 @@
 @{
     Layout = @"\Views\LayoutView.cshtml"; 
 }
+
 <br />
 <br />
 <br />
@@ -10,6 +11,8 @@
     <p>
         @Html.ActionLink("Create New", "AddMatch")
     </p>
+@using (Html.BeginForm("ShowMatches", "Match", FormMethod.Post))
+{
     <table class="table">
         <tr>
             <th>
@@ -34,10 +37,11 @@
             <th></th>
         </tr>
     
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(model=>item.Teams[0].Name) (@Html.DisplayFor(model=>item.Teams[0].Country.Name))
+                @Html.DisplayFor(model => item.Teams[0].Name) (@Html.DisplayFor(model => item.Teams[0].Country.Name))
             </td>
             <td>
                 @Html.DisplayFor(model => item.Teams[1].Name) (@Html.DisplayFor(model => item.Teams[1].Country.Name))
@@ -56,12 +60,40 @@
             </td>
             
             <td>
-                @Html.ActionLink("Edit", "EditMatch", new { id=item.MatchId }) |
-                @Html.ActionLink("Show Coefficients", "ShowCoefficient", new { id=item.MatchId }) |
-                @Html.ActionLink("Delete", "DeleteMatch", new { id=item.MatchId })
+                @Html.ActionLink("Edit", "EditMatch", new { id = item.MatchId }) |
+                @Html.ActionLink("Show Coefficients", "ShowCoefficient", new { id = item.MatchId }) |
+                @Html.ActionLink("Delete", "DeleteMatch", new { id = item.MatchId })
             </td>
         </tr>
     }
     
     </table>
 
+    <br />
+    <ul class="pagination">
+
+        @for (int i = 1; i <= ViewBag.PageCount; i++)
+        {
+            <li>
+                @if (i != ViewBag.CurrentPageIndex)
+                    {
+                    <a href="javascript:PagerClick(@i);">@i</a>
+                }
+                else
+                {
+                    <span>@i</span>
+                }
+            </li>
+        }
+
+    </ul>
+            <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+
+}
+
+<script type="text/javascript">
+            function PagerClick(index) {
+                document.getElementById("hfCurrentPageIndex").value = index;
+                document.forms[0].submit();
+            }
+</script>

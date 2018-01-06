@@ -8,13 +8,8 @@ namespace Common.Logger
     {
         private static ILog log = null;
         static Logger()
-        {
-            //var log4NetConfigDirectory = 
-            //AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
-            //var log4NetConfigFilePath = Path.Combine(log4NetConfigDirectory, "log4net.config");
-            //log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(log4NetConfigFilePath));
-            log = LogManager.GetLogger(typeof(Logger));
-            //log4net.GlobalContext.Properties["host"] = Environment.MachineName;
+        {            
+            log = LogManager.GetLogger(typeof(Logger));            
         }
         public Logger(Type logClass)
         {

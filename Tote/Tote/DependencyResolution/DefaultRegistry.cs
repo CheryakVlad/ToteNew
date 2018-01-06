@@ -18,6 +18,7 @@
 namespace Tote.DependencyResolution
 {
     using Common.Logger;
+    using Common.Pagination;
     using Controllers;
     using log4net;
     using StructureMap.Configuration.DSL;
@@ -30,7 +31,8 @@ namespace Tote.DependencyResolution
         {
             Scan(
                 scan => {
-                    For(typeof(ILogService<>)).Use(typeof(LogService<>));
+                    For(typeof(ILogService<>)).Use(typeof(LogService<>));                    
+                    For<IMatchPaging>().Use<MatchPaging>();
                     //For<ILog>().Use(y => LogManager.GetLogger(typeof(NavigationController)));
                     /*For<ILog>().Use(y => LogManager.GetLogger(typeof(ErrorController)));
                     For<ILog>().Use(y => LogManager.GetLogger(typeof(LoginController)));
@@ -39,7 +41,7 @@ namespace Tote.DependencyResolution
                     For<ILog>().Use(y => LogManager.GetLogger(typeof(SportController)));
                     For<ILog>().Use(y => LogManager.GetLogger(typeof(TeamController)));
                     For<ILog>().Use(y => LogManager.GetLogger(typeof(TournamentController)));*/
-                    For<ILog>().Use(y => LogManager.GetLogger(typeof(Logger)));
+                    //For<ILog>().Use(y => LogManager.GetLogger(typeof(Logger)));
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                     scan.With(new ControllerConvention());

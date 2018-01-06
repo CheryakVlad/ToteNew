@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Tote.Attribute;
 using Common.Logger;
+using Common.Pagination;
 
 namespace Tote.Controllers
 {
@@ -14,24 +15,26 @@ namespace Tote.Controllers
     {
         private const string cacheSortKey = "sortKey";
         private const string cacheNavigationKey = "navigateKey";
+        private const int maxRows = 10;
         private readonly IMatchProvider matchProvider;
         private readonly IBetListProvider betListProvider;
         private readonly ITeamProvider teamProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateMatchService matchService;
         private readonly ILogService<MatchController> logService;
+        private readonly IMatchPaging matchPaging;
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider,
-            ICacheService cacheService, IUpdateMatchService matchService) 
-            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, new LogService<MatchController>())
+            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging) 
+            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, matchPaging, new LogService<MatchController>())
         {
 
         }
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, 
-            ICacheService cacheService, IUpdateMatchService matchService, ILogService<MatchController> logService)
+            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging, ILogService<MatchController> logService)
         {
-            if (betListProvider == null || matchProvider == null || teamProvider == null || cacheService == null|| matchProvider==null)
+            if (betListProvider == null || matchProvider == null || teamProvider == null || cacheService == null|| matchProvider==null || matchPaging==null)
             {
                 throw new ArgumentNullException();
             }
@@ -40,6 +43,7 @@ namespace Tote.Controllers
             this.teamProvider = teamProvider;
             this.cacheService = cacheService;
             this.matchService = matchService;
+            this.matchPaging = matchPaging;
             if (logService == null)
             {
                 this.logService = new LogService<MatchController>();
@@ -51,6 +55,7 @@ namespace Tote.Controllers
         }
         
         [Editor]
+        [HttpGet]
         public ActionResult ShowMatches()
         {
             logService.LogInfoMessage("Controller: Match, Action: ShowMatches");
@@ -60,8 +65,31 @@ namespace Tote.Controllers
                 logService.LogError("Controller: Match, Action: ShowMatches Don't GetMatchesAll");                
                 return RedirectToAction("InfoError", "Error");
             }
-            return PartialView(matches);
+            matchPaging.SetMatches(matches);
+            IReadOnlyList<Match> matchesPaging = matchPaging.GetMatchesPaging(1, maxRows);
+            ViewBag.PageCount = matchPaging.GetPageCount();
+            ViewBag.CurrentPageIndex = 1;
+            return PartialView(matchesPaging);            
         }
+
+        [Editor]
+        [HttpPost]
+        public ActionResult ShowMatches(int currentPageIndex)
+        {                        
+            logService.LogInfoMessage("Controller: Match, Action: ShowMatches");
+            IReadOnlyList<Match> matches = matchProvider.GetMatchesAll();
+            if (matches == null)
+            {
+                logService.LogError("Controller: Match, Action: ShowMatches Don't GetMatchesAll");
+                return RedirectToAction("InfoError", "Error");
+            }
+            matchPaging.SetMatches(matches);
+            IReadOnlyList<Match> matchesPaging = matchPaging.GetMatchesPaging(currentPageIndex, maxRows);
+            ViewBag.PageCount = matchPaging.GetPageCount();
+            ViewBag.CurrentPageIndex = currentPageIndex;
+            return PartialView(matchesPaging);
+        }
+
 
         private SelectList GetSports(int sport = 1)
         {
