@@ -9,22 +9,22 @@ using Common.Logger;
 namespace Data.Clients
 {
     public class UserClient : IUserClient
-    {        
-        private readonly IConvert convert;
+    {                
+        private readonly IUserConvert userConvert;
         private readonly ILogService<UserClient> logService;
 
-        public UserClient(IConvert convert):this(convert, new LogService<UserClient>())
+        public UserClient(IUserConvert userConvert) :this(userConvert, new LogService<UserClient>())
         {
 
         }
 
-        public UserClient(IConvert convert, ILogService<UserClient> logService)
+        public UserClient(IUserConvert userConvert, ILogService<UserClient> logService)
         {
-            if (convert == null)
+            if (userConvert == null)
             {
                 throw new ArgumentNullException();
             }
-            this.convert = convert;
+            this.userConvert = userConvert;
             if (logService == null)
             {
                 this.logService = new LogService<UserClient>();
@@ -43,7 +43,7 @@ namespace Data.Clients
                 return false;
             }
             var userDto = new UserDto();
-            userDto = convert.ToUserDto(user);
+            userDto = userConvert.ToUserDto(user);
             var model = new bool();
             using (var client = new UserService.UserServiceClient())
             {
@@ -272,7 +272,7 @@ namespace Data.Clients
                 return false; 
             }
             var userDto = new UserDto();
-            userDto = convert.ToUserDto(user);
+            userDto = userConvert.ToUserDto(user);
             var model = new bool();            
             using (var client = new UserService.UserServiceClient())
             {

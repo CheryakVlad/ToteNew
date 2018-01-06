@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace Service.Contracts.Common
 {
-    internal class CreateDto
+    internal class CreateDto:ICreateDto
     {
         public BasketDto CreateBasketDto(SqlDataReader reader)
         {

@@ -1,15 +1,13 @@
 ﻿using Common.Models;
+using System.Collections.Generic;
 
 namespace Business.Providers
 {
     public interface ITournamentProvider
     {
-        /*bool UpdateTournament(Tournament tournament);
-
-        bool AddTournament(Tournament tournament);
-
-        bool DeleteTournament(int tournamentId);*/
-
         Tournament GetTournamentById(int tournamentId);
+        IReadOnlyList<Tournament> GetTournament(int? sportId);
+        IReadOnlyList<Tournament> GetTournamentes();
+        IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId);
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="Common\Connection.cs" />
     <Compile Include="Common\CreateDto.cs" />
     <Compile Include="Common\IConnection.cs" />
+    <Compile Include="Common\ICreateDto.cs" />
     <Compile Include="Common\Parameter.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Contracts\TeamService.cs" />

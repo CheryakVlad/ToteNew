@@ -8,6 +8,10 @@ namespace Data.Business
     {
         public IReadOnlyList<Event> ToEvent(IReadOnlyList<EventDto> eventsDto)
         {
+            if(eventsDto.Count == 0)
+            {
+                return null;
+            }
             var eventsList = new List<Event>();
             foreach (var eventDto in eventsDto)
             {
@@ -26,6 +30,10 @@ namespace Data.Business
 
         public EventDto[] ToEventDto(IReadOnlyList<Event> events)
         {
+            if (events.Count == 0)
+            {
+                return null;
+            }
             var eventsDto = new List<EventDto>();
             foreach (var _event in events)
             {
@@ -44,6 +52,10 @@ namespace Data.Business
 
         public Match ToMatch(MatchDto matchDto)
         {
+            if (matchDto == null)
+            {
+                return null;
+            }
             var teams = new List<Team>();
             teams.Add(new Team
             {
@@ -91,6 +103,10 @@ namespace Data.Business
 
         public MatchDto ToMatchDto(Match match)
         {
+            if (match == null)
+            {
+                return null;
+            }
             var matchDto = new MatchDto
             {
                 MatchId = match.MatchId,
@@ -150,6 +166,10 @@ namespace Data.Business
 
         public IReadOnlyList<Match> ToMatches(IReadOnlyList<MatchDto> matchesDto)
         {
+            if (matchesDto.Count == 0)
+            {
+                return null;
+            }
             var matches = new List<Match>();
             foreach(var matchDto in matchesDto)
             {
@@ -160,6 +180,10 @@ namespace Data.Business
 
         public IReadOnlyList<Result> ToResult(IReadOnlyList<ResultDto> resultsDto)
         {
+            if (resultsDto.Count == 0)
+            {
+                return null;
+            }
             var resultsList = new List<Result>();
             foreach (var resultDto in resultsDto)
             {

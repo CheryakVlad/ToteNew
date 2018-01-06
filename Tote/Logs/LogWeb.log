@@ -1,23 +1,141 @@
-2018-01-05 21:55:48,562 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
-2018-01-05 21:57:01,040 INFO Tote.Controllers.LoginController - user: admin login
-2018-01-05 21:57:01,205 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
-2018-01-05 21:57:03,605 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 21:58:21,023 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 21:58:21,051 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
-2018-01-05 21:58:30,523 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:30:02,763 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
-2018-01-05 22:30:15,637 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:31:42,857 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:31:47,537 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:31:50,183 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:36:19,713 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:41:10,647 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:42:11,455 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:42:21,463 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:43:57,378 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
-2018-01-05 22:44:52,483 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:45:02,763 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:47:36,390 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
-2018-01-05 22:47:54,601 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:48:13,456 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
-2018-01-05 22:48:35,459 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-06 18:49:57,932 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 18:50:13,015 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 18:50:13,050 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 18:50:13,137 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 18:50:13,922 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 18:50:30,652 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 18:50:30,882 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 18:52:10,826 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-06 18:52:10,943 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 18:52:11,214 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 18:52:11,292 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 18:52:11,307 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 18:52:11,333 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 18:52:11,499 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 18:52:11,568 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 18:52:13,986 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2018-01-06 18:57:05,626 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2018-01-06 18:57:56,389 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2018-01-06 22:19:47,233 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 22:21:17,879 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:21:18,545 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:21:20,835 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:21:21,425 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:21:32,273 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:21:32,283 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:24:07,085 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-06 22:24:07,268 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 22:24:07,820 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:24:08,292 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:24:08,536 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:24:08,856 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:24:08,892 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:24:09,071 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:24:10,478 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2018-01-06 22:24:24,645 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: AddTournament
+2018-01-06 22:24:49,685 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2018-01-06 22:24:52,069 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: EditTournament
+2018-01-06 22:24:56,815 ERROR Tote.Controllers.TournamentController - Controller: Tournament, Action: AddTournament Don't add Tournament
+2018-01-06 22:25:12,409 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2018-01-06 22:28:23,077 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: EditTournament
+2018-01-06 22:28:25,730 ERROR Tote.Controllers.TournamentController - Controller: Tournament, Action: AddTournament Don't add Tournament
+2018-01-06 22:29:45,564 ERROR Tote.Controllers.TournamentController - Controller: Tournament, Action: AddTournament Don't add Tournament
+2018-01-06 22:32:48,832 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2018-01-06 22:33:10,900 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: DeleteTournament
+2018-01-06 22:33:12,484 INFO Tote.Controllers.TournamentController - Controller: Tournament, Action: ShowTournaments
+2018-01-06 22:33:15,396 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2018-01-06 22:33:29,863 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2018-01-06 22:33:54,962 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddCountry
+2018-01-06 22:34:12,426 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2018-01-06 22:34:14,438 INFO Tote.Controllers.TeamController - Controller: Team, Action: EditCountry
+2018-01-06 22:34:17,093 ERROR Tote.Controllers.TeamController - Controller: Sport, Action: AddSport Don't update country
+2018-01-06 22:37:09,355 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2018-01-06 22:37:13,156 INFO Tote.Controllers.TeamController - Controller: Team, Action: DeleteCountry
+2018-01-06 22:37:14,217 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowCountries
+2018-01-06 22:37:17,786 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2018-01-06 22:37:21,690 INFO Tote.Controllers.SportController - Controller: Sport, Action: AddSport
+2018-01-06 22:37:24,952 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2018-01-06 22:37:26,460 INFO Tote.Controllers.SportController - Controller: Sport, Action: EditSport
+2018-01-06 22:37:28,762 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2018-01-06 22:37:30,709 INFO Tote.Controllers.SportController - Controller: Sport, Action: DeleteSport
+2018-01-06 22:37:31,978 INFO Tote.Controllers.SportController - Controller: Sport, Action: ShowSports
+2018-01-06 22:37:36,952 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2018-01-06 22:37:41,748 INFO Tote.Controllers.TeamController - Controller: Team, Action: AddTeam
+2018-01-06 22:37:57,801 ERROR Tote.Controllers.TeamController - Controller: Team, Action: AddTeam Don't add Team
+2018-01-06 22:38:05,279 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2018-01-06 22:38:08,053 INFO Tote.Controllers.TeamController - Controller: Team, Action: EditTeam
+2018-01-06 22:38:10,992 ERROR Tote.Controllers.TeamController - Controller: Team, Action: AddTeam Don't update team
+2018-01-06 22:38:14,459 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2018-01-06 22:38:18,528 INFO Tote.Controllers.TeamController - Controller: Team, Action: DeleteTeam
+2018-01-06 22:38:19,896 INFO Tote.Controllers.TeamController - Controller: Team, Action: ShowTeams
+2018-01-06 22:39:55,378 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 22:39:59,492 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:39:59,527 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:39:59,535 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 22:40:00,628 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:40:00,820 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:40:00,829 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 22:41:02,674 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:41:22,706 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:41:27,391 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:41:33,157 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:41:36,785 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:41:38,231 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:41:40,600 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 22:49:15,147 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:49:26,778 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:49:39,230 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:49:42,799 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:49:46,465 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:49:49,449 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:49:52,436 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:49:54,073 ERROR Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient Don't AddBasket
+2018-01-06 22:49:54,082 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:49:55,975 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 22:50:01,292 INFO Tote.Controllers.SortController - Controller: Sort, Action: DeleteBasket User:admin
+2018-01-06 22:50:03,147 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 22:50:04,296 INFO Tote.Controllers.SortController - Controller: Sort, Action: DeleteBasket User:admin
+2018-01-06 22:50:05,426 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 22:50:07,320 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-06 22:50:09,968 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:12,908 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:31,355 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:36,383 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:37,631 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:38,151 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:38,495 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:38,809 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:38,977 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 22:50:39,295 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-06 23:01:45,569 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 23:01:51,760 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:01:51,760 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:01:51,760 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:01:52,738 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:01:53,455 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:01:53,468 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:02:13,955 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 23:19:01,992 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 23:19:31,616 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:19:31,661 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:19:31,710 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:19:32,859 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:19:41,220 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:19:41,230 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:19:53,727 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 23:20:57,848 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 23:21:03,255 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:21:03,291 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:21:03,299 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:21:05,219 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:21:05,940 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:21:05,958 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:21:26,638 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-06 23:24:24,877 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-06 23:24:29,476 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:24:29,732 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:24:30,454 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:24:30,479 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-06 23:24:31,309 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:24:31,335 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-06 23:24:31,735 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin

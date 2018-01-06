@@ -10,6 +10,10 @@ namespace Data.Business
     {
         public IReadOnlyList<Event> GetEvents(IReadOnlyList<ToteService.EventDto> eventsDto)
         {
+            if (eventsDto.Count == 0)
+            {
+                return null;
+            }
             var eventsList = new List<Event>();
             foreach (var eventDto in eventsDto)
             {                
@@ -28,6 +32,10 @@ namespace Data.Business
 
         public Basket ToBasket(BasketDto basketDto)
         {
+            if (basketDto == null)
+            {
+                return null;
+            }
             var basket = new Basket
             {
                 BasketId = basketDto.BasketId,
@@ -41,6 +49,10 @@ namespace Data.Business
 
         public IReadOnlyList<Basket> ToBasket(IReadOnlyList<BasketDto> basketsDto)
         {
+            if (basketsDto.Count == 0)
+            {
+                return null;
+            }
             var baskets = new List<Basket>();
             foreach (var basketDto in basketsDto)
             {
@@ -53,6 +65,10 @@ namespace Data.Business
 
         public BasketDto ToBasketDto(Basket basket)
         {
+            if (basket == null)
+            {
+                return null;
+            }
             var basketDto = new BasketDto
             {
                 BasketId = basket.BasketId,
@@ -67,6 +83,10 @@ namespace Data.Business
 
         public IReadOnlyList<Bet> ToBet(IReadOnlyList<BetDto> betsDto)
         {
+            if (betsDto.Count == 0)
+            {
+                return null;
+            }
             var bets = new List<Bet>();
             
             foreach (var betDto in betsDto)
@@ -80,6 +100,10 @@ namespace Data.Business
 
         public Bet ToBet(BetDto betDto)
         {
+            if (betDto == null)
+            {
+                return null;
+            }
             var bet = new Bet
             {
                 BetId =betDto.BetId,
@@ -96,6 +120,10 @@ namespace Data.Business
 
         public BetDto ToBetDto(Bet bet)
         {
+            if (bet == null)
+            {
+                return null;
+            }
             var betDto = new BetDto
             {
                 BetId=bet.BetId,
@@ -110,6 +138,10 @@ namespace Data.Business
 
         public IReadOnlyList<Bet> ToBetsList(IReadOnlyList<BetListDto> betsListDto)
         {
+            if (betsListDto.Count == 0)
+            {
+                return null;
+            }
             var betsList = new List<Bet>();
             foreach (var betListDto in betsListDto)
             {
@@ -134,6 +166,10 @@ namespace Data.Business
 
         public Country ToCountry(CountryDto countryDto)
         {
+            if (countryDto == null)
+            {
+                return null;
+            }
             var country = new Country
             {
                 CountryId = countryDto.CountryId,
@@ -144,6 +180,10 @@ namespace Data.Business
 
         public IReadOnlyList<Country> ToCountry(IReadOnlyList<CountryDto> countriesDto)
         {
+            if (countriesDto.Count == 0)
+            {
+                return null;
+            }
             var countriesList = new List<Country>();
             foreach (var countryDto in countriesDto)
             {
@@ -154,6 +194,10 @@ namespace Data.Business
 
         public CountryDto ToCountryDto(Country country)
         {
+            if (country == null)
+            {
+                return null;
+            }
             var countryDto = new CountryDto
             {
                 CountryId = country.CountryId,
@@ -164,6 +208,10 @@ namespace Data.Business
 
         public IReadOnlyList<Event> ToEvents(IReadOnlyList<ToteService.EventDto> eventsDto)
         {
+            if (eventsDto.Count == 0)
+            {
+                return null;
+            }
             var eventsList = new List<Event>();
             foreach (var eventDto in eventsDto)
             {
@@ -182,6 +230,10 @@ namespace Data.Business
 
         public IReadOnlyList<Match> ToMatchList(IReadOnlyList<BetListDto> betsListDto)
         {
+            if (betsListDto.Count == 0)
+            {
+                return null;
+            }
             var matchesList = new List<Match>();
             foreach (var betListDto in betsListDto)
             {
@@ -202,6 +254,10 @@ namespace Data.Business
 
         public IReadOnlyList<Match> ToMatchList(IReadOnlyList<BetListDto> betsListDto, IReadOnlyList<ToteService.EventDto> eventsDto)
         {
+            if (betsListDto.Count == 0 || eventsDto.Count == 0)
+            {
+                return null;
+            }
             var matchesList = new List<Match>();
             foreach (var betListDto in betsListDto)
             {
@@ -238,6 +294,10 @@ namespace Data.Business
 
         public IReadOnlyList<Rate> ToRate(IReadOnlyList<RateDto> ratesDto)
         {
+            if (ratesDto.Count == 0)
+            {
+                return null;
+            }
             var rates = new List<Rate>();
             foreach (var rateDto in ratesDto)
             {
@@ -248,6 +308,10 @@ namespace Data.Business
 
         public Rate ToRate(RateDto rateDto)
         {
+            if (rateDto == null)
+            {
+                return null;
+            }
             var Rate = new Rate
             {
                 RateId=rateDto.RateId,
@@ -262,6 +326,10 @@ namespace Data.Business
 
         public RateDto ToRateDto(Rate rate)
         {
+            if (rate == null)
+            {
+                return null;
+            }
             var rateDto = new RateDto
             {
                 RateId=rate.RateId,
@@ -273,25 +341,14 @@ namespace Data.Business
             return rateDto;
         }
 
-        public IReadOnlyList<Role> ToRoles(IReadOnlyList<RoleDto> rolesDto)
-        {
-            var roles = new List<Role>();
-            foreach (var roleDto in rolesDto)
-            {
-                var role = new Role
-                {
-                    RoleId=roleDto.RoleId,
-                    Name=roleDto.Name
-                };
-
-                roles.Add(role);
-            }
-
-            return roles;
-        }
+        
 
         public Sport ToSport(SportDto sportDto)
         {
+            if (sportDto == null)
+            {
+                return null;
+            }
             var sport = new Sport
             {
                 SportId = sportDto.SportId,
@@ -303,6 +360,10 @@ namespace Data.Business
 
         public IReadOnlyList<Sport> ToSport(IReadOnlyList<SportDto> sportsDto)
         {
+            if (sportsDto.Count == 0)
+            {
+                return null;
+            }
             var sports = new List<Sport>();
             foreach (var sportDto in sportsDto)
             {    
@@ -314,6 +375,10 @@ namespace Data.Business
 
         public SportDto ToSportDto(Sport sport)
         {
+            if (sport == null)
+            {
+                return null;
+            }
             var sportDto = new SportDto
             {
                 SportId=sport.SportId,
@@ -325,6 +390,10 @@ namespace Data.Business
 
         public Team ToTeam(TeamDto teamDto)
         {
+            if (teamDto == null)
+            {
+                return null;
+            }
             var sport = new Sport
             {
                 SportId=teamDto.SportId,
@@ -351,6 +420,10 @@ namespace Data.Business
 
         public TeamDto ToTeamDto(Team team)
         {
+            if (team == null)
+            {
+                return null;
+            }
             var teamDto = new TeamDto
             {
                 TeamId=team.TeamId,
@@ -364,6 +437,10 @@ namespace Data.Business
 
         public IReadOnlyList<Team> ToTeams(IReadOnlyList<TeamDto> teamsDto)
         {
+            if (teamsDto.Count == 0)
+            {
+                return null;
+            }
             var teamsList = new List<Team>();
             foreach (var teamDto in teamsDto)
             {
@@ -372,8 +449,12 @@ namespace Data.Business
             return teamsList;
         }
 
-        public Tournament ToTournament(TournamentDto tournamentDto)
+        /*public Tournament ToTournament(TournamentDto tournamentDto)
         {
+            if (tournamentDto == null)
+            {
+                return null;
+            }
             var tournament = new Tournament
             {
                 TournamentId = tournamentDto.TournamentId,
@@ -390,6 +471,10 @@ namespace Data.Business
 
         public IReadOnlyList<Tournament> ToTournament(IReadOnlyList<TournamentDto> tournamentsDto)
         {
+            if (tournamentsDto.Count == 0)
+            {
+                return null;
+            }
             var tournaments = new List<Tournament>();
             foreach (var tournamentDto in tournamentsDto)
             {
@@ -401,6 +486,10 @@ namespace Data.Business
 
         public TournamentDto ToTournamentDto(Tournament tournament)
         {
+            if (tournament == null)
+            {
+                return null;
+            }
             var tournamentDto = new TournamentDto
             {
                 TournamentId=tournament.TournamentId,
@@ -409,57 +498,7 @@ namespace Data.Business
             };
 
             return tournamentDto;
-        }
-
-        public User ToUser(UserDto userDto)
-        {
-            var role = new Role
-            {
-                RoleId=userDto.RoleId,
-                Name = userDto.Role
-            };
-            var roles = new List<Role>();
-            roles.Add(role);
-            var user = new User
-            {
-                UserId = userDto.UserId,
-                Login = userDto.Login,
-                Password = userDto.Password,
-                Email = userDto.Email,
-                FIO = userDto.FIO,
-                Money = userDto.Money,
-                PhoneNumber=userDto.PhoneNumber,
-                Roles=roles
-            };
-               
-            return user;
-        }
-
-        public UserDto ToUserDto(User user)
-        {
-            var userDto = new UserDto
-            {
-                UserId = user.UserId,
-                Login = user.Login,
-                Password = user.Password,
-                Email = user.Email,
-                FIO = user.FIO,
-                Money = user.Money,
-                RoleId = user.RoleId,
-                PhoneNumber=user.PhoneNumber
-            };            
-             
-            return userDto;
-        }
-
-        public IReadOnlyList<User> ToUsers(IReadOnlyList<UserDto> usersDto)
-        {
-            var usersList = new List<User>();
-            foreach (var userDto in usersDto)
-            {
-                usersList.Add(ToUser(userDto));
-            }
-            return usersList;
-        }
+        }*/
+                
     }
 }

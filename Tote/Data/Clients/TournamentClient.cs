@@ -4,26 +4,27 @@ using Data.Business;
 using System.ServiceModel;
 using Data.ToteService;
 using Common.Logger;
+using System.Collections.Generic;
 
 namespace Data.Clients
 {
     public class TournamentClient : ITournamentClient
     {        
-        private readonly IConvert convert;
+        private readonly ITournamentConvert tournamentConvert;
         private readonly ILogService<TournamentClient> logService;
 
-        public TournamentClient(IConvert convert):this(convert, new LogService<TournamentClient>())
+        public TournamentClient(ITournamentConvert tournamentConvert) :this(tournamentConvert, new LogService<TournamentClient>())
         {
 
         }
 
-        public TournamentClient(IConvert convert, ILogService<TournamentClient> logService)
+        public TournamentClient(ITournamentConvert tournamentConvert, ILogService<TournamentClient> logService)
         {
-            if (convert == null)
+            if (tournamentConvert == null)
             {
                 throw new ArgumentNullException();
             }
-            this.convert = convert;
+            this.tournamentConvert = tournamentConvert;
             if (logService == null)
             {
                 this.logService = new LogService<TournamentClient>();
@@ -42,7 +43,7 @@ namespace Data.Clients
                 return false;
             }
             var tournamentDto = new TournamentDto();
-            tournamentDto = convert.ToTournamentDto(tournament);
+            tournamentDto = tournamentConvert.ToTournamentDto(tournament);
             var model = new bool();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -147,7 +148,7 @@ namespace Data.Clients
                 return false;
             }
             var tournamentDto = new TournamentDto();
-            tournamentDto = convert.ToTournamentDto(tournament);
+            tournamentDto = tournamentConvert.ToTournamentDto(tournament);
             var model = new bool();
             using (var client = new ToteService.TournamentServiceClient())
             {
@@ -172,5 +173,136 @@ namespace Data.Clients
             }
             return model;
         }
+
+        public IReadOnlyList<TournamentDto> GetTournament(int? sportId)
+        {
+            if (sportId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket sportId is not positive");
+                return null;
+            }
+            var model = new List<TournamentDto>();
+            using (var client = new ToteService.TournamentServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var tournaments = client.GetTournament(sportId);
+                    foreach (var tournament in tournaments)
+                    {
+                        model.Add(tournament);
+                    }
+                    client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    logService.LogError(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    logService.LogError(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    logService.LogError(nullEx.Message);
+                    return null;
+                }
+
+            }
+
+            return model;
+        }
+
+        public IReadOnlyList<TournamentDto> GetTournamentes()
+        {
+            var model = new List<TournamentDto>();
+            using (var client = new ToteService.TournamentServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var tournaments = client.GetTournamentes();
+                    foreach (var tournament in tournaments)
+                    {
+                        model.Add(tournament);
+                    }
+                    client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    logService.LogError(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    logService.LogError(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    logService.LogError(nullEx.Message);
+                    return null;
+                }
+            }
+
+            return model;
+        }
+
+        public IReadOnlyList<TournamentDto> GetTournamentesByTeamId(int teamId)
+        {
+            if (teamId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket teamId is not positive");
+                return null;
+            }
+            var model = new List<TournamentDto>();
+            using (var client = new ToteService.TournamentServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var tournaments = client.GetTournamentesByTeamId(teamId);
+                    foreach (var tournament in tournaments)
+                    {
+                        model.Add(tournament);
+                    }
+                    client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+                catch (FaultException<CustomException> customEx)
+                {
+                    logService.LogError(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    logService.LogError(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    logService.LogError(nullEx.Message);
+                    return null;
+                }
+            }
+            return model;
+        }
+
     }
 }

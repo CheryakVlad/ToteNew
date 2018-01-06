@@ -18,6 +18,7 @@ namespace Tote.Controllers
         private const int maxRows = 10;
         private readonly IMatchProvider matchProvider;
         private readonly IBetListProvider betListProvider;
+        private readonly ITournamentProvider tournamentProvider;
         private readonly ITeamProvider teamProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateMatchService matchService;
@@ -25,16 +26,17 @@ namespace Tote.Controllers
         private readonly IMatchPaging matchPaging;
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider,
-            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging) 
-            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, matchPaging, new LogService<MatchController>())
+            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging, ITournamentProvider tournamentProvider) 
+            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, matchPaging, tournamentProvider, new LogService<MatchController>())
         {
 
         }
 
         public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, 
-            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging, ILogService<MatchController> logService)
+            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ILogService<MatchController> logService)
         {
-            if (betListProvider == null || matchProvider == null || teamProvider == null || cacheService == null|| matchProvider==null || matchPaging==null)
+            if (betListProvider == null || matchProvider == null || teamProvider == null ||
+                cacheService == null|| matchProvider==null || matchPaging==null || tournamentProvider == null)
             {
                 throw new ArgumentNullException();
             }
@@ -44,6 +46,7 @@ namespace Tote.Controllers
             this.cacheService = cacheService;
             this.matchService = matchService;
             this.matchPaging = matchPaging;
+            this.tournamentProvider = tournamentProvider;
             if (logService == null)
             {
                 this.logService = new LogService<MatchController>();
@@ -106,7 +109,7 @@ namespace Tote.Controllers
 
         private SelectList GetTournaments(int sport = 1, int tournament = 1)
         {
-            IReadOnlyList<Tournament> tournamentsAll = betListProvider.GetTournament(sport);
+            IReadOnlyList<Tournament> tournamentsAll = tournamentProvider.GetTournament(sport);
             if (tournamentsAll.Count == 0)
             {
                 logService.LogError("Controller: Match, Don't GetTournament");
@@ -175,7 +178,7 @@ namespace Tote.Controllers
         public ActionResult TournamentesBySport(int sportId)
         {
             logService.LogInfoMessage("Controller: Match, Action: TournamentesBySport");
-            SelectList tournaments = new SelectList(betListProvider.GetTournament(sportId), "TournamentId", "Name");            
+            SelectList tournaments = new SelectList(tournamentProvider.GetTournament(sportId), "TournamentId", "Name");            
             ViewBag.Tournaments = tournaments;
             return PartialView();
         }

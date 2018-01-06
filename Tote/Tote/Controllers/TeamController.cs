@@ -13,24 +13,27 @@ namespace Tote.Controllers
     {
         private readonly ITeamProvider teamProvider;
         private readonly IBetListProvider betListProvider;
+        private readonly ITournamentProvider tournamentProvider;
         private readonly IUpdateTeamService teamService;       
         private readonly ILogService<TeamController> logService;
 
-        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService) 
-            :this(betListProvider, teamProvider, teamService, new LogService<TeamController>())
+        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService, ITournamentProvider tournamentProvider) 
+            :this(betListProvider, teamProvider, teamService, tournamentProvider, new LogService<TeamController>())
         {
 
         }
 
-        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService, ILogService<TeamController> logService)
+        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService,
+            ITournamentProvider tournamentProvider, ILogService<TeamController> logService)
         {
-            if (betListProvider == null || teamProvider == null|| teamService==null)
+            if (betListProvider == null || teamProvider == null|| teamService==null || tournamentProvider == null)
             {
                 throw new ArgumentNullException();
             }
             this.betListProvider = betListProvider;
             this.teamProvider = teamProvider;
             this.teamService = teamService;
+            this.tournamentProvider = tournamentProvider;
             if (logService == null)
             {
                 this.logService = new LogService<TeamController>();
@@ -374,7 +377,7 @@ namespace Tote.Controllers
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Team = team;
-            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentesByTeamId(id);
+            IReadOnlyList<Tournament> tournaments = tournamentProvider.GetTournamentesByTeamId(id);
             if(tournaments.Count == 0)
             {
                 logService.LogError("Controller: Team, Action: ShowTournamentsByTeam Don't GetTournamentesByTeamId");
@@ -389,8 +392,8 @@ namespace Tote.Controllers
         {
             logService.LogInfoMessage("Controller: Team, Action: AddTournamentForTeam");
             Team team = teamProvider.GetTeamById(id);            
-            List<Tournament> tournamentesSport = betListProvider.GetTournament(team.SportId) as List<Tournament>;
-            List<Tournament> tournamentesTeam = betListProvider.GetTournamentesByTeamId(id) as List<Tournament>;
+            List<Tournament> tournamentesSport = tournamentProvider.GetTournament(team.SportId) as List<Tournament>;
+            List<Tournament> tournamentesTeam = tournamentProvider.GetTournamentesByTeamId(id) as List<Tournament>;
             if (tournamentesSport.Count == 0 || tournamentesTeam.Count == 0)
             {
                 logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't GetTournamentes");
@@ -423,7 +426,7 @@ namespace Tote.Controllers
             logService.LogInfoMessage("Controller: Team, Action: DeleteTournamentForTeam");
             Team team = teamProvider.GetTeamById(teamId);            
             ViewBag.Team = team;
-            Tournament tournament = betListProvider.GetTournamentById(tournamentId);
+            Tournament tournament = tournamentProvider.GetTournamentById(tournamentId);
             if(team == null || tournament == null)
             {
                 logService.LogError("Controller: Team, Action: DeleteTournamentForTeam Don't GetTournamentById or GetTeamById");

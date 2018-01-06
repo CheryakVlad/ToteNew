@@ -16,16 +16,18 @@ namespace Business.Service
         private const string tournamentCacheKey = "tournamentKey";
         private readonly IMatchProvider matchProvider;
         private readonly IBetListProvider betListProvider;
+        private readonly ITournamentProvider tournamentProvider;
         private readonly ILogService<CacheService> logService;
 
-        public CacheService(IMatchProvider matchProvider, IBetListProvider betListProvider, ILogService<CacheService> logService)
+        public CacheService(IMatchProvider matchProvider, IBetListProvider betListProvider, ITournamentProvider tournamentProvider, ILogService<CacheService> logService)
         {
-            if (matchProvider == null || betListProvider == null)
+            if (matchProvider == null || betListProvider == null || tournamentProvider == null)
             {
                 throw new ArgumentNullException();
             }
             this.matchProvider = matchProvider;
             this.betListProvider = betListProvider;
+            this.tournamentProvider = tournamentProvider;
             if (logService == null)
             {
                 this.logService = new LogService<CacheService>();
@@ -52,11 +54,7 @@ namespace Business.Service
         public IReadOnlyList<Match> GetCache(int sportId, string dateMatch, int status)
         {            
             string cacheSortKey = sortCacheKey + sportId.ToString() + dateMatch + status.ToString();
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheSortKey) as IReadOnlyList<Match>;
-            /*if (matches == null)
-            {
-                logService.LogError("CacheService method:GetCache cacheKey: Sort is null");
-            }*/
+            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheSortKey) as IReadOnlyList<Match>;           
             return matches;
         }
 
@@ -75,11 +73,7 @@ namespace Business.Service
 
         public IReadOnlyList<Sport> GetCache()
         {            
-            IReadOnlyList<Sport> sports = HttpRuntime.Cache.Get(sportCacheKey) as IReadOnlyList<Sport>;
-            /*if (sports == null)
-            {
-                logService.LogError("CacheService method:GetCache cacheKey: Sport is null");                
-            }*/
+            IReadOnlyList<Sport> sports = HttpRuntime.Cache.Get(sportCacheKey) as IReadOnlyList<Sport>;            
             return sports;
         }
 
@@ -98,18 +92,14 @@ namespace Business.Service
         public IReadOnlyList<Tournament> GetCache(int sportId)
         {            
             string cacheTournamentKey = tournamentCacheKey + sportId.ToString();
-            IReadOnlyList<Tournament> tournaments = HttpRuntime.Cache.Get(cacheTournamentKey) as IReadOnlyList<Tournament>;
-            /*if (tournaments == null)
-            {
-                logService.LogError("CacheService method:GetCache cacheKey: Tournament is null");
-            }*/
+            IReadOnlyList<Tournament> tournaments = HttpRuntime.Cache.Get(cacheTournamentKey) as IReadOnlyList<Tournament>;            
             return tournaments;
         }
 
         public IReadOnlyList<Tournament> InsertCache(int sportId)
         {
             string cacheTournamentKey = tournamentCacheKey + sportId.ToString();
-            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournament(sportId);
+            IReadOnlyList<Tournament> tournaments = tournamentProvider.GetTournament(sportId);
             if (tournaments == null)
             {
                 logService.LogError("CacheService method:InsertCache cacheKey: Tournament is null");
@@ -122,11 +112,7 @@ namespace Business.Service
         public IReadOnlyList<Match> GetCache(int sportId, int tournamentId)
         {           
             string cacheNavigateKey = navigateCacheKey + sportId.ToString() +  tournamentId.ToString();
-            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheNavigateKey) as IReadOnlyList<Match>;
-            /*if (matches == null)
-            {
-                logService.LogError("CacheService method:GetCache cacheKey: Navigate is null");
-            }*/
+            IReadOnlyList<Match> matches = HttpRuntime.Cache.Get(cacheNavigateKey) as IReadOnlyList<Match>;            
             return matches;
         }
 

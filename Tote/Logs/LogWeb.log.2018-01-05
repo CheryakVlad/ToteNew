@@ -1,0 +1,23 @@
+2018-01-05 21:55:48,562 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-05 21:57:01,040 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-05 21:57:01,205 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-05 21:57:03,605 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 21:58:21,023 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 21:58:21,051 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-05 21:58:30,523 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:30:02,763 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-05 22:30:15,637 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:31:42,857 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:31:47,537 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:31:50,183 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:36:19,713 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:41:10,647 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:42:11,455 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:42:21,463 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:43:57,378 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-05 22:44:52,483 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:45:02,763 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:47:36,390 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-05 22:47:54,601 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:48:13,456 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-05 22:48:35,459 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches

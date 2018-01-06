@@ -125,42 +125,7 @@ namespace Data.Services
             logService.LogError("Class: DataService Method: GetSports List<Sport> is null");
             return new List<Sport>();
         }
-
-        public IReadOnlyList<Tournament> GetTournament(int? sportId)
-        {
-            var dto = betListClient.GetTournament(sportId);
-
-            if (dto != null)
-            {
-                return convert.ToTournament(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTournament List<Tournament> is null");
-            return new List<Tournament>();
-        }
-
-        public Tournament GetTournamentById(int tournamentId)
-        {
-            var dto = tournamentClient.GetTournamentById(tournamentId);
-
-            if (dto != null)
-            {
-                return convert.ToTournament(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTournament List<Tournament> is null");
-            return new Tournament();
-        }
-
-        public IReadOnlyList<Tournament> GetTournamentes()
-        {
-            var dto = betListClient.GetTournamentes();
-
-            if (dto != null)
-            {
-                return convert.ToTournament(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTournamentes List<Tournament> is null");
-            return new List<Tournament>();
-        }
+        
 
         public IReadOnlyList<Team> GetTeamsAll()
         {
@@ -221,10 +186,15 @@ namespace Data.Services
             var baskets = convert.ToBasket(basketsDto);
             var basketsMatch = new List<Basket>();
             foreach(var basket in baskets)
-            {
+            {                
                 var match = matchService.GetMatchById(basket.MatchId);
+                if (match.Date < DateTime.Now)
+                {
+                    betListClient.DeleteBasket(basket.BasketId);
+                    continue;
+                }
                 var _events = matchService.GetEventsByMatch(basket.MatchId);
-                var sport = GetSport(match.SportId);
+                var sport = GetSport(match.SportId);                
                 match.SportName = sport.Name;
 
                 foreach(var _event in _events )
@@ -331,17 +301,6 @@ namespace Data.Services
             logService.LogError("Class: DataService Method: GetCountryById Country is null");
             return new Country();
         }
-
-        public IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId)
-        {
-            var dto = betListClient.GetTournamentesByTeamId(teamId);
-
-            if (dto != null)
-            {
-                return convert.ToTournament(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTournamentesByTeamId List<Tournament> is null");
-            return new List<Tournament>();
-        }
+        
     }
 }

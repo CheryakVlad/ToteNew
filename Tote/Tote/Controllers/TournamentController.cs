@@ -51,7 +51,7 @@ namespace Tote.Controllers
         public ActionResult ShowTournaments()
         {
             logService.LogInfoMessage("Controller: Tournament, Action: ShowTournaments");
-            IReadOnlyList<Tournament> tournaments = betListProvider.GetTournamentes();
+            IReadOnlyList<Tournament> tournaments = tournamentProvider.GetTournamentes();
             if (tournaments.Count == 0)
             {
                 logService.LogError("Controller: Tournament, Action: ShowTournaments Don't GetTournamentes");

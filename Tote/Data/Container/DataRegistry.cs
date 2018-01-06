@@ -11,14 +11,7 @@ namespace Data.Container
     public class DataRegistry:Registry
     {
         public DataRegistry()
-        {
-            
-            For<ILog>().Use(y => LogManager.GetLogger(typeof(BetListClient)));
-            For<ILog>().Use(y => LogManager.GetLogger(typeof(MatchClient)));
-            For<ILog>().Use(y => LogManager.GetLogger(typeof(TournamentClient)));
-            For<ILog>().Use(y => LogManager.GetLogger(typeof(UserClient)));
-            For<ILog>().Use(y => LogManager.GetLogger(typeof(TeamClient)));
-            
+        {            
             For<IMatchService>().Use<MatchService>();
             For<IMatchClient>().Use<MatchClient>();
             For<IMatchConvert>().Use<MatchConvert>();
@@ -30,6 +23,10 @@ namespace Data.Container
             For<IBetListClient>().Use<BetListClient>();
             For<IUserClient>().Use<UserClient>();            
             For<IConvert>().Use<Data.Business.Convert>();
+            For<ISportConvert>().Use<Data.Business.SportConvert>();
+            For<ITeamConvert>().Use<Data.Business.TeamConvert>();
+            For<ITournamentConvert>().Use<Data.Business.TournamentConvert>();
+            For<IUserConvert>().Use<Data.Business.UserConvert>();
         }
         
     }

@@ -15,30 +15,14 @@ namespace Business.Providers
         IReadOnlyList<Match> GetMatchesAll();
 
         Sport GetSport(int? id);
-        IReadOnlyList<Sport> GetSports();
-        IReadOnlyList<Tournament> GetTournament(int? sportId);
-        IReadOnlyList<Tournament> GetTournamentes();
-        IReadOnlyList<Tournament> GetTournamentesByTeamId(int teamId);
-        Tournament GetTournamentById(int tournamentId);
+        IReadOnlyList<Sport> GetSports();        
 
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);
-
-        /*bool UpdateSport(Sport sport);
-
-        bool AddSport(Sport sport);
-
-        bool DeleteSport(int sportId);
-
-        bool AddBasket(Basket basket);
-        bool DeleteBasket(int basketId);*/
+                
         IReadOnlyList<Basket> GetBasketByUser(int userId, out double total);
-
-        //IReadOnlyList<Match> GetMatchesByBasket(int userId);
-        Basket GetBasketById(int basketId, int userId);
-
-        /*bool AddBet(Bet bet, int basketId);
-        int AddRate(Rate rate);*/
+        
+        Basket GetBasketById(int basketId, int userId);        
 
         IReadOnlyList<Rate> GetRateByUserId(int userId);
         IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total);

@@ -10,17 +10,18 @@ namespace Data.Services
     public class UserService : IUserService
     {
         private readonly IUserClient userClient;
-        private readonly IConvert convert;
+        //private readonly IConvert convert;
+        private readonly IUserConvert userConvert;
         private readonly ILogService<UserService> logService;
 
-        public UserService(IUserClient userClient, IConvert convert, ILogService<UserService> logService)
+        public UserService(IUserClient userClient, IUserConvert userConvert, ILogService<UserService> logService)
         {
-            if (userClient == null || convert == null)
+            if (userClient == null || userConvert == null)
             {
                 throw new ArgumentNullException();
             }
             this.userClient = userClient;
-            this.convert = convert;
+            this.userConvert = userConvert;
             if (logService == null)
             {
                 this.logService = new LogService<UserService>();
@@ -37,7 +38,7 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToUser(dto);
+                return userConvert.ToUser(dto);
             }
             logService.LogError("Class: UserService Method: GetUserById user is null");
             return new User();
@@ -49,7 +50,7 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToUsers(dto);
+                return userConvert.ToUsers(dto);
             }
             logService.LogError("Class: UserService Method: GetUsersAll List<User> is null");
             return new List<User>();
@@ -61,7 +62,7 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToUser(dto);
+                return userConvert.ToUser(dto);
             }
             logService.LogError("Class: UserService Method: ExistsUser User is null");
             return new User();
@@ -73,7 +74,7 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToRoles(dto);
+                return userConvert.ToRoles(dto);
             }
             logService.LogError("Class: UserService Method: GetRolesAll List<Role> is null");
             return new List<Role>();

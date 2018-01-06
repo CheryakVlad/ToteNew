@@ -9,8 +9,49 @@ namespace Service.Contracts.Common
 {
     public class Connection<T> : IConnection<T> where T : class
     {
-        private CreateDto createDto;
-        private Dictionary<object, Func<SqlDataReader, object>> dtoDictionary;
+        private readonly ICreateDto createDto;
+        private IDictionary<object, Func<SqlDataReader, object>> dtoDictionary;
+
+        public Connection():this(new CreateDto())
+        {
+
+        }           
+
+        public Connection(ICreateDto createDto)
+        {
+            if(createDto == null)
+            {
+                throw new ArgumentNullException();
+            }
+            this.createDto = createDto;
+            dtoDictionary = new Dictionary<object, Func<SqlDataReader, object>>()
+            {
+                {typeof(TournamentDto), createDto.CreateTournamentDto},
+                {typeof(SportDto), createDto.CreateSportDto},
+                {typeof(BetListDto), createDto.CreateBetListDto},
+                {typeof(BasketDto), createDto.CreateBasketDto},
+                {typeof(TeamDto), createDto.CreateTeamDto},
+                {typeof(RateDto), createDto.CreateRateDto},
+                {typeof(BetDto), createDto.CreateBetDto},
+                {typeof(EventDto), createDto.CreateEventDto},
+                {typeof(RoleDto), createDto.CreateRoleDto},
+                {typeof(CountryDto), createDto.CreateCountryDto},
+                {typeof(ResultDto), createDto.CreateResultDto},
+                {typeof(SortDto), createDto.CreateSortDto},
+                {typeof(UserDto), createDto.CreateUserDto},
+                {typeof(MatchDto), createDto.CreateMatchDto}
+            };
+        }
+        public object CreateListDto(SqlDataReader reader)
+        {
+            if (!dtoDictionary.ContainsKey(typeof(T)))
+            {
+                throw new ArgumentException();
+            }
+            return dtoDictionary[typeof(T)](reader);
+        }
+
+
         public SqlCommand GetCommand(SqlConnection connection, SqlCommand command, CommandType type, string commandText, IReadOnlyList<Parameter> parameters = null)
         {
             command.Connection = connection;
@@ -104,35 +145,7 @@ namespace Service.Contracts.Common
         }
 
                 
-        public Connection()
-        {           
-            createDto = new CreateDto();
-            dtoDictionary = new Dictionary<object, Func<SqlDataReader, object>>()
-            {
-                {typeof(TournamentDto), createDto.CreateTournamentDto},
-                {typeof(SportDto), createDto.CreateSportDto},
-                {typeof(BetListDto), createDto.CreateBetListDto},
-                {typeof(BasketDto), createDto.CreateBasketDto},
-                {typeof(TeamDto), createDto.CreateTeamDto},
-                {typeof(RateDto), createDto.CreateRateDto},
-                {typeof(BetDto), createDto.CreateBetDto},
-                {typeof(EventDto), createDto.CreateEventDto},
-                {typeof(RoleDto), createDto.CreateRoleDto},
-                {typeof(CountryDto), createDto.CreateCountryDto},
-                {typeof(ResultDto), createDto.CreateResultDto},
-                {typeof(SortDto), createDto.CreateSortDto},
-                {typeof(UserDto), createDto.CreateUserDto},
-                {typeof(MatchDto), createDto.CreateMatchDto}
-            };
-        }
-        public object CreateListDto(SqlDataReader reader)
-        {            
-            if (!dtoDictionary.ContainsKey(typeof(T)))
-            {
-                throw new ArgumentException();
-            }
-            return dtoDictionary[typeof(T)](reader);            
-        }
+        
     }
 
 }
