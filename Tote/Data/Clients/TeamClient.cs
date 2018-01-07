@@ -10,21 +10,21 @@ namespace Data.Clients
 {
     public class TeamClient : ITeamClient
     {        
-        private readonly IConvert convert;
+        private readonly ITeamConvert teamConvert;
         private readonly ILogService<TeamClient> logService;
 
-        public TeamClient(IConvert convert):this(convert,new LogService<TeamClient>())
+        public TeamClient(ITeamConvert teamConvert) :this(teamConvert, new LogService<TeamClient>())
         {
 
         }
 
-        public TeamClient(IConvert convert, ILogService<TeamClient> logService)
+        public TeamClient(ITeamConvert teamConvert, ILogService<TeamClient> logService)
         {
-            if (convert == null)
+            if (teamConvert == null)
             {
                 throw new ArgumentNullException();
             }
-            this.convert = convert;
+            this.teamConvert = teamConvert;
             if (logService == null)
             {
                 this.logService = new LogService<TeamClient>();
@@ -43,7 +43,7 @@ namespace Data.Clients
                 return false;
             }
             var countryDto = new CountryDto();
-            countryDto = convert.ToCountryDto(country);
+            countryDto = teamConvert.ToCountryDto(country);
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -77,7 +77,7 @@ namespace Data.Clients
                 return false;
             }
             var teamDto = new TeamDto();
-            teamDto = convert.ToTeamDto(team);
+            teamDto = teamConvert.ToTeamDto(team);
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -446,7 +446,7 @@ namespace Data.Clients
                 return false;
             }
             var countryDto = new CountryDto();
-            countryDto = convert.ToCountryDto(country);
+            countryDto = teamConvert.ToCountryDto(country);
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {
@@ -480,7 +480,7 @@ namespace Data.Clients
                 return false;
             }
             var teamDto = new TeamDto();
-            teamDto = convert.ToTeamDto(team);
+            teamDto = teamConvert.ToTeamDto(team);
             var model = new bool();
             using (var client = new TeamService.TeamServiceClient())
             {

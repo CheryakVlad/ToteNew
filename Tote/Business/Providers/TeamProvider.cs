@@ -10,17 +10,17 @@ namespace Business.Providers
     public class TeamProvider : ITeamProvider
     {
         private readonly ITeamClient teamClient;
-        private readonly IDataService dataService;
+        private readonly ITeamService teamService;
         private readonly ILogService<TeamProvider> logService;
 
-        public TeamProvider(ITeamClient teamClient, IDataService dataService, ILogService<TeamProvider> logService)
+        public TeamProvider(ITeamClient teamClient, ITeamService teamService, ILogService<TeamProvider> logService)
         {
-            if (teamClient == null || dataService == null)
+            if (teamClient == null || teamService == null)
             {
                 throw new ArgumentNullException();
             }
             this.teamClient = teamClient;
-            this.dataService = dataService;
+            this.teamService = teamService;
             if (logService == null)
             {
                 this.logService = new LogService<TeamProvider>();
@@ -39,17 +39,17 @@ namespace Business.Providers
                 logService.LogError("Class: TeamProvider Method: GetTeamById  teamId must be positive");
                 return null;
             }
-            return dataService.GetTeamById(teamId);
+            return teamService.GetTeamById(teamId);
         }
 
         public IReadOnlyList<Team> GetTeamsAll()
         {
-            return dataService.GetTeamsAll();
+            return teamService.GetTeamsAll();
         }
         
         public IReadOnlyList<Country> GetCountriesAll()
         {
-            return dataService.GetCountriesAll();
+            return teamService.GetCountriesAll();
         }
 
         public IReadOnlyList<Team> GetTeamsByTournament(int tournamentId)
@@ -59,7 +59,7 @@ namespace Business.Providers
                 logService.LogError("Class: TeamProvider Method: GetTeamsByTournament  tournamentId must be not negative");
                 return null;                
             }
-            return dataService.GetTeamsByTournament(tournamentId);
+            return teamService.GetTeamsByTournament(tournamentId);
         }
 
         
@@ -70,7 +70,7 @@ namespace Business.Providers
                 logService.LogError("Class: TeamProvider Method: GetCountryById  countryId must be positive");
                 return null;
             }
-            return dataService.GetCountryById(countryId);                 
+            return teamService.GetCountryById(countryId);                 
         }        
     }
 }

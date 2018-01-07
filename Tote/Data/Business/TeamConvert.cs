@@ -67,5 +67,48 @@ namespace Data.Business
             }
             return teamsList;
         }
+
+        public Country ToCountry(CountryDto countryDto)
+        {
+            if (countryDto == null)
+            {
+                return null;
+            }
+            var country = new Country
+            {
+                CountryId = countryDto.CountryId,
+                Name = countryDto.Name
+            };
+            return country;
+        }
+
+        public IReadOnlyList<Country> ToCountry(IReadOnlyList<CountryDto> countriesDto)
+        {
+            if (countriesDto.Count == 0)
+            {
+                return null;
+            }
+            var countriesList = new List<Country>();
+            foreach (var countryDto in countriesDto)
+            {
+                countriesList.Add(ToCountry(countryDto));
+            }
+            return countriesList;
+        }
+
+        public CountryDto ToCountryDto(Country country)
+        {
+            if (country == null)
+            {
+                return null;
+            }
+            var countryDto = new CountryDto
+            {
+                CountryId = country.CountryId,
+                Name = country.Name
+            };
+            return countryDto;
+        }
+
     }
 }

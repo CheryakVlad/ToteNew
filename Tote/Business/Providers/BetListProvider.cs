@@ -55,21 +55,8 @@ namespace Business.Providers
             }
             return dataService.GetEvents(id);
         }
-
-        public IReadOnlyList<Match> GetMatchesAll()
-        {
-            return dataService.GetMatchesAll();
-        }
-
-        public Sport GetSport(int? id)
-        {
-            return dataService.GetSport(id);
-        }
-
-        public IReadOnlyList<Sport> GetSports()
-        {
-            return dataService.GetSports();
-        }   
+        
+        
         public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
         {
             if (userId <= 0)

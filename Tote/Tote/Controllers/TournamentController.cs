@@ -14,29 +14,29 @@ namespace Tote.Controllers
         private const string tournamentCacheKey = "tournamentKey";
 
         private readonly ITournamentProvider tournamentProvider;
-        private readonly IBetListProvider betListProvider;
+        private readonly ISportProvider sportProvider;        
         private readonly ICacheService cacheService;
         private readonly IUpdateTournamentService tournamentService;        
         private readonly ILogService<TournamentController> logService;
 
-        public TournamentController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider,
-            ICacheService cacheService, IUpdateTournamentService tournamentService) 
-            :this(betListProvider, tournamentProvider, cacheService, tournamentService, new LogService<TournamentController>())
+        public TournamentController(ITournamentProvider tournamentProvider, ICacheService cacheService, 
+            IUpdateTournamentService tournamentService, ISportProvider sportProvider) 
+            :this(tournamentProvider, cacheService, tournamentService, sportProvider, new LogService<TournamentController>())
         {
 
         }
 
-        public TournamentController(IBetListProvider betListProvider, ITournamentProvider tournamentProvider,
-            ICacheService cacheService, IUpdateTournamentService tournamentService, ILogService<TournamentController> logService)
+        public TournamentController(ITournamentProvider tournamentProvider,ICacheService cacheService, 
+            IUpdateTournamentService tournamentService, ISportProvider sportProvider, ILogService<TournamentController> logService)
         {
-            if (betListProvider == null || tournamentProvider == null|| cacheService==null|| tournamentService==null)
+            if (tournamentProvider == null|| cacheService==null|| tournamentService==null || sportProvider == null)
             {
                 throw new ArgumentNullException();
-            }
-            this.betListProvider = betListProvider;
+            }            
             this.tournamentProvider = tournamentProvider;
             this.cacheService = cacheService;
             this.tournamentService = tournamentService;
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<TournamentController>();
@@ -64,7 +64,7 @@ namespace Tote.Controllers
         public ActionResult AddTournament()
         {
             logService.LogInfoMessage("Controller: Tournament, Action: AddTournament");
-            IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+            IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
             if (sportsAll.Count == 0)
             {
                 logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
@@ -87,7 +87,7 @@ namespace Tote.Controllers
                 {                    
                     ModelState.AddModelError("", "You can not add a tournament with the following parameters");
                     logService.LogError("Controller: Tournament, Action: AddTournament Don't add Tournament");
-                    IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+                    IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
                     if (sportsAll.Count == 0)
                     {
                         logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
@@ -109,7 +109,7 @@ namespace Tote.Controllers
                 ModelState.AddModelError("", "You can not add a tournament with the following parameters");
                 logService.LogError("Controller: Tournament, Action: AddTournament Don't add Tournament");
 
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", tournament.SportId);
+                SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name", tournament.SportId);
                 if (sports == null)
                 {
                     logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
@@ -127,7 +127,7 @@ namespace Tote.Controllers
         {
             logService.LogInfoMessage("Controller: Tournament, Action: EditTournament");
 
-            IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+            IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
             if (sportsAll.Count == 0)
             {
                 logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
@@ -153,7 +153,7 @@ namespace Tote.Controllers
                     ModelState.AddModelError("", "You can not edit a tournament with the following parameters");
                     logService.LogError("Controller: Tournament, Action: AddTournament Don't add Tournament");
 
-                    IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+                    IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
                     if (sportsAll.Count == 0)
                     {
                         logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");
@@ -175,7 +175,7 @@ namespace Tote.Controllers
                 ModelState.AddModelError("", "You can not edit a tournament with the following parameters");
                 logService.LogError("Controller: Tournament, Action: AddTournament Don't add Tournament");
 
-                IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+                IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
                 if (sportsAll.Count == 0)
                 {
                     logService.LogError("Controller: Tournament, Action: AddTournament Don't GetSports");

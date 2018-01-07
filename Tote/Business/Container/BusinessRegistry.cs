@@ -23,6 +23,7 @@ namespace Business.Container
             For<ILoginService>().Use<LoginService>();
             For<IUserProvider>().Use<UserProvider>();
             For<IBetListProvider>().Use<BetListProvider>();
+            For<ISportProvider>().Use<SportProvider>();
         }
     }
 }

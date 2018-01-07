@@ -5,39 +5,18 @@ namespace Data.Business
     public interface IConvert
     {
         IReadOnlyList<Bet> ToBetsList(IReadOnlyList<ToteService.BetListDto> betsListDto);
-        IReadOnlyList<Sport> ToSport(IReadOnlyList<ToteService.SportDto> sportsDto);
+        IReadOnlyList<Event> ToEvents(IReadOnlyList<ToteService.EventDto> eventsDto);               
         
-        Sport ToSport(ToteService.SportDto sportDto);
-
-        IReadOnlyList<Event> ToEvents(IReadOnlyList<ToteService.EventDto> eventsDto);
-
-        IReadOnlyList<Match> ToMatchList(IReadOnlyList<ToteService.BetListDto> betsListDto);
-
-        IReadOnlyList<Match> ToMatchList(IReadOnlyList<ToteService.BetListDto> betsListDto,IReadOnlyList<ToteService.EventDto> eventsDto );
-
-        ToteService.SportDto ToSportDto(Sport sport);
-
-        TeamService.TeamDto ToTeamDto(Team team);
-        Team ToTeam(TeamService.TeamDto teamDto);
-        IReadOnlyList<Team> ToTeams(IReadOnlyList<TeamService.TeamDto> teamsDto);
-        
-        IReadOnlyList<Country> ToCountry(IReadOnlyList<TeamService.CountryDto> countriesDto);
-        Country ToCountry(TeamService.CountryDto countryDto);
-        TeamService.CountryDto ToCountryDto(Country country);
-
         Basket ToBasket(ToteService.BasketDto basketDto);
         IReadOnlyList<Basket> ToBasket(IReadOnlyList<ToteService.BasketDto> basketsDto);
         ToteService.BasketDto ToBasketDto(Basket basket);
 
         Rate ToRate(ToteService.RateDto rateDto);
         IReadOnlyList<Rate> ToRate(IReadOnlyList<ToteService.RateDto> ratesDto);
+        ToteService.RateDto ToRateDto(Rate rate);
 
         Bet ToBet(ToteService.BetDto betDto);
         IReadOnlyList<Bet> ToBet(IReadOnlyList<ToteService.BetDto> betsDto);
-
         ToteService.BetDto ToBetDto(Bet bet);
-
-        ToteService.RateDto ToRateDto(Rate rate);
-
     }
 }

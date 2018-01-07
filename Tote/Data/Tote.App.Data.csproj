@@ -86,10 +86,12 @@
     <Compile Include="Clients\IBetListClient.cs" />
     <Compile Include="Clients\BetListClient.cs" />
     <Compile Include="Clients\IMatchClient.cs" />
+    <Compile Include="Clients\ISportClient.cs" />
     <Compile Include="Clients\ITeamClient.cs" />
     <Compile Include="Clients\ITournamentClient.cs" />
     <Compile Include="Clients\IUserClient.cs" />
     <Compile Include="Clients\MatchClient.cs" />
+    <Compile Include="Clients\SportClient.cs" />
     <Compile Include="Clients\TeamClient.cs" />
     <Compile Include="Clients\TournamentClient.cs" />
     <Compile Include="Clients\UserClient.cs" />
@@ -113,9 +115,13 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\IMatchService.cs" />
+    <Compile Include="Services\ISportService.cs" />
+    <Compile Include="Services\ITeamService.cs" />
     <Compile Include="Services\ITournamentService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\MatchService.cs" />
+    <Compile Include="Services\SportService.cs" />
+    <Compile Include="Services\TeamService.cs" />
     <Compile Include="Services\TournamentService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>

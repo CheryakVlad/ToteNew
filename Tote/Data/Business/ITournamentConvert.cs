@@ -9,7 +9,6 @@ namespace Data.Business
     {
         Tournament ToTournament(TournamentDto tournamentDto);
         IReadOnlyList<Tournament> ToTournament(IReadOnlyList<TournamentDto> tournamentsDto);
-        TournamentDto ToTournamentDto(Tournament tournament);
-        
+        TournamentDto ToTournamentDto(Tournament tournament);        
     }
 }

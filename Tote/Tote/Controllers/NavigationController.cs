@@ -13,25 +13,27 @@ namespace Tote.Controllers
     public class NavigationController : Controller
     {
         private readonly IBetListProvider betListProvider;
+        private readonly IMatchProvider matchProvider;
         private readonly ICacheService cacheService;        
         private readonly ILogService<NavigationController> logService;
         
 
-        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService) 
-            :this(rateListProvider, cacheService, new LogService<NavigationController>())
+        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, IMatchProvider matchProvider) 
+            :this(rateListProvider, cacheService, matchProvider, new LogService<NavigationController>())
         {
 
         }
 
-        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, ILogService<NavigationController> logService)
+        public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, 
+            IMatchProvider matchProvider, ILogService<NavigationController> logService)
         {
-            if (rateListProvider == null || cacheService == null)
+            if (rateListProvider == null || cacheService == null || matchProvider == null)
             {
                 throw new ArgumentNullException();
             }
             this.betListProvider = rateListProvider;
             this.cacheService = cacheService;
-            this.logService = logService;
+            this.matchProvider = matchProvider;
             if (logService == null)
             {
                 this.logService = new LogService<NavigationController>();
@@ -111,21 +113,13 @@ namespace Tote.Controllers
         [AllowAnonymous]
         public ActionResult Bet(int id)
         {
-            IReadOnlyList<Match> bets = betListProvider.GetMatchesAll();
-            if (bets == null)
+            logService.LogInfoMessage("Controller: Navigation, Action: Bet");
+            Match match = matchProvider.GetMatchWithEvents(id);
+            if(match == null)
             {
                 return RedirectToAction("InfoError", "Error");
-            }
-            Match bet = new Match();
-            foreach(Match b in bets)
-            {
-                if(b.MatchId==id)
-                {
-                    bet = b;
-                    break;
-                }
-            }
-            return View(bet);
+            }            
+            return View(match);
         }
         [AllowAnonymous]
         public ActionResult List(int? SportId, int? TournamentId = null)

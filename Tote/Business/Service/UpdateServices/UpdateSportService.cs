@@ -7,15 +7,15 @@ namespace Business.Service
 {
     public class UpdateSportService : IUpdateSportService
     {
-        private readonly IBetListClient betListClient;
+        private readonly ISportClient sportClient;
         private readonly ILogService<UpdateSportService> logService;
-        public UpdateSportService(IBetListClient betListClient, ILogService<UpdateSportService> logService)
+        public UpdateSportService(ISportClient sportClient, ILogService<UpdateSportService> logService)
         {
-            if (betListClient == null)
+            if (sportClient == null)
             {
                 throw new ArgumentNullException();
             }
-            this.betListClient = betListClient;
+            this.sportClient = sportClient;
             if (logService == null)
             {
                 this.logService = new LogService<UpdateSportService>();
@@ -33,7 +33,7 @@ namespace Business.Service
                 logService.LogError("Class: UpdateSportService Method: AddSport  Sport don't add to DB");
                 return false;
             }
-            return betListClient.AddSport(sport);
+            return sportClient.AddSport(sport);
         }
 
         public bool DeleteSport(int sportId)
@@ -43,7 +43,7 @@ namespace Business.Service
                 logService.LogError("Class: UpdateSportService Method: DeleteSport  Sport don't delete from DB");
                 return false;
             }
-            return betListClient.DeleteSport(sportId);
+            return sportClient.DeleteSport(sportId);
         }
 
         public bool UpdateSport(Sport sport)
@@ -53,7 +53,7 @@ namespace Business.Service
                 logService.LogError("Class: UpdateSportService Method: UpdateSport  Sport don't update from DB");
                 return false;
             }
-            return betListClient.UpdateSport(sport);
+            return sportClient.UpdateSport(sport);
         }
     }
 }

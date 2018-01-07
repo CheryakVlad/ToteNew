@@ -9,6 +9,7 @@ namespace Business.Providers
         IReadOnlyList<Match> GetMatchesAll();        
 
         IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status);
+        Match GetMatchWithEvents(int matchId);
         IReadOnlyList<Result> GetResultsAll();
 
         IReadOnlyList<Event> GetEventByMatch(int matchId);

@@ -10,19 +10,20 @@ namespace Business.Providers
     public class MatchProvider : IMatchProvider
     {
         private readonly IMatchClient matchClient;
-        private readonly IMatchService matchService;
-        private readonly IBetListProvider betListProvider;
+        private readonly IMatchService matchService;    
+        private readonly ISportProvider sportProvider;
         private readonly ILogService<MatchProvider> logService;
 
-        public MatchProvider(IMatchClient matchClient, IMatchService matchService, IBetListProvider betListProvider, ILogService<MatchProvider> logService)
+        public MatchProvider(IMatchClient matchClient, IMatchService matchService, 
+             ISportProvider sportProvider, ILogService<MatchProvider> logService)
         {
-            if (matchClient == null || matchService == null|| betListProvider==null)
+            if (matchClient == null || matchService == null|| sportProvider == null)
             {
                 throw new ArgumentNullException();
             }
             this.matchClient = matchClient;
-            this.matchService = matchService;
-            this.betListProvider = betListProvider;
+            this.matchService = matchService;            
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<MatchProvider>();
@@ -61,7 +62,7 @@ namespace Business.Providers
                 logService.LogError("Class: MatchProvider Method: GetMatchBySportDateStatus status must be in the interval [0;3]");
                 return null;
             }
-            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            IReadOnlyList<Sport> sports = sportProvider.GetSports();
             bool flag = false;
             foreach(Sport sport in sports)
             {
@@ -93,6 +94,10 @@ namespace Business.Providers
         {
             return matchService.GetResultsAll();
         }
-                
+
+        public Match GetMatchWithEvents(int matchId)
+        {
+            return matchService.GetMatchWithEvents(matchId);
+        }
     }
 }

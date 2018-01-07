@@ -96,5 +96,25 @@ namespace Data.Services
             logService.LogError("Class: MatchService Method: GetEventsByMatch List<Event> is null");
             return new List<Event>();
         }
+
+        public Match GetMatchWithEvents(int matchId)
+        {
+            var matchDto = matchClient.GetMatchById(matchId);
+            var eventsDto = matchClient.GetEventByMatch(matchId);
+
+            if (matchDto != null && eventsDto != null)
+            {
+                var match = convert.ToMatch(matchDto);
+                var events = convert.ToEvent(eventsDto);
+                match.Events = new List<Event>();                
+                foreach (var _event in events)
+                {
+                    match.Events.Add(_event);
+                }
+                return match;
+            }
+            logService.LogError("Class: MatchService Method: GetMatchById Match is null");
+            return new Match();
+        }
     }
 }

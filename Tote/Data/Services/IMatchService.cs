@@ -8,6 +8,7 @@ namespace Data.Services
         IReadOnlyList<Match> GetMatchsAll();
         Match GetMatchById(int matchId);
         IReadOnlyList<Match> GetMatchBySportDateStatus(int sportId, string dateMatch, int status);
+        Match GetMatchWithEvents(int matchId);
 
         IReadOnlyList<Result> GetResultsAll();
 

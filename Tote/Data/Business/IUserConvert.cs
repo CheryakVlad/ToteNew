@@ -10,7 +10,6 @@ namespace Data.Business
         User ToUser(UserDto userDto);
         UserDto ToUserDto(User user);
         IReadOnlyList<User> ToUsers(IReadOnlyList<UserDto> usersDto);
-        IReadOnlyList<Role> ToRoles(IReadOnlyList<RoleDto> rolesDto);
-        
+        IReadOnlyList<Role> ToRoles(IReadOnlyList<RoleDto> rolesDto);        
     }
 }

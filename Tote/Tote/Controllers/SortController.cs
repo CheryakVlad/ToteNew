@@ -17,22 +17,24 @@ namespace Tote.Controllers
         private const string cacheKey = "sortKey";
         private readonly IBetListProvider betListProvider;
         private readonly IMatchProvider matchProvider;
+        private readonly ISportProvider sportProvider;
         private readonly IUserProvider userProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateBetListService betListService;        
         private readonly ILogService<SortController> logService;
 
         public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider,
-            ICacheService cacheService, IUpdateBetListService betListService) 
-            :this(rateListProvider, matchProvider, userProvider, cacheService, betListService, new LogService<SortController>())
+            ICacheService cacheService, IUpdateBetListService betListService, ISportProvider sportProvider) 
+            :this(rateListProvider, matchProvider, userProvider, cacheService, betListService, sportProvider, new LogService<SortController>())
         {
 
         }
 
         public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider,
-            ICacheService cacheService, IUpdateBetListService betListService, ILogService<SortController> logService/*ILog log*/)
+            ICacheService cacheService, IUpdateBetListService betListService, ISportProvider sportProvider, ILogService<SortController> logService)
         {
-            if (rateListProvider == null || cacheService == null || matchProvider == null || userProvider == null|| betListService==null)
+            if (rateListProvider == null || cacheService == null || matchProvider == null || 
+                userProvider == null|| betListService==null || sportProvider == null)
             {
                 throw new ArgumentNullException();
             }
@@ -41,6 +43,7 @@ namespace Tote.Controllers
             this.userProvider = userProvider;
             this.cacheService = cacheService;
             this.betListService = betListService;
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<SortController>();
@@ -55,7 +58,7 @@ namespace Tote.Controllers
         public ActionResult Sorting()
         {
             logService.LogInfoMessage("Controller: Sort, Action: Sorting");
-            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name");
             if (sports == null)
             {
                 logService.LogError("Controller: Sort, Action: Sorting Don't GetSports");

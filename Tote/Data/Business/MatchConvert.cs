@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using Common.Models;
+using Data.ToteService;
 using Data.TeamService;
+using System;
 
 namespace Data.Business
 {
     public class MatchConvert : IMatchConvert
     {
-        public IReadOnlyList<Event> ToEvent(IReadOnlyList<EventDto> eventsDto)
+        public IReadOnlyList<Event> ToEvent(IReadOnlyList<TeamService.EventDto> eventsDto)
         {
             if(eventsDto.Count == 0)
             {
@@ -28,16 +30,16 @@ namespace Data.Business
             return eventsList;
         }
 
-        public EventDto[] ToEventDto(IReadOnlyList<Event> events)
+        public TeamService.EventDto[] ToEventDto(IReadOnlyList<Event> events)
         {
             if (events.Count == 0)
             {
                 return null;
             }
-            var eventsDto = new List<EventDto>();
+            var eventsDto = new List<TeamService.EventDto>();
             foreach (var _event in events)
             {
-                var eventDto = new EventDto
+                var eventDto = new TeamService.EventDto
                 {
                     EventId = _event.EventId,
                     MatchId = _event.MatchId,
@@ -197,5 +199,31 @@ namespace Data.Business
             }
             return resultsList;
         }
+
+        public IReadOnlyList<Match> ToMatchList(IReadOnlyList<ToteService.BetListDto> betsListDto)
+        {
+            if (betsListDto.Count == 0)
+            {
+                return null;
+            }
+            var matchesList = new List<Match>();
+            foreach (var betListDto in betsListDto)
+            {
+                var teams = new List<Team>();
+                teams.Add(new Team { Name = betListDto.CommandHome, Country = new Country { Name = betListDto.CountryHome } });
+                teams.Add(new Team { Name = betListDto.CommandGuest, Country = new Country { Name = betListDto.CountryGuest } });
+                var match = new Match
+                {
+                    MatchId = betListDto.MatchId,
+                    Teams = teams,
+                    Date = betListDto.Date
+                };
+
+                matchesList.Add(match);
+            }
+            return matchesList;
+        }
+
+        
     }
 }

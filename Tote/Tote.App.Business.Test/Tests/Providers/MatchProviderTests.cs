@@ -16,7 +16,7 @@ namespace Tote.App.Business.Test
         private Mock<IMatchClient> matchClient;
         private Mock<Data.Services.IMatchService> matchService;
         private IMatchProvider matchProvider;
-        private Mock<IBetListProvider> betListProvider;
+        private Mock<ISportProvider> sportProvider;
         private Mock<ILogService<MatchProvider>> logService;
 
         private List<Common.Models.Match> GetMatches()
@@ -98,7 +98,7 @@ namespace Tote.App.Business.Test
         {
             matchClient = new Mock<IMatchClient>();
             matchService = new Mock<Data.Services.IMatchService>();
-            betListProvider = new Mock<IBetListProvider>();
+            sportProvider = new Mock<ISportProvider>();
             logService = new Mock<ILogService<MatchProvider>>();
             matchService.Setup(m => m.GetMatchBySportDateStatus(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((int sport, string dateMatch, int status)=> {
@@ -127,15 +127,15 @@ namespace Tote.App.Business.Test
 
                     throw new ArgumentException();
                 });
-            matchProvider = new MatchProvider(matchClient.Object, matchService.Object, betListProvider.Object, logService.Object);
+            matchProvider = new MatchProvider(matchClient.Object, matchService.Object, sportProvider.Object, logService.Object);
         }
 
         
         [TestMethod]
         
         public void MatchProvider_GetMatchBySportDateStatus_PassNullDate_CountValue()
-        {            
-            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+        {
+            sportProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", 0);
             Assert.IsTrue(actualResult.Count == GetMatches().Count);           
         }
@@ -143,7 +143,7 @@ namespace Tote.App.Business.Test
         [TestMethod]        
         public void MatchProvider_GetMatchBySportDateStatus_PassNegativeSportId_Exception()
         {
-            betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
+            sportProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(-1, "", 0);            
             Assert.IsNull(actualResult);            
         }
@@ -151,7 +151,7 @@ namespace Tote.App.Business.Test
         [TestMethod]        
         public void MatchProvider_GetMatchBySportDateStatus_PassNegativeStatus_Exception()
         {
-            betListProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
+            sportProvider.Setup(bet => bet.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", -1);
             Assert.IsNull(actualResult);
         }
@@ -159,7 +159,7 @@ namespace Tote.App.Business.Test
         [TestMethod]
         public void MatchProvider_GetMatchBySportDateStatus_PassFootball_CountValue()
         {
-            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            sportProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 0);            
             Assert.IsTrue(actualResult.Count == 3);
         }
@@ -167,7 +167,7 @@ namespace Tote.App.Business.Test
         [TestMethod]
         public void MatchProvider_GetMatchBySportDateStatus_PassStatus_CountValue()
         {
-            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            sportProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, "", 3);
             Assert.IsTrue(actualResult.Count == 2);
         }
@@ -175,7 +175,7 @@ namespace Tote.App.Business.Test
         [TestMethod]
         public void MatchProvider_GetMatchBySportDateStatus_PassDateMatch_CountValue()
         {
-            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            sportProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(0, DateTime.Now.Date.ToString(), 0);           
             IEnumerable<Common.Models.Match> matches = GetMatches().Where(m => m.Date.Date == DateTime.Now.Date);
             Assert.IsTrue(actualResult.Count == matches.Count());
@@ -184,14 +184,14 @@ namespace Tote.App.Business.Test
         [TestMethod]
         public void MatchProvider_GetMatchBySportDateStatus_PassSportStatus_CountValue()
         {
-            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            sportProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 3);            
             Assert.IsTrue(actualResult.Count == 3);
         }
         [TestMethod]
         public void MatchProvider_GetMatchBySportDateStatus_PassSportStatus_Content()
         {
-            betListProvider.Setup(s => s.GetSports()).Returns(GetSports());
+            sportProvider.Setup(s => s.GetSports()).Returns(GetSports());
             var actualResult = matchProvider.GetMatchBySportDateStatus(1, "", 3);
             Assert.IsTrue(actualResult[0].MatchId == 1);
             Assert.IsTrue(actualResult[0].SportId == 1);

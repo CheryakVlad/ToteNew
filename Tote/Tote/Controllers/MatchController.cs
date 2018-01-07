@@ -16,37 +16,39 @@ namespace Tote.Controllers
         private const string cacheSortKey = "sortKey";
         private const string cacheNavigationKey = "navigateKey";
         private const int maxRows = 10;
-        private readonly IMatchProvider matchProvider;
-        private readonly IBetListProvider betListProvider;
+        private readonly IMatchProvider matchProvider;        
         private readonly ITournamentProvider tournamentProvider;
+        private readonly ISportProvider sportProvider;
         private readonly ITeamProvider teamProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateMatchService matchService;
         private readonly ILogService<MatchController> logService;
         private readonly IMatchPaging matchPaging;
 
-        public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider,
-            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging, ITournamentProvider tournamentProvider) 
-            :this(betListProvider, matchProvider, teamProvider, cacheService, matchService, matchPaging, tournamentProvider, new LogService<MatchController>())
+        public MatchController(IMatchProvider matchProvider, ITeamProvider teamProvider,
+            ICacheService cacheService, IUpdateMatchService matchService, 
+            IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ISportProvider sportProvider) 
+            :this(matchProvider, teamProvider, cacheService, matchService, matchPaging, tournamentProvider, sportProvider, new LogService<MatchController>())
         {
 
         }
 
-        public MatchController(IBetListProvider betListProvider, IMatchProvider matchProvider, ITeamProvider teamProvider, 
-            ICacheService cacheService, IUpdateMatchService matchService, IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ILogService<MatchController> logService)
+        public MatchController(IMatchProvider matchProvider, ITeamProvider teamProvider, 
+            ICacheService cacheService, IUpdateMatchService matchService, 
+            IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ISportProvider sportProvider, ILogService<MatchController> logService)
         {
-            if (betListProvider == null || matchProvider == null || teamProvider == null ||
-                cacheService == null|| matchProvider==null || matchPaging==null || tournamentProvider == null)
+            if (matchProvider == null || teamProvider == null ||
+                cacheService == null|| matchProvider==null || matchPaging==null || tournamentProvider == null || sportProvider == null)
             {
                 throw new ArgumentNullException();
-            }
-            this.betListProvider = betListProvider;
+            }            
             this.matchProvider = matchProvider;
             this.teamProvider = teamProvider;
             this.cacheService = cacheService;
             this.matchService = matchService;
             this.matchPaging = matchPaging;
             this.tournamentProvider = tournamentProvider;
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<MatchController>();
@@ -96,7 +98,7 @@ namespace Tote.Controllers
 
         private SelectList GetSports(int sport = 1)
         {
-            IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+            IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
             if (sportsAll.Count == 0)
             {
                 logService.LogError("Controller: Match, Don't GetSports");
@@ -417,7 +419,7 @@ namespace Tote.Controllers
                 logService.LogError("Controller: Match, Action: DeleteMatch Don't Delete Match");
                 return RedirectToAction("InfoError", "Error");
             }
-            ViewBag.Sport = betListProvider.GetSport(match.SportId).Name;
+            ViewBag.Sport = sportProvider.GetSport(match.SportId).Name;
 
             return View(match);
         }

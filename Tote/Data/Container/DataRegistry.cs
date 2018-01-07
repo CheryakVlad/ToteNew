@@ -26,7 +26,12 @@ namespace Data.Container
             For<ISportConvert>().Use<Data.Business.SportConvert>();
             For<ITeamConvert>().Use<Data.Business.TeamConvert>();
             For<ITournamentConvert>().Use<Data.Business.TournamentConvert>();
+            For<ITournamentService>().Use<Data.Services.TournamentService>();
             For<IUserConvert>().Use<Data.Business.UserConvert>();
+            For<ISportConvert>().Use<Data.Business.SportConvert>();
+            For<ISportService>().Use<Data.Services.SportService>();
+            For<ITeamService>().Use<Data.Services.TeamService>();
+            For<ISportClient>().Use<SportClient>();
         }
         
     }

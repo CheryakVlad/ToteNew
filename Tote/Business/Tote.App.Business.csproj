@@ -80,10 +80,12 @@
     <Compile Include="Providers\IBetListProvider.cs" />
     <Compile Include="Providers\BetListProvider.cs" />
     <Compile Include="Providers\IMatchProvider.cs" />
+    <Compile Include="Providers\ISportProvider.cs" />
     <Compile Include="Providers\ITeamProvider.cs" />
     <Compile Include="Providers\ITournamentProvider.cs" />
     <Compile Include="Providers\IUserProvider.cs" />
     <Compile Include="Providers\MatchProvider.cs" />
+    <Compile Include="Providers\SportProvider.cs" />
     <Compile Include="Providers\TeamProvider.cs" />
     <Compile Include="Providers\TournamentProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />

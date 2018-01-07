@@ -13,13 +13,17 @@ namespace Data.Services
         private readonly ITournamentClient tournamentClient;
         private readonly ITeamClient teamClient;
         private readonly IConvert convert;
+        private readonly IMatchConvert matchConvert;
         private readonly IMatchService matchService;
+        private readonly ISportService sportService;
         private readonly ILogService<DataService> logService;
 
         public DataService(IBetListClient betListClient, IConvert convert, ITournamentClient tournamentClient,
-            ITeamClient teamClient, IMatchService matchService, ILogService<DataService> logService)
+            ITeamClient teamClient, IMatchService matchService, ISportService sportService,
+            IMatchConvert matchConvert, ILogService<DataService> logService)
         {
-            if (betListClient == null|| convert==null|| tournamentClient==null|| teamClient==null|| matchService==null)
+            if (betListClient == null|| convert==null|| tournamentClient==null||
+                teamClient==null|| matchService==null || sportService == null || matchConvert == null)
             {
                 throw new ArgumentNullException();
             }
@@ -28,6 +32,8 @@ namespace Data.Services
             this.tournamentClient = tournamentClient;
             this.teamClient = teamClient;
             this.matchService = matchService;
+            this.sportService = sportService;
+            this.matchConvert = matchConvert;
             if (logService == null)
             {
                 this.logService = new LogService<DataService>();
@@ -46,7 +52,7 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToMatchList(dto);
+                return matchConvert.ToMatchList(dto);
             }
             logService.LogError("Class: DataService Method: GetBets List<Match> is null");
             return new List<Match>();
@@ -58,7 +64,7 @@ namespace Data.Services
 
             if (dto != null)
             {
-                return convert.ToMatchList(dto);
+                return matchConvert.ToMatchList(dto);
             }
             logService.LogError("Class: DataService Method: GetBetsAll List<Match> is null");
             return new List<Match>();
@@ -88,92 +94,8 @@ namespace Data.Services
             logService.LogError("Class: DataService Method: GetEvents List<Event> is null");
             return new List<Event>();
         }
-
-        public IReadOnlyList<Match> GetMatchesAll()
-        {
-            var dto = betListClient.GetBetsAll();
-            var eventDto = betListClient.GetEvents();
-
-            if (dto != null)
-            {
-                return convert.ToMatchList(dto,eventDto);
-            }
-            logService.LogError("Class: DataService Method: GetMatchesAll List<Match> is null");
-            return new List<Match>();
-        }
-
-        public Sport GetSport(int? id)
-        {
-            var dto = betListClient.GetSport(id);
-
-            if (dto != null)
-            {
-                return convert.ToSport(dto);
-            }
-            logService.LogError("Class: DataService Method: GetSport Sport is null");
-            return new Sport();
-        }
-
-        public IReadOnlyList<Sport> GetSports()
-        {
-            var dto = betListClient.GetSports();
-
-            if (dto != null)
-            {
-                return convert.ToSport(dto);
-            }
-            logService.LogError("Class: DataService Method: GetSports List<Sport> is null");
-            return new List<Sport>();
-        }
         
-
-        public IReadOnlyList<Team> GetTeamsAll()
-        {
-            var dto = teamClient.GetTeamsAll();
-
-            if (dto != null)
-            {
-                return convert.ToTeams(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTeamsAll List<Team> is null");
-            return new List<Team>();
-        }
-
-        public Team GetTeamById(int teamId)
-        {
-            var dto = teamClient.GetTeamById(teamId);
-            if (dto != null)
-            {
-                return convert.ToTeam(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTeamById Team is null");
-            return new Team();
-        }
-               
-
-        public IReadOnlyList<Country> GetCountriesAll()
-        {
-            var dto = teamClient.GetCountriesAll();
-            if (dto != null)
-            {
-                return convert.ToCountry(dto);
-            }
-            logService.LogError("Class: DataService Method: GetCountriesAll List<Country> is null");
-            return new List<Country>();
-        }
-
-        public IReadOnlyList<Team> GetTeamsByTournament(int tournamentId)
-        {
-            var dto = teamClient.GetTeamsByTournament(tournamentId);
-
-            if (dto != null)
-            {
-                return convert.ToTeams(dto);
-            }
-            logService.LogError("Class: DataService Method: GetTeamsByTournament List<Team> is null");
-            return new List<Team>();
-        }
-
+        
         public IReadOnlyList<Basket> GetBasketByUser(int userId, out double total)
         {
             total = 1;
@@ -194,7 +116,7 @@ namespace Data.Services
                     continue;
                 }
                 var _events = matchService.GetEventsByMatch(basket.MatchId);
-                var sport = GetSport(match.SportId);                
+                var sport = sportService.GetSport(match.SportId);                
                 match.SportName = sport.Name;
 
                 foreach(var _event in _events )
@@ -291,16 +213,6 @@ namespace Data.Services
             return new List<Bet>();
         }
 
-        public Country GetCountryById(int countryId)
-        {
-            var dto = teamClient.GetCountryById(countryId);
-            if (dto != null)
-            {
-                return convert.ToCountry(dto);
-            }
-            logService.LogError("Class: DataService Method: GetCountryById Country is null");
-            return new Country();
-        }
         
     }
 }

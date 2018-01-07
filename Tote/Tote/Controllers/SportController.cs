@@ -12,28 +12,29 @@ namespace Tote.Controllers
     public class SportController : Controller
     {
         private const string sportCacheKey = "sportKey";
-
-        private readonly IBetListProvider betListProvider;
+        
+        private readonly ISportProvider sportProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateSportService sportService;        
         private readonly ILogService<SportController> logService;
 
 
-        public SportController(IBetListProvider betListProvider, ICacheService cacheService, IUpdateSportService sportService) 
-            :this(betListProvider, cacheService, sportService, new LogService <SportController>())
+        public SportController(ICacheService cacheService, IUpdateSportService sportService, ISportProvider sportProvider) 
+            :this(cacheService, sportService, sportProvider, new LogService <SportController>())
         {
 
         }
 
-        public SportController(IBetListProvider betListProvider, ICacheService cacheService, IUpdateSportService sportService, ILogService<SportController> logService)
+        public SportController(ICacheService cacheService, IUpdateSportService sportService, 
+            ISportProvider sportProvider, ILogService<SportController> logService)
         {
-            if (betListProvider == null|| cacheService==null|| sportService==null)
+            if (cacheService==null|| sportService==null)
             {
                 throw new ArgumentNullException();
-            }
-            this.betListProvider = betListProvider;
+            }            
             this.cacheService = cacheService;
             this.sportService = sportService;
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<SportController>();
@@ -48,7 +49,7 @@ namespace Tote.Controllers
         public ActionResult ShowSports()
         {
             logService.LogInfoMessage("Controller: Sport, Action: ShowSports");
-            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            IReadOnlyList<Sport> sports = sportProvider.GetSports();
             if (sports.Count == 0)
             {
                 logService.LogError("Controller: Sport, Action: ShowSports Don't show sport");
@@ -94,7 +95,7 @@ namespace Tote.Controllers
         public ActionResult EditSport(int id)
         {
             logService.LogInfoMessage("Controller: Sport, Action: EditSport");
-            Sport sport = betListProvider.GetSport(id);
+            Sport sport = sportProvider.GetSport(id);
             if (sport == null)
             {
                 logService.LogError("Controller: Sport, Action: EditSport Don't GetSport");
@@ -133,7 +134,7 @@ namespace Tote.Controllers
         public ActionResult DeleteSport(int id)
         {
             logService.LogInfoMessage("Controller: Sport, Action: DeleteSport");
-            Sport sport = betListProvider.GetSport(id);
+            Sport sport = sportProvider.GetSport(id);
             if (sport == null)
             {
                 logService.LogError("Controller: Sport, Action: DeleteSport Don't GetSport");

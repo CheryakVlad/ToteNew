@@ -17,17 +17,20 @@ namespace Business.Service
         private readonly IMatchProvider matchProvider;
         private readonly IBetListProvider betListProvider;
         private readonly ITournamentProvider tournamentProvider;
+        private readonly ISportProvider sportProvider;
         private readonly ILogService<CacheService> logService;
 
-        public CacheService(IMatchProvider matchProvider, IBetListProvider betListProvider, ITournamentProvider tournamentProvider, ILogService<CacheService> logService)
+        public CacheService(IMatchProvider matchProvider, IBetListProvider betListProvider,
+            ITournamentProvider tournamentProvider, ISportProvider sportProvider, ILogService<CacheService> logService)
         {
-            if (matchProvider == null || betListProvider == null || tournamentProvider == null)
+            if (matchProvider == null || betListProvider == null || tournamentProvider == null || sportProvider == null)
             {
                 throw new ArgumentNullException();
             }
             this.matchProvider = matchProvider;
             this.betListProvider = betListProvider;
             this.tournamentProvider = tournamentProvider;
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<CacheService>();
@@ -79,7 +82,7 @@ namespace Business.Service
 
         public IReadOnlyList<Sport> InsertCache()
         {
-            IReadOnlyList<Sport> sports = betListProvider.GetSports();
+            IReadOnlyList<Sport> sports = sportProvider.GetSports();
             if (sports == null)
             {
                 logService.LogError("CacheService method:InsertCache cacheKey: Sport is null");

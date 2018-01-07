@@ -11,29 +11,30 @@ namespace Tote.Controllers
 {
     public class TeamController : Controller
     {
-        private readonly ITeamProvider teamProvider;
-        private readonly IBetListProvider betListProvider;
+        private readonly ITeamProvider teamProvider;        
         private readonly ITournamentProvider tournamentProvider;
+        private readonly ISportProvider sportProvider;
         private readonly IUpdateTeamService teamService;       
         private readonly ILogService<TeamController> logService;
 
-        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService, ITournamentProvider tournamentProvider) 
-            :this(betListProvider, teamProvider, teamService, tournamentProvider, new LogService<TeamController>())
+        public TeamController(ITeamProvider teamProvider, 
+            IUpdateTeamService teamService, ITournamentProvider tournamentProvider, ISportProvider sportProvider) 
+            :this(teamProvider, teamService, tournamentProvider, sportProvider, new LogService<TeamController>())
         {
 
         }
 
-        public TeamController(IBetListProvider betListProvider, ITeamProvider teamProvider, IUpdateTeamService teamService,
-            ITournamentProvider tournamentProvider, ILogService<TeamController> logService)
+        public TeamController(ITeamProvider teamProvider, IUpdateTeamService teamService,
+            ITournamentProvider tournamentProvider, ISportProvider sportProvider, ILogService<TeamController> logService)
         {
-            if (betListProvider == null || teamProvider == null|| teamService==null || tournamentProvider == null)
+            if (teamProvider == null|| teamService==null || tournamentProvider == null || sportProvider == null)
             {
                 throw new ArgumentNullException();
-            }
-            this.betListProvider = betListProvider;
+            }            
             this.teamProvider = teamProvider;
             this.teamService = teamService;
             this.tournamentProvider = tournamentProvider;
+            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<TeamController>();
@@ -100,7 +101,7 @@ namespace Tote.Controllers
         }
         private SelectList GetSports(int sport = 1)
         {
-            IReadOnlyList<Sport> sportsAll = betListProvider.GetSports();
+            IReadOnlyList<Sport> sportsAll = sportProvider.GetSports();
             if (sportsAll.Count == 0)
             {
                 logService.LogError("Controller: Team, Don't GetSports");
@@ -154,7 +155,7 @@ namespace Tote.Controllers
                 bool result = teamService.AddTeam(team);
                 if (!result)
                 {
-                    SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name",team.SportId);
+                    SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name",team.SportId);
                     if (sports == null)
                     {
                         logService.LogError("Controller: Team, Action: AddTeam Don't GetSports");
@@ -179,7 +180,7 @@ namespace Tote.Controllers
                 ModelState.AddModelError("", "You can not add a team with the following parameters");
                 logService.LogError("Controller: Team, Action: AddTeam Don't add Team");
 
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", team.SportId);
+                SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name", team.SportId);
                 if (sports == null)
                 {
                     logService.LogError("Controller: Team, Action: AddTeam Don't GetSports");
@@ -240,7 +241,7 @@ namespace Tote.Controllers
         public ActionResult EditTeam(int id)
         {
             logService.LogInfoMessage("Controller: Team, Action: EditTeam");
-            SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name");
+            SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name");
             if (sports == null)
             {
                 logService.LogError("Controller: Team, Action: EditTeam Don't GetSports");
@@ -267,7 +268,7 @@ namespace Tote.Controllers
                 bool result = teamService.UpdateTeam(team);
                 if (!result)
                 {
-                    SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", team.SportId);
+                    SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name", team.SportId);
                     if (sports == null)
                     {
                         logService.LogError("Controller: Team, Action: AddTeam Don't GetSports");
@@ -292,7 +293,7 @@ namespace Tote.Controllers
                 ModelState.AddModelError("", "You can not edit a team with the following parameters");
                 logService.LogError("Controller: Team, Action: AddTeam Don't update team");
 
-                SelectList sports = new SelectList(betListProvider.GetSports(), "SportId", "Name", team.SportId);
+                SelectList sports = new SelectList(sportProvider.GetSports(), "SportId", "Name", team.SportId);
                 if (sports == null)
                 {
                     logService.LogError("Controller: Team, Action: AddTeam Don't GetSports");
