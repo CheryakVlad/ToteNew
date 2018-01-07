@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Common.Models
 {
@@ -11,8 +10,6 @@ namespace Common.Models
         public string Name { get; set; }
         public int SportId { get; set; }        
         public Sport Sport { get; set; }
-        public IList<Match> Matches { get; set; }
-
         
     }
 }

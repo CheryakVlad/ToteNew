@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System;
 using Data.Clients;
 using Common.Logger;
-using Business.Service;
 
 namespace Business.Providers
 {

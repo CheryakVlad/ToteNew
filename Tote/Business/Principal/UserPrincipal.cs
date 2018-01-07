@@ -14,10 +14,7 @@ namespace Business.Principal
 
         }
 
-        public int GetUserId()
-        {
-            return UserId;
-        }
+        
         public UserPrincipal(string userName)
         {
             Identity = new GenericIdentity(userName);
