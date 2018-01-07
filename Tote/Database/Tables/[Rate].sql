@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[Rate](
 	[RateId] [int] IDENTITY(1,1) NOT NULL,

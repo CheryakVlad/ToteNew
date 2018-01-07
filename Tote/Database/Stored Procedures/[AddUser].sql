@@ -13,7 +13,7 @@ AS
 
 IF NOT EXISTS(SELECT TOP(1)1 FROM User_ WHERE User_.Login=@Login)
 BEGIN
-	INSERT INTO User_ VALUES(@Login,@Password,@Email,@RoleId,@Money,@FIO,@PhoneNumber,'False')
+	INSERT INTO User_ VALUES(@Login,@Password,@Email,@Money,@FIO,@PhoneNumber,'False')
 	DECLARE @UserId int
 	SELECT @UserId=MAX(User_.UserId) FROM User_
 	INSERT INTO RoleUser VALUES(@RoleId,@UserId)

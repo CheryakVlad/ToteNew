@@ -1,11 +1,11 @@
 
+GO
 
 CREATE TABLE [dbo].[User_](
 	[UserId] [int] IDENTITY(1,1) NOT NULL,
 	[Login] [nvarchar](50) NOT NULL,
 	[Password] [nvarchar](50) NOT NULL,
 	[Email] [nvarchar](50) NOT NULL,
-	[RoleId] [int] NOT NULL,
 	[Money] [money] NOT NULL,
 	[FIO] [nvarchar](70) NULL,
 	[PhoneNumber] [nvarchar](50) NULL,

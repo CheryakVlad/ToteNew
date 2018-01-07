@@ -1,4 +1,6 @@
 
+GO
+
 CREATE TABLE [dbo].[Tournament](
 	[TournamentId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,

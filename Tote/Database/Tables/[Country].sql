@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[Country](
 	[CountryId] [int] IDENTITY(1,1) NOT NULL,

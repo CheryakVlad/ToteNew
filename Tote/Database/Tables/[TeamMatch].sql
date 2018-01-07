@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[TeamMatch](
 	[MatchId] [int] NOT NULL,

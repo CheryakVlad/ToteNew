@@ -1,4 +1,4 @@
-N
+
 GO
 
 CREATE PROCEDURE [dbo].[GetBetsBySport]

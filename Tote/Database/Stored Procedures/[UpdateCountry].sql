@@ -6,7 +6,7 @@ CREATE PROC [dbo].[UpdateCountry]
 @CountryId int,
 @Name nvarchar(50)
 AS
-IF (SELECT TOP(1)1 FROM Country WHERE Country.Name=@Name)=0
+IF NOT EXISTS(SELECT TOP(1)1 FROM Country WHERE Country.Name=@Name)
 BEGIN
 	UPDATE Country
 	SET Name=@Name

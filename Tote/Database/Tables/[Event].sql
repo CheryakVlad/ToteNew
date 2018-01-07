@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[Event](
 	[EventId] [int] IDENTITY(1,1) NOT NULL,

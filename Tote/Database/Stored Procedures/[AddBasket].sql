@@ -1,4 +1,3 @@
-
 GO
 
 CREATE PROC [dbo].[AddBasket]
@@ -6,9 +5,10 @@ CREATE PROC [dbo].[AddBasket]
 @MatchId int,
 @EventId int
 AS
-
-INSERT INTO Basket VALUES(@UserId,@MatchId,@EventId)
-
+IF NOT EXISTS(SELECT TOP(1)1 FROM Basket WHERE UserId=@UserId AND MatchId=@MatchId)
+BEGIN
+	INSERT INTO Basket VALUES(@UserId,@MatchId,@EventId)
+END
 GO
 
 

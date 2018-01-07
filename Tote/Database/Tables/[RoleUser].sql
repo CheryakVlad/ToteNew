@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[RoleUser](
 	[RoleId] [int] NOT NULL,

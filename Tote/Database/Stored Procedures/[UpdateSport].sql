@@ -5,7 +5,7 @@ CREATE PROC [dbo].[UpdateSport]
 @SportId int,
 @Name nvarchar(50)
 AS
-IF (SELECT TOP(1)1 FROM Sport WHERE Sport.Name=@Name)=0
+IF NOT EXISTS(SELECT TOP(1)1 FROM Sport WHERE Sport.Name=@Name)
 BEGIN
 	UPDATE Sport
 	SET Name=@Name

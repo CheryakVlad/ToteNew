@@ -1,8 +1,6 @@
 
 GO
 
-
-
 CREATE TRIGGER [dbo].[INSERT_Match] ON [dbo].[Match] 
 FOR INSERT 
 AS

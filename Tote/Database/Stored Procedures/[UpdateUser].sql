@@ -11,13 +11,13 @@ CREATE PROC [dbo].[UpdateUser]
 @RoleId int,
 @PhoneNumber varchar(50)
 AS
-IF (SELECT TOP(1)1 
+IF EXISTS(SELECT TOP(1)1 
 FROM User_ 
 WHERE User_.UserId=@UserId 
-AND User_.Login=@Login)=1
+AND User_.Login=@Login)
 BEGIN
 	UPDATE User_
-	SET Password=@Password, Email=@Email, Money=@Money, FIO=@FIO, RoleId=@RoleId, PhoneNumber=@PhoneNumber
+	SET Password=@Password, Email=@Email, Money=@Money, FIO=@FIO, PhoneNumber=@PhoneNumber
 	WHERE User_.UserId=@UserId
 	IF (SELECT TOP(1)1 FROM RoleUser WHERE UserId=@UserId AND RoleId=@RoleId)=0
 		BEGIN
@@ -28,12 +28,12 @@ BEGIN
 END
 ELSE 
 BEGIN
-	IF (SELECT TOP(1)1 
+	IF NOT EXISTS(SELECT TOP(1)1 
 	FROM User_ 
-	WHERE User_.Login=@Login)=0
+	WHERE User_.Login=@Login)
 	BEGIN
 		UPDATE User_
-		SET User_.Login=@Login, Password=@Password, Email=@Email, Money=@Money, FIO=@FIO, RoleId=@RoleId, PhoneNumber=@PhoneNumber
+		SET User_.Login=@Login, Password=@Password, Email=@Email, Money=@Money, FIO=@FIO, PhoneNumber=@PhoneNumber
 		WHERE User_.UserId=@UserId	
 		IF (SELECT TOP(1)1 FROM RoleUser WHERE UserId=@UserId AND RoleId=@RoleId)=0
 		BEGIN

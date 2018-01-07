@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[TeamTournament](
 	[TeamId] [int] NOT NULL,

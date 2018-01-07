@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[Team](
 	[TeamId] [int] IDENTITY(1,1) NOT NULL,

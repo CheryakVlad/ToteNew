@@ -1,6 +1,7 @@
 
 GO
 
+
 CREATE PROCEDURE [dbo].[GetTournamentsByTeamId]
 @TeamId int
 AS

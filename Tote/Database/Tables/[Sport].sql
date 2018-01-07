@@ -1,4 +1,5 @@
 
+GO
 
 CREATE TABLE [dbo].[Sport](
 	[SportId] [int] IDENTITY(1,1) NOT NULL,

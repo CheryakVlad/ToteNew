@@ -9,7 +9,7 @@ CREATE PROC [dbo].[UpdateTeam]
 @SportId int
 AS
 
-IF (SELECT TOP(1)1 FROM Team WHERE Team.Name=@Name AND Team.SportId=@SportId)=0
+IF NOT EXISTS(SELECT TOP(1)1 FROM Team WHERE Team.Name=@Name AND Team.SportId=@SportId)
 BEGIN
 UPDATE Team
 SET Name=@Name,SportId=@SportId, CountryId=@CountryId
