@@ -105,7 +105,15 @@ namespace Data.Services
                 return new List<Basket>();
             }            
             var basketsDto = betListClient.GetBasketByUser(userId);
+            if(basketsDto == null)
+            {
+                return null;
+            }
             var baskets = convert.ToBasket(basketsDto);
+            if (baskets == null)
+            {
+                return null;
+            }
             var basketsMatch = new List<Basket>();
             foreach(var basket in baskets)
             {                

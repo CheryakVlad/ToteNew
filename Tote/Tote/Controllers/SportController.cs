@@ -9,6 +9,7 @@ using Common.Logger;
 
 namespace Tote.Controllers
 {
+    [HandleError()]
     public class SportController : Controller
     {
         private const string sportCacheKey = "sportKey";
@@ -27,11 +28,11 @@ namespace Tote.Controllers
 
         public SportController(ICacheService cacheService, IUpdateSportService sportService, 
             ISportProvider sportProvider, ILogService<SportController> logService)
-        {
-            if (cacheService==null|| sportService==null)
+        {            
+            if (cacheService == null || sportService == null || sportProvider == null)
             {
                 throw new ArgumentNullException();
-            }            
+            }
             this.cacheService = cacheService;
             this.sportService = sportService;
             this.sportProvider = sportProvider;

@@ -9,7 +9,7 @@ namespace Business.Service
 {
     public class LoginService : ILoginService
     {
-        private IUserProvider userProvider;
+        private IUserProvider userProvider;        
 
         public LoginService(IUserProvider userProvider)
         {

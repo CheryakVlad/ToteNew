@@ -22,7 +22,10 @@
 
                 $(data).each(function (index, item) {
                     var date = jsonDate(item.Date);
-                    $('#table').append("<tr><td>" + item.Tournament.Name + "</td><td>" + item.Teams[0].Name + "</td><td>" + item.Teams[1].Name + "</td><td>" + date + "</td><td>" + item.Score + "</td><td></tr>");
+                    $('#table > tbody').append("<tr><td>" + item.Tournament.Name + "</td><td>" + item.Teams[0].Name
+                        + " (" + item.Teams[0].Country.Name + ")</td><td>"
+        + item.Teams[1].Name + " (" + item.Teams[1].Country.Name + ")</td><td>" + date + "</td><td>" + item.Score + "</td><td> "
+        + " <a href=\"/Sort/ShowCoefficient?matchId=" + item.MatchId + "\">Show Coefficients</a>" + "</td></tr>");
                     $('#table').addClass('table');
                 })
             }

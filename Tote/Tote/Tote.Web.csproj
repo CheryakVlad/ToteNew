@@ -341,6 +341,7 @@
     <Content Include="Views\Team\ShowTournamentsByTeam.cshtml" />
     <Content Include="Views\Team\DeleteTournamentForTeam.cshtml" />
     <Content Include="Views\Error\InfoDB.cshtml" />
+    <Content Include="Views\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

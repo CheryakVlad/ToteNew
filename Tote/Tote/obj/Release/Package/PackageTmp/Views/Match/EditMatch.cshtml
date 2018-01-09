@@ -3,8 +3,13 @@
 @{
     Layout = @"\Views\LayoutView.cshtml"; 
 }
-<script src="~/scripts/jquery-3.2.1.js"></script>
-<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+@section Scripts
+{
+    <script src="~/scripts/jquery-3.2.1.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/scripts/Match/AddMatch/SportChange.js"></script>
+    <script src="~/scripts/Match/AddMatch/TournamentChange.js"></script>
+}
 <br />
 <br />
 <br />
@@ -19,9 +24,9 @@
             @Html.HiddenFor(model => model.MatchId)
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2", @type = "datetime-local" })
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date, new { @class = "form-control"  })
+                    @Html.EditorFor(model => model.Date, new { @class = "form-control", @type = "datetime-local" })
                     @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -37,17 +42,17 @@
             <div class="form-group" id="tournamentId">
                 @Html.Label("Tournament", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Tournament.TournamentId, new SelectList (ViewBag.Tournaments, "TournamentId", "Name", Model.Tournament.TournamentId), new { @class = "form-control", onchange = "TournamentChange()" })
+                    @Html.DropDownListFor(model => model.TournamentId, ViewBag.Tournaments as SelectList, new { @class = "form-control", onchange = "TournamentChange()" })
                     @Html.ValidationMessageFor(model => model.TournamentId, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>  
 
             <div id="teams">
                 <div class="form-group">
                     @Html.Label("Home Team", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.Teams[0].TeamId, ViewBag.TeamsHome as SelectList, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.TeamHomeId, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.Teams[0].TeamId, ViewBag.Teams as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Teams[0].TeamId, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -55,7 +60,7 @@
                     @Html.Label("Guest Team", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.Teams[1].TeamId, ViewBag.TeamsGuest as SelectList, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.TeamGuestId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Teams[1].TeamId, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>    
@@ -88,32 +93,4 @@
         @Html.ActionLink("Back to List", "ShowMatches")
     </div>
 
-<script type="text/javascript">
 
-    function SportChange() {
-        var sportId = $('#SportId').val();
-        alert(sportId);
-        $.ajax({
-            type: 'GET',
-            url: '/Match/TournamentesBySport?sportId=' + sportId,
-            success: function (data) {
-                $('#tournamentId').replaceWith(data).change();                
-                TournamentChange();
-            }
-        });
-    }    
-</script>
-
-<script type="text/javascript">
-    function TournamentChange() {
-        var tournamentId = $('#TournamentId').val();
-        alert(tournamentId);
-        $.ajax({
-            type: 'GET',
-            url: '/Match/MatchesByTournament?tournamentId=' + tournamentId,
-            success: function (data) {
-                $('#teams').replaceWith(data);
-            }
-        });
-    }
-</script>

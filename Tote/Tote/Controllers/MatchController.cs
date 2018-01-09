@@ -442,7 +442,7 @@ namespace Tote.Controllers
             return RedirectToAction("ShowMatches");
         }
         [Editor]
-        public ActionResult ShowCoefficient(int id)
+        public ActionResult ShowCoefficient(int id, DateTime date)
         {
             logService.LogInfoMessage("Controller: Match, Action: ShowCoefficient");
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
@@ -451,7 +451,7 @@ namespace Tote.Controllers
                 logService.LogError("Controller: Match, Action: ShowCoefficient Don't Show Coefficient");
                 return RedirectToAction("InfoError", "Error");
             }
-            
+            ViewBag.Date = date;
             return View(events);
         }
 

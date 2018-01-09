@@ -14,6 +14,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayName("Sport")
+        </th>
+        <th>
+            @Html.DisplayName("Tournament")
+        </th>
+        <th>
             @Html.DisplayName("Match")
         </th>
         <th>
@@ -35,6 +41,12 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Sport.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tournament.Name)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Match.Teams[0].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[0].Country.Name)) vs
                 @Html.DisplayFor(modelItem => item.Match.Teams[1].Name) (@Html.DisplayFor(modelItem => item.Match.Teams[1].Country.Name))
             </td>
@@ -55,6 +67,8 @@
     }
     <tr>
         <td>@Html.DisplayName("Total")</td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td>

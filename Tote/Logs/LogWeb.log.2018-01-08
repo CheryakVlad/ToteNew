@@ -1,0 +1,84 @@
+2018-01-08 20:07:48,177 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:08:51,833 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:08:51,863 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:08:51,887 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:08:51,940 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:08:58,945 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:08:59,042 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:09:56,573 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-08 20:09:56,671 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:09:57,202 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:09:57,255 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:09:57,353 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:09:57,556 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:09:57,575 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:09:57,620 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:10:52,718 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:10:57,328 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:10:57,349 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:10:57,354 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:10:57,355 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:10:58,427 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:10:58,438 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:11:08,183 INFO Tote.Controllers.LoginController - The user admin is logout
+2018-01-08 20:11:21,358 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-08 20:11:21,368 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:11:21,600 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:11:21,605 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:11:21,648 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:11:21,851 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:11:21,861 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:11:21,939 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:12:12,458 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:12:14,235 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:12:14,349 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:12:14,382 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:12:14,435 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:12:14,544 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:12:14,553 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:21:20,578 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:21:32,493 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:21:32,494 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:21:32,620 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:21:32,783 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:21:34,328 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:21:34,438 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:22:07,987 INFO Tote.Controllers.LoginController - The user admin is logout
+2018-01-08 20:40:23,322 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:40:40,184 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:40:40,202 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:40:40,387 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:40:40,389 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:40:41,438 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:40:41,468 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:49:47,913 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 20:49:53,133 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:49:53,134 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:49:53,200 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:49:53,252 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 20:49:54,393 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:49:54,408 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 20:50:32,423 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:45:02,176 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 21:46:01,167 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 21:46:01,407 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 21:46:01,407 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 21:46:02,191 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:46:11,308 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:46:11,316 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:47:08,727 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:51:52,470 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 21:51:57,423 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 21:51:57,589 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:51:57,767 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 21:51:57,884 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 21:51:58,648 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 21:51:58,675 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 22:09:09,942 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 22:16:52,879 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-08 22:17:00,035 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 22:17:00,329 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 22:17:00,431 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 22:17:00,606 ERROR Business.Service.CacheService - CacheService method:InsertCache cacheKey: Tournament is null
+2018-01-08 22:17:01,509 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError
+2018-01-08 22:17:01,536 INFO Tote.Controllers.ErrorController - Controller: ErrorController; Action: InfoError

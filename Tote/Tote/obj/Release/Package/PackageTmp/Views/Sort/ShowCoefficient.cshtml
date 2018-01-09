@@ -36,14 +36,17 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Coefficient)
                     </td>
-                    @if (ViewBag.MatchDate > DateTime.Now)
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
-                        <td>
-                            <input type="hidden" name="matchId" value=@ViewBag.Match />
-                            <input type="hidden" name="eventId" value=@item.EventId />
-                            <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()" />
-                        </td>
-                    }
+                        if (ViewBag.MatchDate > DateTime.Now)
+                        {
+                            <td>
+                                <input type="hidden" name="matchId" value=@ViewBag.Match />
+                                <input type="hidden" name="eventId" value=@item.EventId />
+                                <input type="submit" value="Add Bet to Basket" id="btnAddBasket" onclick="addBasketClick()" />
+                            </td>
+                        }
+                    }                   
                     
                 </tr>
                 }

@@ -7,26 +7,25 @@ using Tote.Attribute;
 using Common.Logger;
 
 namespace Tote.Controllers
-{
+{    
     public class LoginController : Controller
-    {
-        private readonly IUserProvider userProvider;
+    {        
         private readonly ILoginService loginService;       
         private readonly ILogService<LoginController> logService;
 
-        public LoginController(IUserProvider userProvider, ILoginService loginService) 
-            :this(userProvider, loginService, new LogService<LoginController>())
+        public LoginController(ILoginService loginService) 
+            :this(loginService, new LogService<LoginController>())
         {
 
         }
 
-        public LoginController(IUserProvider userProvider, ILoginService loginService, ILogService<LoginController> logService)
+        public LoginController(ILoginService loginService, ILogService<LoginController> logService)
         {
-            if (userProvider == null || loginService == null)
+            if (loginService == null)
             {
+                logService.LogError("LoginController ArgumentNullException");
                 throw new ArgumentNullException();
             }
-            this.userProvider = userProvider;
             this.loginService = loginService;
             if (logService == null)
             {
@@ -38,9 +37,7 @@ namespace Tote.Controllers
             }
             
         }
-
         
-
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()

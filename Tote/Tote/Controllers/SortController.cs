@@ -138,7 +138,7 @@ namespace Tote.Controllers
                 {
                     matches = cacheService.InsertCache(sportId, dateMatch, status);
                 }                              
-                if (matches.Count == 0)
+                if (matches == null)
                 {
                     logService.LogError("Controller: Sort, Action: Match Don't GetMatches");
                     return Json(string.Empty, JsonRequestBehavior.AllowGet);
@@ -207,9 +207,13 @@ namespace Tote.Controllers
             {
                 userId = (HttpContext.User as UserPrincipal).UserId;
             }
-            IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total);            
+            IReadOnlyList<Basket> baskets = betListProvider.GetBasketByUser(userId, out total); 
+            if(baskets == null)
+            {
+                baskets = new List<Basket>();
+            }           
             ViewBag.Total = total;
-            ViewBag.MakeRate = baskets.Count > 0 ? true : false;
+            ViewBag.MakeRate = baskets == null ? true : false;
             
             return View(baskets);
         }
