@@ -213,7 +213,7 @@ namespace Tote.Controllers
                 baskets = new List<Basket>();
             }           
             ViewBag.Total = total;
-            ViewBag.MakeRate = baskets == null ? true : false;
+            ViewBag.MakeRate = baskets == null ? false : true;
             
             return View(baskets);
         }

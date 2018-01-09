@@ -125,3 +125,24 @@
 2018-01-09 16:00:28,597 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
 2018-01-09 16:01:39,858 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
 2018-01-09 16:01:59,139 INFO Tote.Controllers.UserController - Controller: User, Action: UsersAll
+2018-01-09 20:24:58,911 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-09 20:26:40,917 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-09 20:28:59,064 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: Bet
+2018-01-09 20:30:00,798 INFO Tote.Controllers.LoginController - user: admin login
+2018-01-09 20:30:00,913 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-09 20:30:41,179 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-09 20:30:43,501 INFO Tote.Controllers.MatchController - Controller: Match, Action: AddMatch
+2018-01-09 20:31:47,502 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-09 20:31:51,780 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
+2018-01-09 20:31:53,579 INFO Tote.Controllers.MatchController - Controller: Match, Action: EditEvent
+2018-01-09 20:32:14,129 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowMatches
+2018-01-09 20:32:16,677 INFO Tote.Controllers.MatchController - Controller: Match, Action: ShowCoefficient
+2018-01-09 20:32:31,805 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-09 20:32:59,433 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowCoefficient
+2018-01-09 20:33:03,421 INFO Tote.Controllers.SortController - Controller: Sort, Action: Sorting
+2018-01-09 20:33:55,620 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-09 20:35:51,524 INFO Tote.Controllers.NavigationController - Controller: Navigation, Action: List
+2018-01-09 20:36:18,025 INFO Tote.Controllers.SortController - Controller: Sort, Action: ShowBasket User:admin
+2018-01-09 20:36:48,114 INFO Tote.Controllers.SortController - Controller: Sort, Action: MakeRate User:admin
+2018-01-09 20:36:54,095 ERROR Business.Service.UpdateBetListService - Class: UpdateBetListService Method: AddBets  AddBet don't add to DB
+2018-01-09 20:36:54,131 INFO Tote.Controllers.UserController - Controller: User, Action: ShowUserProfile User:admin
