@@ -991,6 +991,13 @@ namespace Data.ToteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetByRateId", ReplyAction="http://tempuri.org/IBetListService/GetBetByRateIdResponse")]
         System.Threading.Tasks.Task<Data.ToteService.BetDto[]> GetBetByRateIdAsync(int rateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetByMatchId", ReplyAction="http://tempuri.org/IBetListService/GetBetByMatchIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Data.ToteService.CustomException), Action="http://tempuri.org/IBetListService/GetBetByMatchIdCustomExceptionFault", Name="CustomException", Namespace="http://schemas.datacontract.org/2004/07/Service.Contracts.Exception")]
+        Data.ToteService.BetDto[] GetBetByMatchId(int matchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBetListService/GetBetByMatchId", ReplyAction="http://tempuri.org/IBetListService/GetBetByMatchIdResponse")]
+        System.Threading.Tasks.Task<Data.ToteService.BetDto[]> GetBetByMatchIdAsync(int matchId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1154,6 +1161,14 @@ namespace Data.ToteService {
         
         public System.Threading.Tasks.Task<Data.ToteService.BetDto[]> GetBetByRateIdAsync(int rateId) {
             return base.Channel.GetBetByRateIdAsync(rateId);
+        }
+        
+        public Data.ToteService.BetDto[] GetBetByMatchId(int matchId) {
+            return base.Channel.GetBetByMatchId(matchId);
+        }
+        
+        public System.Threading.Tasks.Task<Data.ToteService.BetDto[]> GetBetByMatchIdAsync(int matchId) {
+            return base.Channel.GetBetByMatchIdAsync(matchId);
         }
     }
     

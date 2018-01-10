@@ -8,6 +8,7 @@ namespace Data.Services
         IReadOnlyList<Match> GetBets(int? sportId, int? tournamentId);
         IReadOnlyList<Match> GetBetsAll();
         IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total);
+        IReadOnlyList<Bet> GetBetByMatchId(int matchId);
 
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);

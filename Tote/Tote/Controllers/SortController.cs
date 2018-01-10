@@ -33,17 +33,6 @@ namespace Tote.Controllers
         public SortController(IBetListProvider rateListProvider, IMatchProvider matchProvider, IUserProvider userProvider,
             ICacheService cacheService, IUpdateBetListService betListService, ISportProvider sportProvider, ILogService<SortController> logService)
         {
-            if (rateListProvider == null || cacheService == null || matchProvider == null || 
-                userProvider == null|| betListService==null || sportProvider == null)
-            {
-                throw new ArgumentNullException();
-            }
-            this.betListProvider = rateListProvider;
-            this.matchProvider = matchProvider;
-            this.userProvider = userProvider;
-            this.cacheService = cacheService;
-            this.betListService = betListService;
-            this.sportProvider = sportProvider;
             if (logService == null)
             {
                 this.logService = new LogService<SortController>();
@@ -52,6 +41,18 @@ namespace Tote.Controllers
             {
                 this.logService = logService;
             }
+            if (rateListProvider == null || cacheService == null || matchProvider == null || 
+                userProvider == null|| betListService==null || sportProvider == null)
+            {
+                logService.LogError("SortController ArgumentNullException");
+                throw new ArgumentNullException();
+            }
+            this.betListProvider = rateListProvider;
+            this.matchProvider = matchProvider;
+            this.userProvider = userProvider;
+            this.cacheService = cacheService;
+            this.betListService = betListService;
+            this.sportProvider = sportProvider;            
         }
         
         [AllowAnonymous]

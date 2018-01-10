@@ -8,7 +8,8 @@ namespace Business.Providers
         IReadOnlyList<Match> GetBetList(int? sportId, int? tournamentId);
         IReadOnlyList<Match> GetBetAll();
         IReadOnlyList<Bet> GetBetByRateId(int rateId, out double total);
-        
+        IReadOnlyList<Bet> GetBetByMatchId(int matchId);
+
         IReadOnlyList<Event> GetEvents();
         IReadOnlyList<Event> GetEvents(int id);
                 

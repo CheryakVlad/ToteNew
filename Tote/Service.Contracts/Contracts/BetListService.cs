@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.ServiceModel;
 using Service.Contracts.Exception;
 using Service.Contracts.Logger;
+using System;
 
 namespace Service.Contracts.Contracts
 {
@@ -630,6 +631,29 @@ namespace Service.Contracts.Contracts
             {
                 var exception = new CustomException();
                 exception.Title = "GetTournamentsByTeamId";
+                logService.LogError(sqlEx.Message);
+                throw new FaultException<CustomException>(exception, sqlEx.Message);
+            }
+        }
+
+        public BetDto[] GetBetByMatchId(int matchId)
+        {
+            if (matchId <= 0)
+            {
+                GenerateFaultException("GetBetByMatchId", "ArgumentException");
+            }
+            var parameters = new List<Parameter>();
+            parameters.Add(new Parameter { Type = DbType.Int32, Name = "@MatchId", Value = matchId });
+
+            var connection = new Connection<BetDto>();
+            try
+            {
+                return connection.GetConnection(CommandType.StoredProcedure, "GetBetByMatchId", parameters);
+            }
+            catch (SqlException sqlEx)
+            {
+                var exception = new CustomException();
+                exception.Title = "GetBetByMatchId";
                 logService.LogError(sqlEx.Message);
                 throw new FaultException<CustomException>(exception, sqlEx.Message);
             }

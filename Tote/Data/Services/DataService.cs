@@ -221,6 +221,39 @@ namespace Data.Services
             return new List<Bet>();
         }
 
-        
+        public IReadOnlyList<Bet> GetBetByMatchId(int matchId)
+        {
+           
+            var betsDto = betListClient.GetBetByMatchId(matchId);
+            var bets = convert.ToBet(betsDto);
+            if(bets == null)
+            {
+                return new List<Bet>();
+            }
+            var betsMatch = new List<Bet>();
+            foreach (var bet in bets)
+            {
+                var match = matchService.GetMatchById(bet.MatchId);
+                var _events = matchService.GetEventsByMatch(bet.MatchId);
+
+                foreach (var _event in _events)
+                {
+                    if (_event.EventId == bet.Event.EventId)
+                    {
+                        match.Events = new List<Event>();
+                        match.Events.Add(_event);                        
+                    }
+                }
+                bet.Match = match;
+                betsMatch.Add(bet);
+            }
+
+            if (betsMatch != null)
+            {
+                return betsMatch;
+            }
+            logService.LogError("Class: DataService Method: GetBetByRateId List<Bet> is null");
+            return new List<Bet>();
+        }
     }
 }

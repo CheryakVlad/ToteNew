@@ -28,14 +28,7 @@ namespace Tote.Controllers
 
         public SportController(ICacheService cacheService, IUpdateSportService sportService, 
             ISportProvider sportProvider, ILogService<SportController> logService)
-        {            
-            if (cacheService == null || sportService == null || sportProvider == null)
-            {
-                throw new ArgumentNullException();
-            }
-            this.cacheService = cacheService;
-            this.sportService = sportService;
-            this.sportProvider = sportProvider;
+        {
             if (logService == null)
             {
                 this.logService = new LogService<SportController>();
@@ -44,6 +37,14 @@ namespace Tote.Controllers
             {
                 this.logService = logService;
             }
+            if (cacheService == null || sportService == null || sportProvider == null)
+            {
+                logService.LogError("SportController ArgumentNullException");
+                throw new ArgumentNullException();
+            }
+            this.cacheService = cacheService;
+            this.sportService = sportService;
+            this.sportProvider = sportProvider;            
         }
         
         [Editor]

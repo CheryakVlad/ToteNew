@@ -27,14 +27,6 @@ namespace Tote.Controllers
         public UserController(IUserProvider userProvider, IBetListProvider betListProvider, 
             ILoginService loginService, IUpdateUserService userService, ILogService<UserController> logService)
         {
-            if (betListProvider == null || userProvider == null || loginService == null|| userService==null)
-            {
-                throw new ArgumentNullException();
-            }
-            this.userProvider = userProvider;
-            this.betListProvider = betListProvider;
-            this.loginService = loginService;
-            this.userService = userService;
             if (logService == null)
             {
                 this.logService = new LogService<UserController>();
@@ -43,6 +35,16 @@ namespace Tote.Controllers
             {
                 this.logService = logService;
             }
+            if (betListProvider == null || userProvider == null || loginService == null|| userService==null)
+            {
+                logService.LogError("UserController ArgumentNullException");
+                throw new ArgumentNullException();
+            }
+            this.userProvider = userProvider;
+            this.betListProvider = betListProvider;
+            this.loginService = loginService;
+            this.userService = userService;
+            
         }
         
         [Admin]

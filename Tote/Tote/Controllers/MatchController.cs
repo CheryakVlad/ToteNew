@@ -20,6 +20,7 @@ namespace Tote.Controllers
         private readonly ITournamentProvider tournamentProvider;
         private readonly ISportProvider sportProvider;
         private readonly ITeamProvider teamProvider;
+        private readonly IBetListProvider betListProvider;
         private readonly ICacheService cacheService;
         private readonly IUpdateMatchService matchService;
         private readonly ILogService<MatchController> logService;
@@ -27,19 +28,30 @@ namespace Tote.Controllers
 
         public MatchController(IMatchProvider matchProvider, ITeamProvider teamProvider,
             ICacheService cacheService, IUpdateMatchService matchService, 
-            IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ISportProvider sportProvider) 
-            :this(matchProvider, teamProvider, cacheService, matchService, matchPaging, tournamentProvider, sportProvider, new LogService<MatchController>())
+            IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ISportProvider sportProvider, IBetListProvider betListProvider) 
+            :this(matchProvider, teamProvider, cacheService, matchService, matchPaging, tournamentProvider, 
+                 sportProvider, betListProvider, new LogService<MatchController>())
         {
 
         }
 
         public MatchController(IMatchProvider matchProvider, ITeamProvider teamProvider, 
             ICacheService cacheService, IUpdateMatchService matchService, 
-            IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ISportProvider sportProvider, ILogService<MatchController> logService)
+            IMatchPaging matchPaging, ITournamentProvider tournamentProvider, ISportProvider sportProvider,
+            IBetListProvider betListProvider, ILogService<MatchController> logService)
         {
-            if (matchProvider == null || teamProvider == null ||
+            if (logService == null)
+            {
+                this.logService = new LogService<MatchController>();
+            }
+            else
+            {
+                this.logService = logService;
+            }
+            if (matchProvider == null || teamProvider == null || betListProvider == null ||
                 cacheService == null|| matchProvider==null || matchPaging==null || tournamentProvider == null || sportProvider == null)
             {
+                logService.LogError("MatchController ArgumentNullException");
                 throw new ArgumentNullException();
             }            
             this.matchProvider = matchProvider;
@@ -49,14 +61,7 @@ namespace Tote.Controllers
             this.matchPaging = matchPaging;
             this.tournamentProvider = tournamentProvider;
             this.sportProvider = sportProvider;
-            if (logService == null)
-            {
-                this.logService = new LogService<MatchController>();
-            }
-            else
-            {
-                this.logService = logService;
-            }
+            this.betListProvider = betListProvider;
         }
         
         [Editor]
@@ -446,12 +451,14 @@ namespace Tote.Controllers
         {
             logService.LogInfoMessage("Controller: Match, Action: ShowCoefficient");
             IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
-            if (events == null)
+            IReadOnlyList<Bet> bets = betListProvider.GetBetByMatchId(id);
+            if (events == null || bets == null)
             {
                 logService.LogError("Controller: Match, Action: ShowCoefficient Don't Show Coefficient");
                 return RedirectToAction("InfoError", "Error");
             }
             ViewBag.Date = date;
+            ViewBag.Bets = bets.Count;
             return View(events);
         }
 
@@ -491,12 +498,12 @@ namespace Tote.Controllers
         public ActionResult EditEvent(int id)
         {
             logService.LogInfoMessage("Controller: Match, Action: EditEvent");
-            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);
+            IReadOnlyList<Event> events = matchProvider.GetEventByMatch(id);            
             if (events == null)
             {
-                logService.LogError("Controller: Match, Action: EditMatch Don't update Match");
+                logService.LogError("Controller: Match, Action: EditEvent Don't update Match");
                 return RedirectToAction("InfoError", "Error");
-            }
+            }            
             return View(events);
         }
 

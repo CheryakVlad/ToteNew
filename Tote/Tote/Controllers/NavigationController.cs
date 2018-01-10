@@ -27,13 +27,6 @@ namespace Tote.Controllers
         public NavigationController(IBetListProvider rateListProvider, ICacheService cacheService, 
             IMatchProvider matchProvider, ILogService<NavigationController> logService)
         {
-            if (rateListProvider == null || cacheService == null || matchProvider == null)
-            {
-                throw new ArgumentNullException();
-            }
-            this.betListProvider = rateListProvider;
-            this.cacheService = cacheService;
-            this.matchProvider = matchProvider;
             if (logService == null)
             {
                 this.logService = new LogService<NavigationController>();
@@ -41,7 +34,15 @@ namespace Tote.Controllers
             else
             {
                 this.logService = logService;
-            }            
+            }
+            if (rateListProvider == null || cacheService == null || matchProvider == null)
+            {
+                logService.LogError("NavigationController ArgumentNullException");
+                throw new ArgumentNullException();
+            }
+            this.betListProvider = rateListProvider;
+            this.cacheService = cacheService;
+            this.matchProvider = matchProvider;                      
         }
         
         [AllowAnonymous]

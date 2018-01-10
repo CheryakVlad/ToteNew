@@ -20,7 +20,8 @@ namespace Data.Clients
         
         int AddRate(Rate rate);
         IReadOnlyList<ToteService.RateDto> GetRateByUserId(int userId);
-       
+        IReadOnlyList<ToteService.BetDto> GetBetByMatchId(int matchId);
+
 
     }
 }

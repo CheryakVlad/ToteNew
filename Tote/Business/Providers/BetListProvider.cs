@@ -99,6 +99,15 @@ namespace Business.Providers
             }
             return dataService.GetBetByRateId(rateId, out total);
         }
-        
+
+        public IReadOnlyList<Bet> GetBetByMatchId(int matchId)
+        {
+            if (matchId <= 0)
+            {               
+                logService.LogError("Class: BetListProvider Method: GetBetByRateId  rateId can not negative");
+                return null;
+            }
+            return dataService.GetBetByMatchId(matchId);
+        }
     }
 }

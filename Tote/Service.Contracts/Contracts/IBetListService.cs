@@ -63,7 +63,9 @@ namespace Service.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         BetDto[] GetBetByRateId(int rateId);
-
+        [OperationContract]
+        [FaultContract(typeof(CustomException))]
+        BetDto[] GetBetByMatchId(int matchId);
 
     }
 }

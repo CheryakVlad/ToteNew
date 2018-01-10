@@ -81,7 +81,7 @@ namespace Data.Business
 
         public IReadOnlyList<Bet> ToBet(IReadOnlyList<BetDto> betsDto)
         {
-            if (betsDto.Count == 0)
+            if (betsDto == null)
             {
                 return null;
             }
@@ -136,7 +136,7 @@ namespace Data.Business
 
         public IReadOnlyList<Bet> ToBetsList(IReadOnlyList<BetListDto> betsListDto)
         {
-            if (betsListDto.Count == 0)
+            if (betsListDto == null)
             {
                 return null;
             }

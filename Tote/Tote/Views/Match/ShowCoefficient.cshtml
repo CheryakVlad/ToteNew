@@ -35,7 +35,7 @@
     
     </table>
     <br />
-@if (ViewBag.Date > DateTime.Now)
+@if (ViewBag.Date > DateTime.Now && ViewBag.Bets == 0)
 {
         @Html.RouteLink("Edit", new
     {

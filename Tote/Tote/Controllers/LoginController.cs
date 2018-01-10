@@ -21,12 +21,6 @@ namespace Tote.Controllers
 
         public LoginController(ILoginService loginService, ILogService<LoginController> logService)
         {
-            if (loginService == null)
-            {
-                logService.LogError("LoginController ArgumentNullException");
-                throw new ArgumentNullException();
-            }
-            this.loginService = loginService;
             if (logService == null)
             {
                 this.logService = new LogService<LoginController>();
@@ -35,7 +29,12 @@ namespace Tote.Controllers
             {
                 this.logService = logService;
             }
-            
+            if (loginService == null)
+            {
+                logService.LogError("LoginController ArgumentNullException");
+                throw new ArgumentNullException();
+            }
+            this.loginService = loginService;
         }
         
         [HttpGet]

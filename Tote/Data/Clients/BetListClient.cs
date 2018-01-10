@@ -258,6 +258,52 @@ namespace Data.Clients
             return model;
         }
 
+        public IReadOnlyList<BetDto> GetBetByMatchId(int matchId)
+        {
+            if (matchId <= 0)
+            {
+                logService.LogError("Class: BetListClient Method: DeleteBasket rateId is not positive");
+                return null;
+            }
+            var model = new List<BetDto>();
+            using (var client = new ToteService.BetListServiceClient())
+            {
+                try
+                {
+                    client.Open();
+
+                    var bets = client.GetBetByMatchId(matchId);
+                    foreach (var bet in bets)
+                    {
+                        model.Add(bet);
+                    }
+                    client.Close();
+                    if (model == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+
+                catch (FaultException<CustomException> customEx)
+                {
+                    logService.LogError(customEx.Message);
+                    return null;
+                }
+                catch (CommunicationException commEx)
+                {
+                    logService.LogError(commEx.Message);
+                    return null;
+                }
+                catch (NullReferenceException nullEx)
+                {
+                    logService.LogError(nullEx.Message);
+                    return null;
+                }
+
+            }
+            return model;
+        }
+
         public IReadOnlyList<BetDto> GetBetByRateId(int rateId)
         {
             if (rateId <= 0)
