@@ -62,13 +62,15 @@
             <td>@Html.DisplayName("Total")</td>
             <td>
             </td>
+            <td></td>
+            <td></td>
             <td>
             </td>
             <td>
                @ViewBag.Total
             </td>
         </tr>
-        @if (ViewBag.MakeRate)
+        @if (ViewBag.MakeRate && ViewBag.Total>1)
         {
             <tr>
                 <td>

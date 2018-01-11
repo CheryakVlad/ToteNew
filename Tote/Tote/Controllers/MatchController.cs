@@ -117,7 +117,7 @@ namespace Tote.Controllers
         private SelectList GetTournaments(int sport = 1, int tournament = 1)
         {
             IReadOnlyList<Tournament> tournamentsAll = tournamentProvider.GetTournament(sport);
-            if (tournamentsAll.Count == 0)
+            if (tournamentsAll == null)
             {
                 logService.LogError("Controller: Match, Don't GetTournament");
                 return null;
@@ -129,7 +129,7 @@ namespace Tote.Controllers
         private SelectList GetTeams(int tournament = 1, int team = 1)
         {
             IReadOnlyList<Team> teamsAll = teamProvider.GetTeamsByTournament(tournament);
-            if (teamsAll.Count == 0)
+            if (teamsAll == null)
             {
                 logService.LogError("Controller: Match, Don't GetTeamsByTournament");
                 return null;
@@ -185,7 +185,12 @@ namespace Tote.Controllers
         public ActionResult TournamentesBySport(int sportId)
         {
             logService.LogInfoMessage("Controller: Match, Action: TournamentesBySport");
-            SelectList tournaments = new SelectList(tournamentProvider.GetTournament(sportId), "TournamentId", "Name");            
+            IReadOnlyList<Tournament> tournamentsBySport = tournamentProvider.GetTournament(sportId);
+            if (tournamentsBySport == null)
+            {
+                tournamentsBySport = new List<Tournament>();
+            }
+            SelectList tournaments = new SelectList(tournamentsBySport, "TournamentId", "Name");            
             ViewBag.Tournaments = tournaments;
             return PartialView();
         }
@@ -194,11 +199,16 @@ namespace Tote.Controllers
         public ActionResult MatchesByTournament(int tournamentId)
         {
             logService.LogInfoMessage("Controller: Match, Action: MatchesByTournament");
-            SelectList teams, teamsGuest;            
-            teams = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");            
+            SelectList teams, teamsGuest;
+            IReadOnlyList<Team> teamsByTournament = teamProvider.GetTeamsByTournament(tournamentId);
+            if (teamsByTournament == null)
+            {
+                teamsByTournament = new List<Team>();
+            }
+            teams = new SelectList(teamsByTournament, "TeamId", "Name");            
             ViewBag.Teams = teams;
 
-            teamsGuest = new SelectList(teamProvider.GetTeamsByTournament(tournamentId), "TeamId", "Name");             
+            teamsGuest = new SelectList(teamsByTournament, "TeamId", "Name");             
             ViewBag.TeamsGuest = teamsGuest;
             return PartialView();
             

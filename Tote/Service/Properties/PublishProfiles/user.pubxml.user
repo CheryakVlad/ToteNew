@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\123</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\ProjectRelease\Services</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -14,6 +14,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>12/04/2017 13:28:10</publishTime>
+    </File>
+    <File Include="bin/Log.config">
+      <publishTime>12/04/2017 13:28:08</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>03/08/2017 19:26:22</publishTime>
@@ -40,10 +43,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 13:28:10</publishTime>
     </File>
     <File Include="bin/Service.Contracts.dll">
-      <publishTime>12/19/2017 21:36:31</publishTime>
+      <publishTime>01/10/2018 18:28:48</publishTime>
     </File>
     <File Include="bin/Service.dll">
-      <publishTime>12/19/2017 21:36:31</publishTime>
+      <publishTime>01/10/2018 18:28:48</publishTime>
     </File>
     <File Include="Log.config">
       <publishTime>12/04/2017 13:28:09</publishTime>
@@ -61,7 +64,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2017 17:34:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/19/2017 21:36:32</publishTime>
+      <publishTime>01/10/2018 18:43:30</publishTime>
     </File>
   </ItemGroup>
 </Project>

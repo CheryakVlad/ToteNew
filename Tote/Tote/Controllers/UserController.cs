@@ -243,7 +243,12 @@ namespace Tote.Controllers
                 logService.LogError("Controller: User, Action: ShowUserProfile Don't GetUser");
                 return RedirectToAction("InfoError", "Error");
             }
-            ViewBag.Rates = betListProvider.GetRateByUserId(userId);
+            IReadOnlyList<Rate> rates= betListProvider.GetRateByUserId(userId); ;
+            if (rates == null)
+            {
+                rates = new List<Rate>();
+            }
+            ViewBag.Rates = rates;
             return View(user);
         }
 

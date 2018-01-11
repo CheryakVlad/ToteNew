@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:7712/ToteService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2121/ToteService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RateListService.wsdl" MetadataType="Wsdl" ID="354b460f-7e82-4582-a930-5188e1a631f2" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?wsdl" />
-    <MetadataFile FileName="ToteService1.xsd" MetadataType="Schema" ID="8a335409-5230-4e87-8578-4d1a21ef165c" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd0" />
-    <MetadataFile FileName="ToteService2.xsd" MetadataType="Schema" ID="f9231e7c-cf1c-4cba-b49e-fe3556e5f699" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd1" />
-    <MetadataFile FileName="ToteService.xsd" MetadataType="Schema" ID="cc907dc1-78fd-4aaf-94cd-0023db3d3738" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd2" />
-    <MetadataFile FileName="ToteService3.xsd" MetadataType="Schema" ID="f4300a97-8d78-45fa-96e0-75740b1a310b" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?xsd=xsd3" />
-    <MetadataFile FileName="ToteService.disco" MetadataType="Disco" ID="8977dad8-0b9d-43d9-874e-172a7811f349" SourceId="1" SourceUrl="http://localhost:7712/ToteService.svc?disco" />
+    <MetadataFile FileName="ToteService4.xsd" MetadataType="Schema" ID="e260144b-1104-4531-a914-ca6758cad719" SourceId="1" SourceUrl="http://localhost:2121/ToteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ToteService41.xsd" MetadataType="Schema" ID="e835a923-3ae6-44dd-bd4d-942e18afd372" SourceId="1" SourceUrl="http://localhost:2121/ToteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ToteService1.disco" MetadataType="Disco" ID="fb845d9a-6d1d-4530-89e0-910db421fd44" SourceId="1" SourceUrl="http://localhost:2121/ToteService.svc?disco" />
+    <MetadataFile FileName="BetListService.wsdl" MetadataType="Wsdl" ID="be2ab899-e5da-4c27-9769-c437100ab0ee" SourceId="1" SourceUrl="http://localhost:2121/ToteService.svc?wsdl" />
+    <MetadataFile FileName="ToteService42.xsd" MetadataType="Schema" ID="99208d04-f70e-418f-8320-b9c40d64ce74" SourceId="1" SourceUrl="http://localhost:2121/ToteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ToteService43.xsd" MetadataType="Schema" ID="9bc2e60e-b474-41e4-92a0-27aa26362f38" SourceId="1" SourceUrl="http://localhost:2121/ToteService.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

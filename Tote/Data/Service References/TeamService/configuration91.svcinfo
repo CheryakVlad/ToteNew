@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="mDcODl64feYBzWRAbCivqDObLWo=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="brjm900+xxBEalEPMX9RBQyVjxk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ITeamService">
       <properties>
@@ -330,10 +330,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ITeamService" contract="TeamService.ITeamService" bindingType="basicHttpBinding" address="http://localhost:7712/TeamService.svc/team" bindingConfiguration="BasicHttpBinding_ITeamService">
+    <endpoint name="BasicHttpBinding_ITeamService" contract="TeamService.ITeamService" bindingType="basicHttpBinding" address="http://localhost:2121/TeamService.svc/team" bindingConfiguration="BasicHttpBinding_ITeamService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7712/TeamService.svc/team</serializedValue>
+          <serializedValue>http://localhost:2121/TeamService.svc/team</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -415,10 +415,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IMatchService" contract="TeamService.IMatchService" bindingType="basicHttpBinding" address="http://localhost:7712/TeamService.svc/match" bindingConfiguration="BasicHttpBinding_IMatchService">
+    <endpoint name="BasicHttpBinding_IMatchService" contract="TeamService.IMatchService" bindingType="basicHttpBinding" address="http://localhost:2121/TeamService.svc/match" bindingConfiguration="BasicHttpBinding_IMatchService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7712/TeamService.svc/match</serializedValue>
+          <serializedValue>http://localhost:2121/TeamService.svc/match</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -500,10 +500,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IEventService" contract="TeamService.IEventService" bindingType="basicHttpBinding" address="http://localhost:7712/TeamService.svc/event" bindingConfiguration="BasicHttpBinding_IEventService">
+    <endpoint name="BasicHttpBinding_IEventService" contract="TeamService.IEventService" bindingType="basicHttpBinding" address="http://localhost:2121/TeamService.svc/event" bindingConfiguration="BasicHttpBinding_IEventService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7712/TeamService.svc/event</serializedValue>
+          <serializedValue>http://localhost:2121/TeamService.svc/event</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

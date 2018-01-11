@@ -43,16 +43,14 @@
     </tr>
 
 </table>
-@if (HttpContext.Current.User.Identity.IsAuthenticated)
+
+@if (ViewBag.ButtonFalse)
 {
-    if (ViewBag.MatchDate > DateTime.Now)
+    @Html.RouteLink("To add the bet to the basket", new
     {
-        Html.RouteLink("To add the bet to the basket", new
-        {
-            controller = "Sort",
-            action = "ShowCoefficient",
-            matchId = Model.MatchId
-        });
-    }
+        controller = "Sort",
+        action = "ShowCoefficient",
+        matchId = Model.MatchId
+    });
 }
 

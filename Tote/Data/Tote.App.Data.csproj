@@ -152,19 +152,20 @@
     <None Include="Service References\TeamService\Data.TeamService.TeamDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TeamService\TeamService.wsdl" />
-    <None Include="Service References\TeamService\TeamService.xsd">
+    <None Include="Service References\TeamService\TeamService1.wsdl" />
+    <None Include="Service References\TeamService\TeamService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TeamService\TeamService1.xsd">
+    <None Include="Service References\TeamService\TeamService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TeamService\TeamService2.xsd">
+    <None Include="Service References\TeamService\TeamService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TeamService\TeamService3.xsd">
+    <None Include="Service References\TeamService\TeamService43.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ToteService\BetListService.wsdl" />
     <None Include="Service References\ToteService\Data.ToteService.BasketDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -186,17 +187,16 @@
     <None Include="Service References\ToteService\Data.ToteService.TournamentDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ToteService\RateListService.wsdl" />
-    <None Include="Service References\ToteService\ToteService.xsd">
+    <None Include="Service References\ToteService\ToteService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ToteService\ToteService1.xsd">
+    <None Include="Service References\ToteService\ToteService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ToteService\ToteService2.xsd">
+    <None Include="Service References\ToteService\ToteService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ToteService\ToteService3.xsd">
+    <None Include="Service References\ToteService\ToteService43.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserService\Data.UserService.RoleDto.datasource">
@@ -205,17 +205,17 @@
     <None Include="Service References\UserService\Data.UserService.UserDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UserService\UserService.wsdl" />
-    <None Include="Service References\UserService\UserService.xsd">
+    <None Include="Service References\UserService\UserService1.wsdl" />
+    <None Include="Service References\UserService\UserService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\UserService1.xsd">
+    <None Include="Service References\UserService\UserService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\UserService2.xsd">
+    <None Include="Service References\UserService\UserService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\UserService3.xsd">
+    <None Include="Service References\UserService\UserService43.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -226,9 +226,6 @@
     <WCFMetadataStorage Include="Service References\TeamService\" />
     <WCFMetadataStorage Include="Service References\ToteService\" />
     <WCFMetadataStorage Include="Service References\UserService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ToteService\ToteService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ToteService\configuration91.svcinfo" />
@@ -243,9 +240,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UserService\UserService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\UserService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -258,9 +252,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TeamService\TeamService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\TeamService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +262,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TeamService\TeamService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ToteService\ToteService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserService\UserService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

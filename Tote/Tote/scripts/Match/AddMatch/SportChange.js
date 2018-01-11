@@ -16,10 +16,7 @@
                 success: function (data) {
                     $('#teams').replaceWith(data);
                 }
-            });
-            /*$('select#Teams_1__TeamId.form-control').empty();
-            $('select#Teams_0__TeamId.form-control').empty();*/
-            //TournamentChange();
+            });            
         }
     });
 

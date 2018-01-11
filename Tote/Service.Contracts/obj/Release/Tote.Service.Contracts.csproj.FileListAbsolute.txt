@@ -4,3 +4,7 @@ D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\log4net.dll
 D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\log4net.xml
 D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Release\Service.Contracts.dll
 D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Release\Service.Contracts.pdb
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\Log.config
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\Microsoft.Web.Infrastructure.dll
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\bin\Release\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\22-11-2017\ToteNew.git\Tote\Service.Contracts\obj\Release\Tote.Service.Contracts.csprojResolveAssemblyReference.cache

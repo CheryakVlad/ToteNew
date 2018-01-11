@@ -106,6 +106,10 @@ namespace Data.Services
             {
                 var match = convert.ToMatch(matchDto);
                 var events = convert.ToEvent(eventsDto);
+                if(match == null || events == null)
+                {
+                    return null;
+                }
                 match.Events = new List<Event>();                
                 foreach (var _event in events)
                 {

@@ -21,3 +21,4 @@ D:\22-11-2017\ToteNew.git\Tote\Service\bin\Microsoft.ApplicationInsights.xml
 D:\22-11-2017\ToteNew.git\Tote\Service\obj\Release\Tote.Service.csprojResolveAssemblyReference.cache
 D:\22-11-2017\ToteNew.git\Tote\Service\obj\Release\Service.dll
 D:\22-11-2017\ToteNew.git\Tote\Service\obj\Release\Service.pdb
+D:\22-11-2017\ToteNew.git\Tote\Service\bin\Log.config

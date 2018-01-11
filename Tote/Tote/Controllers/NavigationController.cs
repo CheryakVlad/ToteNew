@@ -55,7 +55,7 @@ namespace Tote.Controllers
             }
             if (tournaments == null)
             {
-                return RedirectToAction("InfoError", "Error");
+                tournaments = new List<Tournament>();
             }          
             return PartialView(tournaments);
         }
@@ -70,7 +70,7 @@ namespace Tote.Controllers
             }
             if (sports == null)
             {
-                return RedirectToAction("InfoError", "Error");
+                sports = new List<Sport>();
             }
             return PartialView(sports);
         }
@@ -91,7 +91,7 @@ namespace Tote.Controllers
                 bets = betListProvider.GetBetList(SportId, TournamentId);
                 if(bets == null)
                 {
-                    return RedirectToAction("InfoError", "Error");
+                    bets=new List<Match>();
                 }
             }
             catch (FaultException faultEx)
@@ -119,7 +119,15 @@ namespace Tote.Controllers
             if(match == null)
             {
                 return RedirectToAction("InfoError", "Error");
-            }            
+            }
+            if (HttpContext.User.Identity.IsAuthenticated && match.Date > DateTime.Now)
+            {
+                ViewBag.ButtonFalse = true;
+            }
+            else
+            {
+                ViewBag.ButtonFalse = false;
+            }
             return View(match);
         }
         [AllowAnonymous]
@@ -145,7 +153,7 @@ namespace Tote.Controllers
                 }
                 if (bets == null)
                 {
-                    return RedirectToAction("InfoError", "Error");
+                    bets = new List<Match>();
                 }
             }
             catch(FaultException<SqlException> sqlEx)

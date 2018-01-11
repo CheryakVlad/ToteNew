@@ -75,11 +75,9 @@ namespace Tote.Controllers
         
         [User]        
         public ActionResult Logout()
-        {
-            string role = "";
+        {            
             if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                role = (HttpContext.User as UserPrincipal).Roles[0];
+            {                
                 logService.LogInfoMessage("The user "+ (HttpContext.User as UserPrincipal).Login + " is logout");
             }
             loginService.Logout();

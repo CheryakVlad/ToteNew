@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="lYoPEtlNOK3+lYhF+v1/qIEh9F4=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="pl4licwD5JSy9ahfYCD3DPyHqWQ=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IBetListService">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IBetListService" contract="ToteService.IBetListService" bindingType="basicHttpBinding" address="http://localhost:7712/ToteService.svc/bet" bindingConfiguration="BasicHttpBinding_IBetListService">
+    <endpoint name="BasicHttpBinding_IBetListService" contract="ToteService.IBetListService" bindingType="basicHttpBinding" address="http://localhost:2121/ToteService.svc/bet" bindingConfiguration="BasicHttpBinding_IBetListService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7712/ToteService.svc/bet</serializedValue>
+          <serializedValue>http://localhost:2121/ToteService.svc/bet</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -306,10 +306,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_ITournamentService" contract="ToteService.ITournamentService" bindingType="basicHttpBinding" address="http://localhost:7712/ToteService.svc/tournament" bindingConfiguration="BasicHttpBinding_ITournamentService">
+    <endpoint name="BasicHttpBinding_ITournamentService" contract="ToteService.ITournamentService" bindingType="basicHttpBinding" address="http://localhost:2121/ToteService.svc/tournament" bindingConfiguration="BasicHttpBinding_ITournamentService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7712/ToteService.svc/tournament</serializedValue>
+          <serializedValue>http://localhost:2121/ToteService.svc/tournament</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

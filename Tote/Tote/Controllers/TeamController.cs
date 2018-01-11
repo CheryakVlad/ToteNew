@@ -380,10 +380,9 @@ namespace Tote.Controllers
             }
             ViewBag.Team = team;
             IReadOnlyList<Tournament> tournaments = tournamentProvider.GetTournamentesByTeamId(id);
-            if(tournaments.Count == 0)
+            if(tournaments == null)
             {
-                logService.LogError("Controller: Team, Action: ShowTournamentsByTeam Don't GetTournamentesByTeamId");
-                return RedirectToAction("InfoDB", "Error");
+                tournaments = new List<Tournament>();
             }
             return View(tournaments);
         }
@@ -396,10 +395,13 @@ namespace Tote.Controllers
             Team team = teamProvider.GetTeamById(id);            
             List<Tournament> tournamentesSport = tournamentProvider.GetTournament(team.SportId) as List<Tournament>;
             List<Tournament> tournamentesTeam = tournamentProvider.GetTournamentesByTeamId(id) as List<Tournament>;
-            if (tournamentesSport.Count == 0 || tournamentesTeam.Count == 0)
+            if (tournamentesSport == null)
             {
-                logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't GetTournamentes");
-                return RedirectToAction("InfoError", "Error");
+                tournamentesSport = new List<Tournament>();
+            }
+            if(tournamentesTeam == null)
+            {
+                tournamentesTeam = new List<Tournament>();
             }
             tournamentesSport.RemoveAll(element=> tournamentesTeam.Exists(elementTeam => elementTeam.TournamentId == element.TournamentId));
             SelectList tournaments = new SelectList(tournamentesSport, "TournamentId", "Name");            
@@ -412,10 +414,15 @@ namespace Tote.Controllers
         [Editor]
         public ActionResult AddTournamentForTeam(Team team)
         {
+            if (team.Tournament == null)
+            {                
+                logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't update team");
+                return RedirectToAction("ShowTournamentsByTeam", new { id = team.TeamId });
+            }
             bool result = teamService.AddTournamentForTeam(team.Tournament.TournamentId, team.TeamId);
             if (!result)
-            {
-                logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't add Tournament For Team");                
+            {                
+                logService.LogError("Controller: Team, Action: AddTournamentForTeam Don't add Tournament For Team");
             }
             return RedirectToAction("ShowTournamentsByTeam", new { id=team.TeamId});
             

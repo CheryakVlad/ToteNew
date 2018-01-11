@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:7712/TeamService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2121/TeamService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TeamService.wsdl" MetadataType="Wsdl" ID="588afddd-37f5-455f-9c1e-21c67f3894b6" SourceId="1" SourceUrl="http://localhost:7712/TeamService.svc?wsdl" />
-    <MetadataFile FileName="TeamService.xsd" MetadataType="Schema" ID="bad717d5-4a94-4ef4-b46e-f93e00d6f56b" SourceId="1" SourceUrl="http://localhost:7712/TeamService.svc?xsd=xsd3" />
-    <MetadataFile FileName="TeamService1.xsd" MetadataType="Schema" ID="da7ce9d1-2833-4c44-8c97-5e04b0804450" SourceId="1" SourceUrl="http://localhost:7712/TeamService.svc?xsd=xsd2" />
-    <MetadataFile FileName="TeamService.disco" MetadataType="Disco" ID="19d937cd-c6ad-4e3e-944f-a9d17e682994" SourceId="1" SourceUrl="http://localhost:7712/TeamService.svc?disco" />
-    <MetadataFile FileName="TeamService2.xsd" MetadataType="Schema" ID="42eb9db8-b9f5-44ae-a2dc-6f6a5eb3551a" SourceId="1" SourceUrl="http://localhost:7712/TeamService.svc?xsd=xsd0" />
-    <MetadataFile FileName="TeamService3.xsd" MetadataType="Schema" ID="6f05bcbf-a389-42e9-8d9e-c5c6a2eb0d9d" SourceId="1" SourceUrl="http://localhost:7712/TeamService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TeamService4.xsd" MetadataType="Schema" ID="86641480-3784-4b02-9372-d574c398f662" SourceId="1" SourceUrl="http://localhost:2121/TeamService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TeamService41.xsd" MetadataType="Schema" ID="04606382-487c-4f19-a893-687bb85c9d07" SourceId="1" SourceUrl="http://localhost:2121/TeamService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TeamService42.xsd" MetadataType="Schema" ID="bbea37b4-e60e-4e51-bd37-40b79a505f52" SourceId="1" SourceUrl="http://localhost:2121/TeamService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TeamService43.xsd" MetadataType="Schema" ID="21157507-9c19-4617-b070-7ee50305b6c8" SourceId="1" SourceUrl="http://localhost:2121/TeamService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TeamService1.disco" MetadataType="Disco" ID="8e9e0b9d-6997-4ad2-946a-f8feba44a24d" SourceId="1" SourceUrl="http://localhost:2121/TeamService.svc?disco" />
+    <MetadataFile FileName="TeamService1.wsdl" MetadataType="Wsdl" ID="5d52c2ee-ffca-4c40-bd1a-27feae089f9f" SourceId="1" SourceUrl="http://localhost:2121/TeamService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

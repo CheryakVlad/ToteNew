@@ -35,14 +35,17 @@
     
     </table>
     <br />
-    @Html.RouteLink("Edit", new
-       {
-           controller = "Match",
-           action = "EditEvent",
-           id = Model.ToArray()[0].MatchId
-       }, new
-       {
-           @class = "btn btn-block btn-default btn-lg"
+@if (ViewBag.Date > DateTime.Now && ViewBag.Bets == 0)
+{
+        @Html.RouteLink("Edit", new
+    {
+        controller = "Match",
+        action = "EditEvent",
+        id = Model.ToArray()[0].MatchId
+    }, new
+    {
+        @class = "btn btn-block btn-default btn-lg"
 
-       })
-   
+    })
+}
+
