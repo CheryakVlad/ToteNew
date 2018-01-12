@@ -2,9 +2,14 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Tote/Business/bin/Debug
-/Tote/Common/bin/Debug
-/Tote/Data/bin/Debug
-/Tote/Dependencies/bin/Debug
+/Tote/Business/bin
+/Tote/Common/bin
+/Tote/Data/bin
+/Tote/Dependencies/bin
 /Tote/Tote/bin
-
+/Tote/Logs/LogWeb.log
+/Tote/Tote.App.Business.Test/bin
+/Tote/Tote.App.Data.Test/bin
+/Tote/Tote.Service.Contracts.Test/bin
+/Tote/Service/bin
+/Tote/Service.Contracts/bin

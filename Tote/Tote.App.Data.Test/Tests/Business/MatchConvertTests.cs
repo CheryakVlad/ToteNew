@@ -165,21 +165,5 @@ namespace Tote.App.Data.Test.Tests.Business
             Assert.IsTrue(GetMatches()[0].SportId == GetSortDto()[0].SportId);
             Assert.IsTrue(GetMatches()[0].Teams[0].Name == GetSortDto()[0].TeamHome);
         }
-
-        /*[TestMethod]
-        public void MatchConvert_ToMatches_Null()
-        {
-            matchConverts = new Mock<IMatchConvert>();
-            var sortDto = new List<SortDto>();
-            matchConverts.Setup(m=>m.ToMatches(sortDto))
-                .Returns((IReadOnlyList<SortDto> dto) =>
-                {                   
-                    return null;
-                });
-
-            Assert.IsNull(matchConverts);
-
-        }*/
-
     }
 }

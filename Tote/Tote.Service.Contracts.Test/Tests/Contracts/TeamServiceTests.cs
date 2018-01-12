@@ -188,7 +188,7 @@ namespace Tote.Service.Contracts.Test.Tests.Contracts
             var actualResult = teamService.GetMatchBySportDateStatus(1, "", 3);
             Assert.IsTrue(actualResult.Length == 1);
         }
-
+        
         [TestMethod]
         public void TeamService_GetMatchBySportDateStatus_PassSportStatus_Content()
         {

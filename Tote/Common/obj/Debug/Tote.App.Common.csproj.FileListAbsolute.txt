@@ -17,3 +17,4 @@ D:\22-11-2017\ToteNew.git\Tote\Common\bin\Debug\StructureMap.xml
 D:\22-11-2017\ToteNew.git\Tote\Common\bin\Debug\StructureMap.Net4.pdb
 D:\22-11-2017\ToteNew.git\Tote\Common\bin\Debug\StructureMap.Web.pdb
 D:\22-11-2017\ToteNew.git\Tote\Common\bin\Debug\StructureMap.Web.xml
+D:\22-11-2017\ToteNew.git\Tote\Common\obj\Debug\Tote.App.Common.csprojResolveAssemblyReference.cache
